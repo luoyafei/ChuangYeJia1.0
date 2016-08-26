@@ -83,6 +83,13 @@ public class ChatServer  {
 				});
 				jo.add("notRead", gson.toJsonTree(notRead));
 				jo.addProperty("first", true);
+				
+				/**
+				 * 将历史消息发送
+				 */
+				jo.add("historyMsg", gson.toJsonTree(getHistoryMessage()));
+				
+				
 				session.getBasicRemote().sendText(jo.toString()); // 发送信息到客户端
 				
 				/**
@@ -189,5 +196,22 @@ public class ChatServer  {
 		System.out.println("------------webSocket is onClose------------");
 	}
 
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	private List<ChatMessage> getHistoryMessage() {
+		
+		return (ArrayList<ChatMessage>)hibernateTemplate.executeFind(new HibernateCallback() {
+
+			@Override
+			public Object doInHibernate(org.hibernate.Session session) throws HibernateException, SQLException {
+				// TODO Auto-generated method stub
+				String ejbql = "from ChatMessage where (fromUserId = :fromUserId and toUserId = :toUserId) or (fromUserId = :toUserId and toUserId = :fromUserId) order by messageSendTime asc";
+				
+				return (ArrayList<ChatMessage>)session.createQuery(ejbql).setParameter("fromUserId", fromUser.getUserId()).setParameter("toUserId", toUserId).list();
+				
+			}
+			
+		});
+	}
 	
 }

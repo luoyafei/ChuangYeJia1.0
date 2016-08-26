@@ -182,13 +182,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="uk-panel uk-panel-box uk-panel-box-default" style="text-align: center;border:none;">
 					<div style="width: 80%;height: 80px;margin: 0 auto;">
 						<div class="main-left" style="width: 50%;text-align: center;height: 100%;float: left;padding-top: 20px;">
-								
-								<s:if test="#session.user.userId == <s:property value='#request.uts.userId'/>">
-									<a class="btn btn-default" onclick="alert('自己跟自己聊天可不是一个好习惯哦！');" style="border: solid #A9A9A9 2px; border-radius: 10px;">联系ta</a>
-								</s:if>
-								<s:elseif test="#session.user != null">
+								<s:if test="#session.user != null">
 									<a href="<%=path %>/pages/chat/chat.jsp?toUserId=<s:property value='#request.uts.userId'/>" class="btn btn-default" style="border: solid #A9A9A9 2px; border-radius: 10px;">联系ta</a>
-								</s:elseif>
+								</s:if>
 								<s:else>
 									<a class="btn btn-default" onclick="alert('请先进行登陆操作后再进行聊天！');" style="border: solid #A9A9A9 2px; border-radius: 10px;">联系ta</a>
 								</s:else>

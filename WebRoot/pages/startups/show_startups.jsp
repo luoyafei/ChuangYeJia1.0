@@ -214,9 +214,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<s:if test="#session.user != null">
 							<a href="<%=path %>/pages/chat/chat.jsp?toUserId=<s:property value='#request.sts.startupsLeader.userId'/>" class="btn btn-default" style="border: solid #A9A9A9 2px; border-radius: 10px;">联系ta</a>
 						</s:if>
-						<s:elseif test="#session.user.userId.equals(<s:property value='#request.sts.startupsLeader.userId'/>)">
-							<a class="btn btn-default" onclick="alert('自己跟自己聊天可不是一个好习惯哦！');" style="border: solid #A9A9A9 2px; border-radius: 10px;">联系ta</a>
-						</s:elseif>
 						<s:else>
 							<a class="btn btn-default" onclick="alert('请先进行登陆操作后再进行聊天！');" style="border: solid #A9A9A9 2px; border-radius: 10px;">联系ta</a>
 						</s:else>

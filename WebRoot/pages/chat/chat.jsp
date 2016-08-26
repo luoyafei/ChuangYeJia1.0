@@ -5,12 +5,11 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+if(session.getAttribute("user")==null || ((User)session.getAttribute("user")).getUserId().equals(request.getParameter("toUserId"))) {
+	out.println("<script type='text/javascript'>window.history.back();</script>");
+}
 %>
-<s:if test="#session.user == null">
-	<script type="text/javascript">
-		window.history.back();
-	</script>
-</s:if>
+	
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="zh-CN">
 
@@ -177,21 +176,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											</div>
 
 											<!--##############################################此为当前消息-->
-											<div class="tab-content"
-												style="background-color: white; border-bottom: solid #A9A9A9 2px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;">
-												<div role="tabpanel" class="tab-pane active"
-													id="now_message_info">
-													<div class="tab-content-1"
-														style="width: 100%; height: 880px; margin: 0 auto; background-color: #F5F5F5;">
-														<div class="form-horizontal" role="form"
-															style="margin-left: 0px;">
-
+											<div class="tab-content" style="background-color: white; border-bottom: solid #A9A9A9 2px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;">
+												<div role="tabpanel" class="tab-pane active" id="now_message_info">
+													<div class="tab-content-1" style="width: 100%; height: 880px; margin: 0 auto; background-color: #F5F5F5;">
+														<div class="form-horizontal" role="form" style="margin-left: 0px;">
 															<div class="" style="width: 100%; height: 600px; background-color:; overflow: auto; border-bottom: solid #A9A9A9 1px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
-																<!--此处为每个用户聊天的信息！-->
-																
-																<div id="message_panel" style="width: 90%; background-color:; margin: 10px auto;">
-																	<!--获取时间-->
-																</div>
+																<div id="message_panel" style="width: 90%; background-color:; margin: 10px auto;"></div>
+															
 															</div>
 															<div>
 																<div class="form-group" style="padding-top: 15px;">
@@ -203,8 +194,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 															<div style="margin: 25px auto;">
 																<div class="form-group"
 																	style="margin: 0 auto; text-align: center;">
-																	<button id="send_message" type="submit" class="btn btn-default btn-lg"
-																		style="border: solid #A9A9A9 2px; border-radius: 10px;">发送</button>
+																	<button id="send_message" type="submit" class="btn btn-default btn-lg" style="border: solid #A9A9A9 2px; border-radius: 10px;">发送</button>
 																</div>
 															</div>
 														</div>
@@ -213,34 +203,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												
 												
 												<!--######################此处为历史消息-->
-									<%-- 			<div role="tabpanel" class="tab-pane" id="history_message">
-													<div class="tab-content-1"
-														style="width: 100%; margin: 0px auto; background-color: white;">
+												<div role="tabpanel" class="tab-pane" id="history_message">
+													<div class="tab-content-1" style="width: 100%; margin: 0px auto; background-color: white;">
 														<div class="form-horizontal" role="form"
 															style="margin-left: 0px;">
-															<div class="tab-content-1"
-																style="width: 100%; height: 680px; margin: 0 auto; background-color: #F5F5F5;">
-																<div class="form-horizontal" role="form"
-																	style="margin-left: 0px;">
+															<div class="tab-content-1" style="width: 100%; height: 680px; margin: 0 auto; background-color: #F5F5F5;">
+																<div class="form-horizontal" role="form" style="margin-left: 0px;">
 
-																	<div class=""
-																		style="width: 100%; height: 600px; background-color:; overflow: auto; border-bottom: solid #A9A9A9 1px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
-
-																		<div class="item_user_message" id="history_message"
-																			style="width: 90%; background-color:; margin: 10px auto;">
-																			<div class="item_username_2">
-																				<span>用户002:</span>
-																			</div>
-																			<div class="item_messsage_2">
-																				<span>用户002说了一大堆的废话啊！</span>
-																			</div>
-																		</div>
+																	<div class="" style="width: 100%; height: 600px; background-color:; overflow: auto; border-bottom: solid #A9A9A9 1px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+																		<div id="his_message_panel" style="width: 90%; background-color:; margin: 10px auto;"></div>
+																		
 																	</div>
 																</div>
 															</div>
 														</div>
 													</div>
-												</div> --%>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -263,13 +241,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	})
 	$(document).ready(function() {
 		$("td").attr("style", "border-top: solid #333333 1px;");
+		
 		/**
 		*解决接收推送的重复问题
 		*/
 		var toPushSpan = 0;
 		var webSocket = null;
 		init();
-		
 		var toUser = {};
 		
 		function init() {
@@ -319,13 +297,76 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					div.attr("class", "uk-comment-meta");
 					div.appendTo(header);
 					var span = $('<span></span>');
-					span.attr("class", "uk-h4 toUser_message");
+					span.attr("class", "uk-h4");
 					span.text(json.notRead[i].chatMessage);
 					span.appendTo(div);
 					
 					article.appendTo($("#message_panel"));
 				}
 				json.notRead = null;//使用之后赋值为 null
+				
+				/*
+				接收到历史消息
+				*/
+				if(json.historyMsg != null) {
+					for(var i = 0; i < json.historyMsg.length; i++) {
+						if(json.historyMsg[i].toUserId == json.toUser.userId) {
+							var article = $('<article></article>');
+							article.attr("class", "uk-comment");
+							var header = $('<header></header>');
+							header.attr("class", "uk-comment-header");
+							header.appendTo(article);
+							var img = $('<img />');
+							img.attr("class", "uk-comment-avatar uk-border-rounded");
+							img.attr("src", json.toUser.userPhoto);
+							img.attr("alt", "图片正在玩命加载中...");
+							img.attr("style", "width: 50px; height: 50px;");
+							img.appendTo(header);
+							var h4 = $('<h4></h4>');
+							h4.attr("class", "uk-comment-title");
+							h4.text(json.toUser.userNickName + ":" + json.historyMsg[i].messageSendTime);
+							h4.appendTo(header);
+							var div = $('<div></div>');
+							div.attr("class", "uk-comment-meta");
+							div.appendTo(header);
+							var span = $('<span></span>');
+							span.attr("class", "uk-h4");
+							span.text(json.historyMsg[i].chatMessage);
+							span.appendTo(div);
+							
+							article.appendTo($("#his_message_panel"));
+						} else {
+
+							var article = $('<article></article>');
+							article.attr("class", "uk-comment uk-comment-primary");
+							var header = $('<header></header>');
+							header.attr("class", "uk-comment-header");
+							header.appendTo(article);
+							var img = $('<img />');
+							img.attr("class", "uk-comment-avatar uk-border-rounded");
+							img.attr("src", '<s:property value="#session.user.userPhoto"/>');
+							img.attr("alt", "图片正在玩命加载中...");
+							img.attr("style", "width: 50px; height: 50px;float: right;");
+							img.appendTo(header);
+							var h4 = $('<h4></h4>');
+							h4.attr("class", "uk-comment-title");
+							h4.attr("style", "float: right;");
+							h4.text("我" + ":" + json.historyMsg[i].messageSendTime);
+							h4.appendTo(header);
+							var div = $('<div></div>');
+							div.attr("class", "uk-comment-meta uk-flex-right");
+							div.appendTo(header);
+							var span = $('<span></span>');
+							span.attr("class", "uk-h4");
+							span.text(json.historyMsg[i].chatMessage);
+							span.appendTo(div);
+							
+							
+							article.appendTo($("#his_message_panel"));
+						}
+					}
+				}
+				
 			}
 			
 			if(json.sendOne != null) {
