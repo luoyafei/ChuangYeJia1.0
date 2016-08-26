@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/startupplus/!svn/ver/62/2/assets/bootstrap-3.3.5/test-infra
+END
+s3_cache.py
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/startupplus/!svn/ver/62/2/assets/bootstrap-3.3.5/test-infra/s3_cache.py
+END
+uncached-npm-install.sh
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/startupplus/!svn/ver/62/2/assets/bootstrap-3.3.5/test-infra/uncached-npm-install.sh
+END
+S3Cachefile.json
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/startupplus/!svn/ver/62/2/assets/bootstrap-3.3.5/test-infra/S3Cachefile.json
+END
+requirements.txt
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/startupplus/!svn/ver/62/2/assets/bootstrap-3.3.5/test-infra/requirements.txt
+END
+npm-shrinkwrap.json
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/startupplus/!svn/ver/62/2/assets/bootstrap-3.3.5/test-infra/npm-shrinkwrap.json
+END
+README.md
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/startupplus/!svn/ver/62/2/assets/bootstrap-3.3.5/test-infra/README.md
+END

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+          "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.devMode" value="true"/>
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+	<constant name="struts.custom.i18n.resources" value="app" />
+	<!-- 设置最大上传文件的大小 2M-->
+	<constant name="struts.multipart.maxSize" value="5242880" />
+	<!-- 配置临时存储地址 -->
+	<constant name="struts.multipart.saveDir" value="/tmp"/>
+	<!-- 将websocket请求过滤 -->
+	<constant name="struts.action.excludePattern" value="/chat/server"></constant>
+	
+	<package name="main" extends="struts-default" namespace="/">
+	
+		<default-action-ref name="index" />
+    	<action name="index">
+    		<result>/index.jsp</result>
+    	</action>
+	
+		<!-- 默认action，在url中随意敲击，可以跳转到指定地方。 -->
+    	<!-- <default-action-ref name="myIndex" />
+    	<action name="myIndex">
+    		<result>/tags.jsp</result>
+    	</action>
+		
+		<action name="testi18n">
+			<result>/testI18nFile.jsp</result>
+		</action>
+		<action name="index">
+			<result>
+				/exception.jsp
+			</result>
+		</action> -->
+	</package>
+	
+    <package name="default" extends="struts-default" namespace="/"> 
+		<action name="userSignIn" class="userSignInAction">
+			<result name="identifyCode" type="stream">
+				  <param name="contentType">image/jpeg</param>
+				  <param name="inputName">imageStream</param>
+				  <param name="bufferSize">2048</param>
+			</result>
+			<result name="signout">/index.jsp</result>
+			<result name="register">/pages/signIn/register.jsp</result>
+			<result name="login">/pages/signIn/login.jsp</result>
+			<!-- 这是普通的不带参数的跳转 -->
+			<result name="back" type="redirect">${backUrl}</result>
+			<!-- 当检测到是从show_startups.jsp登录的时候，将backUrl转换为action，保留item参数，将其跳转到名字为getStartupsItem的action -->
+			<result name="rdactionforitem" type="redirectAction">
+				 <param name="actionName">getStartupsItem</param>
+		         <param name="namespace">/</param>
+		         <param name="item">${backUrl}</param>
+			</result>
+			
+			<!-- 当检测到是从user_profile.jsp登录的时候，将backUrl转换为action，保留mark参数，将其跳转到名字为getUserMark的action -->
+			<result name="rdactionformark" type="redirectAction">
+				 <param name="actionName">getUserMark</param>
+		         <param name="namespace">/</param>
+		         <param name="mark">${backUrl}</param>
+			</result>
+		</action>
+		
+		<!-- 处理登录注册的数据，ajax的action -->
+		<action name="vaction" class="validateAction"/>
+		
+		<!-- 处理修改用户信息的数据，ajax的action -->
+		<action name="modifyUserInfo" class="userInfoModifyAction"/>
+		
+		<!-- 用来处理用户更改头像ajax的action -->
+		<action name="uploadPicture" class="uploadUserPicture" />
+		
+		<!-- 首页中获取公司数据给予显示的ajax的action -->
+		<action name="supportStartups" class="supportFourStartupsAction" />
+		
+		<!-- 首页中获取产品数据给予显示的ajax的action -->
+		<action name="supportProducts" class="supportProductsAction" />
+		
+		<!-- 具体公司内容展示时，显示的该公司的所有产品的ajax的action -->
+		<action name="getProductsInStartups" class="getProductsInStartupsIdAction" />
+		
+		<!-- bar中获取用户集合数据给予显示的ajax的action -->
+		<action name="provideUsers" class="provideUserListForShowAction" />
+		
+		<!-- 用户进行申请加入公司的ajax的action -->
+		<action name="applyJoin" class="applyJoinStartupsAction" />
+		<!-- 用户进行邀请合伙人加入公司的ajax的action -->
+		<action name="inviteJoin" class="inviteJoinStartupsAction" />
+		
+		<!-- 用户在userConsole控制台中获取自己是leader的公司以及自己参加的公司的ajax的action -->
+		<action name="getStartupsConsole" class="getStartupsInUserConsole" />
+		
+		<!-- 用户在userConsole控制台中获取合同集合的ajax的action -->
+		<action name="getContractConsole" class="getContractInUserConsole" />
+		
+		<!-- 用户在邀请成员加入时，获取自己创建的所有公司的ajax的action -->
+		<action name="getMyLeaderForInvite" class="getMyLeaderStartupsForInvite" />
+		
+		<!-- 用户在操作接收到的申请合同以及自己创建的申请合同的ajax的action -->
+		<action name="operateApply" class="operateApplyContractAction" />
+		
+		<!-- 用户在操作接收到的邀请合同以及自己创建的邀请合同的ajax的action -->
+		<action name="operateInvite" class="operateInviteContractAction" />
+		
+		<!-- 用户创建自己公司的产品的action -->
+		<action name="createProduct" class="createProductAction">
+			<result name="input">/pages/userConsole/product/create_product.jsp</result>
+			<result name="success">/pages/userConsole/product/end_product.jsp</result>
+		</action>
+		
+		
+		<!-- 用来处理创建公司的action -->
+		<action name="createStartups" class="createStartupsAction">
+		
+			<interceptor-ref name="timer" />
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="execAndWait">
+				<!-- 设置等待时间为1000ms -->
+				<param name="delay">1000</param>
+				
+			</interceptor-ref>
+			<result name="wait">/pages/startups/wait.jsp</result>
+			
+			<result name="input">/pages/startups/create_startups.jsp</result>
+			<result name="success">/pages/startups/end_startups.jsp</result>
+		</action>
+		
+		<!-- 处理点击公司想要访问该公司信息的页面时，根据公司的id，将公司的信息获取 -->
+		<action name="getStartupsItem" class="getStartupsInIdAction">
+			<result name="success">/pages/startups/show_startups.jsp</result>
+			<result name="none" type="redirect">/index.jsp</result>
+		</action>
+		
+		<!-- 处理点击User之后，要访问User对象的信息页面时，根据User的id，将User的信息取出 -->
+		<action name="getUserMark" class="getUserInIdAction">
+			<result name="success">/pages/home/user_profile.jsp</result>
+			<result name="none" type="redirect">/index.jsp</result>
+		</action>
+		
+		
+		<!-- 处理点击申请合同想要访问该合同信息的页面时，根据申请的id，将合同的信息获取 -->
+		<action name="getApplyContract" class="getApplyContractInIdAction">
+			<result name="success">/pages/userConsole/apply/apply_show.jsp</result>
+			<result name="none" type="redirect">/index.jsp</result>
+		</action>
+		
+		<!-- 处理点击邀请合同想要访问该合同信息的页面时，根据邀请的id，将合同的信息获取 -->
+		<action name="getInviteContract" class="getInviteContractInIdAction">
+			<result name="success">/pages/userConsole/invite/invite_show.jsp</result>
+			<result name="none" type="redirect">/index.jsp</result>
+		</action>
+		
+		<!-- 处理点击产品想要访问该产品信息的页面时，根据产品的id，将产品的信息获取 -->
+		<action name="getProductItem" class="getProductInIdAction">
+			<result name="success">/pages/userConsole/product/show_product.jsp</result>
+			<result name="none" type="redirect">/index.jsp</result>
+		</action>
+		
+		
+		
+    <!-- 	<global-results>
+    		<result name="exception">/exception.jsp</result>
+    	</global-results> -->
+    	
+    	
+    </package>
+</struts>
+

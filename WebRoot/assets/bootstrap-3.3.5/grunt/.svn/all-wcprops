@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/startupplus/!svn/ver/62/2/assets/bootstrap-3.3.5/grunt
+END
+.jshintrc
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/startupplus/!svn/ver/62/2/assets/bootstrap-3.3.5/grunt/.jshintrc
+END
+bs-lessdoc-parser.js
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/startupplus/!svn/ver/62/2/assets/bootstrap-3.3.5/grunt/bs-lessdoc-parser.js
+END
+bs-commonjs-generator.js
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/startupplus/!svn/ver/62/2/assets/bootstrap-3.3.5/grunt/bs-commonjs-generator.js
+END
+sauce_browsers.yml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/startupplus/!svn/ver/62/2/assets/bootstrap-3.3.5/grunt/sauce_browsers.yml
+END
+bs-glyphicons-data-generator.js
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/startupplus/!svn/ver/62/2/assets/bootstrap-3.3.5/grunt/bs-glyphicons-data-generator.js
+END
+bs-raw-files-generator.js
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/startupplus/!svn/ver/62/2/assets/bootstrap-3.3.5/grunt/bs-raw-files-generator.js
+END
+configBridge.json
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/startupplus/!svn/ver/62/2/assets/bootstrap-3.3.5/grunt/configBridge.json
+END

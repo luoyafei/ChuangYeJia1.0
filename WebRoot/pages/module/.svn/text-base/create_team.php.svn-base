@@ -1,0 +1,112 @@
+<div class="tab-content-1" style="width: 80%;height: 100%;margin: 0 auto; background-color: white;">
+
+	<h3 style="color: black;padding-top: 20px;text-align: center;">创建团队</h3>
+	<div class="form-horizontal" id="createTeamForm" role="form" style="margin-left: 0px;">
+
+		<div class="form-group" style="margin-right: 0px;margin-left: -45px;">
+			<div style="margin-top: 23px;">
+				<label for="create-project-name1" class="col-sm-2 control-label" style="font-size: 18px;font-weight: normal;">团队名称</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="team_name_detail" style="background-color: #F5F5F5;" id="team_name_detail" />
+				</div>
+			</div>
+			<hr class="featurette-divider" style="padding-bottom: 0px; margin-bottom: 0px;">
+		</div>
+
+		<div id="choicelabel" style="border-bottom: dashed #A9A9A9 1px;padding-bottom: 10px;">
+			<div class="form-group" style="margin-right: 0px;margin-left: -45px;">
+				<label for="teamType" class="col-sm-2 control-label" style="font-size: 18px;font-weight: normal;">团队类型</label>
+				<div class="col-sm-10">
+					<div class="btn-group" id="teamType" data-toggle="buttons">
+					  <label class="btn btn-default active">
+					    <input type="radio" name="team_type" id="project_catagory1" autocomplete="off" checked value="1">1-10人小作坊
+					  </label>
+					  <label class="btn btn-default">
+					    <input type="radio" name="team_type" id="project_catagory2" autocomplete="off" value="2">10-100人大工程
+					  </label>
+					  <label class="btn btn-default">
+					    <input type="radio" name="team_type" id="project_catagory3" autocomplete="off" value="3">100人以上
+					  </label>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div style="border-bottom: dashed #A9A9A9 1px;">
+			<div class="form-group" style="margin-right: 0px;margin-left: -30px;;padding-top: 15px;">
+				<label for="team_address_main" class="col-sm-2 control-label" style="font-size: 18px;font-weight: normal;">团队归属地</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="team_address_main" style="background-color: #F5F5F5;" id="team_address_main" placeholder="">
+				</div>
+			</div>
+		</div>
+
+		<script>
+			//此处是使用KE在线编辑器
+			KE.show({
+				id: 'content22',
+				resizeMode: 1,
+				allowPreviewEmoticons: false,
+				allowUpload: false,
+				items: [
+					'fontname', 'fontsize', '|', 'textcolor', 'bgcolor', 'bold', 'italic', 'underline',
+					'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+					'insertunorderedlist', '|', 'emoticons', 'image', 'link'
+				]
+			});
+		</script>
+
+		<div style="border-bottom: dashed #A9A9A9 1px;">
+			<div class="form-group" style="margin-right: 0px;margin-left: -30px;padding-top:15px;">
+				<label for="content222" class="col-sm-2 control-label" style="font-size: 18px;font-weight: normal;">详细内容&nbsp;&nbsp;</label>
+				<div class="col-sm-10">
+					<textarea id="content222" name="team_content_detail" style="width:100%;height:200px;visibility:visible;"></textarea>
+				</div>
+			</div>
+		</div>
+
+
+		<div style="margin: 50px auto;">
+			<div class="form-group" style="margin: 0 auto; text-align: center;">
+				<button type="button" class="btn btn-default" onclick="backPage()" value="返回"style="border: solid #A9A9A9 2px; border-radius: 10px;">返回</button>
+				<button type="button" class="btn btn-default" name="submit_create_team" onclick="checkteam()" value="创建团队"style="border: solid #A9A9A9 2px; border-radius: 10px;">发送</button>
+			</div>
+		</div>
+	</div>
+	<script>
+		function checkteam() {
+			var team_name_detail = $("#team_name_detail").val().trim();
+			var team_type = $("input[name='team_type']:checked").val();
+			var team_address_main = $("#team_address_main").val().trim();
+			var team_content_detail = $("#content222").val().trim();
+
+			if(team_name_detail != "" && team_type != "" && team_address_main != "" && team_content_detail != "") {
+				$.post('../../action/ajax/create_team.php', {
+					team_name_detail : team_name_detail,
+					team_address_main : team_address_main,
+					team_type : team_type,
+					team_content_detail : team_content_detail
+				}, function(data, textStatus) {
+					if(textStatus == "success") {
+						var start = data.indexOf("{");
+			        	var end = data.indexOf("<script");
+			        	var str = data.substring(start, end);
+			        	var dd =  $.parseJSON(str);
+			        	
+						 if (dd.success == "1") {
+						 	$("#exampleTeam1").val(dd.result);
+							$("#status3").attr("style", "color: black;display: block;");
+							$("#status3").click();
+						 } else {
+						 	alert("失败！");
+						 }
+					}
+				}, 'text');
+			} else {
+				alert("请先填写完信息");
+			}
+		}
+	</script>
+</div>

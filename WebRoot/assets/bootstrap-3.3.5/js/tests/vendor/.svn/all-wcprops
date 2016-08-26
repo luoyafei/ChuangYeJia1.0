@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/startupplus/!svn/ver/62/2/assets/bootstrap-3.3.5/js/tests/vendor
+END
+qunit.css
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/startupplus/!svn/ver/62/2/assets/bootstrap-3.3.5/js/tests/vendor/qunit.css
+END
+qunit.js
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/startupplus/!svn/ver/62/2/assets/bootstrap-3.3.5/js/tests/vendor/qunit.js
+END
+jquery.min.js
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/startupplus/!svn/ver/62/2/assets/bootstrap-3.3.5/js/tests/vendor/jquery.min.js
+END
