@@ -12,6 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<h4 class="panel-title">
 				<a data-toggle="collapse" data-parent="#startups1" href="#createStartups" aria-expanded="true" aria-controls="createStartups"> 我创建的公司 </a>
 				<span class="label label-info myStartupsLabel"></span>
+				<a class="btn btn-default btn-xs" href="<%=path %>/pages/startups/create_startups.jsp" style="float: right;">创建公司</a>
 			</h4>
 		</div>
 		<div id="createStartups" class="panel-collapse collapse" role="tabpanel"

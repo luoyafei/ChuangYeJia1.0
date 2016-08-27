@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ page import="com.chuangyejia.bean.*" %>
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
 
@@ -57,8 +58,67 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
 
   <body>
-  
-	<jsp:include page="/pages/module/index_bar.jsp" flush="true" />
+    <div class="navbar-wrapper">
+      <div class="container">
+
+ 		<nav class="navbar  navbar-inverse navbar-static-top" style="border-radius: 4px;">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+            
+              <ul class="nav navbar-nav">
+               
+                <li class=<%=(String)request.getAttribute("flag")!=null && ((String)request.getAttribute("flag")).equals("index")?"active":"" %>><a class="a-item" href="/ChuangYeJia/index.jsp">首页</a></li>
+				<li class=<%=(String)request.getAttribute("flag")!=null && ((String)request.getAttribute("flag")).equals("startups")?"active":"" %>><a class="a-item" href="/ChuangYeJia/pages/title/startups_list.jsp">创业公司</a></li>
+				<li class=<%=(String)request.getAttribute("flag")!=null && ((String)request.getAttribute("flag")).equals("partner")?"active":"" %>><a class="a-item" href="/ChuangYeJia/pages/title/copartner_list.jsp">合伙人</a></li>
+				<li class=<%=(String)request.getAttribute("flag")!=null && ((String)request.getAttribute("flag")).equals("product")?"active":"" %>><a class="a-item" href="/ChuangYeJia/pages/title/product_list.jsp">产品</a></li>
+              </ul>
+              
+              <ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
+                <li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" style="background: none;">
+						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+						<span class="caret"></span>
+					</a>
+					<ul class='dropdown-menu' role='menu' id='user-menu-cont'>
+						<s:if test="#session.user != null">
+							<li><a>欢迎您！<s:property value="#session.user.userNickName"/> </a>
+							<li><a href="/ChuangYeJia/pages/userConsole/complete_data.jsp">编辑资料</a></li>
+							<li><a href="#">消息提醒</a></li>
+							<li><a href="/ChuangYeJia/pages/userConsole/home.jsp" class="personalManager">个人管理</a></li>
+							
+							<li role="presentation" class="menuInsertShow"><a href="#my_data" role="tab" data-toggle="tab">我的资料 </a></li>
+				            <li role="presentation" class="menuInsertShow"><a href="#my_startups" role="tab" data-toggle="tab">我的公司</a></li>
+            				<li role="presentation" class="menuInsertShow"><a href="#my_product" role="tab" data-toggle="tab">我的产品</a></li>
+				            <li role="presentation" class="menuInsertShow"><a href="#my_contract" role="tab" data-toggle="tab">我的合同</a></li>
+            				<li role="presentation" class="menuInsertShow"><a href="#my_remind" role="tab" data-toggle="tab">我的消息</a></li>
+							
+							<li><a href="http://oa001.w176-e0.ezwebtest.com/main/main.html">创业者之家</a></li>
+							
+							<li class='divider'></li>
+							<li><a href="userSignIn!signOut.action">注销</a></li>
+						</s:if>
+						<s:else>
+							<li><a href="/ChuangYeJia/pages/signIn/login.jsp?backUrl=<%=request.getRequestURI()+'?'+request.getQueryString() %>">登陆</a></li>
+							<li><a href="/ChuangYeJia/pages/signIn/register.jsp?backUrl=<%=request.getRequestURI()+'?'+request.getQueryString() %>">注册</a></li>
+						</s:else>
+					</ul>
+					
+				</li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+	</div>
+</div>
+	
 	
 	
 	
@@ -71,7 +131,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <li role="presentation"><a href="#my_startups" role="tab" data-toggle="tab">我的公司</a></li>
             <li role="presentation"><a href="#my_product" role="tab" data-toggle="tab">我的产品</a></li>
             <li role="presentation"><a href="#my_contract" role="tab" data-toggle="tab">我的合同</a></li>
-            <!--<li role="presentation"><a href="#my_news" role="tab" data-toggle="tab">我的消息</a></li>-->
+            <li role="presentation"><a href="#my_remind" role="tab" data-toggle="tab">我的消息</a></li>
           </ul>
         </div>
         <script type="text/javascript">
@@ -79,6 +139,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			  e.preventDefault()
 			  $(this).tab('show')
 			})
+			
+			window.onresize = function() {
+				screenModify();
+			}
         </script>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
         
@@ -87,20 +151,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			  	<div role="tabpanel" class="tab-pane" id="my_startups"></div>
 			  	<div role="tabpanel" class="tab-pane" id="my_product"></div>
 			  	<div role="tabpanel" class="tab-pane" id="my_contract"></div>
-			  	<!-- <div role="tabpanel" class="tab-pane" id="my_news"></div> -->
+			  	<div role="tabpanel" class="tab-pane" id="my_remind"></div>
 			</div>
 
         	<script>
 
+        		function screenModify() {
+        			if(document.body.offsetWidth < 684) {
+    					$(".personalManager").hide();
+    					$(".menuInsertShow").show();
+    				} else {
+    					$(".personalManager").show();
+    					$(".menuInsertShow").hide();
+    				}
+        		}
+        	
         		$(document).ready(function(){
         			
-        			$("#navbar").attr("class", "navbar navbar-fixed-top navbar-inverse");
+        			screenModify();
         			
         			$("#my_data").load("homeItem/my_data.jsp");//将个人资料load进来
         			$("#my_startups").load("homeItem/my_startups.jsp");//将我的项目load进来
         			$("#my_product").load("homeItem/my_product.jsp");//将我的产品load进来
         			$("#my_contract").load("homeItem/my_contract.jsp");//将我的合同load进来
-        			/*$("#my_news").load("user_statusinfo_item/my_news.php");//将我的消息load进来团队*/
+        			$("#my_remind").load("homeItem/my_remind.jsp");//将我的消息load进来团队
         		});
         	</script>
         </div>

@@ -104,6 +104,9 @@
 		<!-- 用户在操作接收到的邀请合同以及自己创建的邀请合同的ajax的action -->
 		<action name="operateInvite" class="operateInviteContractAction" />
 		
+		<!-- 在用户控制台中获取消息提醒，所有用户的消息  ajax的action-->
+		<action name="getRemindUsers" class="getRemindUsers" />
+		
 		<!-- 用户创建自己公司的产品的action -->
 		<action name="createProduct" class="createProductAction">
 			<result name="input">/pages/userConsole/product/create_product.jsp</result>
@@ -157,7 +160,6 @@
 			<result name="success">/pages/userConsole/product/show_product.jsp</result>
 			<result name="none" type="redirect">/index.jsp</result>
 		</action>
-		
 		
 		
     <!-- 	<global-results>

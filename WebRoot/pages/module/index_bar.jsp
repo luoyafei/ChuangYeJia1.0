@@ -1,14 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8" contentType="text/html;UTF-8" %>
 
-<script>
-	function barHide() {
-		if ($(window).scrollTop() > 100) {
-			$("#navbar").hide();
-		} else {
-			$("#navbar").show();
-		}
-	}
-</script>
     <div class="navbar-wrapper">
       <div class="container">
 
