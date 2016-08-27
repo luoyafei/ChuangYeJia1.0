@@ -125,6 +125,7 @@ public class CreateStartupsAction extends ActionSupport {
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
 		//Thread.sleep(3000);
+
 		User user = (User)session.getAttribute("user");
 		if(user != null) {
 			if(!sd.checkData()) {
