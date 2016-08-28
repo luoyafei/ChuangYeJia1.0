@@ -13,7 +13,7 @@
 <body>
 	<div style="width: 80%;margin-top:10px;margin-bottom: 20px;">
 		<div class="row remindRow">
-			<span class="col-md-2 remindNull"></span>
+			<span class="col-md-2 remindNull" style="display: none;"></span>
 		</div>
 	</div>
 	<script type="text/javascript">
@@ -50,10 +50,15 @@
 							
 							div.appendTo($(".remindRow"));
 						}
-					} else
+					} else {
+					 	$(".remindNull").attr("style", "display: inline;");
 						$(".remindNull").text("暂无消息");
-				} else
+					}
+				} else {
+					$(".remindNull").attr("style", "display: inline;");
 					$(".remindNull").text("暂无消息");
+				}
+					
 			}, 'json');
 		});
 	</script>

@@ -2,7 +2,6 @@ package com.chuangyejia.ajax;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -13,17 +12,19 @@ import org.springframework.stereotype.Component;
 
 import com.chuangyejia.bean.User;
 import com.chuangyejia.service.IChatMessageService;
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.opensymphony.xwork2.ActionSupport;
 
-@SuppressWarnings("serial")
-@Component(value="getRemindUsers")
+@Component(value="getAllNotReadCount")
 @Scope("prototype")
-public class GetRemindUsersInUserConsole extends ActionSupport {
+public class GetAllNotReadCountAction extends ActionSupport {
 
-	private IChatMessageService cms;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
+	private IChatMessageService cms;
 	public IChatMessageService getCms() {
 		return cms;
 	}
@@ -31,12 +32,9 @@ public class GetRemindUsersInUserConsole extends ActionSupport {
 	public void setCms(IChatMessageService cms) {
 		this.cms = cms;
 	}
-
 	
-	public void getRemindUsers() {
-		
+	public void getAllNotReadCount() {
 		User user = (User)ServletActionContext.getRequest().getSession().getAttribute("user");
-		Gson gson = new Gson();
 		JsonObject jo = new JsonObject();
 		
 		HttpServletResponse response = ServletActionContext.getResponse();
@@ -49,20 +47,10 @@ public class GetRemindUsersInUserConsole extends ActionSupport {
 		}
 
 		if(user != null) {
-			List<User> users = cms.getAllNotReadChatMessages(user.getUserId(), 0);
-			if(users != null && users.size() != 0) {
-
-				String[] userCount = new String[users.size()];
-				for(int i = 0; i < users.size(); i++) {
-					userCount[i] = cms.getNotReadChatMessagesCount(users.get(i).getUserId(), user.getUserId(), 0).toString();
-				}
-				jo.add("remindUsers", gson.toJsonTree(users));
-				jo.add("userCount", gson.toJsonTree(userCount));
-				jo.addProperty("remindSuccess", true);
-			} else
-				jo.addProperty("remindSuccess", false);
+			Long count = cms.getAllNotReadChatMessageCounts(user.getUserId(), 0);
+			jo.addProperty("remindAllCount", count.toString());
 		} else
-			jo.addProperty("remindSuccess", false);
+			jo.addProperty("remindAllCount", 0);
 		
 		out.println(jo.toString());
 			
@@ -71,4 +59,5 @@ public class GetRemindUsersInUserConsole extends ActionSupport {
 		
 		return;
 	}
+
 }

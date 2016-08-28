@@ -139,7 +139,6 @@ System.out.println("删除双方聊天消息出错！");
 				}
 				
 			});
-			System.out.println("lllllllllllllllllllll:" + l);
 			return l;
 		} catch(DataAccessException e) {
 			System.out.println("获取历史消息的个数出现错误！");
@@ -147,6 +146,30 @@ System.out.println("删除双方聊天消息出错！");
 			return 0L;
 		}
 	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+	public Long getAllNotReadChatMessageCounts(final String userId, final int needRead) {
+		// TODO Auto-generated method stub
+		try {
+			Long l =  (Long)hibernateTemplate.execute(new HibernateCallback() {
+				@Override
+				public Object doInHibernate(Session session) throws HibernateException, SQLException {
+					// TODO Auto-generated method stub
+					String ejbql = "select count(*) from ChatMessage cm where cm.toUserId = :toUserId and cm.needRead = :needRead";
+					return (Long)session.createQuery(ejbql).setParameter("toUserId", userId).setParameter("needRead", needRead).uniqueResult();
+				}
+				
+			});
+			return l;
+		} catch(DataAccessException e) {
+			System.out.println("获取历史消息的总个数出现错误！");
+			e.printStackTrace();
+			return 0L;
+		}
+	}
+
+	
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override

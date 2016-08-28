@@ -15,22 +15,22 @@ if(session.getAttribute("user")==null || ((User)session.getAttribute("user")).ge
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta http-equiv="pragma" content="no-cache">
-		<meta http-equiv="cache-control" content="no-cache">
-		<meta http-equiv="expires" content="0">    
-		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta http-equiv="expires" content="0" />    
+		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3" />
 		<title>
 			聊天交流页面
 		</title>
 
 
 		<!-- Bootstrap core CSS -->
-		<link href="<%=path%>/assets/bootstrap-3.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="<%=path%>/assets/bootstrap-3.3.5/dist/css/bootstrap.min.css" rel="stylesheet" />
 		<script src="<%=path%>/assets/bootstrap-3.3.5/docs/assets/js/ie-emulation-modes-warning.js"></script>
-		<link href="<%=path%>/assets/bootstrap-3.3.5/docs/examples/carousel/carousel.css" rel="stylesheet">
+		<link href="<%=path%>/assets/bootstrap-3.3.5/docs/examples/carousel/carousel.css" rel="stylesheet" />
 		
 		<script src="<%=path%>/assets/jQuery/2.x/jquery-2.1.4.min.js"></script>
 		<script src="<%=path%>/assets/bootstrap-3.3.5/dist/js/bootstrap.min.js"></script>
@@ -110,7 +110,7 @@ if(session.getAttribute("user")==null || ((User)session.getAttribute("user")).ge
 					style="padding-right: 0px; padding-left: 0px;">
 					<div class="carousel-caption">
 						<div class="logo-img" style="width: 100%;">
-							<span> <img data-holder-rendered="true"  src="<%=path %>/assets/img/content_detail/头像.png" class="toUser_photo img-circle" style="width: 12%; height: 5%; margin-bottom: 0px; padding-bottom: 0px;">
+							<span> <img data-holder-rendered="true"  src="<%=path %>/assets/img/content_detail/头像.png" class="toUser_photo img-circle" style="width: 100px; height: 100px; margin-bottom: 0px; padding-bottom: 0px;">
 							</span> <span> <a style="font-size: 14px; text-decoration: none;">
 									<span style="display: block;" class="toUser_nickname">
 									ID:姓名/昵称</span>

@@ -95,5 +95,10 @@ public class ChatMessageServiceImpl implements IChatMessageService {
 		// TODO Auto-generated method stub
 		return cmd.getAllNotReadChatMessages(userId, needRead);
 	}
+	@Override
+	public Long getAllNotReadChatMessageCounts(String userId, int needRead) {
+		// TODO Auto-generated method stub
+		return cmd.getAllNotReadChatMessageCounts(userId, needRead);
+	}
 
 }

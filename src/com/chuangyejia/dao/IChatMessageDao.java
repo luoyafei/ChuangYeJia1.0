@@ -68,6 +68,13 @@ public interface IChatMessageDao {
 	public Long getNotReadChatMessagesCount(String fromUserId, String toUserId, int needRead);
 	
 	/**
+	 * 获取某个用户所有被通知的消息。根据已读未读区分
+	 * @param userId
+	 * @param needRead
+	 * @return
+	 */
+	public Long getAllNotReadChatMessageCounts(String userId, int needRead);
+	/**
 	 * 获取某个用户,已读或未读的消息的用户的集合
 	 * @param fromUserId
 	 * @param needRead

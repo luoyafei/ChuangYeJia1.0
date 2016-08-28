@@ -256,7 +256,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<div style="width: 80%;height: 100%;float: right;">
 								<div style="width: 100px;height: 100%;">
 									<a href="getUserMark?mark=<s:property value='#request.sts.startupsLeader.userId'/>">
-										<img src='<s:property value="#request.sts.startupsLeader.userPhoto"/>' alt="logo.jpg" style="width: 80px;height: 80%;margin: 0 auto;padding-right: 10px;" />
+										<img src='<s:property value="#request.sts.startupsLeader.userPhoto"/>' alt="logo.jpg" style="width: 80px;height: 80px;"  class="img-circle" />
 										<button class="btn btn-sm" style="width: 70px;overflow: hidden;">
 											<s:property value="#request.sts.startupsLeader.userNickName"/>
 										</button>

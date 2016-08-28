@@ -108,6 +108,10 @@
 		<!-- 在用户控制台中获取消息提醒，所有用户的消息  ajax的action-->
 		<action name="getRemindUsers" class="getRemindUsers" />
 		
+		<!-- 在导航bar上获取所有未读消息数 -->
+		<action name="getAllNotReadCount" class="getAllNotReadCount" />
+		
+		
 		<!-- 用户创建自己公司的产品的action -->
 		<action name="createProduct" class="createProductAction">
 			<result name="input">/pages/userConsole/product/create_product.jsp</result>

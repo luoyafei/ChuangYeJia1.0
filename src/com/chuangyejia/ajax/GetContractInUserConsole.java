@@ -75,7 +75,6 @@ public class GetContractInUserConsole extends ActionSupport {
 		
 		HttpSession session = ServletActionContext.getRequest().getSession();
 		User user = (User)session.getAttribute("user");
-System.out.println(user.toString());
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("application/json; charset=utf-8");
 		
@@ -259,7 +258,6 @@ System.out.println("GetContractInUserConsole.java 中获取输出管道出错");
 		}
 		jo.addProperty("success", success);
 		
-System.out.println(jo.toString());
 		out.print(jo);
 		out.flush();
 		out.close();

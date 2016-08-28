@@ -126,12 +126,11 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar" style="margin-top: 20px;">
           <ul class="nav nav-sidebar nav-tabs-justified" role="tablist" id="user_con_tab">
-          	<!--个人资料，我的项目，我的资金，我的技术，我的运营，我的产品，我的合同，我的团队-->
-            <li role="presentation"  class="active"><a href="#my_data" role="tab" data-toggle="tab">我的资料 </a></li>
+          	<li role="presentation" class="active"><a href="#my_remind" role="tab" data-toggle="tab">我的消息</a></li>
+            <li role="presentation"><a href="#my_data" role="tab" data-toggle="tab">我的资料 </a></li>
             <li role="presentation"><a href="#my_startups" role="tab" data-toggle="tab">我的公司</a></li>
             <li role="presentation"><a href="#my_product" role="tab" data-toggle="tab">我的产品</a></li>
             <li role="presentation"><a href="#my_contract" role="tab" data-toggle="tab">我的合同</a></li>
-            <li role="presentation"><a href="#my_remind" role="tab" data-toggle="tab">我的消息</a></li>
           </ul>
         </div>
         <script type="text/javascript">
@@ -147,11 +146,11 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
         
         	<div class="tab-content">
-			  	<div role="tabpanel" class="tab-pane active" id="my_data"></div>
+        		<div role="tabpanel" class="tab-pane active" id="my_remind"></div>
+			  	<div role="tabpanel" class="tab-pane" id="my_data"></div>
 			  	<div role="tabpanel" class="tab-pane" id="my_startups"></div>
 			  	<div role="tabpanel" class="tab-pane" id="my_product"></div>
 			  	<div role="tabpanel" class="tab-pane" id="my_contract"></div>
-			  	<div role="tabpanel" class="tab-pane" id="my_remind"></div>
 			</div>
 
         	<script>
