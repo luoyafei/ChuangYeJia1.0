@@ -134,11 +134,12 @@ System.out.println("删除双方聊天消息出错！");
 				@Override
 				public Object doInHibernate(Session session) throws HibernateException, SQLException {
 					// TODO Auto-generated method stub
-					String ejbql = "select count(*) from ChatMessage cm where cm.formUserId = :fromUserId and cm.toUserId = :toUserId and cm.needRead = :needRead";
+					String ejbql = "select count(*) from ChatMessage cm where cm.fromUserId = :fromUserId and cm.toUserId = :toUserId and cm.needRead = :needRead";
 					return (Long)session.createQuery(ejbql).setParameter("fromUserId", fromUserId).setParameter("toUserId", toUserId).setParameter("needRead", needRead).uniqueResult();
 				}
 				
 			});
+			System.out.println("lllllllllllllllllllll:" + l);
 			return l;
 		} catch(DataAccessException e) {
 			System.out.println("获取历史消息的个数出现错误！");
@@ -151,7 +152,7 @@ System.out.println("删除双方聊天消息出错！");
 	@Override
 	public List<User> getAllNotReadChatMessages(final String userId, final int needRead) {
 		// TODO Auto-generated method stub
-		final String ebjqlForCM = "select cm.fromUserId from ChatMessage cm where cm.toUserId = :userId and cm.needRead = :needRead";
+		final String ebjqlForCM = "select distinct cm.fromUserId from ChatMessage cm where cm.toUserId = :userId and cm.needRead = :needRead";
 		final String ejbqlForUser = "select u.userId, u.userNickName, u.userPhoto from User u where u.userId = :fromUserId";
 		List<User> users = null;
 		
@@ -163,6 +164,7 @@ System.out.println("删除双方聊天消息出错！");
 				 * 先获取所有的发送消息的用户Id
 				 */
 				ArrayList<String> fromUserIds = (ArrayList<String>)session.createQuery(ebjqlForCM).setParameter("userId", userId).setParameter("needRead", needRead).list();
+				
 				if(fromUserIds != null && fromUserIds.size() > 0) {
 					List<User> usersTemp = new ArrayList<User>();
 					

@@ -22,11 +22,6 @@ import com.opensymphony.xwork2.ActionSupport;
 @Scope("prototype")
 public class GetRemindUsersInUserConsole extends ActionSupport {
 
-
-
-
-
-
 	private IChatMessageService cms;
 	
 	public IChatMessageService getCms() {
@@ -40,7 +35,7 @@ public class GetRemindUsersInUserConsole extends ActionSupport {
 	
 	public void getRemindUsers() {
 		
-		User user = (User)ServletActionContext.getRequest().getSession();
+		User user = (User)ServletActionContext.getRequest().getSession().getAttribute("user");
 		Gson gson = new Gson();
 		JsonObject jo = new JsonObject();
 		
@@ -52,19 +47,21 @@ public class GetRemindUsersInUserConsole extends ActionSupport {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		if(user != null) {
 			List<User> users = cms.getAllNotReadChatMessages(user.getUserId(), 0);
 			if(users != null && users.size() != 0) {
-				
+
 				String[] userCount = new String[users.size()];
 				for(int i = 0; i < users.size(); i++) {
-					userCount[i] = cms.getNotReadChatMessagesCount(user.getUserId(), users.get(i).getUserId(), 0).toString();
+					userCount[i] = cms.getNotReadChatMessagesCount(users.get(i).getUserId(), user.getUserId(), 0).toString();
+System.out.println("userCount[]" + userCount[i]);
 				}
 				jo.add("remindUsers", gson.toJsonTree(users));
 				jo.add("userCount", gson.toJsonTree(userCount));
 				jo.addProperty("remindSuccess", true);
-			}
+			} else
+				jo.addProperty("remindSuccess", false);
 		} else
 			jo.addProperty("remindSuccess", false);
 		

@@ -48,7 +48,7 @@ public class CheckLoginFilter implements Filter {
 		if(user != null)
 			chain.doFilter(request, response);
 		else {
-			resp.sendRedirect("/ChuangYeJia/pages/signIn/login.jsp?backUrl="+req.getRequestURI()+"?"+req.getQueryString());//当用户未登录时，将它跳转到登录页面
+			resp.sendRedirect("/ChuangYeJia/pages/signIn/login.jsp?backUrl="+req.getRequestURI()+(req.getQueryString() == null?"":("?" + req.getQueryString())));//当用户未登录时，将它跳转到登录页面
 			return;
 		}
 	}
