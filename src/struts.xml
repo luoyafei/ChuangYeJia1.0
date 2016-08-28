@@ -82,6 +82,9 @@
 		<!-- 具体公司内容展示时，显示的该公司的所有产品的ajax的action -->
 		<action name="getProductsInStartups" class="getProductsInStartupsIdAction" />
 		
+		<!-- 在用户控制台中获取用户创建的所有产品的ajax的action -->
+		<action name="getProductsInConsoleForUser" class="getProductsInStartupsIdAction" />
+		
 		<!-- bar中获取用户集合数据给予显示的ajax的action -->
 		<action name="provideUsers" class="provideUserListForShowAction" />
 		
