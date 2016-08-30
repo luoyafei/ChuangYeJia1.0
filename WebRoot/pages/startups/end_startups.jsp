@@ -106,7 +106,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<span><img src="<%=path %>/assets/img/logo.png" style="width: 18%;height: 8%; margin-bottom: 0px;padding-bottom: 0px;"></span>
 							</div>
 
-							<h1 style="margin-top: 0px; margin-bottom: 0px;">创建成功！</h1>
+							<h1 style="margin-top: 0px; margin-bottom: 0px;">
+								<s:if test="#request.modifyS!=null">
+									修改成功！
+								</s:if>
+								<s:else>
+									创建成功！
+								</s:else>
+							</h1>
 							<p style="margin-bottom: 0px;">
 								<br> 通过创建创业公司，发布资金，技术，运营和产品，您可以参与多项创业活动，期待您在创业加中寻找到满意的工作！
 							</p>

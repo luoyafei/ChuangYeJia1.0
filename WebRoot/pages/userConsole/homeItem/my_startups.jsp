@@ -105,8 +105,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								$(".myStartupsPassword").eq(i).text(data.leaderS[i].startupsPassword)
 								$(".myCreateDate").eq(i).text(data.leaderS[i].startupsCreateDate);
 								$(".myOperate").eq(i).html("<a href='/ChuangYeJia/getStartupsItem?item=" + data.leaderS[i].startupsId + "' class='btn btn-default btn-xs myOperateDetail'>查看</a>"
-									+ "<a href='/ChuangYeJia/getStartupsItem?item=" + data.leaderS[i].startupsId + "' class='btn btn-default btn-xs myOperateModify'>修改</a>"
-									+ "<button class='btn btn-danger btn-xs myOperateDelete' onclick=''>申请删除</button>"
+									+ "<a href='/ChuangYeJia/updateStartupsItem?item=" + data.leaderS[i].startupsId + "' class='btn btn-default btn-xs myOperateModify'>修改</a>"
+									/* + "<button class='btn btn-danger btn-xs myOperateDelete' onclick=''>申请删除</button>" */
 								);
 							}
 							

@@ -41,10 +41,12 @@
 		<param-name>defaultLogo</param-name>
 		<param-value>/ChuangYeJia/assets/img/logo.png</param-value>
 	</context-param>
+	
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:beans.xml</param-value>
 	</context-param>
+	
 	<filter>
 		<filter-name>checkUserLogin</filter-name>
 		<filter-class>com.chuangyejia.filter.CheckLoginFilter</filter-class>

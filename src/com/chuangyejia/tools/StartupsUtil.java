@@ -33,11 +33,11 @@ public class StartupsUtil {
 	 * 用于转换从前台传过来的合伙人需求的数字，进行文字的转换
 	 */
 	public final static String[] CopartnerRequire = {
-			" 其他"					//0
-			," 资金"					//1
-			," 技术"					//2
-			," 推广"					//3
-			," 运营"					//4
+			"其他"					//0
+			,"资金"					//1
+			,"技术"					//2
+			,"推广"					//3
+			,"运营"					//4
 	};
 	
 	

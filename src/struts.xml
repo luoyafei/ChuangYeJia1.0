@@ -137,12 +137,37 @@
 			<result name="input">/pages/startups/create_startups.jsp</result>
 			<result name="success">/pages/startups/end_startups.jsp</result>
 		</action>
+		<!-- 用来处理修改公司的action -->
+		<action name="modifyStartups" class="modifyStartupsAction">
+		
+			<interceptor-ref name="timer" />
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="execAndWait">
+				<!-- 设置等待时间为1000ms -->
+				<param name="delay">1000</param>
+				
+			</interceptor-ref>
+			<result name="wait">/pages/startups/wait.jsp</result>
+			
+			<result name="input">/pages/startups/modify_startups.jsp</result>
+			<result name="success">/pages/startups/end_startups.jsp</result>
+		</action>
+		
+		
 		
 		<!-- 处理点击公司想要访问该公司信息的页面时，根据公司的id，将公司的信息获取 -->
 		<action name="getStartupsItem" class="getStartupsInIdAction">
 			<result name="success">/pages/startups/show_startups.jsp</result>
 			<result name="none" type="redirect">/index.jsp</result>
 		</action>
+		
+		
+		<!-- 处理点击修改公司想要访问该公司信息的页面时，根据公司的id，将公司的信息获取 -->
+		<action name="updateStartupsItem" class="getStartupsInId4ModifyAction">
+			<result name="success">/pages/startups/modify_startups.jsp</result>
+			<result name="none" type="redirect">/index.jsp</result>
+		</action>
+		
 		
 		<!-- 处理点击User之后，要访问User对象的信息页面时，根据User的id，将User的信息取出 -->
 		<action name="getUserMark" class="getUserInIdAction">
