@@ -11,13 +11,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 
- 	<title>邀请成员加入</title>
+ 	<title>申请加入</title>
     <!-- Bootstrap core JavaScript
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="<%=path %>/assets/jQuery/2.x/jquery-2.1.4.min.js"></script>
@@ -32,8 +31,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- uikit -->
 	<script src="<%=path%>/assets/uikit/uikit.js"></script>
 	<link href="<%=path%>/assets/uikit/uikit.css" rel="stylesheet"/>
-	<script src="<%=path%>/assets/uikit/form-select.js"></script>
-	<link href="<%=path%>/assets/uikit/form-select.css" rel="stylesheet"/>
 
         <style>
 	        body {
@@ -98,14 +95,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body style="background-color: #F5F5F5;">
         
-        <script type='text/javascript'>
-        	if(document.body.offsetWidth < 684) {
-				var nowURI = window.location.href;
-        	    var reURI = nowURI.replace("invite_join.jsp", "invite_join_phone.jsp");
-        	    window.location.href = reURI;
-        	}
-        </script>
-        
 		<jsp:include page="/pages/module/index_bar.jsp" flush="true" />
         
         <div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-bottom: 0px;">
@@ -126,78 +115,58 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     </a>
                                 </span>
                             </div>
-                            <p style="margin-bottom: 0px;font-size: 34px;">
+                            <p align="center" style="margin-bottom: 0px;font-size: 34px;">
                               	申请加入
                             </p>
                             <span style="border-top: solid white 2px;" style="font-family: sans-serif;">Hello!Welcome to Enterperse Plus</span>
-                            <br />
-                            <br />
-                            <br />
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container marketing" style="background-color: #F5F5F5; padding:50px 0px;width: 78%;">
+        <div class="container marketing" style="background-color: #F5F5F5; padding:50px 0px;width: 100%;">
             
-            <div class="content-main" style="width: 100%;height: 100%;background-color: white;overflow: hidden;border-bottom: solid #A9A9A9 2px;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
                 <div class="content-main-top" style="height: 100%;">
                 
                 
                     <div style="width: 80%;height: 100%;margin: 50px auto;">
 
-						<label id="inviteSendError" style="text-align: center;color: #398BE5; width: 100%;"></label>
-						
-						
-						
-						<div class="form-group">
-                           <label for="startups" style="text-align: right;margin-top: 6px;" class="col-md-2 control-label">选择公司</label>
-                           <div class="col-md-10">
-                            <div class="uk-button uk-form-select uk-active" data-uk-form-select="">
-                                <span></span>
-                                <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-                                <select id="selectFlag">
-                                	<option value="0">选择您想邀请ta加入的公司</option>
-                                </select>
-                            </div>
-                               <hr />
-                           </div>
-                       </div>
-						
-						
-						
+						<label id="applySendError" style="text-align: center;color: #398BE5; width: 100%;"></label>
+							
                         <div class="form-group">
-                           <label for="name" style="text-align: right;margin-top: 6px;" class="col-md-2 control-label">邀请名称</label>
+                           <label for="name" style="text-align: right;margin-top: 6px;" class="col-md-2 control-label">申请名称</label>
                            <div class="col-md-10">
-                               <input type="text" maxlength="16" class="form-control" name="contract_name" id="name" placeholder="邀请名称">
+                               <input type="text" maxlength="16" class="form-control" name="contract_name" id="name" placeholder="合同名">
                                <div class="alert alert-danger alert-name" role="alert" style="display: none;">
-                                   	请输入邀请名称
+                                   	请输入申请名称
                                </div>
                                <hr />
                            </div>
                        </div>
 
 
-                        <div class="form-group">
-                            <label for="content" class="col-md-2 control-label" style="text-align: right;margin-top: 6px;">邀请内容&nbsp;&nbsp;</label>
+                       
+						<div class="form-group">
+                            <label for="content" class="col-md-2 control-label" style="text-align: right;margin-top: 6px;">申请内容&nbsp;&nbsp;</label>
                             <div class="col-md-10">
                                 <textarea id="content" name="contract_content" style="width:100%;height:200px;"></textarea>
                                 <div class="alert alert-danger alert-content" role="alert" style="display: none;">
-                                   	请输入邀请内容
+                                   	请输入申请内容
                                </div>
                             </div>
                         </div>
+						
 
 
                         <div style="text-align: center;">
-                            <button class="btn btn-default" id="sendInvite" style="color: #398BE5;margin-top: 40px;">
-                                 	  发送邀请 
+                            <button class="btn btn-default" id="sendApply" style="color: #398BE5;margin-top: 40px;">
+                                 	  发送申请
                         	</button>
                        	</div>
                         </div>
                     </div>
                 </div>
-            </div>
         <jsp:include page="../../module/bottom.jsp" flush="true" />
            
         </body>
@@ -205,51 +174,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         $(document).ready(function() {
             $("td").attr("style", "border-top: solid #333333 1px;");
             
-            $.post('getMyLeaderForInvite!justDoIt.action', {}, function(data, textStatus) {
-            	if(textStatus == "success") {
-            		if(data.leaderS.length == 0) {
-            			$("#inviteSendError").text("您还没有自己的公司！请先创建属于自己的公司后，再进行邀请成员吧！");
-            		} else {
-            			for(var i = 0; i < data.leaderS.length; i++) {
-            				var option = $('<option></option>');
-            				option.attr("value", data.leaderS[i].startupsId);
-            				option.text(data.leaderS[i].startupsName);
-            				option.appendTo($("#selectFlag"));
-            			}
-            		}
-            		
-            	} else {
-            		alert("网络出错！请刷新重试！");
-            	}
-            }, 'json');
-            
-            $("#sendInvite").bind('click', function() {
-            	
+            $("#sendApply").bind('click', function() {
             	var name = $("#name").val().trim();
                 var content = $("#content").val().trim();
-               	var startups = $("#selectFlag").val().trim();
-                if(startups === "") {
-                	$("#inviteSendError").text("您还没有自己的公司！请先创建属于自己的公司后，再进行邀请成员吧！");
-                } else {
-                	if (name === "") {
-                		 $(".alert-name").attr("style", "display:inline-block;");
-                	} else if(content === "") {
-                    	$(".alert-content").attr("style", "display:inline-block;");
-                    }
+               
+                if (name === "") {
+                    $(".alert-name").attr("style", "display:inline-block;");
+                } else if(content === "") {
+                	$(".alert-content").attr("style", "display:inline-block;");
                 }
-                
-                if(name !== "" && content !== "" && startups !== "") {
-                	$.post('inviteJoin!inviteJoin.action', {
+                if(name !== "" && content !== "") {
+                	$.post('applyJoin!applyJoin.action', {
                 		name : name,
                 		content : content,
-                		startups : startups,
-                		userId : "<s:property value='#parameters.join'/>"
+                		startups : "<s:property value='#parameters.join'/>"
                 	}, function(data, textStatus) {
                 		if(textStatus == "success") {
+                			
                 			if(data.success) {
-                				$("#inviteSendError").text("恭喜！您已经成功发送邀请到该合伙人手中！请敬候佳音！");
+                				$("#applySendError").text("恭喜！您已经成功提交申请合同到该公司负责人手中！请敬候佳音！");
                 			} else {
-                				$("#inviteSendError").text(data.reason);
+                				$("#applySendError").text(data.reason);
                 			}
                 		}
                 	}, 'json');

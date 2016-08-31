@@ -96,6 +96,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body style="background-color: #F5F5F5;">
         
+        <script type='text/javascript'>
+        	if(document.body.offsetWidth < 684) {
+				var nowURI = window.location.href;
+        	    var reURI = nowURI.replace("apply_join.jsp", "apply_join_phone.jsp");
+        	    window.location.href = reURI;
+        	}
+        </script>
+        
 		<jsp:include page="/pages/module/index_bar.jsp" flush="true" />
         
         <div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-bottom: 0px;">
@@ -139,11 +147,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<label id="applySendError" style="text-align: center;color: #398BE5; width: 100%;"></label>
 							
                         <div class="form-group">
-                           <label for="name" style="text-align: right;margin-top: 6px;" class="col-md-2 control-label">合同名</label>
+                           <label for="name" style="text-align: right;margin-top: 6px;" class="col-md-2 control-label">申请名称</label>
                            <div class="col-md-10">
                                <input type="text" maxlength="16" class="form-control" name="contract_name" id="name" placeholder="合同名">
                                <div class="alert alert-danger alert-name" role="alert" style="display: none;">
-                                   	请输入合同名称
+                                   	请输入申请名称
                                </div>
                                <hr />
                            </div>
@@ -151,11 +159,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
                         <div class="form-group">
-                            <label for="content" class="col-md-2 control-label" style="text-align: right;margin-top: 6px;">合同内容&nbsp;&nbsp;</label>
+                            <label for="content" class="col-md-2 control-label" style="text-align: right;margin-top: 6px;">申请内容&nbsp;&nbsp;</label>
                             <div class="col-md-10">
                                 <textarea id="content" name="contract_content" style="width:100%;height:200px;"></textarea>
                                 <div class="alert alert-danger alert-content" role="alert" style="display: none;">
-                                   	请输入合同内容
+                                   	请输入申请内容
                                </div>
                             </div>
                         </div>
@@ -195,7 +203,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 		if(textStatus == "success") {
                 			
                 			if(data.success) {
-                				$("#applySendError").text("恭喜！您已经成功提交申请合同到该公司负责人手中！请敬候佳音！");
+                				$("#applySendError").text("恭喜！您已经成功提交申请到该公司负责人手中！请敬候佳音！");
                 			} else {
                 				$("#applySendError").text(data.reason);
                 			}

@@ -97,11 +97,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<body style="background-color: #F5F5F5;">
 
-		<%
-		out.println("<script type='text/javascript'>if(document.body.offsetWidth < 684) {window.location.href = '/ChuangYeJia/pages/userConsole/product/create_product_phone.jsp';}</script>");
-		%>
-
-
 		<jsp:include page="/pages/module/index_bar.jsp" flush="true" />
 
 		<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-bottom: 0px;">
@@ -111,40 +106,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<img class="" src="<%=path %>/assets/img/project/333.png" alt="">
 					<div class="container" style="padding-right: 0px;padding-left: 0px;">
 						<div class="carousel-caption">
-							<div class="logo-img" style="width: 100%;">
-								<span>
-									<img data-holder-rendered="true" src="<s:property value='#session.user.userPhoto'/>" style="width: 100px; height: 100px;" class="img-circle" />
-								</span>
-							</div>
 							<p style="margin-bottom: 0px;font-size: 32px;">
 								<br>发布产品
 							</p>
-							<br />
-							<br />
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="container marketing" style="background-color: #F5F5F5; padding:50px 0px;width: 68%;">
-			<div class="thumbtitle">
-				<div class="contenttitle" style="margin-bottom: 10px;">
-					<p style="margin-bottom: 4px;">HOW&nbsp;&nbsp;&nbsp;&nbsp;TO&nbsp;&nbsp;&nbsp;&nbsp;CREATE</p>
-					<p style="float: right;">随经济全球化以及生产专业化现象的普遍，社会分工和协同合作已经成为了一种创业趋势。</p>
-					<h2 style="margin-top: 0;" style="color: black;">产品分类</h2>
-				</div>
-			</div>
+		<div class="container marketing" style="background-color: #F5F5F5; padding:50px 0px;width: 100%;">
 
-			<div class="marketing-nav">
-				<ul class="nav nav-tabs marketing-nav-content" role="tablist" id="myTab">
-					<li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab" style="color: #398BE5;">发布产品</a></li>
-				</ul>
-			</div>
-
-			<div class="tab-content" style="background-color: white;padding-top: 40px;border-bottom: solid #A9A9A9 2px;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
+			
 		
 				<div role="tabpanel" class="tab-pane active" id="home">
-					<div class="tab-content-1" style="width: 80%;height: 100%;margin: 0 auto; background-color: white;">
+					<div class="tab-content-1" style="width: 80%;height: 100%;margin: 0 auto; ">
 						<form id="productForm" action="createProduct!createProduct.action" class="form-horizontal" role="form" style="margin-left: 0px;" method="post" enctype="multipart/form-data">
 
 

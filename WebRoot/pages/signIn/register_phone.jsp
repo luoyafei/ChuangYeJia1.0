@@ -94,9 +94,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </style>
 </head>
 	<body style="background-color: #F5F5F5;">
-		<%
-		out.println("<script type='text/javascript'>if(document.body.offsetWidth < 684) {window.location.href = '/ChuangYeJia/pages/signIn/register_phone.jsp';}</script>");
-		%>
+		
 		<jsp:include page="/pages/module/index_bar.jsp" flush="true" />
 
 		<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-bottom: 0px;">
@@ -120,32 +118,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								个人注册页
 							</p>
 							<span style="border-top: solid white 2px;" style="font-family: sans-serif;">Hello!Welcome to Enterperse Plus</span>
-							<br />
-							<br />
-							<br />
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="container marketing" style="background-color: #F5F5F5; padding:50px 0px;width: 68%;">
+		<div class="container marketing" style="background-color: #F5F5F5; padding:50px 0px;width: 100%;">
 			<!-- Three columns of text below the carousel -->
 			<div class="thumbtitle">
 				<div class="contenttitle" style="margin-bottom: 10px;">
-					<p style="margin-bottom: 4px;">
-						REGISTRATION&nbsp;&nbsp;INFORMATION
-					</p>
-					<p style="float: right;">
-						随经济全球化以及生产专业化现象的普遍，社会分工和协同合作已经成为了一种创业趋势。
-					</p>
 					<h2 style="margin-top: 0;" style="color: black;">
 						注册信息
 					</h2>
 				</div>
 			</div>
-			<div class="content-main" style="width: 100%;height: 650px;background-color: white;overflow: hidden;border-bottom: solid #A9A9A9 2px;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
+			
 				<div class="content-main-top" style="height: 27%;">
-					<div style="width: 80%;height: 100%;margin: 0 auto;">
+					<div style="width: 100%;height: 100%;margin: 0 auto;">
 						<div class="main">
 						
 							<div class="main-login">
@@ -158,7 +148,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											请输入您的昵称，昵称必须在2~16个长度之间
 										</div>
 									</div>
-
+									
 									<hr style="width: 100%; color: black;font-size: 2px;" />
 									<div class="form-group">
 										<input type="email" class="form-control" name="ud.email" id="email" maxlength="30" placeholder="邮箱" onblur="checkemail()">
@@ -170,6 +160,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											</span>
 										</div>
 									</div>
+									
 									<hr style="width: 100%; color: black;font-size: 2px;" />
 									<div class="form-group">
 										<div class="row">
@@ -181,6 +172,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											</div>
 										</div>
 									</div>
+									
+									
 									<hr style="width: 100%; color: black;font-size: 2px;" />
 									<div class="form-group">
 										<input type="password" class="form-control" name="ud.password" id="password" maxlength="16" placeholder="密码" onblur="checkpassword()">
@@ -197,9 +190,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</div>
 									<hr style="width: 100%; color: black;font-size: 2px;" />
 									
-									
 									<div class="form-group">
-									
 										<div class="row">
 											<div class="col-md-8">
 										    	<input type="text" onblur="checkIdentifyCode()" maxlength="5" class="form-control" name="ud.identifyCode" id="identifyCode" placeholder="请直接输入数字结果，如:8">
@@ -242,6 +233,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</button>
 									<input type="hidden" name="backUrl" value='<s:property value="#parameters.backUrl"/>'  />
 								</form>
+
+
 								<!-- Modal -->
 								<div class="modal fade" id="myModalProtocol" tabindex="-1" role="dialog" aria-labelledby="myModalProtocolLabel" aria-hidden="true">
 								  <div class="modal-dialog">
@@ -283,7 +276,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>
 		</div>
-		<jsp:include page="../module/bottom.jsp" flush="true" />
+		
 	</body>
 	<script>
 	$(document).ready(function() {

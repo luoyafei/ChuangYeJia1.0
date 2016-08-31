@@ -97,10 +97,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</head>
 	<body style="background-color: #F5F5F5;">
 	
-	<%
-	out.println("<script type='text/javascript'>if(document.body.offsetWidth < 684) {window.location.href = '/ChuangYeJia/pages/signIn/login_phone.jsp';}</script>");
-	%>
-	
 	<jsp:include page="/pages/module/index_bar.jsp" flush="true" />
 	
 		
@@ -126,17 +122,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								个人登陆
 							</p>
 							<span style="border-top: solid white 2px;" style="font-family: sans-serif;">Hello!Welcome to Enterperse Plus</span>
-							<br />
-							<br />
-							<br />
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="container marketing" style="background-color: #F5F5F5; padding:50px 0px;width: 68%;">
+		<div class="container marketing" style="background-color: #F5F5F5; padding:50px 0px;width: 100%;">
 			
-			<div class="content-main" style="width: 100%;height: 550px;background-color: white;overflow: hidden;border-bottom: solid #A9A9A9 2px;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
 				<div class="content-main-top" style="height: 27%;">
 					<div style="width: 80%;height: 100%;margin: 50px auto;">
 					
@@ -224,8 +216,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 				</div>
 			</div>
-		</div>
-		<jsp:include page="../module/bottom.jsp" flush="true" />
+	<jsp:include page="../module/bottom.jsp" flush="true" />		
 		
 	</body>
 	<script>

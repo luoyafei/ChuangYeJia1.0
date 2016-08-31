@@ -98,14 +98,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body style="background-color: #F5F5F5;">
         
-        <script type='text/javascript'>
-        	if(document.body.offsetWidth < 684) {
-				var nowURI = window.location.href;
-        	    var reURI = nowURI.replace("invite_join.jsp", "invite_join_phone.jsp");
-        	    window.location.href = reURI;
-        	}
-        </script>
-        
 		<jsp:include page="/pages/module/index_bar.jsp" flush="true" />
         
         <div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-bottom: 0px;">
@@ -127,20 +119,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </span>
                             </div>
                             <p style="margin-bottom: 0px;font-size: 34px;">
-                              	申请加入
+                              	邀请加入
                             </p>
                             <span style="border-top: solid white 2px;" style="font-family: sans-serif;">Hello!Welcome to Enterperse Plus</span>
-                            <br />
-                            <br />
-                            <br />
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container marketing" style="background-color: #F5F5F5; padding:50px 0px;width: 78%;">
+        <div class="container marketing" style="background-color: #F5F5F5; padding:50px 0px;width: 100%;">
             
-            <div class="content-main" style="width: 100%;height: 100%;background-color: white;overflow: hidden;border-bottom: solid #A9A9A9 2px;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
+            
                 <div class="content-main-top" style="height: 100%;">
                 
                 
@@ -197,8 +186,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                     </div>
                 </div>
-            </div>
-        <jsp:include page="../../module/bottom.jsp" flush="true" />
+		<jsp:include page="../../module/bottom.jsp" flush="true" />        
            
         </body>
         <script>
