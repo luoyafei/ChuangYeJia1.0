@@ -43,6 +43,7 @@ public class UserSignInAction extends ActionSupport {
 	
 	
 	private UserSignDTO ud;
+	private String registerEmailCode;//邮箱验证码
 	private ByteArrayInputStream imageStream;//输出的图片流
 	private String backUrl;//从哪里进行登陆时url
 	public UserSignDTO getUd() {
@@ -61,7 +62,6 @@ public class UserSignInAction extends ActionSupport {
 		return backUrl;
 	}
 	public void setBackUrl(String backUrl) {
-System.out.println(backUrl);
 		if(backUrl.trim().hashCode() == 0)
 			this.backUrl = "/index.jsp";
 		else {
@@ -71,6 +71,13 @@ System.out.println(backUrl);
 				this.backUrl = "/index.jsp";
 			}
 		}
+	}
+	
+	public String getRegisterEmailCode() {
+		return registerEmailCode;
+	}
+	public void setRegisterEmailCode(String registerEmailCode) {
+		this.registerEmailCode = registerEmailCode;
 	}
 
 	
@@ -94,11 +101,20 @@ System.out.println(backUrl);
 	public String register() {
 		
 		String code = String.valueOf(ServletActionContext.getRequest().getSession().getAttribute("code"));//先将session中的验证码结果取出
-		if(ud.getIdentifyCode().equals(code)) {//如果判断相等，则继续执行
+		String emailSessionCode = String.valueOf(ServletActionContext.getRequest().getSession().getAttribute("emailCode"));//将session中的邮箱验证码结果取出
+		String sessionMail = null;
+		String sessionCode = null;
+System.out.println(emailSessionCode);
+		if(emailSessionCode != null && emailSessionCode.contains("#")) {
+			sessionMail = emailSessionCode.trim().split("#")[0];
+			sessionCode = emailSessionCode.trim().split("#")[1];
+		}
+		
+		if(ud.getIdentifyCode().equals(code) && registerEmailCode != null && registerEmailCode.trim().length() == 32 && registerEmailCode.equals(sessionCode)) {//如果判断相等，则继续执行
 			ud.setIsLogin(false);
 			if(ud.checkDataDispatchor()) {
 				boolean emailIsExisted = us.checkEmail(ud.getEmail());//判断数据库中是否存在该email
-				if(!emailIsExisted) {
+				if(!emailIsExisted && ud.getEmail().trim().equals(sessionMail)) {
 					User user = ud.toUser();
 //System.out.println("register() : " + user.toString());
 					/**

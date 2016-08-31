@@ -12,7 +12,7 @@ public class UserSignDTO {
 	private String identifyCode;//验证码
 	private String errorInfo;//出错信息
 	
-	private final static String emailPattern = "\\w+\\x40\\w+\\x2e\\w+";
+	private final static String emailPattern = "^\\s*\\w+(?:\\.{0,1}[\\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\\.[a-zA-Z]+\\s*$";
 	
 	public boolean getIsLogin() {
 		return isLogin;
@@ -56,6 +56,8 @@ public class UserSignDTO {
 	public void setIdentifyCode(String identifyCode) {
 		this.identifyCode = identifyCode;
 	}
+	
+	
 	
 	/**
 	 * 验证用户登录时的字段格式问题

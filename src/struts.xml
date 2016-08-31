@@ -115,6 +115,10 @@
 		<action name="getAllNotReadCount" class="getAllNotReadCount" />
 		
 		
+		<!-- 发送email验证 -->
+		<action name="sendEmail" class="sendEmailAction" />
+		
+		
 		<!-- 用户创建自己公司的产品的action -->
 		<action name="createProduct" class="createProductAction">
 			<result name="input">/pages/userConsole/product/create_product.jsp</result>

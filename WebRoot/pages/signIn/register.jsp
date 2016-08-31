@@ -171,6 +171,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</div>
 									<hr style="width: 100%; color: black;font-size: 2px;" />
 									<div class="form-group">
+										<div class="row">
+											<div class="col-md-8">
+										    	<input type="text" maxlength="32" class="form-control" name="registerEmailCode" id="emailCode" placeholder="请直接输入邮箱验证序列">
+										    </div>
+											<div class="col-md-4">
+												<a class="btn" id="clickSend">点击获取邮箱验证码</a>
+											</div>
+										</div>
+																		
+									</div>
+									<hr style="width: 100%; color: black;font-size: 2px;" />
+									<div class="form-group">
 										<input type="password" class="form-control" name="ud.password" id="password" maxlength="16" placeholder="密码" onblur="checkpassword()">
 										<div class="alert alert-danger alert-password" role="alert" style="display: none;">
 											请输入您的密码,密码必须在6~16个长度之间
@@ -184,6 +196,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										</div>
 									</div>
 									<hr style="width: 100%; color: black;font-size: 2px;" />
+									
 									
 									<div class="form-group">
 									
@@ -229,8 +242,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</button>
 									<input type="hidden" name="backUrl" value='<s:property value="#parameters.backUrl"/>'  />
 								</form>
-
-
 								<!-- Modal -->
 								<div class="modal fade" id="myModalProtocol" tabindex="-1" role="dialog" aria-labelledby="myModalProtocolLabel" aria-hidden="true">
 								  <div class="modal-dialog">

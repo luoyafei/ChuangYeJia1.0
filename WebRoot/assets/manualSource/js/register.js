@@ -1,6 +1,44 @@
 /**
  * 
  */
+	$(document).ready(function() {
+		$("#clickSend").bind("click", sendEmail);
+	});
+	
+	function sendEmail() {
+		if($("#email").val().trim() !== "" && $("#email").val().trim().match(/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/)) {
+			$.post('sendEmail!sendEmail.action', {
+				email : $("#email").val().trim()
+			}, function(data, textStatus) {
+				if(textStatus == "success") {
+					if(data.success) {
+						alert("发送成功！请登录您的邮箱进行查看，有可能您的邮箱设置的自动拦截，如果找不到的话，在垃圾箱寻找！");
+						$("#clickSend").unbind("click");
+						$("#clickSend").attr("disabled", "disabled");
+						var i = 300;
+						var runTime = setInterval(function() {
+							$("#clickSend").text(i-- + "秒后重新点击获取邮箱验证码");
+							if(i == -2) {
+								$("#clickSend").removeAttr("disabled");
+								$("#clickSend").text("点击获取邮箱验证码");
+								i == 300;
+								clearInterval(runTime);
+								$("#clickSend").bind("click", sendEmail);
+							}
+						}, 1000);
+					} else {
+						alert("错误！");
+					}
+				}
+			}, 'json'); 
+		} else {
+			alert("请先输入邮箱");
+		}
+	}
+	
+	
+	
+
 /* 用来检测昵称的函数*/
 function checknickname() {
 	var alertnickname = $(".alert-nickname");
@@ -24,7 +62,8 @@ function checkemail() {
 		return 0;
 	} else {
 		alertemail.attr("style", "display:none;");
-		if(email.match(/^[a-z0-9]+([._]*[a-z0-9]+)*@[a-z0-9]+([_.][a-z0-9]+)+$/gi)) {
+		var reg = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
+		if(email.match(reg)) {
 			checkemail.attr("style", "display:none;");
 			
 			$.post('vaction!checkEmail.action', { 
@@ -101,8 +140,8 @@ function checkIdentifyCode() {
 	}
 }
 function checkdata() {
-	
-	if(checknickname() && checkpassword() && checkrepassword() && $("#email").val().trim()!=="" && $("#identifyCode").val().trim()!=="")
+	var emailCode = $("#emailCode").val().trim();
+	if(checknickname() && checkpassword() && checkrepassword() && $("#email").val().trim()!=="" && $("#identifyCode").val().trim()!=="" && emailCode !== "" && emailCode.length === 32)
 	 	return true;
 	else {
 		alert("请将信息核实正确并填写完整！");
