@@ -125,3 +125,9 @@ create table chatRoom (
    	creatorId varchar(32),
    	constraint foreign key (creatorId) references user(userId)
 )ENGINE=InnoDB default charset=utf8
+--记录
+create table record_invite (
+	id int primary key auto_increment,
+	ip varchar(20),
+	fromUrl varchar(255)
+)ENGINE=InnoDB default charset=utf8

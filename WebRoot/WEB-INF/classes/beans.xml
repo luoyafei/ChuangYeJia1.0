@@ -52,6 +52,7 @@
 				<value>com.chuangyejia.bean.Product</value>
 				<value>com.chuangyejia.bean.ChatMessage</value>
 				<value>com.chuangyejia.bean.ChatRoom</value>
+				<value>com.chuangyejia.bean.Record</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
