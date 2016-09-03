@@ -146,7 +146,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <div class="form-group">
 							    <label for="email" style="text-align: right;margin-top: 6px;" class="col-sm-2 control-label">邮&nbsp;&nbsp;&nbsp;箱</label>
 							    <div class="col-sm-10">
-							    	<input type="email" class="form-control" name="ud.email" maxlength="16" id="email" placeholder="邮箱" onblur="checkemail()">
+							    	<input type="email" class="form-control" name="ud.email" maxlength="30" id="email" placeholder="邮箱" onblur="checkemail()">
 							    
 								    <div class="alert alert-danger alert-email" role="alert" style="display: none">
 										请输入您的邮箱
@@ -207,7 +207,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             		<div class="col-sm-8">
 										<input type="checkbox" checked="checked" />下次自动登陆
 									</div>
-									<div class="col-sm-2"><a href="#">忘记密码</a></div>
+									<div class="col-sm-2"><a href="forget_pwd.jsp">忘记密码</a></div>
                             	</div>
 								
 							</div>

@@ -153,7 +153,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<form action="userSignIn!register.action" method="post" name="form" onsubmit="return checkdata()" >
 								
 									<div class="form-group" style="margin-top: 30px;">
-										<input type="text" class="form-control" name="ud.nickname" id="nickname" placeholder="昵称" maxlength="16" onblur="checknickname()">
+										<input type="text" class="form-control" name="ud.nickname" id="nickname" placeholder="昵称" maxlength="30" onblur="checknickname()">
 										<div class="alert alert-danger alert-nickname" role="alert" style="display: none">
 											请输入您的昵称，昵称必须在2~16个长度之间
 										</div>

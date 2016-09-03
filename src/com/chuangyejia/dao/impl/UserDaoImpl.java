@@ -144,10 +144,17 @@ System.out.println("更新用户出现异常！");
 		return user;
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
-	public User getUserInEmail(String userEmail) {
+	public User getUserInEmail(final String userEmail) {
 		// TODO Auto-generated method stub
-		return null;
+		User user = (User)hibernateTemplate.execute(new HibernateCallback() {
+			@Override
+			public Object doInHibernate(Session session) throws HibernateException, SQLException {
+				return (User)session.createQuery("from User u where u.userEmail = :userEmail").setParameter("userEmail", userEmail).uniqueResult();
+			}
+		});
+		return user;
 	}
 
 	@Override

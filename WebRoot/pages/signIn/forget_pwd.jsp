@@ -17,7 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta http-equiv="expires" content="0">    
 		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 		<title>
-			创业加登陆
+			找回密码
 		</title>
 		<!-- Bootstrap core CSS -->
 		<link href="<%=path%>/assets/bootstrap-3.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -32,8 +32,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		<script src="<%=path%>/assets/uikit/uikit.js"></script>
 		<link href="<%=path%>/assets/uikit/uikit.css" rel="stylesheet"/>
-			
-		<script src="<%=path%>/assets/manualSource/js/login.js"></script>	
 			
 		<style>
 		body {
@@ -97,6 +95,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</head>
 	<body style="background-color: #F5F5F5;">
 	
+	<%
+	//out.println("<script type='text/javascript'>if(document.body.offsetWidth < 684) {window.location.href = '/ChuangYeJia/pages/signIn/login_phone.jsp';}</script>");
+	%>
+	
 	<jsp:include page="/pages/module/index_bar.jsp" flush="true" />
 	
 		
@@ -119,109 +121,79 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</span>
 							</div>
 							<p style="margin-bottom: 0px;font-size: 34px;">
-								个人登陆
+								找回密码
 							</p>
 							<span style="border-top: solid white 2px;" style="font-family: sans-serif;">Hello!Welcome to Enterperse Plus</span>
+							<br />
+							<br />
+							<br />
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="container marketing" style="background-color: #F5F5F5; padding:50px 0px;width: 100%;">
+		<div class="container marketing" style="background-color: #F5F5F5; padding:50px 0px;width: 68%;">
 			
+			<div class="content-main" style="width: 100%;height: 250px;background-color: white;overflow: hidden;border-bottom: solid #A9A9A9 2px;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
 				<div class="content-main-top" style="height: 27%;">
 					<div style="width: 80%;height: 100%;margin: 50px auto;">
-					
-					<div style="text-align: center; color:red;"><s:property value="errors.error[0]" /></div>
-					
-						<form action="userSignIn!execute.action" method="post" onsubmit="return checkdata()">
+							<div style="text-align: center; color:#459EEB;" id="backResult"></div>
                             <div class="form-group">
 							    <label for="email" style="text-align: right;margin-top: 6px;" class="col-sm-2 control-label">邮&nbsp;&nbsp;&nbsp;箱</label>
 							    <div class="col-sm-10">
-							    	<input type="email" class="form-control" name="ud.email" maxlength="30" id="email" placeholder="邮箱" onblur="checkemail()">
+							    	<input type="email" class="form-control" name="email" maxlength="30" id="email" placeholder="邮箱" onblur="checkemail()">
 							    
 								    <div class="alert alert-danger alert-email" role="alert" style="display: none">
-										请输入您的邮箱
-									</div>
-									<div class="alert alert-danger alert-check-email" role="alert" style="display:none;">
-										<span class="email-error">
-										</span>
+										请输入正确的邮箱格式
 									</div>
 							    	<hr />
 							    </div>
 							</div>
-							 <div class="form-group">
-							    <label for="password" style="text-align: right;margin-top: 6px;" class="col-sm-2 control-label">密&nbsp;&nbsp;&nbsp;码</label>
-							    <div class="col-sm-10">
-							    	<input type="password" class="form-control" name="ud.password" id="password" maxlength="16" placeholder="密码" onblur="checkpassword()">
-							    	<div class="alert alert-danger alert-password" role="alert" style="display: none;">
-										请输入您的密码
-									</div>
-								    <hr />
-							    </div>
-							</div>
-							
-							<div class="form-group">
-									
-								<div class="row">
-									<label for="email" style="text-align: right;margin-top: 6px;" class="col-sm-2 control-label">验证码</label>
-									
-									<div class="col-sm-5">
-								    	<input type="text" onblur="checkIdentifyCode()" maxlength="5" class="form-control" name="ud.identifyCode" id="identifyCode" placeholder="请直接输入数字结果，如:8">
-								    </div>
-								    <div class="col-sm-2">
-										<div class="alert alert-danger alert-identifycode" role="alert" style="display: none">
-											请输入验证码
-										</div>
-										<div class="alert alert-danger alert-check-identifycode" role="alert" style="display:none;">
-											<span class="identifycode-error">
-												输入错误
-											</span>
-										</div>
-									</div>
-									<div class="col-sm-3" onclick="changeImg()">
-										<span class="badge" id="regetIdentify">
-											<img alt="看不清，换一张" id="validateCodeImg" src="userSignIn!identifyCode.action" style="width:100%;height:100%;">
-										</span>
-										<script type="text/javascript">
-											function changeImg(){
-			 									document.getElementById("validateCodeImg").src = "userSignIn!identifyCode.action?i="+Math.random();
-											}
-										</script>
-									</div>
-								</div>
-																
-							</div>
-                                  
-                            <div class="form-group">
-                            	<div class="row">
-                            		<div class="col-sm-2"></div>
-                            		<div class="col-sm-8">
-										<input type="checkbox" checked="checked" />下次自动登陆
-									</div>
-									<div class="col-sm-2"><a href="#">忘记密码</a></div>
-                            	</div>
-								
-							</div>
 							
 							<div style="text-align: center;">
-								<button type="submit" class="btn btn-default" style="color: #398BE5;" name="login" value="登陆">
-									登陆
+								<button type="button" class="btn btn-default" style="color: #398BE5;" name="forget" id="forgetBtn">
+									确认发送
 								</button>
-								<a class="btn btn-default" style="color: #398BE5;" href="register.jsp">注册</a>
 							</div>
-							<input type="hidden" name="backUrl" value='<s:property value="#parameters.backUrl"/>'  />
-							
-						</form>
+						</div>
 					</div>
 				</div>
 			</div>
-	<jsp:include page="../module/bottom.jsp" flush="true" />		
+		<jsp:include page="../module/bottom.jsp" flush="true" />
 		
 	</body>
 	<script>
 	$(document).ready(function() {
 		$("td").attr("style", "border-top: solid #333333 1px;");
+		$("#forgetBtn").bind('click', function() {
+			var email = $("#email").val().trim();
+			if(email !== "" && email.match(/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/)) {
+				$(".alert-email").attr("style", "display: none;");
+				$.post('forgetPassword!justDoIt.action', {
+					email : email
+				}, function(data, textStatus) {
+					if(textStatus == "success") {
+						if(data.success) {
+							$("#backResult").text("找回密码申请成功！请您登录您的邮箱，进行邮件查看，注意！该邮件有可能被您的邮箱屏蔽！如果找不到的话，可在垃圾箱寻找！");
+						} else {
+							$("#backResult").text(data.reason);
+						}
+					}
+				}, 'json');
+				
+			} else {
+				$(".alert-email").attr("style", "display: inline;");
+			}
+			
+		});
 	});
+	function checkemail() {
+		var email = $("#email").val().trim();
+		if(email === "" || !email.match(/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/)) {
+ 			$(".alert-email").attr("style", "display: inline;");
+		} else {
+			$(".alert-email").attr("style", "display: none;");
+		}
+	}
 </script>
 </html>

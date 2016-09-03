@@ -310,7 +310,7 @@ if(session.getAttribute("user")==null || ((User)session.getAttribute("user")).ge
 				*/
 				if(json.historyMsg != null) {
 					for(var i = 0; i < json.historyMsg.length; i++) {
-						if(json.historyMsg[i].toUserId == json.toUser.userId) {
+						if(json.historyMsg[i].fromUserId == json.toUser.userId) {
 							var article = $('<article></article>');
 							article.attr("class", "uk-comment");
 							var header = $('<header></header>');
