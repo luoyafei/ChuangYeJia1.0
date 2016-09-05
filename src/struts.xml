@@ -20,7 +20,6 @@
     	<action name="index">
     		<result>/index.jsp</result>
     	</action>
-	
 		<!-- 默认action，在url中随意敲击，可以跳转到指定地方。 -->
     	<!-- <default-action-ref name="myIndex" />
     	<action name="myIndex">
@@ -38,6 +37,7 @@
 	</package>
 	
     <package name="default" extends="struts-default" namespace="/"> 
+    
 		<action name="userSignIn" class="userSignInAction">
 			<result name="identifyCode" type="stream">
 				  <param name="contentType">image/jpeg</param>
@@ -199,13 +199,6 @@
 			<result name="success">/pages/userConsole/product/show_product.jsp</result>
 			<result name="none" type="redirect">/index.jsp</result>
 		</action>
-		
-		
-    <!-- 	<global-results>
-    		<result name="exception">/exception.jsp</result>
-    	</global-results> -->
-    	
-    	
     </package>
 </struts>
 

@@ -32,14 +32,15 @@
     <filter-name>checkUserLogin</filter-name>
     <url-pattern>/pages/userConsole/*</url-pattern>
   </filter-mapping>
-  <filter>
+ <!--  
+ <filter>
     <filter-name>recordVisitFilter</filter-name>
     <filter-class>com.chuangyejia.filter.RecordVisitFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>recordVisitFilter</filter-name>
     <url-pattern>/index.jsp</url-pattern>
-  </filter-mapping>
+  </filter-mapping> -->
   <filter>
     <filter-name>struts2</filter-name>
     <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>

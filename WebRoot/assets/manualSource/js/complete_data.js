@@ -52,8 +52,12 @@ function submitModifyInfo() {
 	var address = $("#address").val().trim();
 	var profile = $("#profile").val().trim();
 	var ability = $("#ability").val().trim();
-	var videoTemp = $("#video").val().trim().split("src=")[1];
-	var video = videoTemp.split('"')[1];
+	var video = "";
+	if($("#video").val().trim() != "") {
+		var videoTemp = $("#video").val().trim().split("src=")[1];
+		video = videoTemp.split('"')[1];
+	}
+	
 	
 	var flag = checkInfoData(nickname, address, profile, ability, video);
 	if(flag) {

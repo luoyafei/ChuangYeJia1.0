@@ -8,7 +8,6 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -19,7 +18,7 @@ import com.chuangyejia.bean.Record;
 /**
  * Servlet Filter implementation class recordVisitFilter
  */
-@WebFilter("/RecordVisitFilter")
+//@WebFilter("/RecordVisitFilter")
 public class RecordVisitFilter implements Filter {
 
 	@Override
