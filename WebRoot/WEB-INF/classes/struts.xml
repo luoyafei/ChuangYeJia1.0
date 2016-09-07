@@ -121,12 +121,22 @@
 		<!-- 处理找回密码 -->
 		<action name="forgetPassword" class="forgetPasswordAction" />
 		
-		<!-- 用户创建自己公司的产品的action -->
+		<!-- 用户创建自己公司的产品的action ,同时处理修改产品的action-->
 		<action name="createProduct" class="createProductAction">
 			<result name="input">/pages/userConsole/product/create_product.jsp</result>
 			<result name="success">/pages/userConsole/product/end_product.jsp</result>
+			
+			<result name="updateback" type="redirectAction">
+				 <param name="actionName">getProductItem</param>
+		         <param name="namespace">/</param>
+		         <param name="toUpD">0</param>
+		         <param name="item">${item}</param>
+		         <param name="flag">${flag}</param>
+			</result>
 		</action>
 		
+		<!-- 用来处理删除产品的action -->
+		<action name="removeProduct" class="removeProductInIdAction" />
 		
 		<!-- 用来处理创建公司的action -->
 		<action name="createStartups" class="createStartupsAction">
@@ -198,6 +208,7 @@
 		<action name="getProductItem" class="getProductInIdAction">
 			<result name="success">/pages/userConsole/product/show_product.jsp</result>
 			<result name="none" type="redirect">/index.jsp</result>
+			<result name="toupdate">/pages/userConsole/product/update_product.jsp</result>
 		</action>
     </package>
 </struts>

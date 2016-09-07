@@ -145,17 +145,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 				<div role="tabpanel" class="tab-pane active" id="home">
 					<div class="tab-content-1" style="width: 80%;height: 100%;margin: 0 auto; background-color: white;">
-						<form id="productForm" action="createProduct!createProduct.action" class="form-horizontal" role="form" style="margin-left: 0px;" method="post" enctype="multipart/form-data">
+						<form id="productForm" action="createProduct!updateProduct.action" class="form-horizontal" role="form" style="margin-left: 0px;" method="post" enctype="multipart/form-data">
 
-
-							<label style="text-align: center;color: #398BE5; width: 100%;"><s:property value="errors.error[0]" /></label>
+							<label style="text-align: center;color: #398BE5; width: 100%;">
+								<s:property value="#parameters.flag"/>
+							</label>
+							
 							<label id="productSendError" style="text-align: center;color: #398BE5; width: 100%;"></label>
 						
 							<div style="border-bottom: dashed #A9A9A9 1px;">
 								<div class="form-group" style="margin-right: 0px;margin-left: -28px;;padding-top: 15px;">
 									<label for="company" class="col-sm-2 control-label" style="font-size: 18px;font-weight: normal;">所属公司</label>
 									<div class="col-sm-10">
-										<input type="text" maxlength="18" class="form-control" style="background-color: #F5F5F5;" id="company" />
+										<input type="text" maxlength="18" disabled="disabled" class="form-control" value="<s:property value='#request.product.productStartups.startupsName' />" style="background-color: #F5F5F5;" id="company" />
+										<input type="hidden" name="pd.startups" value="<s:property value='#request.product.productStartups.startupsId' />" />
 									</div>
 								</div>
 							</div>
@@ -165,7 +168,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="form-group" style="margin-right: 0px;margin-left: -28px;;padding-top: 15px;">
 									<label for="name" class="col-sm-2 control-label" style="font-size: 18px;font-weight: normal;">产品名称</label>
 									<div class="col-sm-10">
-										<input type="text" maxlength="18" class="form-control" name="pd.name" style="background-color: #F5F5F5;" id="name" />
+										<input type="text" maxlength="18" class="form-control" name="pd.name" value="<s:property value='#request.product.productName' />" style="background-color: #F5F5F5;" id="name" />
 									</div>
 								</div>
 							</div>
@@ -174,7 +177,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="form-group" style="margin-right: 0px;margin-left: -28px;;padding-top: 15px;">
 									<label for="address" class="col-sm-2 control-label" style="font-size: 18px;font-weight: normal;">归属地</label>
 									<div class="col-sm-10">
-										<input type="text" maxlength="50" class="form-control" name="pd.address" style="background-color: #F5F5F5;" id="address" />
+										<input type="text" maxlength="50" class="form-control" name="pd.address" value="<s:property value='#request.product.productAddress' />" style="background-color: #F5F5F5;" id="address" />
 									</div>
 								</div>
 							</div>
@@ -183,7 +186,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="form-group" style="margin-right: 0px;margin-left: -28px;;padding-top: 15px;">
 									<label for="brief" class="col-sm-2 control-label" style="font-size: 18px;font-weight: normal;">产品简介&nbsp;&nbsp;</label>
 									<div class="col-sm-10">
-										<input type="text" maxlength="255" class="form-control" name="pd.brief" style="background-color: #F5F5F5;" id="brief" />
+										<input type="text" maxlength="255" class="form-control" name="pd.brief" value="<s:property value='#request.product.productBrief' />" style="background-color: #F5F5F5;" id="brief" />
 									</div>
 								</div>
 							</div>
@@ -193,7 +196,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="form-group" style="margin-right: 0px;margin-left: -30px;padding-top:15px;">
 									<label for="detail" class="col-sm-2 control-label" style="font-size: 18px;font-weight: normal;">详细内容&nbsp;&nbsp;</label>
 									<div class="col-sm-10">
-										<textarea id="detail" name="pd.detail" style="width:100%;height:200px;"></textarea>
+										<textarea id="detail" name="pd.detail" style="width:100%;height:200px;"><s:property value="#request.product.productDetail" /></textarea>
 									</div>
 								</div>
 							</div>
@@ -222,11 +225,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="form-group" style="margin-right: 0px;margin-left: -28px;;padding-top: 15px;">
 									<label for="price" class="col-sm-2 control-label" style="font-size: 18px;font-weight: normal;">售价(元)&nbsp;&nbsp;</label>
 									<div class="col-sm-10">
-										<input type="number" maxlength="12" class="form-control" name="pd.price" placeholder="如若暂不售卖，请不要填写" style="background-color: #F5F5F5;" id="price" />
+										<input type="number" maxlength="12" class="form-control" value="<s:property value='#request.product.productPrice' />" name="pd.price" placeholder="如若暂不售卖，请不要填写" style="background-color: #F5F5F5;" id="price" />
 									</div>
 								</div>
 							</div>
-							
+							<input type="hidden" name="item" value="<s:property value='#request.product.productId' />" />
 						</form>
 							<div style="margin: 50px auto;">
 								<div class="form-group" style="margin: 0 auto; text-align: center;">
@@ -249,41 +252,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$("td").attr("style", "border-top: solid #333333 1px;");
 			
 			
-	        $.post('getMyLeaderForInvite!justDoIt.action', {}, function(data, textStatus) {
-            	if(textStatus == "success") {
-            		if(data.leaderS.length == 0) {
-            			$("#productSendError").text("您还没有自己的公司！请先创建属于自己的公司后，再进行发布产品吧！");
-            		} else {
-            			for(var i = 0; i < data.leaderS.length; i++) {
-            				var option = $('<option></option>');
-            				option.attr("value", data.leaderS[i].startupsId);
-            				option.text(data.leaderS[i].startupsName);
-            				option.appendTo($("#selectFlag"));
-            			}
-            		}
-            		
-            	} else {
-            		alert("网络出错！请刷新重试！");
-            	}
-            }, 'json');
-			
-			
 			$("#sendProduct").bind('click', function() {
 				
 				var isOk = true;
 				
-				var img = $("#picture");
 				var name = $("#name").val().trim();
 				var address = $("#address").val().trim();
 				var brief = $("#brief").val().trim();
-				var startups = $("#selectFlag").val().trim();
 				var detail = $("#detail").val().trim();
 				var price = $("#price").val().trim();
 				
-				if(startups == 0) {
-                	$("#productSendError").text("您还没有选择您自己的公司！如果没有，请先创建属于自己的公司后，再进行发布产品吧！");
-                	isOk = false;
-                } else if(name === "" || name > 18){
+				if(name === "" || name > 18){
                 	$("#productSendError").text("请正确填写您要发布的产品名称！");
                 	isOk = false;
                 } else if(address === "") {
@@ -295,10 +274,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 } else if(detail === "") {
                 	$("#productSendError").text("请正确填写您要发布的产品的详细内容！");
                 	isOk = false;
-                } else if(img.val().trim() === "") {
-					$("#productSendError").text("请选择图片！");
-					isOk = false;
-				}
+                }
                 
                 if(isOk) {
                 	$("#productForm").submit();

@@ -482,7 +482,8 @@ request.setAttribute("flag", "partner");
 						$(this).attr("href", "/ChuangYeJia/getUserMark.action?mark="+all[index].userId);
 					});
 					$(".categoryAll").each(function(index){
-						$(this).text(all[index].copartnerCategory);
+						var cc = data.all[index].copartnerCategory;
+						$(this).text(cc == "" || cc == null ? "未定" : cc);
 					});
 					
 				} else {

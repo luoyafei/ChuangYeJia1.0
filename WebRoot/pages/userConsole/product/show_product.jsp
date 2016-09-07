@@ -5,6 +5,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="zh-CN">
 
@@ -341,14 +342,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						  			</div>
 					  			</div>
 					  		</div>
-
-					
 					  	</div>
 					  </div>
-
 					</div>
-				
-				
+					<s:if test="#request.update">
+						<div style="text-align: center;">
+							<div class="uk-button-group">
+							    <a href="getProductItem.action?toUpD=0&item=<s:property value='#request.product.productId' />" class="uk-button uk-button-primary uk-width-1-1"><i class="uk-icon-cog"></i>&nbsp;&nbsp;&nbsp;修改</a>
+							    <a onclick="removeP()" class="uk-button uk-button-danger uk-width-1-1"><i class="uk-icon-remove"></i>&nbsp;&nbsp;&nbsp;删除</a>
+							</div>
+						</div>
+						<script src="<%=path%>/assets/manualSource/js/removeP.js"></script>
+					</s:if>
 			</div>
 		
 	<jsp:include page="../../module/bottom.jsp" flush="true" />

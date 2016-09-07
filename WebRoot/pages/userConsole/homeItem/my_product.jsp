@@ -35,11 +35,11 @@
 					for(var i = 0;i < data.ps.length; i++) {
 						
 						if(i === 0) {
-							$(".productHref").eq(i).attr("href", "getProductItem?item="+data.ps[i].productId);
+							$(".productHref").eq(i).attr("href", "getProductItem?upD=0&item="+data.ps[i].productId);
 							$(".productName").eq(i).text(data.ps[i].productName);
 							$(".productConver").eq(i).attr("src", data.ps[i].productCover);
 						} else {
-							$(".productFieldClone").eq(i-1).attr("href", "getProductItem?item="+data.ps[i].productId);
+							$(".productFieldClone").eq(i-1).attr("href", "getProductItem?upD=0&item="+data.ps[i].productId);
 							$(".productName").eq(i).text(data.ps[i].productName);
 							$(".productConver").eq(i).attr("src", data.ps[i].productCover);
 						}

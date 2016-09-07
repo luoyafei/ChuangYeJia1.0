@@ -24,11 +24,18 @@ import com.opensymphony.xwork2.ActionSupport;
 @Scope("prototype")
 public class CreateProductAction extends ActionSupport {
 
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	private String item;//这里是用于修改产品操作的产品Id
+	public String getItem() {
+		return item;
+	}
+	public void setItem(String item) {
+		this.item = item;
+	}
 	
 	private IStartupsService ss;
 	private IProductService ps;
@@ -100,8 +107,12 @@ public class CreateProductAction extends ActionSupport {
 		this.pictureContentType = pictureContentType;
 	}
 	
+	private User user;
 	
-	
+	public CreateProductAction() {
+		super();
+		user = (User)ServletActionContext.getRequest().getSession().getAttribute("user");
+	}
 	
 	private String uploadPicture() {
 		
@@ -140,11 +151,7 @@ public class CreateProductAction extends ActionSupport {
 					
 	}
 	
-	
-	
-	
 	public String createProduct() {
-		User user = (User)ServletActionContext.getRequest().getSession().getAttribute("user");
 		Startups startups = ss.getStartupsInId(pd.getStartups());
 		if(user != null && pd.dataValidate() && startups != null && startups.getStartupsLeader().getUserId().equals(user.getUserId())) {
 			String result = uploadPicture();
@@ -169,6 +176,47 @@ public class CreateProductAction extends ActionSupport {
 		} else 
 			this.addFieldError("error", "数据填写出错！请刷新重试！");
 		return INPUT;
+	}
+	
+	
+	private String flag;//用来传递给struts.xml中的下一个action的参数
+	public String getFlag() {
+		return flag;
+	}
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
+	public String updateProduct() {
+		boolean success = false;
+		if(item != null && item.trim().hashCode() != 0) {
+			Startups startups = ss.getStartupsInId(pd.getStartups());
+			Product product = ps.getProductInId(item);
+			if(user != null && pd.dataValidate() && product != null && startups != null && startups.getStartupsLeader().getUserId().equals(user.getUserId())) {
+				String result = null;
+				if(picture != null) {
+					result = uploadPicture();
+					if(result != null && !result.equals("false")) {
+						product.setProductCover(DB + result);
+					}
+				}
+				product.setProductName(pd.getName());
+				product.setProductAddress(pd.getAddress());
+				product.setProductBrief(pd.getBrief());
+				product.setProductDetail(pd.getDetail());
+				product.setProductPrice(pd.getPrice());
+				
+				if(ps.updateProduct(product)) {
+					success = true;
+				}
+			}
+		}
+		
+		if(success)
+			flag = "修改成功";
+		else
+			flag = "修改失败";
+		
+		return "updateback";
 	}
 	
 }
