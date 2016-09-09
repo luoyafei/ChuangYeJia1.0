@@ -188,7 +188,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			<div style="width: 80%;height: 80px;margin: 0 auto;">
 				<div class="main-left" style="width: 50%;text-align: center;height: 100%;float: left;padding-top: 20px;">
-					<a class="btn btn-default" onclick="" style="border: solid #A9A9A9 2px; border-radius: 10px;">联系ta</a>
+					<s:if test="#session.user != null">
+						<a class="btn btn-default" href="<%=path %>/pages/chat/chat.jsp?toUserId=<s:property value='#request.product.productStartups.startupsLeader.userId'/>" style="border: solid #A9A9A9 2px; border-radius: 10px;">联系ta</a>
+					</s:if>
+					<s:else>
+						<a class="btn btn-default" onclick="alert('请先进行登陆操作后再进行聊天！');" style="border: solid #A9A9A9 2px; border-radius: 10px;">联系ta</a>
+					</s:else>
 				</div>
 				<div class="main-right" style="width: 50%;text-align: center;height: 100%;float: left;padding-top: 20px;">
 					<a class="btn btn-default" style="border: solid #A9A9A9 2px; border-radius: 10px;">点击购买</a>
