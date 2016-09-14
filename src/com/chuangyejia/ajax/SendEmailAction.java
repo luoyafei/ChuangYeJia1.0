@@ -116,7 +116,7 @@ public class SendEmailAction extends ActionSupport {
         MimeMessage message = new MimeMessage(session);
         //指明邮件的发件人
         message.setFrom(new InternetAddress("mailregister@chuangyejia.top"));
-        //指明邮件的收件人，现在发件人和收件人是一样的，那就是自己给自己发
+        //指明邮件的收件人
         message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
         //邮件的标题
         message.setSubject("来自创业加网站的注册邮箱验证码");
