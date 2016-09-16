@@ -90,62 +90,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <body style="background-color: #F5F5F5;">
 
-	<%
-		out.println("<script type='text/javascript'>if(document.body.offsetWidth < 684) {window.location.href = '/ChuangYeJia/getUserMark.action?phone=0&mark="+ request.getParameter("mark") +"';}</script>");
-	%>
-
-	<jsp:include page="/pages/module/index_bar.jsp" flush="true" />
-	
-	<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-bottom: 0px;">
-	
-		<div class="carousel-inner" role="listbox">
-			<div class="item active">
-				<img class="" src="<%=path %>/assets/img/content_detail/333.png" alt="">
-				<div class="container" style="padding-right: 0px;padding-left: 0px;">
-					<div class="carousel-caption">
-						<div class="logo-img" style="width: 100%;">
-							<span>
-								<img data-holder-rendered="true" src="<s:property value='#request.uts.userPhoto'/>" style="width: 100px; height: 100px;" class="img-circle" />
-							</span>
-							<span>
-								<a style="font-size: 14px;text-decoration: none;">
-									<span style="display: block;">
-										<s:property value="#request.uts.userNickName"/>
-									</span>
-								</a>
-							</span>
-							<span>
-								<img src="<%=path %>/assets/img/user/level.png" style="width: 12%;height: 5%; margin-bottom: 0px;padding-bottom: 0px;">
-							</span>
-						</div>
+		<div class="container marketing" style="width: 78%;background-color: #F5F5F5;">
+			<h2 align="center">合伙人内容展现</h2>
 						
-						<p style="margin-bottom: 0px;font-size: 32px;">
-						
-						<br>用户资料</p>
-						<br />
-						<br />
-						<br />
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-		<div class="container marketing" style="width: 78%;background-color: #F5F5F5; padding:50px 0px;">
-			<div class="thumbtitle">
-				<div class="contenttitle" style="margin-bottom: 10px;">
-					<p style="margin-bottom: 4px;">
-						WHO&nbsp;&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;&nbsp;&nbsp;AM
-					</p>
-					<p style="float: right;">
-						随经济全球化以及生产专业化现象的普遍，社会分工和协同合作已经成为了一种创业趋势。
-					</p>
-					<h2 style="margin-top: 0;" style="color: black;">
-						用户资料
-					</h2>
-				</div>
-			</div>
-			
 			<div class="uk-block uk-block-muted" style="width:100%;height: 100%;">
 
                 <div class="uk-container">
@@ -219,17 +166,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
             </div>
 		</div>
-	<jsp:include page="../module/bottom.jsp" flush="true" />
-
 </body>
 <script>
 	$('#myTab a').click(function(e) {
 		e.preventDefault()
 		$(this).tab('show')
 	})
-	$(document).ready(function() {
-		$("td").attr("style", "border-top: solid #333333 1px;");
-	});
 </script>
 </html>
 
