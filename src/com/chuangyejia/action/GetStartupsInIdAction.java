@@ -36,6 +36,7 @@ public class GetStartupsInIdAction extends ActionSupport {
 	
 	
 	private String item;
+	private String phone;
 	
 	public String getItem() {
 		return item;
@@ -45,6 +46,13 @@ public class GetStartupsInIdAction extends ActionSupport {
 		this.item = item;
 	}
 
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
@@ -53,6 +61,9 @@ public class GetStartupsInIdAction extends ActionSupport {
 			StartupsTempShow sts = ss.getStartupsTempShowInId(item);
 			if(sts != null) {
 				ServletActionContext.getRequest().setAttribute("sts", sts);
+				if(phone != null && phone.equals("0")) {
+					return "successPhone";
+				}
 				return SUCCESS;
 			} else 
 				return NONE;

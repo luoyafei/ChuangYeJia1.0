@@ -40,110 +40,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link href="<%=path%>/assets/uikit/slideshow.css" rel="stylesheet"/>
 		<script src="<%=path%>/assets/uikit/slideshow.js"></script>
 			
-		<style>
-			body {
-				font-family: "微软雅黑";
-				padding-bottom: 0px;
-			}
-
-			li a {
-				color: snow;
-			}
-
-			.row .img {
-				margin-right: 5px;
-			}
-
-			.nav .active a {
-				border-bottom: solid #398BE5 3px;
-				color: #398BE5;
-				font-weight: bold;
-			}
-
-			#navbar ul a:hover {
-				border-bottom: solid #398BE5 3px;
-				color: #398BE5;
-				background-color: transparent;
-			}
-
-			#choicelabel a {
-				color: black;
-			}
-
-			#choicelabel .active {
-				color: #398BE5;
-			}
-
-			#inputSearch {
-				border-radius: 20px;
-				background-color: #A9A9A9;
-			}
-
-			.col-lg-3 {
-				margin: 0 0;
-				padding: 0 0;
-			}
-
-			.col-lg-4 {
-				margin: 0 0;
-				padding: 0 0;
-			}
-
-			.marketing .col-lg-4 {
-				margin-bottom: 0px;
-			}
-		</style>
 	</head>
 
 	<body style="background-color: #F5F5F5;">
 		
-		<%
-		out.println("<script type='text/javascript'>if(document.body.offsetWidth < 684) {window.location.href = 'getStartupsItem?phone=0&item="+ request.getParameter("item") +"';}</script>");
-		%>
-		
-		<jsp:include page="/pages/module/index_bar.jsp" flush="true" />
 
-		<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-bottom: 0px;">
-			<div class="carousel-inner" role="listbox">
-				<div class="item active">
-					<img class="" src="<%=path %>/assets/img/project/333.png" alt="">
-					<div class="container" style="padding-right: 0px;padding-left: 0px;">
-						<div class="carousel-caption">
-							<div class="logo-img" style="width: 100%;">
-								<span>
-									<img data-holder-rendered="true" src="<s:property value='#request.sts.startupsCover'/>" style="width: 100px; height: 100px;" class="img-circle" />
-								</span>
-							</div>
-							<p style="margin-bottom: 0px;font-size: 32px;">
-								<br> <s:property value='#request.sts.startupsName'/>
-							</p>
-							<br />
-							<br />
-							<br />
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 		
 		<div class="container marketing" style="background-color: #F5F5F5; padding:50px 0px;width: 78%;">
 		
-			<div class="thumbtitle">
-				<div class="contenttitle" style="margin-bottom: 10px;">
-					<p style="margin-bottom: 4px;">
-						ITEM&nbsp;&nbsp;DESCRIPTION
-					</p>
-					<p style="float: right;">
-						随经济全球化以及生产专业化现象的普遍，社会分工和协同合作已经成为了一种创业趋势。
-					</p>
-					<h2 style="margin-top: 0;" style="color: black;">
-						公司内容
-					</h2>
-				</div>
-			</div>
-
-
-
+			<h2 align="center">公司内容展现</h2>
 
 			<div class="uk-block uk-block-muted" style="width:100%;height: 400px;">
 
@@ -206,8 +111,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							    </span>
 							</div>
 						</div>
-					  
-					    
 					  </div>
 					</div>
 				</div>
@@ -359,13 +262,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</s:if>			
 		
-	<jsp:include page="../module/bottom.jsp" flush="true" />
-
 	</body>
 	<script>
 		$(document).ready(function() {
-			$("td").attr("style", "border-top: solid #333333 1px;");
-			
 			
 			$.post('getProductsInStartups!getProductsInStartups.action', {
 				startupsId : '<s:property value="#request.sts.startupsId" />'

@@ -18,6 +18,7 @@ import com.opensymphony.xwork2.ActionSupport;
 @Component(value="getProductInIdAction")
 @Scope("prototype")
 public class GetProductInIdAction extends ActionSupport {
+	
 	@Override
 	public String toString() {
 		return "GetProductInIdAction [item=" + item + ", upD=" + upD + ", toUpD=" + toUpD + "]";
@@ -41,6 +42,13 @@ public class GetProductInIdAction extends ActionSupport {
 	private String item;
 	private String upD;//为了区分是从控制台传输过来的
 	private String toUpD;//为了区分是从修改按钮传来的
+	private String phone;
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	
 	private String flag;//用来接收action的重定向后修改的结果。
 	public String getFlag() {
@@ -78,6 +86,8 @@ public class GetProductInIdAction extends ActionSupport {
 			Product product = ps.getProductInId(item);
 			if(product != null) {
 				ServletActionContext.getRequest().setAttribute("product", product);
+				if(phone != null && phone.equals("0"))
+					return "successPhone";
 				return SUCCESS;
 			} else 
 				return NONE;

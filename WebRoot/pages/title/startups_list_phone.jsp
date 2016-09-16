@@ -38,191 +38,15 @@ request.setAttribute("flag", "startups");
 		<link href="<%=path%>/assets/uikit/tooltip.css" rel="stylesheet"/>
 		<script src="<%=path%>/assets/uikit/tooltip.js"></script>
 		
-		<style>
-			body {
-				font-family: "微软雅黑";
-				padding-bottom: 0px;
-				overflow-x: hidden;
-			}
-
-			li a {
-				color: snow;
-			}
-
-			.row .img {
-				margin-right: 5px;
-			}
-
-			.nav .active a {
-				border-bottom: solid #398BE5 3px;
-				color: #398BE5;
-				font-weight: bold;
-			}
-
-			#navbar ul a:hover {
-				border-bottom: solid #398BE5 3px;
-				color: #398BE5;
-				background-color: transparent;
-			}
-
-			#choicelabel a {
-				color: black;
-			}
-
-			#choicelabel .active {
-				color: #398BE5;
-			}
-
-			#inputSearch {
-				border-radius: 20px;
-				background-color: #A9A9A9;
-			}
-
-			.col-lg-3 {
-				margin: 0 0;
-				padding: 0 0;
-			}
-
-			.col-lg-4 {
-				margin: 0 0;
-				padding: 0 0;
-			}
-
-			.marketing .col-lg-4 {
-				margin-bottom: 0px;
-			}
-		</style>
 
 
 	</head>
 
 	<body style="background-color: #F5F5F5;">
-
-		<%
-		out.println("<script type='text/javascript'>if(document.body.offsetWidth < 684) {window.location.href = '/ChuangYeJia/pages/title/startups_list_phone.jsp';}</script>");
-		%>
-
-		<jsp:include page="/pages/module/index_bar.jsp" flush="true" />
-
-		<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-bottom: 0px;">
+		<div class="container marketing" style="background-color: #F5F5F5; padding:0px 0px;width: 78%;">
 			
-			<ol class="carousel-indicators">
-				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-				<li data-target="#myCarousel" data-slide-to="1"></li>
-				<li data-target="#myCarousel" data-slide-to="2"></li>
-				<li data-target="#myCarousel" data-slide-to="3"></li>
-			</ol>
-			<div class="carousel-inner" role="listbox">
-				<div class="item active">
-					<img class="" src="../../assets/img/project/project_list1.png" alt="">
-					<div class="container" style="padding-right: 0px;padding-left: 0px;">
-						<div class="carousel-caption">
-							<div style="width: 50%;float: right;">
-								<p style="font-size: 30px;padding: 0 auto;margin: 0 auto;">国家<span style="font-size: 62px;">最新</span>科研项目</p>
-								<p style="font-size: 27px;padding: 0 auto;margin: 0 auto;">
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									人工智能3.0时代</p>
-								<p style="font-size: 27px;padding: 0 auto;margin: 0 auto;">正式<span style="font-size: 38px;">开启</span></p>
-								<p style="font-size: 15px;padding: 0 auto;margin-top: 5px; margin-bottom: 0px;">&nbsp;&nbsp;&nbsp;详情请见公司内页......</p>
-								<br />
-								<p style="float: right;"><a role="button" href="javascript:void(0)" class="btn btn-primary btn-lg" style="padding: 4px 12px;border-radius: 30px;border: solid 2px;">更多内容</a></p>
-								<br /><br /><br />
-								<br /><br />
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<img class="second-slide" src="../../assets/img/project/project_list1.png" alt="Second slide">
-					<img class="" src="../../assets/img/project/project_list1.png" alt="">
-					<div class="container" style="padding-right: 0px;padding-left: 0px;">
-						<div class="carousel-caption">
-							<div style="width: 50%;float: right;">
-								<p style="font-size: 30px;padding: 0 auto;margin: 0 auto;">国家<span style="font-size: 62px;">最新</span>科研项目</p>
-								<p style="font-size: 27px;padding: 0 auto;margin: 0 auto;">
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									人工智能3.0时代</p>
-								<p style="font-size: 27px;padding: 0 auto;margin: 0 auto;">正式<span style="font-size: 38px;">开启</span></p>
-								<p style="font-size: 15px;padding: 0 auto;margin-top: 5px; margin-bottom: 0px;">&nbsp;&nbsp;&nbsp;详情请见公司内页......</p>
-								<br />
-								<p style="float: right;"><a role="button" href="javascript:void(0)" class="btn btn-primary btn-lg" style="padding: 4px 12px;border-radius: 30px;border: solid 2px;">更多内容</a></p>
-								<br /><br /><br />
-								<br /><br />
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<img class="third-slide" src="../../assets/img/project/project_list1.png" alt="Third slide">
-					<img class="" src="../../assets/img/project/project_list1.png" alt="">
-					<div class="container" style="padding-right: 0px;padding-left: 0px;">
-						<div class="carousel-caption">
-							<div style="width: 50%;float: right;">
-								<p style="font-size: 30px;padding: 0 auto;margin: 0 auto;">国家<span style="font-size: 62px;">最新</span>科研项目</p>
-								<p style="font-size: 27px;padding: 0 auto;margin: 0 auto;">
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									人工智能3.0时代</p>
-								<p style="font-size: 27px;padding: 0 auto;margin: 0 auto;">正式<span style="font-size: 38px;">开启</span></p>
-								<p style="font-size: 15px;padding: 0 auto;margin-top: 5px; margin-bottom: 0px;">&nbsp;&nbsp;&nbsp;详情请见公司内页......</p>
-								<br />
-								<p style="float: right;"><a role="button" href="javascript:void(0)" class="btn btn-primary btn-lg" style="padding: 4px 12px;border-radius: 30px;border: solid 2px;">更多内容</a></p>
-								<br /><br /><br />
-								<br /><br />
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<img class="third-slide" src="../../assets/img/project/project_list1.png" alt="Third slide">
-					<img class="" src="../../assets/img/project/project_list1.png" alt="">
-					<div class="container" style="padding-right: 0px;padding-left: 0px;">
-						<div class="carousel-caption">
-							<div style="width: 50%;float: right;">
-								<p style="font-size: 30px;padding: 0 auto;margin: 0 auto;">国家<span style="font-size: 62px;">最新</span>科研项目</p>
-								<p style="font-size: 27px;padding: 0 auto;margin: 0 auto;">
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									人工智能3.0时代</p>
-								<p style="font-size: 27px;padding: 0 auto;margin: 0 auto;">正式<span style="font-size: 38px;">开启</span></p>
-								<p style="font-size: 15px;padding: 0 auto;margin-top: 5px; margin-bottom: 0px;">&nbsp;&nbsp;&nbsp;详情请见公司内页......</p>
-								<br />
-								<p style="float: right;"><a role="button" href="javascript:void(0)" class="btn btn-primary btn-lg" style="padding: 4px 12px;border-radius: 30px;border: solid 2px;">更多内容</a></p>
-								<br /><br /><br />
-								<br /><br />
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-				<span aria-hidden="true"></span>
-			</a>
-			<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-				<span aria-hidden="true"></span>
-			</a>
-		</div>
-		
-		
-		<div class="container marketing" style="background-color: #F5F5F5; padding:50px 0px;width: 78%;">
-			
-			<div class="thumbtitle">
-				<div class="contenttitle" style="margin-bottom: 10px;">
-					<p style="margin-bottom: 4px;">WHAT&nbsp;&nbsp;&nbsp;&nbsp;WE&nbsp;&nbsp;&nbsp;&nbsp;DO</p>
-					<p style="float: right;">随经济全球化以及生产专业化现象的普遍，社会分工和协同合作已经成为了一种创业趋势。<a role="button" href="/ChuangYeJia/pages/startups/create_startups.jsp" class="btn btn-lg" style="padding: 4px 12px;border-radius: 30px;border: solid 2px;">创建我的公司</a></p>
-					<h2 style="margin-top: 0;color: black;">公司分类</h2>
-				</div>
-			</div>
-			
-			
-			
+			<h2 align="center">查看公司信息</h2>
+			<hr>
 			<div class="marketing-nav">
 				<ul class="nav nav-tabs marketing-nav-content" role="tablist">
 					<li role="presentation" class="active">
@@ -276,14 +100,9 @@ request.setAttribute("flag", "startups");
 					                   		</a>
 				                   		</div>
 				                   	</div>
-								</div>
-							     
-								
+								</div>    
 							</div>
-						</div>
-						      		
-			      
-			      
+						</div>     		
 			      </div>
 			</div>
 			
@@ -298,18 +117,11 @@ request.setAttribute("flag", "startups");
            		<li class="pagination_All"><span>7</span></li>
 		     </ul>
 		   </nav>
-			
-			
 		</div>
-		
-		
-	<jsp:include page="../module/bottom.jsp" flush="true" />
 	</body>
 	<script>
 
 		$(document).ready(function() {
-			$("td").attr("style", "border-top: solid #333333 1px;");
-			
 			getAllStartups(1, 10);
 			
 			$(".pagination_All").bind("click", function(a) {

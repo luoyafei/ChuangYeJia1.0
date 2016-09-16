@@ -174,6 +174,7 @@
 		<!-- 处理点击公司想要访问该公司信息的页面时，根据公司的id，将公司的信息获取 -->
 		<action name="getStartupsItem" class="getStartupsInIdAction">
 			<result name="success">/pages/startups/show_startups.jsp</result>
+			<result name="successPhone">/pages/startups/show_startups_phone.jsp</result>
 			<result name="none" type="redirect">/index.jsp</result>
 		</action>
 		
@@ -188,6 +189,7 @@
 		<!-- 处理点击User之后，要访问User对象的信息页面时，根据User的id，将User的信息取出 -->
 		<action name="getUserMark" class="getUserInIdAction">
 			<result name="success">/pages/home/user_profile.jsp</result>
+			<result name="successPhone">/pages/home/user_profile_phone.jsp</result>
 			<result name="none" type="redirect">/index.jsp</result>
 		</action>
 		
@@ -207,6 +209,7 @@
 		<!-- 处理点击产品想要访问该产品信息的页面时，根据产品的id，将产品的信息获取 -->
 		<action name="getProductItem" class="getProductInIdAction">
 			<result name="success">/pages/userConsole/product/show_product.jsp</result>
+			<result name="successPhone">/pages/userConsole/product/show_product_phone.jsp</result>
 			<result name="none" type="redirect">/index.jsp</result>
 			<result name="toupdate">/pages/userConsole/product/update_product.jsp</result>
 		</action>

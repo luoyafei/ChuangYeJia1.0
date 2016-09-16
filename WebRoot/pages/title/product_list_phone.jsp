@@ -99,129 +99,9 @@ request.setAttribute("flag", "product");
 	</head>
 
 	<body  style="background-color: #F5F5F5;">
-
-		<%
-		out.println("<script type='text/javascript'>if(document.body.offsetWidth < 684) {window.location.href = '/ChuangYeJia/pages/title/product_list_phone.jsp';}</script>");
-		%>
-
-
-		<jsp:include page="/pages/module/index_bar.jsp" flush="true" />
-		
-
-		<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-bottom: 0px;">
-			
-			<ol class="carousel-indicators">
-				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-				<li data-target="#myCarousel" data-slide-to="1"></li>
-				<li data-target="#myCarousel" data-slide-to="2"></li>
-				<li data-target="#myCarousel" data-slide-to="3"></li>
-			</ol>
-			<div class="carousel-inner" role="listbox">
-				<div class="item active">
-					<img class="" src="<%=path %>/assets/img/project/project_list1.png" alt="">
-					<div class="container" style="padding-right: 0px;padding-left: 0px;">
-						<div class="carousel-caption">
-							<div style="width: 50%;float: right;">
-								<p style="font-size: 30px;padding: 0 auto;margin: 0 auto;">国家<span style="font-size: 62px;">最新</span>科研产品</p>
-								<p style="font-size: 27px;padding: 0 auto;margin: 0 auto;">
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									人工智能3.0时代</p>
-								<p style="font-size: 27px;padding: 0 auto;margin: 0 auto;">正式<span style="font-size: 38px;">开启</span></p>
-								<p style="font-size: 15px;padding: 0 auto;margin-top: 5px; margin-bottom: 0px;">&nbsp;&nbsp;&nbsp;详情请见产品内页......</p>
-								<br />
-								<p style="float: right;"><a role="button" href="javascript:void(0)" class="btn btn-primary btn-lg" style="padding: 4px 12px;border-radius: 30px;border: solid 2px;">更多内容</a></p>
-								<br /><br /><br />
-								<br /><br />
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<img class="" src="<%=path %>/assets/img/project/project_list1.png" alt="">
-					<div class="container" style="padding-right: 0px;padding-left: 0px;">
-						<div class="carousel-caption">
-							<div style="width: 50%;float: right;">
-								<p style="font-size: 30px;padding: 0 auto;margin: 0 auto;">国家<span style="font-size: 62px;">最新</span>科研产品</p>
-								<p style="font-size: 27px;padding: 0 auto;margin: 0 auto;">
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									人工智能3.0时代</p>
-								<p style="font-size: 27px;padding: 0 auto;margin: 0 auto;">正式<span style="font-size: 38px;">开启</span></p>
-								<p style="font-size: 15px;padding: 0 auto;margin-top: 5px; margin-bottom: 0px;">&nbsp;&nbsp;&nbsp;详情请见产品内页......</p>
-								<br />
-								<p style="float: right;"><a role="button" href="javascript:void(0)" class="btn btn-primary btn-lg" style="padding: 4px 12px;border-radius: 30px;border: solid 2px;">更多内容</a></p>
-								<br /><br /><br />
-								<br /><br />
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<img class="" src="<%=path %>/assets/img/project/project_list1.png" alt="">
-					<div class="container" style="padding-right: 0px;padding-left: 0px;">
-						<div class="carousel-caption">
-							<div style="width: 50%;float: right;">
-								<p style="font-size: 30px;padding: 0 auto;margin: 0 auto;">国家<span style="font-size: 62px;">最新</span>科研产品</p>
-								<p style="font-size: 27px;padding: 0 auto;margin: 0 auto;">
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									人工智能3.0时代</p>
-								<p style="font-size: 27px;padding: 0 auto;margin: 0 auto;">正式<span style="font-size: 38px;">开启</span></p>
-								<p style="font-size: 15px;padding: 0 auto;margin-top: 5px; margin-bottom: 0px;">&nbsp;&nbsp;&nbsp;详情请见产品内页......</p>
-								<br />
-								<p style="float: right;"><a role="button" href="javascript:void(0)" class="btn btn-primary btn-lg" style="padding: 4px 12px;border-radius: 30px;border: solid 2px;">更多内容</a></p>
-								<br /><br /><br />
-								<br /><br />
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<img class="" src="<%=path %>/assets/img/project/project_list1.png" alt="">
-					<div class="container" style="padding-right: 0px;padding-left: 0px;">
-						<div class="carousel-caption">
-							<div style="width: 50%;float: right;">
-								<p style="font-size: 30px;padding: 0 auto;margin: 0 auto;">国家<span style="font-size: 62px;">最新</span>科研产品</p>
-								<p style="font-size: 27px;padding: 0 auto;margin: 0 auto;">
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									人工智能3.0时代</p>
-								<p style="font-size: 27px;padding: 0 auto;margin: 0 auto;">正式<span style="font-size: 38px;">开启</span></p>
-								<p style="font-size: 15px;padding: 0 auto;margin-top: 5px; margin-bottom: 0px;">&nbsp;&nbsp;&nbsp;详情请见产品内页......</p>
-								<br />
-								<p style="float: right;"><a role="button" href="javascript:void(0)" class="btn btn-primary btn-lg" style="padding: 4px 12px;border-radius: 30px;border: solid 2px;">更多内容</a></p>
-								<br /><br /><br />
-								<br /><br />
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-				<span aria-hidden="true"></span>
-			</a>
-			<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-				<span aria-hidden="true"></span>
-			</a>
-		</div>
-		
-		<div class="container marketing" style="background-color: #F5F5F5; padding:50px 0px;width: 78%;">
-			
-			<div class="thumbtitle">
-				<div class="contenttitle" style="margin-bottom: 10px;">
-					<p style="margin-bottom: 4px;">WHAT&nbsp;&nbsp;&nbsp;&nbsp;WE&nbsp;&nbsp;&nbsp;&nbsp;DO</p>
-					<p style="float: right;">随经济全球化以及生产专业化现象的普遍，社会分工和协同合作已经成为了一种创业趋势。<a role="button" href="/ChuangYeJia/pages/userConsole/product/create_product.jsp" class="btn btn-lg" style="padding: 4px 12px;border-radius: 30px;border: solid 2px;">创建产品</a></p>
-					<h2 style="margin-top: 0;color: black;">产品列表</h2>
-				</div>
-			</div>
-			<br/>
-			<br/>
+		<div class="container marketing" style="background-color: #F5F5F5; padding:50px 0px;width: 80%;">
+			<h2 align="center">查看产品信息</h2>
+			<hr>
 			<div id="myTabContent" class="tab-content" style="background-color: #FFFFFF">
 			      <div role="tabpanel" class="tab-pane fade active in" id="time" aria-labelledby="time-tab">
 			      
@@ -260,20 +140,10 @@ request.setAttribute("flag", "product");
 		   </nav>
 			
 		</div>
-
-
-
-
-
-
-	<jsp:include page="../module/bottom.jsp" flush="true" />
-
 	</body>
 	<script>
 
 		$(document).ready(function() {
-			$("td").attr("style", "border-top: solid #333333 1px;");
-			
 			getAllStartups(1, 10);
 			
 			$(".pagination_All").bind("click", function(a) {

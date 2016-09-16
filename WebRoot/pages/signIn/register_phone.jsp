@@ -33,107 +33,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link href="<%=path%>/assets/uikit/uikit.css" rel="stylesheet"/>
 		
 		<script src="<%=path%>/assets/manualSource/js/register.js"></script>
-		<style>
-		body {
-			font-family: "微软雅黑";
-			padding-bottom: 0px;
-		}
-		
-		li a {
-			color: snow;
-		}
-			
-		.row .img {
-			margin-right: 5px;
-		}
-		
-		.nav .active a {
-			border-bottom: solid #398BE5 3px;
-			color: #398BE5;
-			font-weight: bold;
-		}
-		
-		#navbar ul a:hover {
-			border-bottom: solid #398BE5 3px;
-			color: #398BE5;
-			background-color: transparent;
-		}
-		
-		#choicelabel a {
-			color: black;
-		}
-		
-		#choicelabel .active {
-			color: #398BE5;
-		}
-		
-		#inputSearch {
-			border-radius: 20px;
-			background-color: #A9A9A9;
-		}
-		
-		.col-lg-3 {
-			margin: 0 0;
-			padding: 0 0;
-		}
-		
-		.col-lg-4 {
-			margin: 0 0;
-			padding: 0 0;
-		}
-		
-		.marketing .col-lg-4 {
-			margin-bottom: 0px;
-		}
-		
-		.alert {
-			padding: 0;
-			margin-bottom: 0px;
-		}
-
-</style>
 </head>
 	<body style="background-color: #F5F5F5;">
-		
-		<jsp:include page="/pages/module/index_bar.jsp" flush="true" />
-
-		<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-bottom: 0px;">
-			<div class="carousel-inner" role="listbox">
-				<div class="item active">
-					<img class="" src="<%=path %>/assets/img/user/333.png" alt="">
-					<div class="container" style="padding-right: 0px;padding-left: 0px;">
-						<div class="carousel-caption">
-							<div class="logo-img" style="width: 100%;">
-								<span>
-									<img src="<%=path %>/assets/img/user/logo.png" style="width: 18%;height: 6%; margin-bottom: 0px;padding-bottom: 0px;">
-								</span>
-								<span>
-									<a style="font-size: 22px;text-decoration: none;">
-										<span style="display: block;">创业加</span>
-										<br />
-									</a>
-								</span>
-							</div>
-							<p style="margin-bottom: 0px;font-size: 34px;">
-								个人注册页
-							</p>
-							<span style="border-top: solid white 2px;" style="font-family: sans-serif;">Hello!Welcome to Enterperse Plus</span>
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="container marketing" style="background-color: #F5F5F5; padding:50px 0px;width: 100%;">
-			<!-- Three columns of text below the carousel -->
-			<div class="thumbtitle">
-				<div class="contenttitle" style="margin-bottom: 10px;">
-					<h2 style="margin-top: 0;" style="color: black;">
-						注册信息
-					</h2>
-				</div>
-			</div>
+		<div class="container marketing" style="background-color: #F5F5F5; padding:0px 0px;width: 90%;">
 			
+				<h2 align="center">注册信息</h2>
 				<div class="content-main-top" style="height: 27%;">
 					<div style="width: 100%;height: 100%;margin: 0 auto;">
 						<div class="main">
@@ -143,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<form action="userSignIn!register.action" method="post" name="form" onsubmit="return checkdata()" >
 								
 									<div class="form-group" style="margin-top: 30px;">
-										<input type="text" class="form-control" name="ud.nickname" id="nickname" placeholder="昵称" maxlength="30" onblur="checknickname()">
+										<input type="text" class="form-control" name="ud.nickname" id="nickname" placeholder="昵称" maxlength="16" onblur="checknickname()">
 										<div class="alert alert-danger alert-nickname" role="alert" style="display: none">
 											请输入您的昵称，昵称必须在2~16个长度之间
 										</div>
@@ -160,20 +64,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											</span>
 										</div>
 									</div>
-									
-									<hr style="width: 100%; color: black;font-size: 2px;" />
-									<div class="form-group">
-										<div class="row">
-											<div class="col-md-8">
-										    	<input type="text" maxlength="32" class="form-control" name="registerEmailCode" id="emailCode" placeholder="请直接输入邮箱验证序列">
-										    </div>
-											<div class="col-md-4">
-												<a class="btn" id="clickSend">点击获取邮箱验证码</a>
-											</div>
-										</div>
-									</div>
-									
-									
 									<hr style="width: 100%; color: black;font-size: 2px;" />
 									<div class="form-group">
 										<input type="password" class="form-control" name="ud.password" id="password" maxlength="16" placeholder="密码" onblur="checkpassword()">
@@ -191,6 +81,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<hr style="width: 100%; color: black;font-size: 2px;" />
 									
 									<div class="form-group">
+									
 										<div class="row">
 											<div class="col-md-8">
 										    	<input type="text" onblur="checkIdentifyCode()" maxlength="5" class="form-control" name="ud.identifyCode" id="identifyCode" placeholder="请直接输入数字结果，如:8">
@@ -275,12 +166,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 				</div>
 			</div>
-		</div>
-		
 	</body>
-	<script>
-	$(document).ready(function() {
-		$("td").attr("style", "border-top: solid #333333 1px;");
-	});
-</script>
 </html>

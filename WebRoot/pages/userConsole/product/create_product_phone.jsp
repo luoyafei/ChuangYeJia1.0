@@ -97,27 +97,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<body style="background-color: #F5F5F5;">
 
-		<jsp:include page="/pages/module/index_bar.jsp" flush="true" />
-
-		<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-bottom: 0px;">
-			
-			<div class="carousel-inner" role="listbox">
-				<div class="item active">
-					<img class="" src="<%=path %>/assets/img/project/333.png" alt="">
-					<div class="container" style="padding-right: 0px;padding-left: 0px;">
-						<div class="carousel-caption">
-							<p style="margin-bottom: 0px;font-size: 32px;">
-								<br>发布产品
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 		<div class="container marketing" style="background-color: #F5F5F5; padding:50px 0px;width: 100%;">
-
 			
-		
+			<h2 align="center">上传产品</h2>
+			
 				<div role="tabpanel" class="tab-pane active" id="home">
 					<div class="tab-content-1" style="width: 80%;height: 100%;margin: 0 auto; ">
 						<form id="productForm" action="createProduct!createProduct.action" class="form-horizontal" role="form" style="margin-left: 0px;" method="post" enctype="multipart/form-data">
@@ -219,18 +202,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 
 			</div>
-
-		</div>
-
-	<jsp:include page="../../module/bottom.jsp" flush="true" />	
-		
-
 	</body>
 	<script>
 		$(document).ready(function() {
-			$("td").attr("style", "border-top: solid #333333 1px;");
-			
-			
 	        $.post('getMyLeaderForInvite!justDoIt.action', {}, function(data, textStatus) {
             	if(textStatus == "success") {
             		if(data.leaderS.length == 0) {

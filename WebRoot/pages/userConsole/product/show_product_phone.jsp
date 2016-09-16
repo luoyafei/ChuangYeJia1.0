@@ -94,37 +94,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<body style="background-color: #F5F5F5;">
 
-		<%
-		out.println("<script type='text/javascript'>if(document.body.offsetWidth < 684) {window.location.href = 'getProductItem?phone=0&item="+ request.getParameter("item") +"';}</script>");
-		%>
 
-
-		<jsp:include page="/pages/module/index_bar.jsp" flush="true" />
-
-		<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-bottom: 0px;">
-			
-			<div class="carousel-inner" role="listbox">
-				<div class="item active">
-					<img class="" src="<%=path %>/assets/img/project/333.png" alt="">
-					<div class="container" style="padding-right: 0px;padding-left: 0px;">
-						<div class="carousel-caption">
-							<div class="logo-img" style="width: 100%;">
-									
-								<span>
-									<img data-holder-rendered="true" src="<s:property value='#request.product.productCover'/>" style="width: 100px; height: 100px;" class="img-circle" />
-								</span>
-							</div>
-							<p style="margin-bottom: 0px;font-size: 32px;">
-								<br> 产品名称：<s:property value="#request.product.productName"/>
-							</p>
-							<br />
-							<br />
-							<br />
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 		<div class="container marketing" style="background-color: #F5F5F5; padding:50px 0px;width: 68%;">
 			
 			<div class="thumbtitle">
@@ -143,9 +113,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 			
 			<div class="uk-block uk-block-muted" style="width:100%;">
-
                 <div class="uk-container">
-
                     <div class="uk-grid uk-grid-match" data-uk-grid-margin="">
                         <div class="uk-width-medium-1-2 uk-row-first">
                             <div class="uk-panel">
@@ -171,9 +139,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </div>
 			<div class="content-main-mid" style="margin-top: 10px;overflow: auto;">
 				<div style="width: 80%;height: 100%;margin: 0 auto;border-bottom: dashed #A9A9A9 1px;">
@@ -366,12 +332,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</s:if>
 			</div>
 		
-	<jsp:include page="../../module/bottom.jsp" flush="true" />
 	</body>
 	<script>
-		$(document).ready(function() {
-			$("td").attr("style", "border-top: solid #333333 1px;");
-		});
 		$('#myTab a').click(function(e) {
 			e.preventDefault()
 			$(this).tab('show')

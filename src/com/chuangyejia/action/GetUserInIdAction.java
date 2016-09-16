@@ -14,8 +14,6 @@ import com.opensymphony.xwork2.ActionSupport;
 @Scope("prototype")
 public class GetUserInIdAction extends ActionSupport {
 
-	
-
 	/**
 	 * 
 	 */
@@ -32,7 +30,15 @@ public class GetUserInIdAction extends ActionSupport {
 	
 	
 	private String mark;
+	private String phone;
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
+	
 	public String getMark() {
 		return mark;
 	}
@@ -50,6 +56,8 @@ public class GetUserInIdAction extends ActionSupport {
 			
 			if(uts != null) {
 				ServletActionContext.getRequest().setAttribute("uts", uts);
+				if(phone != null && phone.equals("0"))
+						return "successPhone";
 				return SUCCESS;
 			} else 
 				return NONE;
