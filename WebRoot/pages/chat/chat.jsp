@@ -253,9 +253,9 @@ if(session.getAttribute("user")==null || ((User)session.getAttribute("user")).ge
 		function init() {
 			
 		    if ('WebSocket' in window) {  
-		        webSocket = new WebSocket('ws://localhost:8080/ChuangYeJia/chat/server'); //建立连接点 WebSocketAndTomcat要换成自己的项目名
+		        webSocket = new WebSocket('ws://chuangyejia.top/ChuangYeJia/chat/server');
 		    } else if ('MozWebSocket' in window) {  
-		        webSocket = new MozWebSocket('ws://localhost:8080/ChuangYeJia/chat/server'); //建立连接点 WebSocketAndTomcat要换成自己的项目名
+		        webSocket = new MozWebSocket('ws:chuangyejia.top/ChuangYeJia/chat/server');
 		    }
 
 			webSocket.onerror = function(event) {

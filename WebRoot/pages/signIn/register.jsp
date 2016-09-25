@@ -171,6 +171,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										</div>
 									</div>
 									<hr style="width: 100%; color: black;font-size: 2px;" />
+									
 									<div class="form-group">
 										<div class="row">
 											<div class="col-md-8">
@@ -189,6 +190,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										</div>
 									</div>
 									<hr style="width: 100%; color: black;font-size: 2px;" />
+									
+									
+									
 									<div class="form-group">
 										<input type="password" class="form-control" name="ud.validatePassword" id="repassword" placeholder="确认密码" onblur="checkrepassword()">
 										<div class="alert alert-danger alert-repassword" role="alert" style="display: none;">
