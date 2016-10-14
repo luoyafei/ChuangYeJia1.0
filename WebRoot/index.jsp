@@ -99,7 +99,7 @@ request.setAttribute("flag", "index");
 					<div class="container" style="padding-right: 0px;padding-left: 0px;">
 						<div class="carousel-caption">
 							<div class="logo-img" style="width: 100%;">
-								<span><img src="assets/img/logo.png" style="width: 18%;height: 8%; margin-bottom: 0px;padding-bottom: 0px;"></span>
+								<span><img src="assets/img/logo.png" style="width: 18%; margin-bottom: 0px;padding-bottom: 0px;"></span>
 							</div>
 
 							<h1 style="margin-top: 0px; margin-bottom: 0px;color: #398BE5;">创业+</h1>

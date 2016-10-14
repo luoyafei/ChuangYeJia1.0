@@ -128,6 +128,7 @@
           <ul class="nav nav-sidebar nav-tabs-justified" role="tablist" id="user_con_tab">
           	<li role="presentation" class="active"><a href="#my_remind" role="tab" data-toggle="tab">我的消息</a></li>
             <li role="presentation"><a href="#my_data" role="tab" data-toggle="tab">我的资料 </a></li>
+            <li role="presentation"><a href="#my_identify" role="tab" data-toggle="tab">我的认证</a></li>
             <li role="presentation"><a href="#my_startups" role="tab" data-toggle="tab">我的公司</a></li>
             <li role="presentation"><a href="#my_product" role="tab" data-toggle="tab">我的产品</a></li>
             <li role="presentation"><a href="#my_contract" role="tab" data-toggle="tab">我的合同</a></li>
@@ -151,6 +152,7 @@
 			  	<div role="tabpanel" class="tab-pane" id="my_startups"></div>
 			  	<div role="tabpanel" class="tab-pane" id="my_product"></div>
 			  	<div role="tabpanel" class="tab-pane" id="my_contract"></div>
+			  	<div role="tabpanel" class="tab-pane" id="my_identify"></div>
 			</div>
 
         	<script>
@@ -174,6 +176,7 @@
         			$("#my_product").load("homeItem/my_product.jsp");//将我的产品load进来
         			$("#my_contract").load("homeItem/my_contract.jsp");//将我的合同load进来
         			$("#my_remind").load("homeItem/my_remind.jsp");//将我的消息load进来团队
+        			$("#my_identify").load("homeItem/my_identify.jsp");//将我的认证load进来团队
         		});
         	</script>
         </div>

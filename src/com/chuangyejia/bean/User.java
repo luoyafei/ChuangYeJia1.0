@@ -42,7 +42,7 @@ public class User {
 	private String userWeChat = null;
 	private String userIdCard = null;
 	private Timestamp userCreateDate = null;
-	private String isVerify = "0";//是否认证
+	private String isVerify = "0";//是否认证 (0:尚未认证；1:认证成功；2:认证失败；3:正在认证)
 	private String userTel = null;//电话
 	
 	
