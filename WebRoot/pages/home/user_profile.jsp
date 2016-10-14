@@ -210,9 +210,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						    <div class="uk-width-7-10">
 						    <div class="uk-grid">
-			                     <div class="uk-width-1-3"><a class="uk-button" style="border: solid #398BE5 2px; border-radius: 10px;color: #398BE5;" href="">实名认证</a></div>
-			                     <div class="uk-width-1-3"><a class="uk-button" style="border: solid #398BE5 2px; border-radius: 10px;color: #398BE5;" href="">实名认证</a></div>
-			                     <div class="uk-width-1-3"><a class="uk-button" style="border: solid #398BE5 2px; border-radius: 10px;color: #398BE5;" href="">实名认证</a></div>
+						    	<s:if test="#request.uts.isVerify==\"1\" ">
+						    		<div class="uk-width-1-3">
+				                     	<a class="uk-button" style="border: solid #D3D3D3 2px; border-radius: 10px;color: #398BE5;">
+				                     		学生证认证
+				                     		<span class="uk-icon-hover uk-icon-check"></span>
+				                     	</a>
+				                     </div>
+						    	</s:if>
+						    	<s:else>
+						    		<div class="uk-width-1-3">
+				                     	<a class="uk-button" style="border: solid #D3D3D3 2px; border-radius: 10px;color: #398BE5;">
+				                     		未进行学生证认证
+				                     		<span class="uk-icon-hover uk-icon-close"></span>
+				                     	</a>
+				                     </div>
+						    	</s:else>
 			                </div>
 						</div>
 					</div>
