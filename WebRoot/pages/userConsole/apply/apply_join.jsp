@@ -96,13 +96,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body style="background-color: #F5F5F5;">
         
-        <script type='text/javascript'>
+       <%--  <script type='text/javascript'>
         	if(document.body.offsetWidth < 684) {
 				var nowURI = window.location.href;
         	    var reURI = nowURI.replace("apply_join.jsp", "apply_join_phone.jsp");
         	    window.location.href = reURI;
         	}
-        </script>
+        </script> --%>
         
 		<jsp:include page="/pages/module/index_bar.jsp" flush="true" />
         

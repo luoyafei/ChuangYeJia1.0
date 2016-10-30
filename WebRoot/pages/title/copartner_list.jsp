@@ -99,7 +99,7 @@ request.setAttribute("flag", "partner");
 	<body style="background-color: #F5F5F5;">
 
 		<%
-		out.println("<script type='text/javascript'>if(document.body.offsetWidth < 684) {window.location.href = '/ChuangYeJia/pages/title/copartner_list_phone.jsp';}</script>");
+		//out.println("<script type='text/javascript'>if(document.body.offsetWidth < 684) {window.location.href = '/ChuangYeJia/pages/title/copartner_list_phone.jsp';}</script>");
 		%>
 
 		<jsp:include page="/pages/module/index_bar.jsp" flush="true" />

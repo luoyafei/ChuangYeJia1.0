@@ -98,7 +98,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<body style="background-color: #F5F5F5;">
 
 		<%
-		out.println("<script type='text/javascript'>if(document.body.offsetWidth < 684) {window.location.href = '/ChuangYeJia/pages/userConsole/product/create_product_phone.jsp';}</script>");
+		//out.println("<script type='text/javascript'>if(document.body.offsetWidth < 684) {window.location.href = '/ChuangYeJia/pages/userConsole/product/create_product_phone.jsp';}</script>");
 		%>
 
 

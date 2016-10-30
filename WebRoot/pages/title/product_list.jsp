@@ -101,7 +101,7 @@ request.setAttribute("flag", "product");
 	<body  style="background-color: #F5F5F5;">
 
 		<%
-		out.println("<script type='text/javascript'>if(document.body.offsetWidth < 684) {window.location.href = '/ChuangYeJia/pages/title/product_list_phone.jsp';}</script>");
+		//out.println("<script type='text/javascript'>if(document.body.offsetWidth < 684) {window.location.href = '/ChuangYeJia/pages/title/product_list_phone.jsp';}</script>");
 		%>
 
 

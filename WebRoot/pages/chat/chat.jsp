@@ -212,7 +212,6 @@ if(session.getAttribute("user")==null || ((User)session.getAttribute("user")).ge
 
 																	<div class="" style="width: 100%; height: 600px; background-color:; overflow: auto; border-bottom: solid #A9A9A9 1px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
 																		<div id="his_message_panel" style="width: 90%; background-color:; margin: 10px auto;"></div>
-																		
 																	</div>
 																</div>
 															</div>

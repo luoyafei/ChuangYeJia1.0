@@ -99,7 +99,7 @@ request.setAttribute("flag", "startups");
 	<body style="background-color: #F5F5F5;">
 
 		<%
-		out.println("<script type='text/javascript'>if(document.body.offsetWidth < 684) {window.location.href = '/ChuangYeJia/pages/title/startups_list_phone.jsp';}</script>");
+		//out.println("<script type='text/javascript'>if(document.body.offsetWidth < 684) {window.location.href = '/ChuangYeJia/pages/title/startups_list_phone.jsp';}</script>");
 		%>
 
 		<jsp:include page="/pages/module/index_bar.jsp" flush="true" />
@@ -221,7 +221,7 @@ request.setAttribute("flag", "startups");
 				</div>
 			</div>
 			
-			
+			<br />
 			
 			<div class="marketing-nav">
 				<ul class="nav nav-tabs marketing-nav-content" role="tablist">

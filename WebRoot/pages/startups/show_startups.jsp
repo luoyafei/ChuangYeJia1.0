@@ -98,7 +98,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<body style="background-color: #F5F5F5;">
 		
 		<%
-		out.println("<script type='text/javascript'>if(document.body.offsetWidth < 684) {window.location.href = 'getStartupsItem?phone=0&item="+ request.getParameter("item") +"';}</script>");
+		//out.println("<script type='text/javascript'>if(document.body.offsetWidth < 684) {window.location.href = 'getStartupsItem?phone=0&item="+ request.getParameter("item") +"';}</script>");
 		%>
 		
 		<jsp:include page="/pages/module/index_bar.jsp" flush="true" />
