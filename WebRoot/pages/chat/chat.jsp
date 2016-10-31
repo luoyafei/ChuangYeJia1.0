@@ -196,6 +196,14 @@ if(session.getAttribute("user")==null || ((User)session.getAttribute("user")).ge
 																	style="margin: 0 auto; text-align: center;">
 																	<button id="send_message" type="submit" class="btn btn-default btn-lg" style="border: solid #A9A9A9 2px; border-radius: 10px;">发送</button>
 																</div>
+																<button id="send_downLine" type="button" class="btn badge btn-danger" style="float:right;border: solid #A9A9A9 2px; border-radius: 5px;">申请线下交谈 </button>
+															</div>
+															
+															<div class="input-group" id="downLine_enter">
+																<input class="form-control" id="downLine_tel_content" type="text" placeholder="请输入您的电话号码，方便我们客服通过电话联系您与您的合作伙伴...">
+																<span class="input-group-btn">
+																	<button class="btn btn-default" type="button" id="downLine_send">发送</button>
+																</span>
 															</div>
 														</div>
 													</div>
@@ -234,11 +242,27 @@ if(session.getAttribute("user")==null || ((User)session.getAttribute("user")).ge
 	<jsp:include page="../module/bottom.jsp" flush="true" />
 </body>
 <script>
+
+	$("#send_downLine").click(function() {
+		$("#downLine_enter").toggle();
+	});
+	$("#downLine_send").click(function() {
+		var tel = $("#downLine_tel_content").val().trim();
+		if(tel !== null && tel !== "" && tel.length != 11 && !tel.match("/[\d]{11}/")) {
+			alert("请输入您的正确电话方便我们客服为您提供服务,谢谢合作...");
+		} else {
+			$.post("downLineAction!.action", {}, function(data, textStatus) {
+				
+			}, "json");
+		}
+	});
 	$('#myTab a').click(function(e) {
 		e.preventDefault()
 		$(this).tab('show')
 	})
 	$(document).ready(function() {
+		$("#downLine_enter").hide();
+		
 		$("td").attr("style", "border-top: solid #333333 1px;");
 		
 		/**

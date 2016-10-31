@@ -15,7 +15,7 @@ create table user (
     userRealPhoto varchar(255),
     userTel varchar(20) unique,
     userWeChat varchar(20) unique,
-    isVerify varchar(1) default '0',
+    isVerify varchar(1) default '0', --是否认证 (0:尚未认证；1:认证成功；2:认证失败；3:正在认证)
     copartnerCategory varchar(10),   --合伙人类型（资金，技术，推广，运营，其他）
     startAbility text,				 --创业能力
     userField varchar(10),			 --领域 (移动互联网，电子商务，文化艺术，教育体育，汽车，旅游户外，房产，营销广告，硬件，工具软件，企业服务，搜索安全，医疗健康，媒体资讯，生活消费，其他)
@@ -130,4 +130,15 @@ create table record_invite (
 	id int primary key auto_increment,
 	ip varchar(20),
 	fromUrl varchar(255)
+)ENGINE=InnoDB default charset=utf8
+--线下交谈
+create table downLineChat (
+	id int primary key auto_increment,
+	fromUserId varchar(32) not null,
+	toUserId varchar(32),
+	fromUserTel int,
+	toUserTel int,
+	createDate datetime default current_timestamp,
+	constraint foreign key (fromUserId) references user(userId),
+	constraint foreign key (toUserId) references user(userId)
 )ENGINE=InnoDB default charset=utf8
