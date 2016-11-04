@@ -24,6 +24,7 @@ public class testSSH2 extends AbstractJUnit4SpringContextTests {
 	
 	@Resource(name="hibernateTemplate")
 	private HibernateTemplate ht;
+	
 	@Test
 	public void testSSH() {
 		User user = new User();

@@ -3,36 +3,36 @@
  */
 
 /* 用来检测邮箱的函数 */
-function checkemail() {
-	var email = $("#email").val().trim();
-	var alertemail = $(".alert-email");
-	var checkemail = $(".alert-check-email");
-	if (email === "") {
-		alertemail.attr("style", "display:inline-block;");
-		checkemail.attr("style", "display:none;");
+function checkTel() {
+	var tel = $("#tel").val().trim();
+	var alerttel = $(".alert-tel");
+	var checktel = $(".alert-check-tel");
+	if (tel === "") {
+		alerttel.attr("style", "display:inline-block;");
+		checktel.attr("style", "display:none;");
 	} else {
-		alertemail.attr("style", "display:none;");
-		if(email.match(/^[a-z0-9]+([._]*[a-z0-9]+)*@[a-z0-9]+([_.][a-z0-9]+)+$/gi)) {
-			checkemail.attr("style", "display:none;");
+		alerttel.attr("style", "display:none;");
+//		if(tel.match(/^[a-z0-9]+([._]*[a-z0-9]+)*@[a-z0-9]+([_.][a-z0-9]+)+$/gi)) {
+		if(tel.match(/\d{11}/)) {
+			checktel.attr("style", "display:none;");
 			
-			$.post('vaction!checkEmail.action', { 
-				email : email
+			$.post('vaction!checkTel.action', { 
+				tel : tel
 			}, function(data, textStatus) {
 				if(textStatus == "success") {
-					checkemail.attr("style", "display:inline-block;");
+					checktel.attr("style", "display:inline-block;");
 					if(data) {
-						//$(".email-error").text("该邮箱");
-						checkemail.attr("style", "display:none;");
+						checktel.attr("style", "display:none;");
 					} else {
-						$(".email-error").text("该邮箱暂未注册");
+						$(".tel-error").text("该电话号码暂未注册");
 					}
 				} else {
 					alert("网络出错" + textStatus);
 				}
 			}, 'json');
 		} else {
-			checkemail.attr("style", "display:inline-block;");
-			$(".email-error").text("请输入正确的邮箱地址,例如:chuangyejia@163.com");
+			checktel.attr("style", "display:inline-block;");
+			$(".tel-error").text("请输入正确的电话号码，例如:18888888888");
 		}
 	}
 }
@@ -77,7 +77,7 @@ function checkIdentifyCode() {
 }
 function checkdata() {
 	
-	if(checkpassword() && $("#email").val().trim()!=="" && $("#identifyCode").val().trim()!=="")
+	if(checkpassword() && $("#tel").val().trim()!=="" && $("#identifyCode").val().trim()!=="")
 	 	return true;
 	else {
 		alert("请将信息核实正确并填写完整！");

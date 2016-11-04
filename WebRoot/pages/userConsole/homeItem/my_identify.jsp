@@ -56,6 +56,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                       	<s:if test="#session.user.isVerify==\"0\" || #session.user.isVerify==\"2\"">
 	                        <div class="uk-width-medium-1-2">
 	                            <div class="uk-panel">
+	                            	<h3 style="color: red;">请上传本人学生证以完成身份认证</h3>
 									<div class="form-group" style="margin-right: 0px;margin-left: -10px;padding-top: 15px;">
 										<div class="col-sm-12">
 											<article class="uk-comment">

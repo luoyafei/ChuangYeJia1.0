@@ -58,7 +58,7 @@ public class SendEmailAction extends ActionSupport {
 			prop.setProperty("mail.host", "smtp.mxhichina.com");
 	        prop.setProperty("mail.transport.protocol", "smtp");
 	        prop.setProperty("mail.smtp.auth", "true");
-	        prop.setProperty("mail.smtp.port", "25");
+//	        prop.setProperty("mail.smtp.port", "25");
 	        //使用JavaMail发送邮件的5个步骤
 	        //1、创建session
 	        Session session = Session.getInstance(prop);
@@ -69,7 +69,8 @@ public class SendEmailAction extends ActionSupport {
 			try {
 				ts = session.getTransport();
 				//3、使用邮箱的用户名和密码连上邮件服务器，发送邮件时，发件人需要提交邮箱的用户名和密码给smtp服务器，用户名和密码都通过验证之后才能够正常发送邮件给收件人。
-				ts.connect("smtp.mxhichina.com", 587, "mailregister@chuangyejia.top", "yanchenguang123456..");
+//				ts.connect("smtp.mxhichina.com", 587, "mailregister@chuangyejia.top", "yanchenguang123456..");
+				ts.connect("smtp.mxhichina.com", "mailregister@chuangyejia.top", "yanchenguang123456..");
 		      //4、创建邮件
 		        String uuid = UUID.randomUUID().toString().replace("-", "");
 		        String mailContent = "请将该串加密字符序列全部复制入创业加注册页面的邮箱验证码输入框内：" + uuid;

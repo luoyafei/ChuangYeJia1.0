@@ -29,10 +29,18 @@ import com.opensymphony.xwork2.ActionSupport;
 public class ForgetPasswordAction extends ActionSupport {
 
 	private final static String emailPattern = "^\\s*\\w+(?:\\.{0,1}[\\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\\.[a-zA-Z]+\\s*$";
+	private final static String telPattern = "[\\d]{11}";
 	
 	private String email;
+	private String tel;
 	private IUserService us;
 	
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -47,8 +55,49 @@ public class ForgetPasswordAction extends ActionSupport {
 		this.us = us;
 	}
 	
-	
 	public void justDoIt() {
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("application/json; charset=utf-8");
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch(IOException e) {}
+		
+		JsonObject jo = new JsonObject();
+		
+		if(tel != null && tel.matches(telPattern) && us.getUserInTel(tel) != null) {
+			boolean success = true;
+			
+			/**
+			 * 暂时尚未提供短信服务
+			 */
+			success = false;
+			String reason = "暂时尚未提供短信服务";
+			
+			if(success) {
+				jo.addProperty("success", success);
+			} else {
+				jo.addProperty("success", success);
+//				jo.addProperty("reason", "短信发送失败！请重试！");
+				jo.addProperty("reason", reason);
+			}
+			
+		} else {
+			jo.addProperty("success", false);
+			jo.addProperty("reason", "该电话号码尚未注册！请输入您忘记密码的电话号码！谢谢！");
+		}
+		out.print(jo.toString());
+		out.flush();
+		out.close();
+	}
+	
+	
+	
+	/**
+	 * 过时的方法，使用邮箱找回密码
+	 */
+	@SuppressWarnings("unused")
+	private void justDoIt_email() {
 		
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("application/json; charset=utf-8");
@@ -66,7 +115,7 @@ public class ForgetPasswordAction extends ActionSupport {
 			prop.setProperty("mail.host", "smtp.mxhichina.com");
 	        prop.setProperty("mail.transport.protocol", "smtp");
 	        prop.setProperty("mail.smtp.auth", "true");
-	        prop.setProperty("mail.smtp.port", "25");
+//	        prop.setProperty("mail.smtp.port", "25");
 	        //使用JavaMail发送邮件的5个步骤
 	        //1、创建session
 	        Session session = Session.getInstance(prop);
@@ -77,7 +126,8 @@ public class ForgetPasswordAction extends ActionSupport {
 			try {
 				ts = session.getTransport();
 				//3、使用邮箱的用户名和密码连上邮件服务器，发送邮件时，发件人需要提交邮箱的用户名和密码给smtp服务器，用户名和密码都通过验证之后才能够正常发送邮件给收件人。
-				ts.connect("smtp.mxhichina.com", 587, "mailregister@chuangyejia.top", "yanchenguang123456..");
+//				ts.connect("smtp.mxhichina.com", 587, "mailregister@chuangyejia.top", "yanchenguang123456..");
+				ts.connect("smtp.mxhichina.com", "mailregister@chuangyejia.top", "yanchenguang123456..");
 		      //4、创建邮件
 				User user = us.getUserInEmail(email);
 				

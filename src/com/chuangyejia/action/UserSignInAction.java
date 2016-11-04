@@ -98,7 +98,41 @@ public class UserSignInAction extends ActionSupport {
 	 * 用来处理用户注册的action
 	 * @return
 	 */
-	public String register() {
+public String register() {
+		
+		String code = String.valueOf(ServletActionContext.getRequest().getSession().getAttribute("code"));//先将session中的验证码结果取出
+		if(ud.getIdentifyCode().equals(code)) {//如果判断相等，则继续执行
+			ud.setIsLogin(false);
+			if(ud.checkDataDispatchor()) {
+				//判断数据库中是否存在该 Tel
+				if(us.getUserInTel(ud.getTel()) == null) {
+					User user = ud.toUser();
+					/**
+					 * 将ip存入user
+					 */
+					user.setUserIp(ServletActionContext.getRequest().getRemoteAddr());
+					if(us.saveUser(user))  {//将User对象存入数据库中。
+						HttpSession session = ServletActionContext.getRequest().getSession(); 
+						session.setAttribute("user", user);//将插入成功的User对象放入Session中
+						if(fromShowStartups)
+							return RDA_BACK_ITEM;
+						else if(fromUserProfile)
+							return RDA_BACK_MARK;
+						else
+							return BACK;
+					}
+				}
+			}
+		}
+		return REGISTER;
+	}
+	
+	/**
+	 * 过时的方法，使用邮箱验证
+	 * @return
+	 */
+	@SuppressWarnings("unused")
+	private String register_email() {
 		
 		String code = String.valueOf(ServletActionContext.getRequest().getSession().getAttribute("code"));//先将session中的验证码结果取出
 		String emailSessionCode = String.valueOf(ServletActionContext.getRequest().getSession().getAttribute("emailCode"));//将session中的邮箱验证码结果取出
@@ -140,6 +174,44 @@ public class UserSignInAction extends ActionSupport {
 	 */
 	@Override
 	public String execute() throws Exception {
+		// TODO Auto-generated method stub
+		
+		String code = String.valueOf(ServletActionContext.getRequest().getSession().getAttribute("code"));//先将session中的验证码结果取出
+		if(ud.getIdentifyCode().equals(code)) {//如果判断相等，则继续执行
+			ud.setIsLogin(true);
+			if(ud.checkDataDispatchor()) {
+				HttpSession session = ServletActionContext.getRequest().getSession();
+
+				User user = (User)session.getAttribute("userTemp");
+				if(user != null && user.getUserPassword().equals(ud.getPassword())) {
+					
+					session.setAttribute("user", user);//将User对象放入Session中
+					session.setAttribute("userTemp", null);
+					
+					if(fromShowStartups)
+						return RDA_BACK_ITEM;
+					else if(fromUserProfile)
+						return RDA_BACK_MARK;
+					else
+						return BACK;
+				} else {
+					this.addFieldError("error", "电话号码或登录密码错误！");
+				}
+			} else
+				this.addFieldError("error", "电话号码格式错误！");
+		} else
+			this.addFieldError("error", "验证码错误！");
+		
+		return LOGIN;
+	}
+	
+	/**
+	 * 过时的方法，用于邮箱的登录
+	 * @return
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unused")
+	private String execute_email() throws Exception {
 		// TODO Auto-generated method stub
 		
 		String code = String.valueOf(ServletActionContext.getRequest().getSession().getAttribute("code"));//先将session中的验证码结果取出
@@ -190,6 +262,7 @@ public class UserSignInAction extends ActionSupport {
 	 */
 	public String signOut() {
 		HttpSession session = ServletActionContext.getRequest().getSession();
+//		session.invalidate();
 		Enumeration<String> sessionNames = session.getAttributeNames();
 		while(sessionNames.hasMoreElements())
 			session.removeAttribute(sessionNames.nextElement());

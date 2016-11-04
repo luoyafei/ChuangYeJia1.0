@@ -2,7 +2,7 @@
  * 
  */
 	$(document).ready(function() {
-		$("#clickSend").bind("click", sendEmail);
+		//$("#clickSend").bind("click", sendEmail);
 	});
 	
 	function sendEmail() {
@@ -52,30 +52,30 @@ function checknickname() {
 	}
 }
 /* 用来检测邮箱的函数 */
-function checkemail() {
-	var email = $("#email").val().trim();
-	var alertemail = $(".alert-email");
-	var checkemail = $(".alert-check-email");
-	if (email === "") {
-		alertemail.attr("style", "display:inline-block;");
-		checkemail.attr("style", "display:none;");
+function checktel() {
+	var tel = $("#tel").val().trim();
+	var alerttel = $(".alert-tel");
+	var checktel = $(".alert-check-tel");
+	if (tel === "") {
+		alerttel.attr("style", "display:inline-block;");
+		checktel.attr("style", "display:none;");
 		return 0;
 	} else {
-		alertemail.attr("style", "display:none;");
-		var reg = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
-		if(email.match(reg)) {
-			checkemail.attr("style", "display:none;");
+		alerttel.attr("style", "display:none;");
+		var reg = /\d{11}/;
+		if(tel.match(reg)) {
+			checktel.attr("style", "display:none;");
 			
-			$.post('vaction!checkEmail.action', { 
-				email : email
+			$.post('vaction!checkTel.action', { 
+				tel : tel
 			}, function(data, textStatus) {
 				if(textStatus == "success") {
-					checkemail.attr("style", "display:inline-block;");
+					checktel.attr("style", "display:inline-block;");
 					if(data) {
-						$(".email-error").text("该邮箱已被注册");
+						$(".tel-error").text("该电话号码已被注册");
 						return 0;
 					} else {
-						$(".email-error").text("该邮箱可用");
+						$(".tel-error").text("该电话号码可用");
 						return 1;
 					}
 				} else {
@@ -84,8 +84,8 @@ function checkemail() {
 				}
 			}, 'json');
 		} else {
-			checkemail.attr("style", "display:inline-block;");
-			$(".email-error").text("请输入正确的邮箱地址,例如:chuangyejia@163.com");
+			checktel.attr("style", "display:inline-block;");
+			$(".tel-error").text("请输入正确的电话号码，如：18888888888");
 			return 0;
 		}
 	}
@@ -140,11 +140,19 @@ function checkIdentifyCode() {
 	}
 }
 function checkdata() {
-	var emailCode = $("#emailCode").val().trim();
-	if(checknickname() && checkpassword() && checkrepassword() && $("#email").val().trim()!=="" && $("#identifyCode").val().trim()!=="" && emailCode !== "" && emailCode.length === 32)
+	
+	if(checknickname() && checkpassword() && checkrepassword() && $("#tel").val().trim()!=="" && $("#identifyCode").val().trim()!=="")
 	 	return true;
 	else {
 		alert("请将信息核实正确并填写完整！");
 		return false;
 	}
+	
+	/*var emailCode = $("#emailCode").val().trim();
+	if(checknickname() && checkpassword() && checkrepassword() && $("#email").val().trim()!=="" && $("#identifyCode").val().trim()!=="" && emailCode !== "" && emailCode.length === 32)
+	 	return true;
+	else {
+		alert("请将信息核实正确并填写完整！");
+		return false;
+	}*/
 }

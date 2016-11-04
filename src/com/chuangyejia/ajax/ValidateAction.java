@@ -10,6 +10,7 @@ import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.chuangyejia.bean.User;
 import com.chuangyejia.service.IUserService;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -29,10 +30,16 @@ public class ValidateAction extends ActionSupport {
 	public void setUs(IUserService us) {
 		this.us = us;
 	}
-	
+	private String tel;
 	private String email;
 	private String password;
 	private String identifyCode;
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -52,7 +59,43 @@ public class ValidateAction extends ActionSupport {
 		this.identifyCode = identifyCode;
 	}
 	
-	public void checkEmail() {
+	public void checkTel() {
+		boolean flag = false;
+		
+		HttpServletResponse response = ServletActionContext.getResponse();
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e) {
+			System.out.println("异步验证电话号码时，获取输出管道出错！");
+			e.printStackTrace();
+		}
+		
+		/**
+		 * 检测数据库中是否存在该email
+		 * true 存在，
+		 * false 不存在
+		 */
+		User user = us.getUserInTel(tel);
+		if(user != null) {
+			flag = true;
+			/**
+			 * 将该验证用户的userTemp存入session，以备后面提交时验证，防止二次加载，浪费性能
+			 */
+			ServletActionContext.getRequest().getSession().setAttribute("userTemp", user);
+		} else
+			flag = false;
+		
+		out.print(flag);
+		out.flush();
+		out.close();
+	}
+	
+	/**
+	 * 过时的方法；使用邮箱验证
+	 */
+	@SuppressWarnings("unused")
+	private void checkEmail_email() {
 		boolean flag = false;
 		
 		HttpServletResponse response = ServletActionContext.getResponse();

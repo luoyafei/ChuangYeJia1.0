@@ -170,9 +170,20 @@ System.out.println("更新用户出现异常！");
 	}
 
 	@Override
-	public User getUserInTel(String tel) {
+	public User getUserInTel(final String tel) {
 		// TODO Auto-generated method stub
-		return null;
+		return hibernateTemplate.execute(new HibernateCallback<User>() {
+			@Override
+			public User doInHibernate(Session session) throws HibernateException, SQLException {
+				String hql = "from User u where u.userTel = :tel";
+				Query q = session.createQuery(hql).setString("tel", tel);
+				int count = q.list().size();
+				if(count == 0)
+					return null;
+				else
+					return (User) q.list().get(0);
+			}
+		});
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })

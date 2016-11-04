@@ -143,7 +143,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div style="text-align: center; color:red;"><s:property value="errors.error[0]" /></div>
 					
 						<form action="userSignIn!execute.action" method="post" onsubmit="return checkdata()">
-                            <div class="form-group">
+                            <%-- <div class="form-group">
 							    <label for="email" style="text-align: right;margin-top: 6px;" class="col-sm-2 control-label">邮&nbsp;&nbsp;&nbsp;箱</label>
 							    <div class="col-sm-10">
 							    	<input type="email" class="form-control" name="ud.email" maxlength="30" id="email" placeholder="邮箱" onblur="checkemail()">
@@ -153,6 +153,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</div>
 									<div class="alert alert-danger alert-check-email" role="alert" style="display:none;">
 										<span class="email-error">
+										</span>
+									</div>
+							    	<hr />
+							    </div>
+							</div> --%>
+							<div class="form-group">
+							    <label for="tel" style="text-align: right;margin-top: 6px;" class="col-sm-2 control-label">电话号码</label>
+							    <div class="col-sm-10">
+							    	<input type="tel" class="form-control" name="ud.tel" maxlength="11" id="tel" placeholder="电话号码" onblur="checkTel()">
+							    
+								    <div class="alert alert-danger alert-tel" role="alert" style="display: none">
+										请输入您的电话号码
+									</div>
+									<div class="alert alert-danger alert-check-tel" role="alert" style="display:none;">
+										<span class="tel-error">
 										</span>
 									</div>
 							    	<hr />

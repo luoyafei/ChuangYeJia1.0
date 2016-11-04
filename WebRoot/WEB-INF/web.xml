@@ -9,6 +9,7 @@
     <param-name>userRealPhotoDisk</param-name>
     <param-value>D:\Java_Project\ChuangYeJiaSource\PictureHead\userRealPhoto\</param-value>
     <!-- <param-value>C:\E\Java_Project\ChuangYeJiaSource\userRealPhoto\</param-value> -->
+    <!-- <param-value>E:\Java_Project\ChuangYeJiaSource\userRealPhoto\</param-value> -->
   </context-param>
   <context-param>
     <param-name>userRealPhotoVir</param-name>
@@ -20,6 +21,7 @@
     <param-name>uploadPictureUrlDisk</param-name>
     <param-value>D:\Java_Project\ChuangYeJiaSource\PictureHead\</param-value>
     <!-- <param-value>C:\E\Java_Project\ChuangYeJiaSource\PictureHead\</param-value> -->
+    <!-- <param-value>E:\Java_Project\ChuangYeJiaSource\PictureHead\</param-value> -->
   </context-param>
   <context-param>
     <param-name>uploadPictureUrlVir</param-name>

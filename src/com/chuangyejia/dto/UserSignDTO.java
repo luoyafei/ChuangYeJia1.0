@@ -7,13 +7,21 @@ public class UserSignDTO {
 	private boolean isLogin;//是登录还是注册操作
 	private String nickname;//昵称
 	private String email;//邮箱
+	private String tel;//电话
 	private String password;//密码
 	private String validatePassword;//重新输入密码
 	private String identifyCode;//验证码
 	private String errorInfo;//出错信息
 	
 	private final static String emailPattern = "^\\s*\\w+(?:\\.{0,1}[\\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\\.[a-zA-Z]+\\s*$";
+	private final static String telPattern = "[\\d]{11}";
 	
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
 	public boolean getIsLogin() {
 		return isLogin;
 	}
@@ -57,16 +65,15 @@ public class UserSignDTO {
 		this.identifyCode = identifyCode;
 	}
 	
-	
-	
 	/**
 	 * 验证用户登录时的字段格式问题
 	 * @return
 	 */
 	private boolean checkLogin() {
 
-		boolean rightEmailFormat = email.matches(emailPattern);
-		if(rightEmailFormat && password.trim().hashCode() != 0 && identifyCode.trim().hashCode() != 0)
+//		boolean rightEmailFormat = email.matches(emailPattern);
+		boolean rightTelFormat = tel.matches(telPattern);
+		if(rightTelFormat && password.trim().hashCode() != 0 && identifyCode.trim().hashCode() != 0)
 			return true;
 		else
 			return false;
@@ -79,9 +86,10 @@ public class UserSignDTO {
 	 */
 	private boolean checkRegister() {
 
-		boolean rightEmailFormat = email.matches(emailPattern);
+//		boolean rightEmailFormat = email.matches(emailPattern);
+		boolean rightTelFormat = tel.matches(telPattern);
 		
-		if(nickname.trim().hashCode() != 0 && rightEmailFormat && password.trim().equals(validatePassword.trim()) && password.trim().hashCode() != 0 && identifyCode.trim().hashCode() != 0)
+		if(nickname.trim().hashCode() != 0 && rightTelFormat && password.trim().equals(validatePassword.trim()) && password.trim().hashCode() != 0 && identifyCode.trim().hashCode() != 0)
 			return true;
 		else
 			return false;
@@ -100,16 +108,17 @@ public class UserSignDTO {
 	}
 	
 	private User toLoginUser() {
-		
 		User user = new User();
-		user.setUserEmail(email);
+//		user.setUserEmail(email);
+		user.setUserTel(tel);
 		user.setUserPassword(password);
 		return user;
 	}
 	private User toRegisterUser() {
 		User user = new User();
 		user.setUserNickName(nickname);
-		user.setUserEmail(email);
+//		user.setUserEmail(email);
+		user.setUserTel(tel);
 		user.setUserPassword(password);
 		return user;
 	}

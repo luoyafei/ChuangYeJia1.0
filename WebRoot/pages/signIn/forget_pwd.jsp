@@ -139,12 +139,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div style="width: 80%;height: 100%;margin: 50px auto;">
 							<div style="text-align: center; color:#459EEB;" id="backResult"></div>
                             <div class="form-group">
-							    <label for="email" style="text-align: right;margin-top: 6px;" class="col-sm-2 control-label">邮&nbsp;&nbsp;&nbsp;箱</label>
+							    <label for="tel" style="text-align: right;margin-top: 6px;" class="col-sm-2 control-label">电话号码</label>
 							    <div class="col-sm-10">
-							    	<input type="email" class="form-control" name="email" maxlength="30" id="email" placeholder="邮箱" onblur="checkemail()">
+							    	<input type="tel" class="form-control" name="tel" maxlength="11" id="tel" placeholder="电话号码" onblur="checkTel()">
 							    
-								    <div class="alert alert-danger alert-email" role="alert" style="display: none">
-										请输入正确的邮箱格式
+								    <div class="alert alert-danger alert-tel" role="alert" style="display: none">
+										请输入正确的电话号码
 									</div>
 							    	<hr />
 							    </div>
@@ -166,15 +166,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	$(document).ready(function() {
 		$("td").attr("style", "border-top: solid #333333 1px;");
 		$("#forgetBtn").bind('click', function() {
-			var email = $("#email").val().trim();
-			if(email !== "" && email.match(/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/)) {
-				$(".alert-email").attr("style", "display: none;");
+			var tel = $("#tel").val().trim();
+			if(tel !== "" && tel.match(/\d{11}/)) {
+				$(".alert-tel").attr("style", "display: none;");
 				$.post('forgetPassword!justDoIt.action', {
-					email : email
+					tel : tel
 				}, function(data, textStatus) {
 					if(textStatus == "success") {
 						if(data.success) {
-							$("#backResult").text("找回密码申请成功！请您登录您的邮箱，进行邮件查看，注意！该邮件有可能被您的邮箱屏蔽！如果找不到的话，可在垃圾箱寻找！");
+							$("#backResult").text("找回密码申请成功！请您注意查收您的短信！");
 						} else {
 							$("#backResult").text(data.reason);
 						}
@@ -182,17 +182,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				}, 'json');
 				
 			} else {
-				$(".alert-email").attr("style", "display: inline;");
+				$(".alert-tel").attr("style", "display: inline;");
 			}
 			
 		});
 	});
-	function checkemail() {
-		var email = $("#email").val().trim();
-		if(email === "" || !email.match(/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/)) {
- 			$(".alert-email").attr("style", "display: inline;");
+	function checkTel() {
+		var tel = $("#tel").val().trim();
+		if(tel === "" || !tel.match(/\d{11}/)) {
+ 			$(".alert-tel").attr("style", "display: inline;");
 		} else {
-			$(".alert-email").attr("style", "display: none;");
+			$(".alert-tel").attr("style", "display: none;");
 		}
 	}
 </script>

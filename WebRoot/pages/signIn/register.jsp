@@ -160,7 +160,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</div>
 
 									<hr style="width: 100%; color: black;font-size: 2px;" />
-									<div class="form-group">
+									<%-- <div class="form-group">
 										<input type="email" class="form-control" name="ud.email" id="email" maxlength="30" placeholder="邮箱" onblur="checkemail()">
 										<div class="alert alert-danger alert-email" role="alert" style="display: none">
 											请输入您的邮箱
@@ -169,10 +169,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<span class="email-error">
 											</span>
 										</div>
+									</div> --%>
+									<div class="form-group">
+										<input type="tel" class="form-control" name="ud.tel" id="tel" maxlength="11" placeholder="电话号码" onblur="checktel()">
+										<div class="alert alert-danger alert-tel" role="alert" style="display: none">
+											请输入您的电话号码
+										</div>
+										<div class="alert alert-danger alert-check-tel" role="alert" style="display:none;">
+											<span class="tel-error">
+											</span>
+										</div>
 									</div>
 									<hr style="width: 100%; color: black;font-size: 2px;" />
 									
-									<div class="form-group">
+									<!-- <div class="form-group">
 										<div class="row">
 											<div class="col-md-8">
 										    	<input type="text" maxlength="32" class="form-control" name="registerEmailCode" id="emailCode" placeholder="请直接输入邮箱验证序列">
@@ -181,7 +191,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												<a class="btn" id="clickSend">点击获取邮箱验证码</a>
 											</div>
 										</div>
-									</div>
+									</div> -->
 									<hr style="width: 100%; color: black;font-size: 2px;" />
 									<div class="form-group">
 										<input type="password" class="form-control" name="ud.password" id="password" maxlength="16" placeholder="密码" onblur="checkpassword()">
