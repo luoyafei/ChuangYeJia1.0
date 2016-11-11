@@ -96,14 +96,6 @@ create table product (
 	constraint foreign key (productStartupsId) references Startups (StartupsId)
 )ENGINE=InnoDB default charset=utf8
 
-private String chatMessageId;
-	private String chatMessage;
-	private String fromUserId;
-	private String toUserId;
-	private String toChatRoomId = "0";//默认的聊天室是没有的0
-	private Timestamp messageSendTime;
-	private int needRead = 0;
-
 --聊天消息
 create table chatMessage (
 	chatMessageId varchar(32) primary key,
@@ -142,3 +134,31 @@ create table downLineChat (
 	constraint foreign key (fromUserId) references user(userId),
 	constraint foreign key (toUserId) references user(userId)
 )ENGINE=InnoDB default charset=utf8
+
+--用来记录订单
+create table productOrder (
+	orderId varchar(32) primary key,
+	productId varchar(32) not null,								--物品Id
+	unitPrice int default 0,									--单价
+	productCount int default 0,									--个数
+	userId varchar(32) not null,
+	startupsId varchar(32) not null,
+	addr varchar(255) not null,									--地址
+	status varchar(1) default "0",								--状态(0:订单未创建；1:订单成功(未支付)；2:订单成功(已支付)；3:订单作废)
+	orderDate datetime default current_timestamp,				--创建时间
+	isSigned varchar(1) default "0",							--是否签收(0:未签收，1:已签收)
+	signedName varchar(32),										--签收人姓名
+	signedDate datetime,
+	constraint foreign key (userId) references user(userId),
+	constraint foreign key (startupsId) references startups(startupsId),
+	constraint foreign key (productId) references product(productId)
+)engine=innoDB default charset=utf8;
+
+--购物车
+create table shopCar (
+	shopCarId varchar(32) primary key,
+	userId varchar(32) not null,
+	productId varchar(32) not null,
+	constraint foreign key (userId) references user(userId),
+	constraint foreign key (productId) references product(productId)
+)engine=innoDB default charset=utf8;
