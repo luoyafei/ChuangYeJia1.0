@@ -323,9 +323,9 @@ public class User {
 		uts.setUserGender(userGender);
 		uts.setUserAddress(userAddress);
 		uts.setUserPhoto(userPhoto);
-		uts.setUserWeChat(userWeChat);
-		uts.setUserTel(userTel);
-		uts.setUserCreateDate(userCreateDate);
+//		uts.setUserWeChat(userWeChat);
+//		uts.setUserTel(userTel);
+//		uts.setUserCreateDate(userCreateDate);
 		uts.setIsVerify(isVerify);
 		
 		uts.setCopartnerCategory(copartnerCategory);
@@ -391,9 +391,9 @@ public class User {
 		utsou.setUserGender(userGender);
 		utsou.setUserAddress(userAddress);
 		utsou.setUserPhoto(userPhoto);
-		utsou.setUserWeChat(userWeChat);
-		utsou.setUserTel(userTel);
-		utsou.setUserCreateDate(userCreateDate);
+//		utsou.setUserWeChat(userWeChat);
+//		utsou.setUserTel(userTel);
+//		utsou.setUserCreateDate(userCreateDate);
 		utsou.setIsVerify(isVerify);
 		
 		utsou.setCopartnerCategory(copartnerCategory);

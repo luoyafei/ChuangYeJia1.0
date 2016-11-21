@@ -53,6 +53,8 @@
 				<value>com.chuangyejia.bean.ChatMessage</value>
 				<value>com.chuangyejia.bean.ChatRoom</value>
 				<value>com.chuangyejia.bean.Record</value>
+				<value>com.chuangyejia.bean.Order</value>
+				<value>com.chuangyejia.bean.ShopCar</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

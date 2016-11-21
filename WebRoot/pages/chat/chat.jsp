@@ -276,9 +276,9 @@ if(session.getAttribute("user")==null || ((User)session.getAttribute("user")).ge
 		function init() {
 			
 		    if ('WebSocket' in window) {  
-		        webSocket = new WebSocket('ws://chuangyejia.top/ChuangYeJia/chat/server');
+		        webSocket = new WebSocket('ws://chuangyejia.site/ChuangYeJia/chat/server');
 		    } else if ('MozWebSocket' in window) {  
-		        webSocket = new MozWebSocket('ws:chuangyejia.top/ChuangYeJia/chat/server');
+		        webSocket = new MozWebSocket('ws:chuangyejia.site/ChuangYeJia/chat/server');
 		    }
 
 			webSocket.onerror = function(event) {

@@ -213,5 +213,8 @@
 			<result name="none" type="redirect">/index.jsp</result>
 			<result name="toupdate">/pages/userConsole/product/update_product.jsp</result>
 		</action>
+
+        <!--出来提交的调查-->
+        <action name="submitDiaoCha" class="submitDiaoCha" />
     </package>
 </struts>

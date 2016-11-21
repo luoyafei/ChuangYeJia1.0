@@ -33,7 +33,7 @@
 	      <li>|</li>
 	      <li><a href="/ChuangYeJia/pages/aboutOur/aboutOur_version.jsp" style="color: white;" target="_blank">版本声明</a></li>
 		    </ul>
-	    	<p>Copyright &copy;2015-2016 创业加 版权所有
+	    	<p>Copyright &copy;2015-2016 西安创加网络科技有限公司 版权所有
 		
 	</div>	
 </div>

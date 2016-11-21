@@ -1,6 +1,8 @@
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -13,6 +15,8 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
+import com.chuangyejia.bean.Product;
+import com.chuangyejia.bean.ShopCar;
 import com.chuangyejia.bean.User;
 import com.chuangyejia.service.IUserService;
 
@@ -24,6 +28,21 @@ public class testSSH2 extends AbstractJUnit4SpringContextTests {
 	
 	@Resource(name="hibernateTemplate")
 	private HibernateTemplate ht;
+	
+	@Test
+	public void testOrder() {
+		/**
+		 * 402881fc5684957d0156849ef02b0001 | 好东西修改               |
+| 402881fc5684957d015684a4255e0002 | 好东西一起分享啊         |
+| 402881fc56892db30156893256d40001
+		 */
+		ShopCar car = new ShopCar();
+		User userId = ht.get(User.class, "402881fc56415b8001564162f8330001");
+		car.setUserId(userId);
+//		car.setProducts(ps);
+		ht.save(car);
+//		System.out.println(car.getShopCarId());
+	}
 	
 	@Test
 	public void testSSH() {
