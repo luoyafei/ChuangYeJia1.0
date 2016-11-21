@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="swiper/swiper.min.css">
 	<script src="js/jquery-1.11.3.js"></script>
 	<script src="js/fontSize.js"></script>
-	<title>2016年西安XX大学研究生创新创业问卷调查</title>
+	<title>2016年创新创业问卷调查</title>
 </head>
 <body>
 	<section class="toup"  id="t1">
@@ -23,7 +23,7 @@
 				<h1>亲爱的同学：您好！</h1>
 				<p>在“大众创业，万众创新”的时代</p>
 				<p>创新创业既能够全方位地提高自己的综合素质与能力，又能够以别样的态度笑傲青春年华。</p>
-				<p>为了解XXX的创新创业现状、深入分析创业团队的需求与痛点、从而更好地依托科协与创业+现状特点，提供融资与孵化平台，真正将创新创业的梦想变为实践。</p>
+				<p>为了解创新创业现状、深入分析创业团队的需求与痛点、从而更好地依托科协与创业+现状特点，提供融资与孵化平台，真正将创新创业的梦想变为实践。</p>
 				<p>特组织此次调研活动，希望得到您的支持。</p>
 			</div>
 			<a href="javascript:;" class="jion">参加本调查</a>
@@ -37,7 +37,6 @@
 		<!-- 上下 -->
 		<div class="swiper-container">
 			<div class="swiper-wrapper">
-
 				<div class="swiper-slide">
 					<div class="scores">
 						<div class="f"><span>1</span>您关注创业领域是?</div>
@@ -51,35 +50,6 @@
 						</div>
 					</div>
 				</div>
-
-				<div class="swiper-slide">
-					<div class="scores">
-						<div class="f"><span>2</span>您在大学期间参与的创新创业活动？</div>
-						<div class="choose">
-							<div class="input"><input type="radio" name="undergo" id="undergo_1" value="1"/><label for="undergo_1">正在创业的项目</label></div>
-							<div class="input"><input type="radio" name="undergo" id="undergo_2" value="2"/><label for="undergo_2">参与过大型比赛</label></div>
-							<div class="input"><input type="radio" name="undergo" id="undergo_3" value="3"/><label for="undergo_3">参加过讲座</label></div>
-							<div class="input"><input type="radio" name="undergo" id="undergo_4" value="4"/><label for="undergo_4">沙龙</label></div>
-							<div class="input"><input type="radio" name="undergo" id="undergo_5" value="5"/><label for="undergo_5">夏令营</label></div>
-                            <div class="input"><input type="radio" name="undergo" id="undergo_6" value="6"/><label for="undergo_6">其他</label></div>
-                            <div class="input"><input type="radio" name="undergo" id="undergo_0" value="0"/><label for="undergo_0">无</label></div>
-						</div>
-					</div>
-				</div>
-
-				<div class="swiper-slide">
-					<div class="scores">
-						<div class="f"><span>3</span>您觉得自己身上具备哪方面的创业能力？</div>
-						<div class="choose">
-							<div class="input"><input type="radio" name="category" id="category_1" value="1"/><label for="category_1">某一方面特长</label></div>
-							<div class="input"><input type="radio" name="category" id="category_2" value="2"/><label for="category_2">掌握的技术</label></div>
-                            <div class="input"><input type="radio" name="category" id="category_3" value="3"/><label for="category_3">推广运营资源</label></div>
-							<div class="input"><input type="radio" name="category" id="category_4" value="4"/><label for="category_4">用于创业的资金</label></div>
-                            <div class="input"><input type="radio" name="category" id="category_0" value="0"/><label for="category_0">其他</label></div>
-						</div>
-					</div>
-				</div>
-
 			</div>
 			<div class="preNexts">
 				<div class="swiper-button-prev"><div class="pre"></div>上一题</div>
@@ -96,9 +66,12 @@
 		<div class="swipers">
 			<div class="con con1">
 
-                <input type="text" name="name" id="name" class="phone" placeholder="您的名字"/>
-                <input type="text" name="school" id="school" class="phone" placeholder="您的学校"/>
-                <input type="tel" name="tel" id="tel" class="phone" placeholder="手机号码"/>
+                <input type="text" name="name" id="name" class="phone" maxlength="16" placeholder="您的名字"/>
+                <input type="text" name="school" id="school" class="phone" maxlength="16" placeholder="您的学校"/>
+                <input type="tel" name="tel" id="tel" class="phone" maxlength="11" placeholder="手机号码"/>
+                <textarea rows="5" cols="" name="undergo" id="undergo" class="undergo" maxlength="255" placeholder="您在大学期间参与的创新创业活动？（正在创业的项目、参与过大型比赛、参加过讲座、沙龙、夏令营）"></textarea>
+                <textarea type="text" name="category" id="category" class="undergo" maxlength="255" placeholder="您觉得自己身上具备哪方面的创业能力？(某一方面特长、掌握的技术、推广运营资源、用于创业的资金）"></textarea>
+                
 				<div class="smile">
 					<p>感谢同学们的填写，每个填完此问卷同学们都可获赠创业+西安大学生联盟会的会员资格一年。</p>
 			        <p>会员福利：</p>
@@ -118,12 +91,12 @@
 
         function submit() {
             var field = $('input[name="field"]:checked').val();
-            var undergo = $('input[name="undergo"]:checked').val();
-            var category = $('input[name="category"]:checked').val();
-            var name = $("#name").val().trim();
+            var undergo = $('#undergo').val().trim();
+            var category = $('#category').val().trim();
+            var name = $("#name").val().trim().trim();
             var school = $("#school").val().trim();
             var tel = $("#tel").val().trim();
-            if(checkChooseField(field) && checkChooseField(undergo) && checkChooseField(category) && checkInput(name) && checkInput(school) && checkTel(tel)) {
+            if(checkChooseField(field) && checkOtherField(undergo) && checkOtherField(category) && checkInput(name) && checkInput(school) && checkTel(tel)) {
                 $.post("submitDiaoCha!justDoIt.action", {
                     field : field,
                     undergo : undergo,
@@ -143,6 +116,14 @@
             }
         }
 
+        function checkOtherField(other) {
+        	if(other != null && other.length < 255 && other.length > 1) {
+        		return true;
+        	} else {
+        		return false;
+        	}
+        }
+        
         function checkTel(tel) {
             if(tel.length == 11) {
                 return true;
