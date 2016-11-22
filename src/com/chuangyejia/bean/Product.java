@@ -18,6 +18,13 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name="product")
 public class Product {
 
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", productName=" + productName + ", productStartups="
+				+ productStartups + ", productCreateDate=" + productCreateDate + ", productPrice=" + productPrice
+				+ ", productBrief=" + productBrief + ", productDetail=" + productDetail + ", productCover="
+				+ productCover + ", productAddress=" + productAddress + "]";
+	}
 	private String productId;
 	private String productName;
 	private Startups productStartups;

@@ -201,11 +201,69 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</s:else>
 				</div>
 				<div class="main-right" style="width: 50%;text-align: center;height: 100%;float: left;padding-top: 20px;">
-					<a class="btn btn-default" style="border: solid #A9A9A9 2px; border-radius: 10px;">点击购买</a>
+					<a class="btn btn-default" style="border: solid #A9A9A9 2px; border-radius: 10px;" data-toggle="modal" data-target="#myModalProtocol">点击购买</a>
+					<!-- Modal -->
+					
+					<div class="modal fade" id="myModalProtocol" tabindex="-1" role="dialog" aria-labelledby="myModalProtocolLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">
+										<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+									</button>
+									<h4 class="modal-title" id="myModalLabel">购买产品操作</h4>
+								</div>
+								<div class="modal-body">
+								
+									<div class="uk-block uk-block-muted" style="width:100%;">
+						                <div class="uk-container">
+						                    <div class="uk-grid uk-grid-match" data-uk-grid-margin="">
+						                        <div class="uk-width-medium-1-2 uk-row-first">
+						                            <div class="uk-panel">
+						                             	<div class="uk-thumbnail uk-thumbnail-large">
+															<img  style="height: 300px;" src='<s:property value="#request.product.productCover"/>' />
+														</div>
+						                            </div>
+						                        </div>
+						                        <div class="uk-width-medium-1-2">
+						                            <div class="uk-panel">
+						                                <ul class="uk-list uk-list-line">
+															<li>产品名称:&nbsp;&nbsp;&nbsp;&nbsp;<span><s:property value="#request.product.productName"/></span></li>
+															<li>所属公司:&nbsp;&nbsp;&nbsp;&nbsp;
+															<span>
+															<a href="getStartupsItem?item=<s:property value='#request.product.productStartups.startupsId' />" style="color: #000000;text-decoration: none;">
+																<s:property value="#request.product.productStartups.startupsName"/>
+															</a>
+															</span>
+															</li>
+															<li>产品售价:&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red; font-weight:800;"><s:if test="#request.product.productPrice == null">暂不售卖</s:if><s:else><s:property value="#request.product.productPrice"/>元</s:else></span></li>
+															<li>产品归属地:&nbsp;&nbsp;&nbsp;&nbsp;<span><s:property value="#request.product.productAddress"/></span></li>
+														</ul>
+						                            </div>
+						                        </div>
+						                    </div>
+						                </div>
+	            					</div>
+								</div>
+								<div class="modal-footer">
+										<div class="main-left" style="width: 50%;text-align: center;height: 100%;float: left;padding-top: 20px;">
+											<a class="btn btn-default" href="<%=path %>/pages/chat/chat.jsp?toUserId=<s:property value='#request.product.productStartups.startupsLeader.userId'/>" style="border: solid #A9A9A9 2px; border-radius: 10px;">
+												加入购物车 &nbsp;<span class="glyphicon glyphicon-shopping-cart"></span>
+											</a>
+										</div>
+										<div class="main-right" style="width: 50%;text-align: center;height: 100%;float: left;padding-top: 20px;">
+											<a class="btn btn-danger" style="border-radius: 10px;" data-toggle="modal" data-target="">
+												直接购买 &nbsp;<i class="uk-icon-shopping-bag"></i>
+											</a>
+										</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
 				</div>
+				
 			</div>
-
-
 				<div class="content-main-bottoom" style="width: 100%;height: 100%;overflow: auto;">
 					
 					<ul class="nav nav-tabs" role="tablist" id="myTab">

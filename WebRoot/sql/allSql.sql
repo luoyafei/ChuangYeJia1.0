@@ -153,10 +153,9 @@ create table productOrder (
 	constraint foreign key (startupsId) references startups(startupsId),
 	constraint foreign key (productId) references product(productId)
 )engine=innoDB default charset=utf8;
-
---购物车
-create table shopCar (
-	shopCarId varchar(32) primary key,
+//userId_productId
+create table userId_productId (
+	upId int primary key auto_increment,
 	userId varchar(32) not null,
 	productId varchar(32) not null,
 	constraint foreign key (userId) references user(userId),

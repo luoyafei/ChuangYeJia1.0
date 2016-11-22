@@ -54,7 +54,7 @@
 				<value>com.chuangyejia.bean.ChatRoom</value>
 				<value>com.chuangyejia.bean.Record</value>
 				<value>com.chuangyejia.bean.Order</value>
-				<value>com.chuangyejia.bean.ShopCar</value>
+				<value>com.chuangyejia.bean.UserId_ProductId</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
