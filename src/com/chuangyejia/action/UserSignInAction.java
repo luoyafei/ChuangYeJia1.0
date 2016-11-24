@@ -112,7 +112,7 @@ public String register() {
 					 */
 					user.setUserIp(ServletActionContext.getRequest().getRemoteAddr());
 					if(us.saveUser(user))  {//将User对象存入数据库中。
-						HttpSession session = ServletActionContext.getRequest().getSession(); 
+						HttpSession session = ServletActionContext.getRequest().getSession();
 						session.setAttribute("user", user);//将插入成功的User对象放入Session中
 						if(fromShowStartups)
 							return RDA_BACK_ITEM;
