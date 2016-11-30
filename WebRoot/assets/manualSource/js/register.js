@@ -2,8 +2,40 @@
  * 
  */
 	$(document).ready(function() {
-		//$("#clickSend").bind("click", sendEmail);
+		$("#clickSend").bind("click", sendTel);
 	});
+	
+	function sendTel() {
+		if($("#tel").val().trim() !== "" && $("#tel").val().trim().match(/^1[34578]\d{9}$/)) {
+			$.post('sendMessage!sendMessage.action', {
+				nickname : $("#nickname").val().trim(),
+				tel : $("#tel").val().trim()
+			}, function(data, textStatus) {
+				if(textStatus == "success") {
+					if(data.success) {
+						alert("发送成功！请您注意查收您的短信！");
+						$("#clickSend").unbind("click");
+						$("#clickSend").attr("disabled", "disabled");
+						var i = 300;
+						var runTime = setInterval(function() {
+							$("#clickSend").text(i-- + "秒后重新点击获取手机验证码");
+							if(i == -2) {
+								$("#clickSend").removeAttr("disabled");
+								$("#clickSend").text("点击获取手机验证码");
+								i == 300;
+								clearInterval(runTime);
+								$("#clickSend").bind("click", sendEmail);
+							}
+						}, 1000);
+					} else {
+						alert(data.reason);
+					}
+				}
+			}, 'json'); 
+		} else {
+			alert("请先输入正确的电话号码！");
+		}
+	}
 	
 	function sendEmail() {
 		if($("#email").val().trim() !== "" && $("#email").val().trim().match(/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/)) {
@@ -62,7 +94,7 @@ function checktel() {
 		return 0;
 	} else {
 		alerttel.attr("style", "display:none;");
-		var reg = /\d{11}/;
+		var reg = /^1[34578]\d{9}$/;
 		if(tel.match(reg)) {
 			checktel.attr("style", "display:none;");
 			
@@ -140,19 +172,11 @@ function checkIdentifyCode() {
 	}
 }
 function checkdata() {
-	
-	if(checknickname() && checkpassword() && checkrepassword() && $("#tel").val().trim()!=="" && $("#identifyCode").val().trim()!=="")
+	var telCode = $("#telCode").val().trim();
+	if(checknickname() && checkpassword() && checkrepassword() && $("#tel").val().trim()!=="" && $("#identifyCode").val().trim()!=="" && telCode !== "" && telCode.length === 6)
 	 	return true;
 	else {
 		alert("请将信息核实正确并填写完整！");
 		return false;
 	}
-	
-	/*var emailCode = $("#emailCode").val().trim();
-	if(checknickname() && checkpassword() && checkrepassword() && $("#email").val().trim()!=="" && $("#identifyCode").val().trim()!=="" && emailCode !== "" && emailCode.length === 32)
-	 	return true;
-	else {
-		alert("请将信息核实正确并填写完整！");
-		return false;
-	}*/
 }

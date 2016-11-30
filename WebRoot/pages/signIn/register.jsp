@@ -129,7 +129,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 		<div class="container marketing" style="background-color: #F5F5F5; padding:50px 0px;width: 68%;">
-			<!-- Three columns of text below the carousel -->
+		
 			<div class="thumbtitle">
 				<div class="contenttitle" style="margin-bottom: 10px;">
 					<p style="margin-bottom: 4px;">
@@ -144,12 +144,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>
 			<div class="content-main" style="width: 100%;height: 650px;background-color: white;overflow: hidden;border-bottom: solid #A9A9A9 2px;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
+				
 				<div class="content-main-top" style="height: 27%;">
 					<div style="width: 80%;height: 100%;margin: 0 auto;">
 						<div class="main">
-						
 							<div class="main-login">
 							
+								<div style="text-align: center; color:red;"><s:property value="errors.error[0]" /></div>
 								<form action="userSignIn!register.action" method="post" name="form" onsubmit="return checkdata()" >
 								
 									<div class="form-group" style="margin-top: 30px;">
@@ -182,16 +183,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</div>
 									<hr style="width: 100%; color: black;font-size: 2px;" />
 									
-									<!-- <div class="form-group">
+									<div class="form-group">
 										<div class="row">
 											<div class="col-md-8">
-										    	<input type="text" maxlength="32" class="form-control" name="registerEmailCode" id="emailCode" placeholder="请直接输入邮箱验证序列">
+										    	<input type="number" maxlength="6" class="form-control" name="registerTelCode" id="telCode" placeholder="请直接输入验证码">
 										    </div>
 											<div class="col-md-4">
-												<a class="btn" id="clickSend">点击获取邮箱验证码</a>
+												<a class="btn" id="clickSend">点击获取手机验证码</a>
 											</div>
 										</div>
-									</div> -->
+									</div>
+									
 									<hr style="width: 100%; color: black;font-size: 2px;" />
 									<div class="form-group">
 										<input type="password" class="form-control" name="ud.password" id="password" maxlength="16" placeholder="密码" onblur="checkpassword()">
