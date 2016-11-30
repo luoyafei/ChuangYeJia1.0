@@ -186,14 +186,13 @@ System.out.println("更新用户出现异常！");
 		});
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public boolean checkEmail(final String email) {
 		// TODO Auto-generated method stub
 		
-		return (Boolean)hibernateTemplate.execute(new HibernateCallback() {
+		return hibernateTemplate.execute(new HibernateCallback<Boolean>() {
 			@Override
-			public Object doInHibernate(Session session)
+			public Boolean doInHibernate(Session session)
 					throws HibernateException, SQLException {
 				Query q = session.createQuery("select userEmail from User u where u.userEmail = :email");
 				q.setString("email", email);
@@ -203,18 +202,15 @@ System.out.println("更新用户出现异常！");
 				else
 					return true;//有
 			}
-			
 		});
-		
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public User checkEmailAndPassword(final User user) {
 		
-		return (User)hibernateTemplate.execute(new HibernateCallback() {
+		return hibernateTemplate.execute(new HibernateCallback<User>() {
 			@Override
-			public Object doInHibernate(Session session)
+			public User doInHibernate(Session session)
 					throws HibernateException, SQLException {
 				
 				Query q = session.createQuery("from User u where u.userEmail = :email and u.userPassword = :password");
@@ -230,6 +226,44 @@ System.out.println("更新用户出现异常！");
 			
 		});
 		
+	}
+	@Override
+	public boolean checkTel(final String tel) {
+		// TODO Auto-generated method stub
+		
+		return hibernateTemplate.execute(new HibernateCallback<Boolean>() {
+			@Override
+			public Boolean doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				Query q = session.createQuery("select userTel from User u where u.userTel = :tel");
+				q.setString("tel", tel);
+				int count = q.list().size();
+				if(count == 0)
+					return false;//数据库中没有该email
+				else
+					return true;//有
+			}
+		});
+	}
+	@Override
+	public User checkTelAndPassword(final User user) {
+		// TODO Auto-generated method stub
+		return hibernateTemplate.execute(new HibernateCallback<User>() {
+			@Override
+			public User doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				
+				Query q = session.createQuery("from User u where u.userTel = :tel and u.userPassword = :password");
+				q.setString("tel", user.getUserTel());
+				q.setString("password", user.getUserPassword());
+				int count = q.list().size();
+				User result = null;
+				if(count == 1) {
+					result = (User)q.list().get(0);
+				}
+				return result;
+			}
+		});
 	}
 
 	

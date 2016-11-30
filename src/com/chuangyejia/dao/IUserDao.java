@@ -93,4 +93,16 @@ public interface IUserDao {
 	 * @return User
 	 */
 	public User checkEmailAndPassword(User user);
+	
+	/**
+	 * 判断tel是否中数据库中存在,若存在返回true，反之返回false
+	 * @param tel
+	 * @return boolean
+	 */
+	public boolean checkTel(String tel);
+	/**
+	 * 在登录时检测tel和password是否正确
+	 * @return User
+	 */
+	public User checkTelAndPassword(User user);
 }

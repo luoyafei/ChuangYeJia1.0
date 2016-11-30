@@ -143,5 +143,15 @@ public class UserServiceImpl implements IUserService {
 		// TODO Auto-generated method stub
 		return ud.checkEmailAndPassword(user);
 	}
+	@Override
+	public boolean checkTel(String tel) {
+		// TODO Auto-generated method stub
+		return ud.checkTel(tel);
+	}
+	@Override
+	public User checkTelAndPassword(User user) {
+		// TODO Auto-generated method stub
+		return ud.checkTelAndPassword(user);
+	}
 
 }
