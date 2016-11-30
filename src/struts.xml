@@ -216,5 +216,8 @@
 
         <!--出来提交的调查-->
         <action name="submitDiaoCha" class="submitDiaoCha" />
+        
+        <!-- 给用户电话发送短信验证码 -->
+        <action name="sendMessage" class="sendTelAction" />
     </package>
 </struts>
