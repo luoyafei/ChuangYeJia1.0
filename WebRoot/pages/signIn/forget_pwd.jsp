@@ -167,7 +167,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		$("td").attr("style", "border-top: solid #333333 1px;");
 		$("#forgetBtn").bind('click', function() {
 			var tel = $("#tel").val().trim();
-			if(tel !== "" && tel.match(/\d{11}/)) {
+			if(tel !== "" && tel.match(/^1[34578]\d{9}$/)) {
 				$(".alert-tel").attr("style", "display: none;");
 				$.post('forgetPassword!justDoIt.action', {
 					tel : tel
