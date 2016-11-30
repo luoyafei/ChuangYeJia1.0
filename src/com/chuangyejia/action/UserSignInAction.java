@@ -43,7 +43,8 @@ public class UserSignInAction extends ActionSupport {
 	
 	
 	private UserSignDTO ud;
-	private String registerEmailCode;//邮箱验证码
+	private String registerEmailCode;//过时：邮箱验证码
+	private String registerTelCode;//电话验证码
 	private ByteArrayInputStream imageStream;//输出的图片流
 	private String backUrl;//从哪里进行登陆时url
 	public UserSignDTO getUd() {
@@ -73,14 +74,6 @@ public class UserSignInAction extends ActionSupport {
 		}
 	}
 	
-	public String getRegisterEmailCode() {
-		return registerEmailCode;
-	}
-	public void setRegisterEmailCode(String registerEmailCode) {
-		this.registerEmailCode = registerEmailCode;
-	}
-
-	
 	/**
 	 * 用来生成验证码的
 	 * @return "identifyCode"
@@ -101,11 +94,13 @@ public class UserSignInAction extends ActionSupport {
 public String register() {
 		
 		String code = String.valueOf(ServletActionContext.getRequest().getSession().getAttribute("code"));//先将session中的验证码结果取出
-		if(ud.getIdentifyCode().equals(code)) {//如果判断相等，则继续执行
+		String telCode = String.valueOf(ServletActionContext.getRequest().getSession().getAttribute("telCode"));//将session中的电话验证码结果取出
+		
+		if(ud.getIdentifyCode().equals(code) && telCode.equals(registerTelCode)) {//如果判断相等，则继续执行
 			ud.setIsLogin(false);
 			if(ud.checkDataDispatchor()) {
 				//判断数据库中是否存在该 Tel
-				if(us.getUserInTel(ud.getTel()) == null) {
+				if(!us.checkTel(ud.getTel())) {
 					User user = ud.toUser();
 					/**
 					 * 将ip存入user
@@ -114,16 +109,25 @@ public String register() {
 					if(us.saveUser(user))  {//将User对象存入数据库中。
 						HttpSession session = ServletActionContext.getRequest().getSession();
 						session.setAttribute("user", user);//将插入成功的User对象放入Session中
+						session.setAttribute("userTemp", null);
+						session.setAttribute("code", null);
+						session.setAttribute("telCode", null);
+						
 						if(fromShowStartups)
 							return RDA_BACK_ITEM;
 						else if(fromUserProfile)
 							return RDA_BACK_MARK;
 						else
 							return BACK;
-					}
-				}
-			}
-		}
+					} else
+						this.addFieldError("error", "用户注册失败！请稍后重试");
+				} else
+					this.addFieldError("error", "该手机号码已被注册！请更换号码或者进行密码找回服务！谢谢合作");
+			} else
+				this.addFieldError("error", "请准确核实您的输入数据，确认格式的正确！");
+		} else
+			this.addFieldError("error", "验证码错误！");
+		
 		return REGISTER;
 	}
 	
@@ -156,6 +160,10 @@ public String register() {
 					if(us.saveUser(user))  {//将User对象存入数据库中。
 						HttpSession session = ServletActionContext.getRequest().getSession(); 
 						session.setAttribute("user", user);//将插入成功的User对象放入Session中
+						session.setAttribute("userTemp", null);
+						session.setAttribute("code", null);
+						session.setAttribute("telCode", null);
+						
 						if(fromShowStartups)
 							return RDA_BACK_ITEM;
 						else if(fromUserProfile)
@@ -187,6 +195,8 @@ public String register() {
 					
 					session.setAttribute("user", user);//将User对象放入Session中
 					session.setAttribute("userTemp", null);
+					session.setAttribute("code", null);
+					session.setAttribute("telCode", null);
 					
 					if(fromShowStartups)
 						return RDA_BACK_ITEM;
@@ -267,5 +277,11 @@ public String register() {
 		while(sessionNames.hasMoreElements())
 			session.removeAttribute(sessionNames.nextElement());
 		return SIGNOUT;
+	}
+	public String getRegisterTelCode() {
+		return registerTelCode;
+	}
+	public void setRegisterTelCode(String registerTelCode) {
+		this.registerTelCode = registerTelCode;
 	}
 }
