@@ -13,8 +13,10 @@ public class UserSignDTO {
 	private String identifyCode;//验证码
 	private String errorInfo;//出错信息
 	
+	@SuppressWarnings("unused")
 	private final static String emailPattern = "^\\s*\\w+(?:\\.{0,1}[\\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\\.[a-zA-Z]+\\s*$";
-	private final static String telPattern = "[\\d]{11}";
+//	private final static String telPattern = "^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+	private final static String telPattern = "^(1[34578])\\d{9}$";
 	
 	public String getTel() {
 		return tel;
