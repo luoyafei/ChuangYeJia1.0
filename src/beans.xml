@@ -55,6 +55,7 @@
 				<value>com.chuangyejia.bean.Record</value>
 				<value>com.chuangyejia.bean.Order</value>
 				<value>com.chuangyejia.bean.UserId_ProductId</value>
+				<value>com.chuangyejia.bean.DownLineChat</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
