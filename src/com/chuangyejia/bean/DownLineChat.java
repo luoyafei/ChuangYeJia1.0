@@ -1,11 +1,15 @@
 package com.chuangyejia.bean;
 
+import java.sql.Timestamp;
+
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -14,12 +18,19 @@ import org.hibernate.annotations.GenericGenerator;
  * @author Diamond
  *
  */
+@Entity
+@Table(name="downLineChat")
 public class DownLineChat {
 	
+	@Override
+	public String toString() {
+		return "DownLineChat [id=" + id + ", fromUserId=" + fromUserId + ", toUserId=" + toUserId + ", createDate="
+				+ createDate + "]";
+	}
 	private String id = null;
 	private User fromUserId = null;
 	private User toUserId = null;
-	
+	private Timestamp createDate = null;
 	@Id
 	@GenericGenerator(name="uuid", strategy="uuid")
 	@GeneratedValue(generator="uuid")
@@ -44,5 +55,11 @@ public class DownLineChat {
 	}
 	public void setToUserId(User toUserId) {
 		this.toUserId = toUserId;
+	}
+	public Timestamp getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(Timestamp createDate) {
+		this.createDate = createDate;
 	}
 }
