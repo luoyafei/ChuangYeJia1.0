@@ -1,14 +1,18 @@
-$("#send_downLine").click(function() {
-		$("#downLine_enter").toggle();
-	});
-	$("#downLine_send").click(function() {
-		var tel = $("#downLine_tel_content").val().trim();
-		if(tel !== null && tel !== "" && tel.length != 11 && !tel.match("/[\d]{11}/")) {
-			alert("请输入您的正确电话方便我们客服为您提供服务,谢谢合作...");
-		} else {
-			$.post("downLineAction!justDoit.action", {}, function(data, textStatus) {
-				
+	$("#send_downLine").click(function() {
+		var toUserId = location.search.split("=")[1];
+		
+		if(toUserId != null && toUserId.length == 32) {
+			$.post("downLineAction!justDoit.action", {
+				toUserId : toUserId
+			}, function(data, textStatus) {
+				if(data.success) {
+					alert("您的申请已经成功提交，客服人员将在24小时内为您办理，请保持您的手机号码的接听畅通！感谢您的使用！");
+				} else {
+					alert(data.reason);
+				}
 			}, "json");
+		} else {
+			alert("请刷新重试！");
 		}
 	});
 	$('#myTab a').click(function(e) {

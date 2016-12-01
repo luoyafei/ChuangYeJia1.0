@@ -198,13 +198,6 @@ if(session.getAttribute("user")==null || ((User)session.getAttribute("user")).ge
 																</div>
 																<button id="send_downLine" type="button" class="btn badge btn-danger" style="float:right;border: solid #A9A9A9 2px; border-radius: 5px;">申请线下交谈 </button>
 															</div>
-															
-															<div class="input-group" id="downLine_enter">
-																<input class="form-control" id="downLine_tel_content" type="text" placeholder="请输入您的电话号码，方便我们客服通过电话联系您与您的合作伙伴...">
-																<span class="input-group-btn">
-																	<button class="btn btn-default" type="button" id="downLine_send">发送</button>
-																</span>
-															</div>
 														</div>
 													</div>
 												</div>
@@ -241,19 +234,23 @@ if(session.getAttribute("user")==null || ((User)session.getAttribute("user")).ge
 	
 	<jsp:include page="../module/bottom.jsp" flush="true" />
 </body>
-<script>
-
+	<%-- <script src="<%=path%>/assets/manualSource/js/chat.js"></script> --%>
+	<script type="text/javascript">
 	$("#send_downLine").click(function() {
-		$("#downLine_enter").toggle();
-	});
-	$("#downLine_send").click(function() {
-		var tel = $("#downLine_tel_content").val().trim();
-		if(tel !== null && tel !== "" && tel.length != 11 && !tel.match("/[\d]{11}/")) {
-			alert("请输入您的正确电话方便我们客服为您提供服务,谢谢合作...");
-		} else {
-			$.post("downLineAction!.action", {}, function(data, textStatus) {
-				
+		var toUserId = location.search.split("=")[1];
+		
+		if(toUserId != null && toUserId.length == 32) {
+			$.post("downLineAction!justDoit.action", {
+				toUserId : toUserId
+			}, function(data, textStatus) {
+				if(data.success) {
+					alert("您的申请已经成功提交，客服人员将在24小时内为您办理，请保持您的手机号码的接听畅通！感谢您的使用！");
+				} else {
+					alert(data.reason);
+				}
 			}, "json");
+		} else {
+			alert("请刷新重试！");
 		}
 	});
 	$('#myTab a').click(function(e) {
@@ -274,11 +271,15 @@ if(session.getAttribute("user")==null || ((User)session.getAttribute("user")).ge
 		var toUser = {};
 		
 		function init() {
-			
+			var url = location.href;
+			var socketUrlInWindow = 'ws' + url.substring(url.indexOf(":"), url.indexOf("/", 10)) + '/ChuangYeJia/chat/server';
+			var socketUrlInMozWeb = 'ws:' + url.substring(url.indexOf(":") + 3, url.indexOf("/", 10)) + '/ChuangYeJia/chat/server';
 		    if ('WebSocket' in window) {  
-		        webSocket = new WebSocket('ws://chuangyejia.site/ChuangYeJia/chat/server');
+//		        webSocket = new WebSocket('ws://chuangyejia.site/ChuangYeJia/chat/server');
+		    	webSocket = new WebSocket(socketUrlInWindow);
 		    } else if ('MozWebSocket' in window) {  
-		        webSocket = new MozWebSocket('ws:chuangyejia.site/ChuangYeJia/chat/server');
+//		        webSocket = new MozWebSocket('ws:chuangyejia.site/ChuangYeJia/chat/server');
+		    	webSocket = new MozWebSocket(socketUrlInMozWeb);
 		    }
 
 			webSocket.onerror = function(event) {
@@ -479,5 +480,5 @@ if(session.getAttribute("user")==null || ((User)session.getAttribute("user")).ge
 		
 	});	
 	
-</script>
+	</script>
 </html>
