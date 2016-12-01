@@ -53,7 +53,9 @@ public class ChatServer  {
 			boolean rightToUser = (boolean)hibernateTemplate.execute(new HibernateCallback() { 
 				@Override
 				public Object doInHibernate(org.hibernate.Session session) throws HibernateException, SQLException {
+					
 					Object[] s = (Object[]) session.createQuery("select u.userId,u.userNickName,u.userPhoto from User u where u.userId = :userId").setParameter("userId", toUserId).list().get(0);
+					
 					if(s != null) {
 						toUserTemp.setUserId(s[0].toString());
 						toUserTemp.setUserNickName(s[1].toString());
