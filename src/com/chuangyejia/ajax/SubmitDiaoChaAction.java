@@ -114,7 +114,7 @@ public class SubmitDiaoChaAction extends ActionSupport {
 			User user = new User();
 			user.setUserNickName(name);
 			user.setUserTel(tel);
-			user.setUserPassword(UUID.randomUUID().toString().replace("-", "").substring(0, 20));
+			user.setUserPassword(UUID.randomUUID().toString().replace("-", "").substring(0, 6));
 			user.setUserIp(ServletActionContext.getRequest().getRemoteAddr());
 			user.setUserIntroduce(undergo);
 			user.setStartAbility(category);
