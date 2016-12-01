@@ -5,6 +5,7 @@
 <struts>
 	
 	<constant name="struts.devMode" value="true"/>
+	<!-- <constant name="struts.devMode" value="false"/> -->
 	<constant name="struts.ognl.allowStaticMethodAccess" value="true" />
 	<constant name="struts.custom.i18n.resources" value="app" />
 	<!-- 设置最大上传文件的大小 2M-->
@@ -219,5 +220,8 @@
         
         <!-- 给用户电话发送短信验证码 -->
         <action name="sendMessage" class="sendTelAction" />
+        
+        <!-- 线下邀谈 -->
+        <action name="downLineAction" class="downLineAction" />
     </package>
 </struts>
