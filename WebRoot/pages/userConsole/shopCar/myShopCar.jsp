@@ -154,42 +154,29 @@
         <div class="uk-container">
             <div class="uk-grid uk-grid-match">
 
-
-
-
-                <div class="uk-block uk-block-muted">
-
-                    <div class="uk-container">
-
-                        <h3>Block</h3>
-
-                        <div class="uk-grid uk-grid-match" data-uk-grid-margin="">
-                            <div class="uk-width-medium-1-3 uk-row-first">
-                                <div class="uk-panel">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
-                                </div>
-                            </div>
-                            <div class="uk-width-medium-1-3">
-                                <div class="uk-panel">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
-                                </div>
-                            </div>
-                            <div class="uk-width-medium-1-3">
-                                <div class="uk-panel">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
+                <div class="uk-width-medium-1-5">
+                    <input type="radio" value="买" />
                 </div>
-
-
-
-
-
-
+                <div class="uk-width-medium-2-5">
+                    <div class="uk-panel">
+                        <div class="uk-thumbnail uk-thumbnail-large">
+                            <a class="uk-thumbnail" href="#"><img src="<s:property value='#session.user.userPhoto' />" alt="" height="100" width="200"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-width-medium-2-5">
+                    <div class="uk-panel">
+                        <ul class="uk-list uk-list-line">
+                            <li>用户昵称:&nbsp;&nbsp;&nbsp;&nbsp;<span><s:property value="#request.uts.userNickName"/></span></li>
+                            <%-- <li>用户邮箱:&nbsp;&nbsp;&nbsp;&nbsp;<span><s:property value="#request.uts.userEmail"/></span></li> --%>
+                            <li>所属高校:&nbsp;&nbsp;&nbsp;&nbsp;<span><s:property value="#request.uts.userAddress"/></span></li>
+                            <li>能力方向:&nbsp;&nbsp;&nbsp;&nbsp;<span><s:property value="#request.uts.copartnerCategory"/></span></li>
+                            <li>关注领域:&nbsp;&nbsp;&nbsp;&nbsp;<span><s:property value="#request.uts.userField"/></span></li>
+                            <li>用户经历:&nbsp;&nbsp;&nbsp;&nbsp;<span><s:property value="#request.uts.userIntroduce"/></span></li>
+                            <li>创业能力:&nbsp;&nbsp;&nbsp;&nbsp;<span><s:property value="#request.uts.startAbility"/></span></li>
+                        </ul>
+                    </div>
+                </div>
 
             </div>
         </div>
