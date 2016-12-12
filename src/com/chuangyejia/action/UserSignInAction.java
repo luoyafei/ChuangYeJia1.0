@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.chuangyejia.bean.User;
 import com.chuangyejia.dto.UserSignDTO;
+import com.chuangyejia.service.IShopCarService;
 import com.chuangyejia.service.IUserService;
 import com.chuangyejia.tools.IdentifyCode;
 import com.opensymphony.xwork2.ActionSupport;
@@ -33,6 +34,14 @@ public class UserSignInAction extends ActionSupport {
 	private boolean fromUserProfile = false;//标志，说明是不是来自user_profile.jsp
 	
 	private IUserService us;
+	private IShopCarService iscs;
+	public IShopCarService getIscs() {
+		return iscs;
+	}
+	@Resource(name="iscs")
+	public void setIscs(IShopCarService iscs) {
+		this.iscs = iscs;
+	}
 	public IUserService getUs() {
 		return us;
 	}
@@ -112,6 +121,7 @@ public String register() {
 						session.setAttribute("userTemp", null);
 						session.setAttribute("code", null);
 						session.setAttribute("telCode", null);
+						session.setAttribute("shopCar", iscs.getProductsInUserId(user.getUserId()));
 						
 						if(fromShowStartups)
 							return RDA_BACK_ITEM;
@@ -197,6 +207,7 @@ public String register() {
 					session.setAttribute("userTemp", null);
 					session.setAttribute("code", null);
 					session.setAttribute("telCode", null);
+					session.setAttribute("shopCar", iscs.getProductsInUserId(user.getUserId()));
 					
 					if(fromShowStartups)
 						return RDA_BACK_ITEM;
