@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="com.chuangyejia.bean.*" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%
 String path = request.getContextPath();
@@ -247,7 +248,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</div>
 								<div class="modal-footer">
 										<div class="main-left" style="width: 50%;text-align: center;height: 100%;float: left;padding-top: 20px;">
-											<a class="btn btn-default" href="<%=path %>/pages/chat/chat.jsp?toUserId=<s:property value='#request.product.productStartups.startupsLeader.userId'/>" style="border: solid #A9A9A9 2px; border-radius: 10px;">
+											<a class="btn btn-default" onclick="addShopCar()" style="border: solid #A9A9A9 2px; border-radius: 10px;">
 												加入购物车 &nbsp;<span class="glyphicon glyphicon-shopping-cart"></span>
 											</a>
 										</div>
@@ -434,6 +435,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			e.preventDefault()
 			$(this).tab('show')
 		})
+		function addShopCar() {
+			$.post("shopCarAction!addItem.action", {
+				productId : "<%=request.getParameter("item")%>"
+			}, function(data, textStatus) {
+				if(textStatus == "success") {
+					alert(JSON.stringify(data));
+				} else {
+					alert("请刷新重试！");
+				}
+			}, 'json');
+		}
 	</script>
 
 </html>
