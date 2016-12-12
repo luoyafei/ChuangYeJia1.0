@@ -31,6 +31,10 @@ public class DownLineChat {
 	private User fromUserId = null;
 	private User toUserId = null;
 	private Timestamp createDate = null;
+	private String dealState = "0";
+	private String comment = "";
+	private String args = "";//增加冗余字段，防止日后需要增加字段，用来设置外键
+	
 	@Id
 	@GenericGenerator(name="uuid", strategy="uuid")
 	@GeneratedValue(generator="uuid")
@@ -61,5 +65,23 @@ public class DownLineChat {
 	}
 	public void setCreateDate(Timestamp createDate) {
 		this.createDate = createDate;
+	}
+	public String getDealState() {
+		return dealState;
+	}
+	public void setDealState(String dealState) {
+		this.dealState = dealState;
+	}
+	public String getComment() {
+		return comment;
+	}
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+	public String getArgs() {
+		return args;
+	}
+	public void setArgs(String args) {
+		this.args = args;
 	}
 }
