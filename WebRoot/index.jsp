@@ -83,6 +83,13 @@ request.setAttribute("flag", "index");
 			.marketing .col-lg-4 {
     			margin-bottom: 0px;
    			}
+   			.uk-grid {
+   				margin-left: 0px;
+   			}
+   			
+   			.row {
+   				text-align: center;
+   			}
 		</style>
 
 	</head>
@@ -132,12 +139,25 @@ request.setAttribute("flag", "index");
 					<li role="presentation"><a href="#" style="color: black;">按运行阶段排列</a></li>
 				</ul>
 			</div>
-
-			
 			<div class="uk-margin">
-			
-				<div class="uk-grid">
-				    <div class="uk-width-medium-1-4">
+				<div class="uk-grid row">
+				    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+						<div class="uk-thumbnail">
+	                   		<figure class="uk-overlay uk-overlay-hover">
+	                           <img src="" style="height: 194.15px;" class="uk-overlay-spin startupsCover" alt="正在玩命加载中请稍后...">
+	                           <figcaption class="uk-overlay-panel uk-overlay-background  uk-overlay-bottom uk-overlay-slide-bottom">
+	                             	 <a class="startupsLeader" href=""></a>
+	                           </figcaption> 
+	                         </figure>
+	                   		<div class="uk-thumbnail-caption uk-text-truncate">
+		                   		<a href="" class="linkStartups">
+		                   			<span style="color:#222222;">公司名称:</span>
+		                   			&nbsp;&nbsp;<span class="startupsName"></span>
+		                   		</a>
+	                   		</div>
+	                   	</div>
+					</div>
+				     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 						<div class="uk-thumbnail">
 	                   		<figure class="uk-overlay uk-overlay-hover">
 	                           <img src="" style="height: 194.15px;" class="uk-overlay-spin startupsCover" alt="正在玩命加载中请稍后...">
@@ -154,7 +174,7 @@ request.setAttribute("flag", "index");
 	                   		</div>
 	                   	</div>
 					</div>
-				     <div class="uk-width-medium-1-4">
+					 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 						<div class="uk-thumbnail">
 	                   		<figure class="uk-overlay uk-overlay-hover">
 	                           <img src="" style="height: 194.15px;" class="uk-overlay-spin startupsCover" alt="正在玩命加载中请稍后...">
@@ -171,24 +191,7 @@ request.setAttribute("flag", "index");
 	                   		</div>
 	                   	</div>
 					</div>
-					 <div class="uk-width-medium-1-4">
-						<div class="uk-thumbnail">
-	                   		<figure class="uk-overlay uk-overlay-hover">
-	                           <img src="" style="height: 194.15px;" class="uk-overlay-spin startupsCover" alt="正在玩命加载中请稍后...">
-	                           <figcaption class="uk-overlay-panel uk-overlay-background  uk-overlay-bottom uk-overlay-slide-bottom">
-	                             	 <a class="startupsLeader" href=""></a>
-	                             </figcaption> 
-	                            
-	                         </figure>
-	                   		<div class="uk-thumbnail-caption uk-text-truncate">
-		                   		<a href="" class="linkStartups">
-		                   			<span style="color:#222222;">公司名称:</span>
-		                   			&nbsp;&nbsp;<span class="startupsName"></span>
-		                   		</a>
-	                   		</div>
-	                   	</div>
-					</div>
-					 <div class="uk-width-medium-1-4">
+					 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 						<div class="uk-thumbnail">
 	                   		<figure class="uk-overlay uk-overlay-hover">
 	                           <img src="" style="height: 194.15px;" class="uk-overlay-spin startupsCover" alt="正在玩命加载中请稍后...">
@@ -256,13 +259,12 @@ request.setAttribute("flag", "index");
 					</div>
 				</div>
 			</div>
-
 			<div class="uk-margin">
-				<div class="uk-grid" id="gridAll">
-				    <div class="uk-width-medium-1-5 flagToCloneAll">
-						<div class="uk-thumbnail">
+				<div class="uk-grid row" id="gridAll">
+				    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 flagToCloneAll" style="height:300px;">
+						<div class="uk-thumbnail" style="height: 250px;">
 	                   		<figure class="uk-overlay uk-overlay-hover">
-	                           <img src="" style="height: 194.15px;width:194.15px;" class="uk-overlay-spin userCoverAll img-circle" alt="正在玩命加载中请稍后...">
+	                           <img src="" style="width:100%;height:100%;" class="uk-overlay-spin userCoverAll" alt="正在玩命加载中请稍后...">
 	                           		<figcaption class="uk-overlay-panel uk-overlay-background  uk-overlay-bottom uk-overlay-slide-bottom">
 	                             		<span class="userIntroduceAll"></span>
 	                             	</figcaption> 
@@ -283,7 +285,7 @@ request.setAttribute("flag", "index");
 			</div>
 			<div class="jumbotitle">
 				<div class="container">
-					<a href="<%=path %>/pages/title/copartner_list.jsp" class="btn btn-lg" style="border-radius: 20px; border: solid black 2px; float: right;margin-top: 20px;margin-bottom: 20px;">更多内容</a>
+					<a href="<%=path %>/pages/title/copartner_list.jsp" class="btn btn-lg" style="border-radius: 20px; border: solid black 2px; float: right;margin-top: 20px;">更多内容</a>
 				</div>
 			</div>
 		</div>
@@ -297,7 +299,7 @@ request.setAttribute("flag", "index");
 			
 			$.post('provideUsers!getUsers.action', {
 				start : "5,0",
-				length : 5
+				length : 4
 			}, function(data, textStatus) {
 				if(textStatus == "success") {
 					
@@ -306,7 +308,7 @@ request.setAttribute("flag", "index");
 					var all = data.all;
 					
 					for(var i = 0; i < all.length-1; i++) {
-						$("#gridAll").append($(".flagToCloneAll").clone().attr("class", "uk-width-medium-1-5 cloneItemAll"));
+						$("#gridAll").append($(".flagToCloneAll").clone().attr("class", "col-lg-3 col-md-4 col-sm-6 col-xs-12 cloneItemAll"));
 					}
 					$(".userCoverAll").each(function(index){
 						$(this).attr("src", data.all[index].userPhoto);
