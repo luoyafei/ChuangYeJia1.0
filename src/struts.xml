@@ -223,5 +223,8 @@
         
         <!-- 线下邀谈 -->
         <action name="downLineAction" class="downLineAction" />
+        
+        <!-- 提供购物车action -->
+        <action name="shopCarAction" class="shopCarAction" />
     </package>
 </struts>
