@@ -90,6 +90,11 @@ request.setAttribute("flag", "index");
    			.row {
    				text-align: center;
    			}
+   			
+   			.uk-panel-box-rmBnC {
+	   			padding: 15px;
+   			}
+   			
 		</style>
 
 	</head>
@@ -266,7 +271,9 @@ request.setAttribute("flag", "index");
 	                   		<figure class="uk-overlay uk-overlay-hover">
 	                           <img src="" style="width:100%;height:100%;" class="uk-overlay-spin userCoverAll" alt="正在玩命加载中请稍后...">
 	                           		<figcaption class="uk-overlay-panel uk-overlay-background  uk-overlay-bottom uk-overlay-slide-bottom">
-	                             		<span class="userIntroduceAll"></span>
+	                             		<div class="uk-panel uk-panel-box-rmBnC uk-width-1-1 uk-text-truncate">
+	                             			<span class="userIntroduceAll"></span>
+	                             		</div>
 	                             	</figcaption> 
 	                         </figure>
 	                   		<div class="uk-thumbnail-caption">
