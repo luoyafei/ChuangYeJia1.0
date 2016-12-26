@@ -24,6 +24,7 @@ public class ProvideUserListForShowAction extends ActionSupport {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private final int MAX_LENGTH = 12; //限制最大读取用户数量
 	private static final String[] copartnerCategory = {
 			 "其他"						//0 其他
 			,"资金"						//1 资金
@@ -96,7 +97,9 @@ public class ProvideUserListForShowAction extends ActionSupport {
 			startTrue = 0;
 			lengthTrue = 5;
 		}
-
+			
+		if(lengthTrue > MAX_LENGTH)
+			lengthTrue = MAX_LENGTH;
 		
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("application/json; charset=utf-8");
