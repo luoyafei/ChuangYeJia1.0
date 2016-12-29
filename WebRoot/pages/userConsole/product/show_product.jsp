@@ -440,7 +440,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				productId : "<%=request.getParameter("item")%>"
 			}, function(data, textStatus) {
 				if(textStatus == "success") {
-					alert(JSON.stringify(data));
+					if(data.success) {
+						alert("添加成功！");
+					} else {
+						alert(data.reason);
+					}
 				} else {
 					alert("请刷新重试！");
 				}
