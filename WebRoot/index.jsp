@@ -146,7 +146,7 @@ request.setAttribute("flag", "index");
 			</div>
 			<div class="uk-margin">
 				<div class="uk-grid row">
-				    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+				    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
 						<div class="uk-thumbnail">
 	                   		<figure class="uk-overlay uk-overlay-hover">
 	                           <img src="" style="height: 194.15px;" class="uk-overlay-spin startupsCover" alt="正在玩命加载中请稍后...">
@@ -162,7 +162,7 @@ request.setAttribute("flag", "index");
 	                   		</div>
 	                   	</div>
 					</div>
-				     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+				     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
 						<div class="uk-thumbnail">
 	                   		<figure class="uk-overlay uk-overlay-hover">
 	                           <img src="" style="height: 194.15px;" class="uk-overlay-spin startupsCover" alt="正在玩命加载中请稍后...">
@@ -179,7 +179,7 @@ request.setAttribute("flag", "index");
 	                   		</div>
 	                   	</div>
 					</div>
-					 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+					 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
 						<div class="uk-thumbnail">
 	                   		<figure class="uk-overlay uk-overlay-hover">
 	                           <img src="" style="height: 194.15px;" class="uk-overlay-spin startupsCover" alt="正在玩命加载中请稍后...">
@@ -196,7 +196,7 @@ request.setAttribute("flag", "index");
 	                   		</div>
 	                   	</div>
 					</div>
-					 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+					 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
 						<div class="uk-thumbnail">
 	                   		<figure class="uk-overlay uk-overlay-hover">
 	                           <img src="" style="height: 194.15px;" class="uk-overlay-spin startupsCover" alt="正在玩命加载中请稍后...">
@@ -266,7 +266,7 @@ request.setAttribute("flag", "index");
 			</div>
 			<div class="uk-margin">
 				<div class="uk-grid row" id="gridAll">
-				    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 flagToCloneAll" style="height:300px;">
+				    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 flagToCloneAll" style="height:300px;">
 						<div class="uk-thumbnail" style="height: 250px;">
 	                   		<figure class="uk-overlay uk-overlay-hover">
 	                           <img src="" style="width:100%;height:100%;" class="uk-overlay-spin userCoverAll" alt="正在玩命加载中请稍后...">
@@ -315,7 +315,7 @@ request.setAttribute("flag", "index");
 					var all = data.all;
 					
 					for(var i = 0; i < all.length-1; i++) {
-						$("#gridAll").append($(".flagToCloneAll").clone().attr("class", "col-lg-3 col-md-4 col-sm-6 col-xs-12 cloneItemAll"));
+						$("#gridAll").append($(".flagToCloneAll").clone().attr("class", "col-lg-3 col-md-4 col-sm-6 col-xs-6 cloneItemAll"));
 					}
 					$(".userCoverAll").each(function(index){
 						$(this).attr("src", data.all[index].userPhoto);
