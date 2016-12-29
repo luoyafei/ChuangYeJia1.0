@@ -1,4 +1,4 @@
-	window.onload = function() {
+	function operateShopCar() {
 		
 		var checkAll = document.getElementById("checkAll");
 		var checkOnes = document.getElementsByClassName("checkOne");
@@ -12,10 +12,13 @@
 		var deleteSelect = document.getElementById("deleteSelect");
 		var commodityCountInput = document.getElementsByClassName("commodityCountInput");
 		var commodityPrices = document.getElementsByClassName("commodityPrice");
-		
 		var commodityReduces = document.getElementsByClassName("commodityReduce");
 		var commodityAdds = document.getElementsByClassName("commodityAdd");
+		var produceItem = document.getElementsByClassName("produceItem");
 		
+		/**
+		 * -功能按钮
+		 */
 		for(var i = 0; i < commodityReduces.length; i++) {
 			(function(x) {
 				commodityReduces[x].onclick = function() {
@@ -27,6 +30,9 @@
 	        })(i)
 		}
 		
+		/**
+		 * +功能按钮
+		 */
 		for(var i = 0; i < commodityAdds.length; i++) {
 			(function(x) {
 				commodityAdds[x].onclick = function() {
@@ -35,9 +41,10 @@
 				}
 	        })(i)
 		}
-		
+		/**
+		 * 输入个数
+		 */
 		for(var i = 0; i < commodityCountInput.length; i++) {
-			
 			(function(x) {
 	        	commodityCountInput[i].onkeyup = function() {
 	        		var content = commodityCountInput[x].value;
@@ -47,6 +54,9 @@
 	        			content = 1;
 	        		}
 	        		if(content < 1) {
+	        			content = 1;
+	        		}
+	        		if(isNaN(content)) {
 	        			content = 1;
 	        		}
 	        		commodityCountInput[x].value = content;
@@ -67,8 +77,28 @@
 	        (function(x) {
 	        	commodityOperations[i].onclick = function () {
 					if(confirm("是否将该产品从购物车中删除？")) {
-						tbodySpan.removeChild(trSpans[x]);
-						setPriceTotal();
+						//alert(produceItem[x].value);
+						//tbodySpan.removeChild(trSpans[x]);
+						//setPriceTotal();
+						var deleteProductId = new Array();
+						deleteProductId.push(produceItem[x].value);
+						var PId = function(ids) {
+							this.ids = ids;
+						}
+						var p = new PId(deleteProductId);
+						$.post("shopCarAction!deleteItem.action", {
+							deleteProductId : JSON.stringify(p)
+						}, function(data, textStatus) {
+				        	if(textStatus == "success") {
+				        		if(data.success) {
+				        			 location.reload();
+				        		} else {
+				        			alert(data.reason);
+				        		}
+				        	} else {
+				        		alert("请刷新重试！");
+				        	}
+				        }, 'json');
 					}
              	}
 	        })(i)
