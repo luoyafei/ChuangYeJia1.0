@@ -26,7 +26,6 @@
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
     <title>我的购物车</title>
 
-    <!-- Bootstrap core JavaScript
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="<%=path %>/assets/jQuery/2.x/jquery-2.1.4.min.js"></script>
     <script src="<%=path %>/assets/bootstrap-3.3.5/dist/js/bootstrap.min.js"></script>
@@ -39,66 +38,82 @@
 
     <script src="<%=path%>/assets/uikit/uikit.js"></script>
     <link href="<%=path%>/assets/uikit/uikit.css" rel="stylesheet"/>
-
+    
+    <!-- <script src="https://code.angularjs.org/angular-1.0.1.min.js"></script> -->
+    <script src="<%=path %>/assets/angularJS/angular.min.js"></script>
+    <script src="<%=path %>/assets/manualSource/js/shopCar.js"></script>
     <style>
-        body {
-            font-family: "微软雅黑";
-            padding-bottom: 0px;
-        }
-
-        li a {
-            color: snow;
-        }
-
-        .row .img {
-            margin-right: 5px;
-        }
-
-        .nav .active a {
-            border-bottom: solid #398BE5 3px;
-            color: #398BE5;
-            font-weight: bold;
-        }
-
-        #navbar ul a:hover {
-            border-bottom: solid #398BE5 3px;
-            color: #398BE5;
-            background-color: transparent;
-        }
-
-        #choicelabel a {
-            color: black;
-        }
-
-        #choicelabel .active {
-            color: #398BE5;
-        }
-
-        #inputSearch {
-            border-radius: 20px;
-            background-color: #A9A9A9;
-        }
-
-        .col-lg-3 {
-            margin: 0 0;
-            padding: 0 0;
-        }
-
-        .col-lg-4 {
-            margin: 0 0;
-            padding: 0 0;
-        }
-
-        .marketing .col-lg-4 {
-            margin-bottom: 0px;
-        }
-    </style>
+		body {
+			font-family: "微软雅黑";
+			padding-bottom: 0px;
+		}
+		
+		li a {
+			color: snow;
+		}
+		
+		.row .img {
+			margin-right: 5px;
+		}
+		
+		.nav .active a {
+			border-bottom: solid #398BE5 3px;
+			color: #398BE5;
+			font-weight: bold;
+		}
+		
+		#navbar ul a:hover {
+			border-bottom: solid #398BE5 3px;
+			color: #398BE5;
+			background-color: transparent;
+		}
+		
+		#choicelabel a {
+			color: black;
+		}
+		
+		#choicelabel .active {
+			color: #398BE5;
+		}
+		
+		#inputSearch {
+			border-radius: 20px;
+			background-color: #A9A9A9;
+		}
+		
+		.col-lg-3 {
+			margin: 0 0;
+			padding: 0 0;
+		}
+		
+		.col-lg-4 {
+			margin: 0 0;
+			padding: 0 0;
+		}
+		
+		.marketing .col-lg-4 {
+			margin-bottom: 0px;
+		}
+		
+		
+		ul li {
+			list-style: none
+		}
+		
+		a {
+			text-decoration: none;
+		}
+		
+		a:hover {
+			color: #e46432;
+		}
+		</style>
+		
 </head>
 
 <body style="background-color: #F5F5F5;">
 
 <jsp:include page="/pages/module/index_bar.jsp" flush="true" />
-
 <div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-bottom: 0px;">
 
     <div class="carousel-inner" role="listbox">
@@ -150,49 +165,105 @@
     </div>
 
     <div class="uk-block uk-block-muted" style="width:100%;height: 100%;">
-
-        <div class="uk-container">
-            <div class="uk-grid uk-grid-match">
-
-                <div class="uk-width-medium-1-5">
-                    <input type="radio" value="买" />
-                </div>
-                <div class="uk-width-medium-2-5">
-                    <div class="uk-panel">
-                        <div class="uk-thumbnail uk-thumbnail-large">
-                            <a class="uk-thumbnail" href="#"><img src="<s:property value='#session.user.userPhoto' />" alt="" height="100" width="200"></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="uk-width-medium-2-5">
-                    <div class="uk-panel">
-                        <ul class="uk-list uk-list-line">
-                            <li>用户昵称:&nbsp;&nbsp;&nbsp;&nbsp;<span><s:property value="#request.uts.userNickName"/></span></li>
-                            <%-- <li>用户邮箱:&nbsp;&nbsp;&nbsp;&nbsp;<span><s:property value="#request.uts.userEmail"/></span></li> --%>
-                            <li>所属高校:&nbsp;&nbsp;&nbsp;&nbsp;<span><s:property value="#request.uts.userAddress"/></span></li>
-                            <li>能力方向:&nbsp;&nbsp;&nbsp;&nbsp;<span><s:property value="#request.uts.copartnerCategory"/></span></li>
-                            <li>关注领域:&nbsp;&nbsp;&nbsp;&nbsp;<span><s:property value="#request.uts.userField"/></span></li>
-                            <li>用户经历:&nbsp;&nbsp;&nbsp;&nbsp;<span><s:property value="#request.uts.userIntroduce"/></span></li>
-                            <li>创业能力:&nbsp;&nbsp;&nbsp;&nbsp;<span><s:property value="#request.uts.startAbility"/></span></li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
+        <div class="uk-container uk-overflow-container">
+        
+        
+        <div class="table-responsive" id="tableDiv">
+	      <table class="table table-bordered table-hover">
+	        <thead style="background-color: #EBEBEB;">
+	          <tr>
+	            <th>
+	            	<label><input id="checkAll" type="checkbox"/>&nbsp;&nbsp;全选</label>
+	            </th>
+				<th>商品</th>
+				<th>单价</th>
+		        <th>数量</th>
+		        <th>小计</th>
+		        <th>操作</th>
+	          </tr>
+	        </thead>
+	        <tbody id="tbodySpan">
+	          <tr class="trSpanForClone">
+		            <td class="checkSpan"><input class="checkOne check" type="checkbox"/></td>
+			        <td class="commodityPicture">
+			        	<!-- <img src="images/1.jpg" class="img-rounded" alt="140x140" style="width: 140px; height: 140px;" src="" data-holder-rendered="true" /> -->
+			        	
+			       	</td>
+			        <td class="commodityPrice"></td>
+			        <td class="commodityCount">
+			        	<button class="commodityReduce uk-button uk-button-mini uk-button-link"><i class="uk-icon-minus-square"></i></button>
+				        <input class="commodityCountInput" type="text" value="1" style="width: 40px"/>
+				        <button class="commodityAdd uk-button uk-button-mini uk-button-link"><i class="uk-icon-plus-square"></i></button>
+				    </td>
+			        <td class="commodityOneTotal"></td>
+			        <td class="commodityOperation"><a>删除</a>
+			        <input type="hidden" class="produceItem" value="" /></td>
+	          </tr>
+	        </tbody>
+	        
+	        <tfoot style="background-color: #EBEBEB;">
+	        	<tr>
+	        		<td>
+	        			<a id="deleteSelect">删除</a>
+	        		</td>
+	        		<td></td>
+	        		<td></td>
+	        		<td>
+	        			<div class="selectedCount" id="selected">已选商品<span id="selectedTotal" style="color: red;">0</span>件</div>
+	        		</td>
+	        		<td>
+	        			<div class="totalMoney">合计：￥<span id="priceTotal">0.00</span></div>
+	        		</td>
+	        		<td>
+	        			<div class="accounts" onclick="settlement()">结 算</div>
+	        		</td>
+	        	</tr>
+	        </tfoot>
+	      </table>
+   		</div>
+    	</div>
+	</div>
 </div>
+
 <jsp:include page="../../module/bottom.jsp" flush="true" />
 
 </body>
 <script>
-    $('#myTab a').click(function(e) {
+	jQuery('#myTab a').click(function(e) {
         e.preventDefault()
-        $(this).tab('show')
+        jQuery(this).tab('show')
     })
-    $(document).ready(function() {
-        $("td").attr("style", "border-top: solid #333333 1px;");
-    });
+    jQuery(document).ready(function() {
+    	jQuery("td").attr("style", "border-top: solid #333333 1px;");
+    	
+    	$.post("shopCarAction!getMyShopCarItems.action", {}, function(data, textStatus) {
+        	if(textStatus == "success") {
+        		var content = data.shopCar;
+        		
+        		for(var i = 0; i < content.length; i++) {
+        			$("#tbodySpan").append($(".trSpanForClone").clone().attr("class", "trSpan"));
+        		}
+        		$(".trSpanForClone").remove();
+        		
+        		$(".commodityPicture").each(function(index){
+					$(this).text(content[index].productName);
+				});
+        		$(".commodityPrice").each(function(index){
+					$(this).text(parseFloat(content[index].productPrice).toFixed(2));
+				});
+        		$(".commodityOneTotal").each(function(index){
+					$(this).text(parseFloat(content[index].productPrice).toFixed(2));
+				});
+        		$(".produceItem").each(function(index){
+					$(this).val(content[index].productId);
+				});
+        		operateShopCar();
+        	} else {
+        		alert("请刷新重试！");
+        	}
+        }, 'json');
+    	
+	})
 </script>
 </html>
 
