@@ -87,6 +87,14 @@ request.setAttribute("flag", "partner");
 				margin: 0 0;
 				padding: 0 0;
 			}
+			
+			.uk-grid {
+   				margin-left: 0px;
+   			}
+			
+			.row {
+   				text-align: center;
+   			}
 
 			.marketing .col-lg-4 {
 				margin-bottom: 0px;
@@ -97,10 +105,6 @@ request.setAttribute("flag", "partner");
 	</head>
 
 	<body style="background-color: #F5F5F5;">
-
-		<%
-		//out.println("<script type='text/javascript'>if(document.body.offsetWidth < 684) {window.location.href = '/ChuangYeJia/pages/title/copartner_list_phone.jsp';}</script>");
-		%>
 
 		<jsp:include page="/pages/module/index_bar.jsp" flush="true" />
 
@@ -243,17 +247,19 @@ request.setAttribute("flag", "partner");
 			      </li>
 			    </ul>
 			    
-			    <div id="myTabContent" class="tab-content" style="background-color: #FFFFFF">
+			    <div id="myTabContent" class="tab-content" style="background-color: #FFFFFF; text-align: center;">
 			      <div role="tabpanel" class="tab-pane fade active in" id="time" aria-labelledby="time-tab">
 
 						<div class="uk-margin">
-							<div class="uk-grid" id="gridAll">
-							    <div class="uk-width-medium-1-5 flagToCloneAll">
+							<div class="uk-grid row" id="gridAll">
+							    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 flagToCloneAll" style="border-right: ">
 									<div class="uk-thumbnail">
 				                   		<figure class="uk-overlay uk-overlay-hover">
 				                           <img src="" style="height: 194.15px;width:194.15px;" class="uk-overlay-spin userCoverAll img-circle" alt="正在玩命加载中请稍后...">
 				                           		<figcaption class="uk-overlay-panel uk-overlay-background  uk-overlay-bottom uk-overlay-slide-bottom">
-				                             		<span class="userIntroduceAll"></span>
+				                             		<div class="uk-panel uk-panel-box-rmBnC uk-width-1-1 uk-text-truncate">
+				                             			<span class="userIntroduceAll"></span>
+				                             		</div>
 				                             	</figcaption> 
 				                         </figure>
 				                   		<div class="uk-thumbnail-caption">
@@ -297,6 +303,7 @@ request.setAttribute("flag", "partner");
 	});
 	
 	var category = 5;
+	var len = 12;
 	function changeCategory(type) {
 		category = type;
 		$(".pagination_All").each(function(index) {
@@ -305,12 +312,12 @@ request.setAttribute("flag", "partner");
 			else
 				$(".pagination_All").eq(index).attr("class", "pagination_All");
 		})
-		getAllItem(type + ",1", 10);
+		getAllItem(type + ",1", len);
 	}
 		$(document).ready(function() {
 			$("td").attr("style", "border-top: solid #333333 1px;");
 			
-			getAllItem("5,1", 10);
+			getAllItem("5,1", len);
 			
 			
 			$(".pagination_All").bind("click", function(a) {
@@ -319,7 +326,7 @@ request.setAttribute("flag", "partner");
 						$(".pagination_All").eq(index).attr("class", "pagination_All");
 					})
 
-					getAllItem(category + "," + $(this).text(), 10);
+					getAllItem(category + "," + $(this).text(), len);
 				}
 			});
 			 
@@ -468,7 +475,7 @@ request.setAttribute("flag", "partner");
 				
 					
 					for(var i = 0; i < all.length-1; i++) {
-						$("#gridAll").append($(".flagToCloneAll").clone().attr("class", "uk-width-medium-1-5 cloneItemAll"));
+						$("#gridAll").append($(".flagToCloneAll").clone().attr("class", "col-lg-3 col-md-4 col-sm-6 col-xs-12 cloneItemAll"));
 					}
 					$(".userCoverAll").each(function(index){
 						$(this).attr("src", all[index].userPhoto);

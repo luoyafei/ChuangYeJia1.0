@@ -87,6 +87,14 @@ request.setAttribute("flag", "startups");
 				margin: 0 0;
 				padding: 0 0;
 			}
+			
+			.uk-grid {
+   				margin-left: 0px;
+   			}
+			
+			.row {
+   				text-align: center;
+   			}
 
 			.marketing .col-lg-4 {
 				margin-bottom: 0px;
@@ -97,10 +105,6 @@ request.setAttribute("flag", "startups");
 	</head>
 
 	<body style="background-color: #F5F5F5;">
-
-		<%
-		//out.println("<script type='text/javascript'>if(document.body.offsetWidth < 684) {window.location.href = '/ChuangYeJia/pages/title/startups_list_phone.jsp';}</script>");
-		%>
 
 		<jsp:include page="/pages/module/index_bar.jsp" flush="true" />
 
@@ -258,9 +262,9 @@ request.setAttribute("flag", "startups");
 			      
 			      		<div class="uk-margin">
 			
-							<div class="uk-grid" id="gridAll">
+							<div class="uk-grid row" id="gridAll">
 							
-							    <div class="uk-width-medium-1-5 flagToCloneAll">
+							    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 flagToCloneAll">
 									<div class="uk-thumbnail">
 				                   		<figure class="uk-overlay uk-overlay-hover">
 				                           <img src="" style="height: 194.15px;" class="uk-overlay-spin startupsCover" alt="正在玩命加载中请稍后...">
@@ -277,13 +281,8 @@ request.setAttribute("flag", "startups");
 				                   		</div>
 				                   	</div>
 								</div>
-							     
-								
 							</div>
 						</div>
-						      		
-			      
-			      
 			      </div>
 			</div>
 			
@@ -310,7 +309,9 @@ request.setAttribute("flag", "startups");
 		$(document).ready(function() {
 			$("td").attr("style", "border-top: solid #333333 1px;");
 			
-			getAllStartups(1, 10);
+			var len = 12;
+			
+			getAllStartups(1, len);
 			
 			$(".pagination_All").bind("click", function(a) {
 				if($(this).text() != "...") {
@@ -318,7 +319,7 @@ request.setAttribute("flag", "startups");
 						$(".pagination_All").eq(index).attr("class", "pagination_All");
 					})
 
-					getAllStartups($(this).text(), 10);
+					getAllStartups($(this).text(), len);
 				}
 			});
 			 
@@ -441,7 +442,7 @@ request.setAttribute("flag", "startups");
 					
 					
 					for(var i = 0; i < data.stl.length-1; i++) {
-						$("#gridAll").append($(".flagToCloneAll").clone().attr("class", "uk-width-medium-1-5 cloneItemAll"));
+						$("#gridAll").append($(".flagToCloneAll").clone().attr("class", "col-lg-3 col-md-4 col-sm-6 col-xs-6 cloneItemAll"));
 					}
 					for(var i = 0;i < data.stl.length; i++) {
 						$(".startupsName").eq(i).text(data.stl[i].startupsName);

@@ -100,13 +100,7 @@ request.setAttribute("flag", "product");
 
 	<body  style="background-color: #F5F5F5;">
 
-		<%
-		//out.println("<script type='text/javascript'>if(document.body.offsetWidth < 684) {window.location.href = '/ChuangYeJia/pages/title/product_list_phone.jsp';}</script>");
-		%>
-
-
 		<jsp:include page="/pages/module/index_bar.jsp" flush="true" />
-		
 
 		<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-bottom: 0px;">
 			
@@ -222,11 +216,11 @@ request.setAttribute("flag", "product");
 			</div>
 			<br/>
 			<br/>
-			<div id="myTabContent" class="tab-content" style="background-color: #FFFFFF">
+			<div id="myTabContent" class="tab-content" style="background-color: #FFFFFF; text-align: center;">
 			      <div role="tabpanel" class="tab-pane fade active in" id="time" aria-labelledby="time-tab">
 			      
-							<div class="uk-grid" id="gridAll" style="width: 100%;margin-left: -15px;">
-							    <div class="uk-width-medium-1-5 flagToCloneAll">
+							<div class="uk-grid row" id="gridAll" style="width: 100%;margin-left: 0px;">
+							    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 flagToCloneAll">
 									<div class="uk-thumbnail">
 				                   		<figure class="uk-overlay uk-overlay-hover">
 				                           <img src="" style="height: 194.15px;" class="uk-overlay-spin productCover" alt="正在玩命加载中请稍后...">
@@ -274,14 +268,16 @@ request.setAttribute("flag", "product");
 		$(document).ready(function() {
 			$("td").attr("style", "border-top: solid #333333 1px;");
 			
-			getAllStartups(1, 10);
+			var len = 12;
+			
+			getAllStartups(1, len);
 			
 			$(".pagination_All").bind("click", function(a) {
 				if($(this).text() != "...") {
 					$(".pagination_All").each(function(index) {
 						$(".pagination_All").eq(index).attr("class", "pagination_All");
 					})
-					getAllStartups($(this).text(), 10);
+					getAllStartups($(this).text(), len);
 				}
 			});
 		});
@@ -403,7 +399,7 @@ request.setAttribute("flag", "product");
 					
 					
 					for(var i = 0; i < data.ps.length-1; i++) {
-						$("#gridAll").append($(".flagToCloneAll").clone().attr("class", "uk-width-medium-1-5 cloneItemAll"));
+						$("#gridAll").append($(".flagToCloneAll").clone().attr("class", "col-lg-3 col-md-4 col-sm-6 col-xs-12 cloneItemAll"));
 					}
 					for(var i = 0;i < data.ps.length; i++) {
 						
