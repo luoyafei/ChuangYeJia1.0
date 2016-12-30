@@ -20,9 +20,16 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name="productOrder")
 public class Order {
 	
+	@Override
+	public String toString() {
+		return "Order [orderId=" + orderId + ", productId=" + productId + ", unitPrice=" + unitPrice + ", productCount="
+				+ productCount + ", userid=" + userid + ", startupsId=" + startupsId + ", addr=" + addr + ", status="
+				+ status + ", orderDate=" + orderDate + ", isSigned=" + isSigned + ", signedName=" + signedName
+				+ ", signedDate=" + signedDate + "]";
+	}
 	private String orderId = null;
 	private Product productId = null;
-	private int unitPrice = 0;					//单价
+	private String unitPrice = "0";				//单价
 	private int productCount = 0;				//个数
 	private User userid = null;					//买方
 	private Startups startupsId = null;			//卖方
@@ -50,10 +57,10 @@ public class Order {
 	public void setProductId(Product productId) {
 		this.productId = productId;
 	}
-	public int getUnitPrice() {
+	public String getUnitPrice() {
 		return unitPrice;
 	}
-	public void setUnitPrice(int unitPrice) {
+	public void setUnitPrice(String unitPrice) {
 		this.unitPrice = unitPrice;
 	}
 	public int getProductCount() {
