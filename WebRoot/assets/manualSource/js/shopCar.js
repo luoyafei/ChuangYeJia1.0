@@ -77,9 +77,6 @@
 	        (function(x) {
 	        	commodityOperations[i].onclick = function () {
 					if(confirm("是否将该产品从购物车中删除？")) {
-						//alert(produceItem[x].value);
-						//tbodySpan.removeChild(trSpans[x]);
-						//setPriceTotal();
 						var deleteProductId = new Array();
 						deleteProductId.push(produceItem[x].value);
 						var PId = function(ids) {
@@ -91,7 +88,9 @@
 						}, function(data, textStatus) {
 				        	if(textStatus == "success") {
 				        		if(data.success) {
-				        			 location.reload();
+				        			alert("删除成功");
+				        			tbodySpan.removeChild(trSpans[x]);
+									setPriceTotal();
 				        		} else {
 				        			alert(data.reason);
 				        		}
@@ -106,8 +105,35 @@
 
 		deleteSelect.onclick = function() {
 			if(confirm("是否将选中的产品全部删除？")) {
-				removeSelected();
-				setPriceTotal();
+				var deleteProductId = new Array();
+				var PId = function(ids) {
+					this.ids = ids;
+				}
+//				deleteProductId.push(produceItem[x].value);
+				for(var i = 0; i < checkOnes.length; i++) {
+					if(checkOnes[i].checked) {
+//						tbodySpan.removeChild(trSpans[i]);
+						deleteProductId.push(produceItem[i].value);		
+					}
+				}
+				var p = new PId(deleteProductId);
+				
+				$.post("shopCarAction!deleteItem.action", {
+					deleteProductId : JSON.stringify(p)
+				}, function(data, textStatus) {
+		        	if(textStatus == "success") {
+		        		if(data.success) {
+		        			alert("删除成功");
+		        			removeSelected();
+		    				setPriceTotal();
+		        		} else {
+		        			alert(data.reason);
+		        		}
+		        	} else {
+		        		alert("请刷新重试！");
+		        	}
+		        }, 'json');
+				
 			}
 		}
 		function removeSelected() {
@@ -163,4 +189,44 @@
 			priceTotal.innerHTML = (priceTotalMoney).toFixed(2);
 			selectedTotal.innerText = (selectedCount).toFixed(2);
 		}
+		
+		/**
+		 * 提供结算功能
+		 */
+		var commodityInfo = function(productId, productCount) {
+			this.productId = productId;
+			this.productCount = productCount;
+		}
+		var InfoJson = function(products) {
+			this.products = products;
+			InfoJson.prototype.pushCommodityInfo = function(commodityInfo) {
+				this.products.push(commodityInfo);
+			}
+		}
+		
+		document.getElementById("settlement").onclick = function() {
+			if(confirm("是否确认进行结算？")) {
+				var ij = new InfoJson(new Array());
+				for(var i = 0; i < checkOnes.length; i++) {
+					if(checkOnes[i].checked) {
+						ij.pushCommodityInfo(new commodityInfo(produceItem[i].value, commodityCountInput[i].value));
+					}
+				}
+//				alert(JSON.stringify(ij));
+				$.post("shopCarAction!settlementProducts.action", {
+					settlementProducts : JSON.stringify(ij)
+				}, function(data, textStatus) {
+		        	if(textStatus == "success") {
+		        		if(data.success) {
+		        		} else {
+		        			alert(data.reason);
+		        		}
+		        	} else {
+		        		alert("请刷新重试！");
+		        	}
+		        }, 'json');
+			}
+		}
+		
+		
 	}
