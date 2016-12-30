@@ -2,6 +2,8 @@ package com.chuangyejia.ajax;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Vector;
 
@@ -12,7 +14,9 @@ import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.chuangyejia.bean.Order;
 import com.chuangyejia.bean.Product;
+import com.chuangyejia.bean.Startups;
 import com.chuangyejia.bean.User;
 import com.chuangyejia.service.IProductService;
 import com.chuangyejia.service.IShopCarService;
@@ -26,7 +30,14 @@ import com.opensymphony.xwork2.ActionSupport;
 public class ShopCarAction extends ActionSupport {
 
 	private String productId;
-	private String deleteProductId;//传递过来的是json数据，进行解析成string[]
+	private String deleteProductId;//删除商品，传递过来的是json数据，进行解析成string[]
+	private String settlementProducts;//结算，传递过来的是json数据
+	public String getSettlementProducts() {
+		return settlementProducts;
+	}
+	public void setSettlementProducts(String settlementProducts) {
+		this.settlementProducts = settlementProducts;
+	}
 	public String getProductId() {
 		return productId;
 	}
@@ -199,6 +210,111 @@ public class ShopCarAction extends ActionSupport {
 				success = false;
 				reason = "产品出错";
 			}
+		} else {
+			success = false;
+			reason = "尚未登陆！";
+		}
+		jo.addProperty("success", success);
+		jo.addProperty("reason", reason);
+		
+		out.print(jo.toString());
+		out.flush();
+		out.close();
+	}
+	
+	/**
+	 * 用以处理结算产品
+	 */
+	private static class ProductJson {
+		@Override
+		public String toString() {
+			return "ProductJson [productId=" + productId + ", productCount=" + productCount + "]";
+		}
+		private String productId;
+		private String productCount;
+		public String getProductId() {
+			return productId;
+		}
+		public void setProductId(String productId) {
+			this.productId = productId;
+		}
+		public String getProductCount() {
+			return productCount;
+		}
+		public void setProductCount(String productCount) {
+			this.productCount = productCount;
+		}
+	}
+	private static class ProductsJson {
+		private ProductJson[] products;
+		public ProductJson[] getProducts() {
+			return products;
+		}
+		public void setProducts(ProductJson[] products) {
+			this.products = products;
+		}
+	}
+	public void settlementProducts() {
+		
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("application/json; charset=utf-8");
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch(IOException e) {}
+		
+		JsonObject jo = new JsonObject();
+		boolean success = true;
+		String reason = "";
+		User user = (User)ServletActionContext.getRequest().getSession().getAttribute("user");
+		if(user != null) {
+			Gson gson = new Gson();
+			ProductsJson pjs = gson.fromJson(settlementProducts, ProductsJson.class);
+			Product[] products = getProducts(pjs.getProducts());
+			
+			Order[] orders = new Order[products.length];
+			
+			for(int i = 0; i < products.length; i++) {
+				Order o = new Order();
+				int count = 1;
+				try {
+					count = Integer.parseInt(pjs.getProducts()[i].productCount);
+				} catch(NumberFormatException e) {
+					count = 1;
+				}
+				o.setProductCount(count);
+				o.setUnitPrice(products[i].getProductPrice());
+				o.setProductId(products[i]);
+				o.setUserid(user);
+				o.setStartupsId(products[i].getProductStartups());
+				o.setOrderDate(new Timestamp(System.currentTimeMillis()));
+			
+				orders[i] = o;
+			}
+
+			/*if(pIds.isRrightFormat()) {
+				@SuppressWarnings("unchecked")
+				Vector<Product> shopCar = (Vector<Product>)ServletActionContext.getRequest().getSession().getAttribute("shopCar");
+				
+				if(iscs.deleteProductInShopCar(user.getUserId(), pIds.getIds())) {
+					Iterator<Product> iterP = shopCar.iterator();
+					for(String pId : pIds.getIds()) {
+						while(iterP.hasNext()) {
+							if(iterP.next().getProductId().equals(pId)) {
+								iterP.remove();
+								break;
+							}
+						}
+					}
+					ServletActionContext.getRequest().getSession().setAttribute("shopCar", shopCar);
+				} else {
+					success = false;
+					reason = "删除商品失败！";
+				}
+			} else {
+				success = false;
+				reason = "产品出错";
+			}*/
 			
 			
 			
@@ -212,6 +328,12 @@ public class ShopCarAction extends ActionSupport {
 		out.print(jo.toString());
 		out.flush();
 		out.close();
-		
+	} 
+	private Product[] getProducts(ProductJson[] pids) {
+		Product[] products = new Product[pids.length];
+		for(int i = 0; i < pids.length; i++) {
+			products[i] = ps.getProductInId(pids[i].getProductId());
+		}
+		return products;
 	}
 }
