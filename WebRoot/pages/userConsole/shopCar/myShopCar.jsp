@@ -215,7 +215,7 @@
 	        			<div class="totalMoney">合计：￥<span id="priceTotal">0.00</span></div>
 	        		</td>
 	        		<td>
-	        			<div class="accounts" onclick="settlement()">结 算</div>
+	        			<div class="accounts" id="settlement">结 算</div>
 	        		</td>
 	        	</tr>
 	        </tfoot>
