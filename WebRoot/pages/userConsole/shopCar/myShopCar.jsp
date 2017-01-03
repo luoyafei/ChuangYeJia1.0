@@ -200,7 +200,6 @@
 			        <input type="hidden" class="produceItem" value="" /></td>
 	          </tr>
 	        </tbody>
-	        
 	        <tfoot style="background-color: #EBEBEB;">
 	        	<tr>
 	        		<td>
@@ -220,6 +219,9 @@
 	        	</tr>
 	        </tfoot>
 	      </table>
+	      <form action="shopCarAction!execute.action" id="cartForm" method="post" style="display: none;">
+	      	<input name="settlementProducts" id="settlementProducts" />
+	      </form>
    		</div>
     	</div>
 	</div>

@@ -212,21 +212,11 @@
 						ij.pushCommodityInfo(new commodityInfo(produceItem[i].value, commodityCountInput[i].value));
 					}
 				}
-//				alert(JSON.stringify(ij));
-				$.post("shopCarAction!settlementProducts.action", {
-					settlementProducts : JSON.stringify(ij)
-				}, function(data, textStatus) {
-		        	if(textStatus == "success") {
-		        		if(data.success) {
-		        		} else {
-		        			alert(data.reason);
-		        		}
-		        	} else {
-		        		alert("请刷新重试！");
-		        	}
-		        }, 'json');
+				
+				var form = document.getElementById("cartForm");
+				var myInput = document.getElementById("settlementProducts");
+				myInput.value = JSON.stringify(ij);
+				form.submit();
 			}
 		}
-		
-		
 	}
