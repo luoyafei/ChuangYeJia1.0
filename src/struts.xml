@@ -225,6 +225,9 @@
         <action name="downLineAction" class="downLineAction" />
         
         <!-- 提供购物车action -->
-        <action name="shopCarAction" class="shopCarAction" />
+        <action name="shopCarAction" class="shopCarAction">
+        	<result name="toConfirmOrder">/pages/userConsole/shopCar/confirmOrder.jsp</result>
+        	<result name="error">/pages/userConsole/shopCar/myShopCar.jsp</result>
+        </action>
     </package>
 </struts>
