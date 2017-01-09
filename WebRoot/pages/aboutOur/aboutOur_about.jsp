@@ -16,7 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta http-equiv="expires" content="0">    
 		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 		<title>
-			关于创业加
+			关于创业+
 		</title>
 		<!-- Bootstrap core CSS -->
 		<link href="<%=path%>/assets/bootstrap-3.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -109,13 +109,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</span>
 								<span>
 									<a style="font-size: 22px;text-decoration: none;">
-										<span style="display: block;">创业加</span>
+										<span style="display: block;">创业+</span>
 										<br />
 									</a>
 								</span>
 							</div>
 							<p style="margin-bottom: 0px;font-size: 44px;">
-								关于创业加
+								关于创业+
 							</p>
 							<span style="border-top: solid white 2px;" style="font-family: sans-serif;">Hello!Welcome to Enterperse Plus</span>
 							<br />
@@ -137,7 +137,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						随经济全球化以及生产专业化现象的普遍，社会分工和协同合作已经成为了一种创业趋势。
 					</p>
 					<h2 style="margin-top: 0;" style="color: black;">
-						关于创业加
+						关于创业+
 					</h2>
 				</div>
 			</div>
@@ -146,14 +146,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div style="width: 80%;height: 100%;margin: 0 auto;">
 						
 						
-						<br /><strong>关于创业加</strong><br />
+						<br /><strong>关于创业+</strong><br />
 						
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;创业加致力于为创业者提供新型组队协作解决方案
-作为创业者，您可以在创业加平台发起项目，展示靠谱的商业计划和组建优秀的团队，快速聚拢资金、技术、管理伙伴。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;创业+致力于为创业者提供新型组队协作解决方案
+作为创业者，您可以在创业+平台发起项目，展示靠谱的商业计划和组建优秀的团队，快速聚拢资金，技术，管理伙伴。
 作为投资人，您可以轻松发现优质项目，加入创业团队直击创业活动。
 作为技术服务商，可以加入优秀的创业团队为其实现技术代工进行盈利。
 作为管理运营团队，发布自身拥有的创业要素、参与创业活动。
-同时，创业加提供协同办公、委托监管、产品销售、创业代办等一系列优质服务。我们真诚希望，广大创业者快速完成创业梦想、实现人生价值！
+同时，创业+提供协同办公，委托监管，产品销售，创业代办等一系列优质服务。我们真诚希望，广大创业者快速完成创业梦想，实现人生价值！
 						
 					</div>
 				</div>
