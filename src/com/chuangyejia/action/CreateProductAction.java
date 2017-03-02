@@ -152,6 +152,7 @@ public class CreateProductAction extends ActionSupport {
 	}
 	
 	public String createProduct() {
+		
 		Startups startups = ss.getStartupsInId(pd.getStartups());
 		if(user != null && pd.dataValidate() && startups != null && startups.getStartupsLeader().getUserId().equals(user.getUserId())) {
 			String result = uploadPicture();

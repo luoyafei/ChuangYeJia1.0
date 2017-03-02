@@ -2,6 +2,11 @@ package com.chuangyejia.dto;
 
 public class ProductDTO {
 
+	@Override
+	public String toString() {
+		return "ProductDTO [name=" + name + ", address=" + address + ", brief=" + brief + ", detail=" + detail
+				+ ", startups=" + startups + ", price=" + price + "]";
+	}
 	private String name;
 	private String address;
 	private String brief;
@@ -51,7 +56,7 @@ public class ProductDTO {
 	}
 	
 	private boolean rightPriceFormat() {
-		return price != null && price.length() < 13 && price.matches("\\d*");
+		return price != null && price.length() < 13 && price.matches("\\d+\\.\\d+");
 	}
 	public boolean dataValidate() {
 		

@@ -96,23 +96,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<img class="" src="<%=path %>/assets/img/content_detail/333.png" alt="">
 					<div class="container" style="padding-right: 0px;padding-left: 0px;">
 						<div class="carousel-caption">
-							<div class="logo-img" style="width: 100%;">
-								<span>
-									<img data-holder-rendered="true" src="<s:property value='#request.applyOrganiser.userPhoto'/>" style="width: 100px; height: 100px;" class="img-circle" />
-								</span>
-								<span>
-									<a style="font-size: 14px;text-decoration: none;">
-										<span style="display: block;">
-											<s:property value="#request.applyOrganiser.userNickName"/>
-										</span>
-									</a>
-								</span>
-								<span>
-									<img src="<%=path %>/assets/img/user/level.png" style="width: 12%;height: 5%; margin-bottom: 0px;padding-bottom: 0px;">
-								</span>
-							</div>
 							<p style="margin-bottom: 0px;font-size: 32px;">
-								<br> 申请合同页
+								<br> 订单详情页面
 							</p>
 							<br />
 							<br />
@@ -129,20 +114,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="thumbtitle">
 				<div class="contenttitle" style="margin-bottom: 10px;">
 					<p style="margin-bottom: 4px;">
-						WHO&nbsp;&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;&nbsp;&nbsp;AM
+						WHAT&nbsp;&nbsp;&nbsp;&nbsp;IS&nbsp;&nbsp;&nbsp;&nbsp;IT
 					</p>
 					<p style="float: right;">
 						随经济全球化以及生产专业化现象的普遍，社会分工和协同合作已经成为了一种创业趋势。
 					</p>
 					<h2 style="margin-top: 0;" style="color: black;">
-						合同资料
+						订单详情
 					</h2>
 				</div>
 			</div>
 
 			<div class="marketing-nav">
 				<ul class="nav nav-tabs marketing-nav-content" role="tablist" id="myTab">
-					<li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab" style="color: #398BE5;">具体合同</a></li>
+					<li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab" style="color: #398BE5;">具体订单</a></li>
 				</ul>
 			</div>
 
@@ -153,31 +138,64 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 							<div class="panel panel-default">
 							  <div class="panel-heading">
-							    <h3 class="panel-title">合同名称：<s:property value="#request.applyContract.applyTitle"/></h3>
-							  </div>
-
-							
-							  <div class="panel-heading">
-							    <h3 class="panel-title"><a href="getUserMark?mark=<s:property value='#request.applyOrganiser.userId'/>">申请人：<s:property value="#request.applyOrganiser.userNickName"/></a></h3>
+							    <h3 class="panel-title">产品名称：<s:property value="#request.citem.productId.productName"/></h3>
 							  </div>
 							  
+							  <div class="panel-heading">
+							    <h3 class="panel-title">产品单价：<s:property value="#request.citem.unitPrice"/></h3>
+							  </div>
+							  <div class="panel-heading">
+							    <h3 class="panel-title">产品个数：<s:property value="#request.citem.productCount"/></h3>
+							  </div>
 							   <div class="panel-heading">
-							    <h3 class="panel-title">申请公司：<s:property value="#request.applyStartups.startupsName"/></h3>
+							    <h3 class="panel-title">所属公司：<s:property value="#request.citem.startupsId.startupsName"/></h3>
 							  </div>
 
 							  <div class="panel-heading">
-							    <h3 class="panel-title">合同状态：<s:property value="#request.applyContract.applyStatus"/></h3>
+							    <h3 class="panel-title">寄送地址：<s:property value="#request.citem.addr"/></h3>
 							  </div>
 
 							  <div class="panel-heading">
-							    <h3 class="panel-title">创建时间：<s:property value="#request.applyContract.createDate"/> </h3>
+							    <h3 class="panel-title">订单状态：<s:property value="#request.citem.status"/></h3>
 							  </div>
+
 							  <div class="panel-heading">
-							    <h3 class="panel-title">合同内容：
-							    <br />
-							    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<s:property value="#request.applyContract.applyContent"/>
-							  	</h3>
-							  	</div>
+							    <h3 class="panel-title">创建时间：<s:property value="#request.citem.orderDate"/> </h3>
+							  </div>
+							  
+							  <div class="panel-heading">
+							    <h3 class="panel-title">服务是否结束：
+							    
+							    	<s:if test="#request.citem.isSigned == 0">
+							    		<button class="btn btn-danger" onclick="overService()">结束服务</button>
+							    		<script type="text/javascript">
+							    			function overService() {
+							    				if(confirm("是否确认结束？")) {
+							    					$.post("dealOrder!overService.action", {
+							    						createdOrderId : "<s:property value='#request.citem.orderId'/>"
+							    					}, function(data, textStatus) {
+							    						if(textStatus == "success") {
+							    							if(data.success) {
+							    								alert("恭喜您！操作成功！");
+							    								location.reload();
+							    							} else
+							    								alert("抱歉！操作失败！");
+							    						}
+							    					}, "json");
+							    				}
+							    			}
+							    		</script>
+							    	</s:if>
+							    	<s:elseif test="#request.citem.isSigned == 1">
+							    		<label>服务已结束</label>
+							    	</s:elseif>
+							    	<s:elseif test="#request.citem.isSigned == 2">
+							    		<label>卖家已上传结束服务凭证</label>
+							    	</s:elseif>
+							    </h3>
+							  </div>
+							  
+							  
 							</div>
 						</div>
 

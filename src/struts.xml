@@ -229,5 +229,27 @@
         	<result name="toConfirmOrder">/pages/userConsole/shopCar/confirmOrder.jsp</result>
         	<result name="error">/pages/userConsole/shopCar/myShopCar.jsp</result>
         </action>
+        
+        <action name="submitOrderAction" class="submitOrderAction">
+        	<result name="success">/pages/userConsole/shopCar/alipayapi.jsp</result>
+        	<result name="error">/pages/userConsole/shopCar/myShopCar.jsp</result>
+        </action>
+        
+        <!-- 修改订单状态的action -->
+        <action name="dealOrder" class="dealOrder">
+        	<result name="success">/pages/userConsole/shopCar/orderIsOk.html</result>
+        	<result name="error">/pages/userConsole/shopCar/orderIsError.html</result>
+        </action>
+        
+        <!-- 获取所有自己的订单action -->
+        <action name="getMyOrderConsole" class="getMyOrderConsoleAction" />
+        
+        <!-- 获取订单详情action -->
+        <action name="orderDetail" class="orderDetail">
+        	<result name="create">/pages/userConsole/shopCar/cOrderDetail.jsp</result>
+        	<result name="receive">/pages/userConsole/shopCar/rOrderDetail.jsp</result>
+        	<result name="error">/pages/userConsole/home.jsp</result>
+        </action>
+        
     </package>
 </struts>

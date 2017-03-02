@@ -92,10 +92,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<body style="background-color: #F5F5F5;">
 
-		<%
-		//out.println("<script type='text/javascript'>if(document.body.offsetWidth < 684) {window.location.href = '/ChuangYeJia/pages/startups/create_startups_phone.jsp';}</script>");
-		%>
-
 		<jsp:include page="/pages/module/index_bar.jsp" flush="true" />
 
 		<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-bottom: 0px;">
@@ -308,20 +304,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<div style="border-bottom: dashed #A9A9A9 1px;">
 							
 								<div class="form-group" style="margin-right: 0px;margin-left: -10px;padding-top:15px;">
-									<label class="col-sm-2 control-label" style="font-size: 18px;width: 100%;text-align: left;font-weight: normal;">上传封面(logo)</label>
+									<label class="col-sm-2 control-label" style="font-size: 18px;width: 100%;text-align: left;font-weight: normal;">上传封面(不要超过2M)</label>
 									<div class="col-sm-12">
-										<input type="file" class="upload_img" style="display: inline;" name="img" accept="image/*" />
+										<input type="file" id="cover" class="upload_img" style="display: inline;" name="img" accept="image/*" />
 									</div>
 								</div>
-								
-							
 							</div>
 							
 
 							<div style="border-bottom: dashed #A9A9A9 1px;">
 							
 								<div class="form-group" style="margin-right: 0px;margin-left: -10px;padding-top:15px;">
-									<label class="col-sm-2 control-label" style="font-size: 18px;width: 100%;text-align: left;font-weight: normal;">上传公司照片</label>
+									<label class="col-sm-2 control-label" style="font-size: 18px;width: 100%;text-align: left;font-weight: normal;">上传公司照片(不要超过2M)</label>
 									<div class="col-sm-12">
 										<input type="file" class="upload_img" style="display: inline;" name="img" accept="image/*" />
 										<input type="file" class="upload_img" style="display: inline;" name="img" accept="image/*" />
@@ -411,7 +405,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						$("#errorSpan").text("请选择图片！");
 						isOk = false;
 					}
+					//alert(img.eq(i).size);
 				}
+				
 				if(isOk) {
 					$("#submitForm").submit();
 				}

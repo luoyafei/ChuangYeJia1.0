@@ -99,6 +99,7 @@ request.setAttribute("flag", "startups");
 			.marketing .col-lg-4 {
 				margin-bottom: 0px;
 			}
+			
 		</style>
 
 
@@ -127,7 +128,8 @@ request.setAttribute("flag", "startups");
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									人工智能3.0时代</p>
+									人工智能3.0时代
+									</p>
 								<p style="font-size: 27px;padding: 0 auto;margin: 0 auto;">正式<span style="font-size: 38px;">开启</span></p>
 								<p style="font-size: 15px;padding: 0 auto;margin-top: 5px; margin-bottom: 0px;">&nbsp;&nbsp;&nbsp;详情请见公司内页......</p>
 								<br />
@@ -264,7 +266,7 @@ request.setAttribute("flag", "startups");
 			
 							<div class="uk-grid row" id="gridAll">
 							
-							    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 flagToCloneAll">
+							    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 flagToCloneAll">
 									<div class="uk-thumbnail">
 				                   		<figure class="uk-overlay uk-overlay-hover">
 				                           <img src="" style="height: 194.15px;" class="uk-overlay-spin startupsCover" alt="正在玩命加载中请稍后...">
@@ -442,7 +444,7 @@ request.setAttribute("flag", "startups");
 					
 					
 					for(var i = 0; i < data.stl.length-1; i++) {
-						$("#gridAll").append($(".flagToCloneAll").clone().attr("class", "col-lg-3 col-md-4 col-sm-6 col-xs-6 cloneItemAll"));
+						$("#gridAll").append($(".flagToCloneAll").clone().attr("class", "col-lg-3 col-md-4 col-sm-6 col-xs-12 cloneItemAll"));
 					}
 					for(var i = 0;i < data.stl.length; i++) {
 						$(".startupsName").eq(i).text(data.stl[i].startupsName);

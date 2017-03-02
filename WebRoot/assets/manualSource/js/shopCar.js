@@ -109,10 +109,8 @@
 				var PId = function(ids) {
 					this.ids = ids;
 				}
-//				deleteProductId.push(produceItem[x].value);
 				for(var i = 0; i < checkOnes.length; i++) {
 					if(checkOnes[i].checked) {
-//						tbodySpan.removeChild(trSpans[i]);
 						deleteProductId.push(produceItem[i].value);		
 					}
 				}
@@ -187,7 +185,8 @@
 				}
 			}
 			priceTotal.innerHTML = (priceTotalMoney).toFixed(2);
-			selectedTotal.innerText = (selectedCount).toFixed(2);
+			//selectedTotal.innerText = (selectedCount).toFixed(2);
+			selectedTotal.innerText = selectedCount;
 		}
 		
 		/**
@@ -206,17 +205,23 @@
 		
 		document.getElementById("settlement").onclick = function() {
 			if(confirm("是否确认进行结算？")) {
+				var bol = false;
 				var ij = new InfoJson(new Array());
 				for(var i = 0; i < checkOnes.length; i++) {
 					if(checkOnes[i].checked) {
+						bol = true;
 						ij.pushCommodityInfo(new commodityInfo(produceItem[i].value, commodityCountInput[i].value));
 					}
 				}
 				
-				var form = document.getElementById("cartForm");
-				var myInput = document.getElementById("settlementProducts");
-				myInput.value = JSON.stringify(ij);
-				form.submit();
+				if(bol) {
+					var form = document.getElementById("cartForm");
+					var myInput = document.getElementById("settlementProducts");
+					myInput.value = JSON.stringify(ij);
+					form.submit();
+				} else {
+					alert("请选择您要进行的结算的商品！");
+				}
 			}
 		}
 	}

@@ -138,9 +138,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 		
-		<s:debug></s:debug>
-		
-		
 		<div class="container marketing" style="background-color: #F5F5F5; padding:50px 0px;width: 68%;">
 			<div class="thumbtitle">
 				<div class="contenttitle" style="margin-bottom: 10px;">
@@ -321,7 +318,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 							<div style="border-bottom: dashed #A9A9A9 1px;">
 								<div class="form-group" style="margin-right: 0px;margin-left: -10px;padding-top:15px;">
-									<label class="col-sm-2 control-label" style="font-size: 18px;width: 100%;text-align: left;font-weight: normal;">更换封面(logo)</label>
+									<label class="col-sm-2 control-label" style="font-size: 18px;width: 100%;text-align: left;font-weight: normal;">更换封面(不超过2M)</label>
 									<div class="col-sm-12">
 										<input type="file" class="upload_img" style="display: inline;" name="img" accept="image/*" />
 									</div>
@@ -331,7 +328,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 							<div style="border-bottom: dashed #A9A9A9 1px;">
 								<div class="form-group" style="margin-right: 0px;margin-left: -10px;padding-top:15px;">
-									<label class="col-sm-2 control-label" style="font-size: 18px;width: 100%;text-align: left;font-weight: normal;">更换公司照片</label>
+									<label class="col-sm-2 control-label" style="font-size: 18px;width: 100%;text-align: left;font-weight: normal;">更换公司照片(不超过2M)</label>
 									<div class="col-sm-12">
 										<input type="file" class="upload_img" style="display: inline;" name="img" accept="image/*" />
 										<input type="file" class="upload_img" style="display: inline;" name="img" accept="image/*" />

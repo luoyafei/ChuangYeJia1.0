@@ -99,8 +99,9 @@
             				<li role="presentation" class="menuInsertShow"><a href="#my_product" role="tab" data-toggle="tab">我的产品</a></li>
 				            <li role="presentation" class="menuInsertShow"><a href="#my_contract" role="tab" data-toggle="tab">我的合同</a></li>
             				<li role="presentation" class="menuInsertShow"><a href="#my_remind" role="tab" data-toggle="tab">我的消息</a></li>
+            				<li role="presentation" class="menuInsertShow"><a href="#my_order" role="tab" data-toggle="tab">我的订单</a></li>
 							
-							<li><a href="http://oa001.w176-e0.ezwebtest.com/main/main.html">创业者之家</a></li>
+							<li><a href="http://www.51chuangyejia.com">创业者之家</a></li>
 							
 							<li class='divider'></li>
 							<li><a href="userSignIn!signOut.action">注销</a></li>
@@ -132,6 +133,7 @@
             <li role="presentation"><a href="#my_startups" role="tab" data-toggle="tab">我的公司</a></li>
             <li role="presentation"><a href="#my_product" role="tab" data-toggle="tab">我的产品</a></li>
             <li role="presentation"><a href="#my_contract" role="tab" data-toggle="tab">我的合同</a></li>
+            <li role="presentation"><a href="#my_order" role="tab" data-toggle="tab">我的订单</a></li>
           </ul>
         </div>
         <script type="text/javascript">
@@ -153,6 +155,7 @@
 			  	<div role="tabpanel" class="tab-pane" id="my_product"></div>
 			  	<div role="tabpanel" class="tab-pane" id="my_contract"></div>
 			  	<div role="tabpanel" class="tab-pane" id="my_identify"></div>
+			  	<div role="tabpanel" class="tab-pane" id="my_order"></div>
 			</div>
 
         	<script>
@@ -177,6 +180,7 @@
         			$("#my_contract").load("homeItem/my_contract.jsp");//将我的合同load进来
         			$("#my_remind").load("homeItem/my_remind.jsp");//将我的消息load进来团队
         			$("#my_identify").load("homeItem/my_identify.jsp");//将我的认证load进来团队
+        			$("#my_order").load("homeItem/my_order.jsp");//将我的订单load进来团队
         		});
         	</script>
         </div>

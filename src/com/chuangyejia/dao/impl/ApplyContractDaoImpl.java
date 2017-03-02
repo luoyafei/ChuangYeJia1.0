@@ -23,7 +23,6 @@ public class ApplyContractDaoImpl implements IApplyContractDao {
 
 	private HibernateTemplate hibernateTemplate;
 	
-	
 	public HibernateTemplate getHibernateTemplate() {
 		return hibernateTemplate;
 	}

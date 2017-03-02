@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>支付失败通知页面</title>
+</head>
+<body>
+	<strong>支付失败</strong>
+	<span id="jumpPage">3</span>秒后进行跳转到购物车
+	或点击<a href="http://localhost:8080/ChuangYeJia/pages/userConsole/shopCar/myShopCar.jsp">这里</a>进行跳转
+	<script type="text/javascript">
+		var jumpPage = document.getElementById("jumpPage");
+		var i = jumpPage.innerHTML;
+		var runTime = setInterval(function() {
+			document.getElementById("jumpPage").innerHTML = i--;
+			if(i == 0) {
+				clearInterval(runTime);
+				window.location.href = "http://localhost:8080/ChuangYeJia/pages/userConsole/shopCar/myShopCar.jsp";
+			}
+		}, 1000);
+	</script>
+</body>
+</html>

@@ -34,11 +34,12 @@ public class Order {
 	private User userid = null;					//买方
 	private Startups startupsId = null;			//卖方
 	private String addr = null;					//地址
-	private String status = "0";				//状态(0:订单未创建；1:订单成功；2:订单作废)
+	private String status = "0";				//状态(0:订单未创建；1:订单未支付；2:订单成功；3：订单失败； 4:订单作废；5：订单结束中；订单结束)
 	private Timestamp orderDate = null;
-	private String isSigned = "0";				//--是否签收(0:未签收，1:已签收)
+	private String isSigned = "0";				//--是否签收(0:未签收，1:已签收，2：已上传凭证;)
 	private String signedName = null;			//签单人姓名
 	private Timestamp signedDate = null;		//签收时间
+	private String certificate = null;			//凭证
 	
 	@Id
 	@GenericGenerator(name="uuid", strategy="uuid")
@@ -121,5 +122,10 @@ public class Order {
 	public void setSignedDate(Timestamp signedDate) {
 		this.signedDate = signedDate;
 	}
-	
+	public String getCertificate() {
+		return certificate;
+	}
+	public void setCertificate(String certificate) {
+		this.certificate = certificate;
+	}
 }

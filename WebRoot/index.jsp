@@ -40,8 +40,6 @@ request.setAttribute("flag", "index");
 		<link href="<%=path%>/assets/uikit/slideshow.css" rel="stylesheet"/>
 		<script src="<%=path%>/assets/uikit/slideshow.js"></script>
 
-		
-		
 		<style type="text/css">
 			body {
 				font-family: "微软雅黑";
@@ -114,9 +112,8 @@ request.setAttribute("flag", "index");
 								<span><img src="assets/img/logo.png" style="width: 18%; margin-bottom: 0px;padding-bottom: 0px;"></span>
 							</div>
 
-							<h1 style="margin-top: 0px; margin-bottom: 0px;color: #398BE5;">创业+</h1>
 							<p style="margin-bottom: 0px;">
-								<br> 欢迎来到创业加网站，在这里，我们能为你提供最具有潜力的项目，最可靠的资源，最优秀的团队，最专业的分析
+								<br> 欢迎来到创业+众创平台！在这里，我们能为您提供最具有潜力的项目、最可靠的资源、最优秀的团队、最专业的分析。
 							</p>
 							<p style="padding-top: 10px;margin-bottom: 0px;">
 								<a class="btn btn-primary" href="<%=path %>/pages/startups/create_startups.jsp" role="button" style="border-radius: 20px;">创建你的公司</a>

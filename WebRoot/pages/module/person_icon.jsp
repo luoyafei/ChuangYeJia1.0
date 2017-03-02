@@ -8,7 +8,7 @@
 	<li><a href="/ChuangYeJia/pages/userConsole/complete_data.jsp">编辑资料</a></li>
 	<li><a href="/ChuangYeJia/pages/userConsole/home.jsp">消息提醒&nbsp;&nbsp;<span class="uk-badge uk-badge-notification uk-badge-danger" id="remindBar"></span></a></li>
 	<li><a href="/ChuangYeJia/pages/userConsole/home.jsp">个人管理</a></li>
-	<li><a href="http://oa001.w176-e0.ezwebtest.com/main/main.html">创业者之家</a></li>
+	<li><a href="http://www.51chuangyejia.com">创业者之家</a></li>
 	<li class='divider'></li>
 	<li><a href="userSignIn!signOut.action">注销</a></li>
 	

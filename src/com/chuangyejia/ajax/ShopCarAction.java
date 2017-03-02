@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.UUID;
 import java.util.Vector;
 
 import javax.annotation.Resource;
@@ -254,80 +255,55 @@ public class ShopCarAction extends ActionSupport {
 			this.products = products;
 		}
 	}
-	public void settlementProducts() {
-		
-		HttpServletResponse response = ServletActionContext.getResponse();
-		response.setContentType("application/json; charset=utf-8");
-		PrintWriter out = null;
-		try {
-			out = response.getWriter();
-		} catch(IOException e) {}
-		
-		JsonObject jo = new JsonObject();
-		boolean success = true;
-		String reason = "";
+	
+	
+	
+	public String execute() {
 		User user = (User)ServletActionContext.getRequest().getSession().getAttribute("user");
 		if(user != null) {
 			Gson gson = new Gson();
-			ProductsJson pjs = gson.fromJson(settlementProducts, ProductsJson.class);
-			Product[] products = getProducts(pjs.getProducts());
-			
-			Order[] orders = new Order[products.length];
-			
-			for(int i = 0; i < products.length; i++) {
-				Order o = new Order();
-				int count = 1;
-				try {
-					count = Integer.parseInt(pjs.getProducts()[i].productCount);
-				} catch(NumberFormatException e) {
-					count = 1;
-				}
-				o.setProductCount(count);
-				o.setUnitPrice(products[i].getProductPrice());
-				o.setProductId(products[i]);
-				o.setUserid(user);
-				o.setStartupsId(products[i].getProductStartups());
-				o.setOrderDate(new Timestamp(System.currentTimeMillis()));
-			
-				orders[i] = o;
-			}
-
-			/*if(pIds.isRrightFormat()) {
-				@SuppressWarnings("unchecked")
-				Vector<Product> shopCar = (Vector<Product>)ServletActionContext.getRequest().getSession().getAttribute("shopCar");
+			try {
+				ProductsJson pjs = gson.fromJson(settlementProducts, ProductsJson.class);
+				Product[] products = getProducts(pjs.getProducts());
 				
-				if(iscs.deleteProductInShopCar(user.getUserId(), pIds.getIds())) {
-					Iterator<Product> iterP = shopCar.iterator();
-					for(String pId : pIds.getIds()) {
-						while(iterP.hasNext()) {
-							if(iterP.next().getProductId().equals(pId)) {
-								iterP.remove();
-								break;
-							}
+				if(products != null && products.length != 0) {
+					Order[] orders = new Order[products.length];
+					
+					for(int i = 0; i < products.length; i++) {
+						Order o = new Order();
+						int count = 1;
+						try {
+							count = Integer.parseInt(pjs.getProducts()[i].productCount);
+						} catch(NumberFormatException e) {
+							count = 1;
 						}
+						
+						o.setProductCount(count);
+						o.setUnitPrice(products[i].getProductPrice());
+						o.setProductId(products[i]);
+						o.setUserid(user);
+						o.setStartupsId(products[i].getProductStartups());
+						o.setOrderDate(new Timestamp(System.currentTimeMillis()));
+					
+						orders[i] = o;
 					}
-					ServletActionContext.getRequest().getSession().setAttribute("shopCar", shopCar);
+					ServletActionContext.getRequest().setAttribute("orders", orders);
+					ServletActionContext.getRequest().getSession().setAttribute("orders", orders);
+					
+					return "toConfirmOrder";
 				} else {
-					success = false;
-					reason = "删除商品失败！";
+					this.addFieldError("error", "异常！");
+					return ERROR;
 				}
-			} else {
-				success = false;
-				reason = "产品出错";
-			}*/
-			
-			
-			
+				
+			} catch(Exception e) {
+				this.addFieldError("error", "异常！");
+				return ERROR;
+			}
 		} else {
-			success = false;
-			reason = "尚未登陆！";
+			this.addFieldError("error", "请先进行登陆操作！");
+			return ERROR;
 		}
-		jo.addProperty("success", success);
-		jo.addProperty("reason", reason);
-		
-		out.print(jo.toString());
-		out.flush();
-		out.close();
 	} 
 	private Product[] getProducts(ProductJson[] pids) {
 		Product[] products = new Product[pids.length];

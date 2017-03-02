@@ -31,7 +31,7 @@ public class User {
 	private String userNickName = null;//用户昵称
 	private String userEmail = null;//用户邮箱
 	private String userRealName = null;//用户真实姓名
-	private String userPassword = "123456";
+	private String userPassword = "*********";
 	private String userIntroduce = null;//个人经历
 	private String userGender = null;
 	private Timestamp userBirthday = null;

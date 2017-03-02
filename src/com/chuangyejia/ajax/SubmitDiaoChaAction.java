@@ -40,7 +40,14 @@ public class SubmitDiaoChaAction extends ActionSupport {
     private String name;
     private String school;
     private String tel;
+    private String password;
 	
+    public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
     public String getField() {
 		return field;
 	}
@@ -89,7 +96,7 @@ public class SubmitDiaoChaAction extends ActionSupport {
 	
 	
 	private boolean checkData() {
-		if(name != null && name.length() < 16 && name.length() > 2 && tel.length() == 11 && tel.matches("[1]{1}[3-8]{1}\\d{9}")) {
+		if(name != null && name.length() < 16 && name.length() > 2 && tel.length() == 11 && tel.matches("[1]{1}[3-8]{1}\\d{9}") && password != null && password.length() >= 6 && password.length() <= 16) {
 			if(field.matches("\\d")) {
 				try {
 					field = UserUtil.userField[Integer.parseInt(field)];
@@ -114,11 +121,27 @@ public class SubmitDiaoChaAction extends ActionSupport {
 			User user = new User();
 			user.setUserNickName(name);
 			user.setUserTel(tel);
-			user.setUserPassword(UUID.randomUUID().toString().replace("-", "").substring(0, 6));
+			user.setUserPassword(UUID.randomUUID().toString().replaceAll("-", "").substring(0, 6));
 			user.setUserIp(ServletActionContext.getRequest().getRemoteAddr());
 			user.setUserIntroduce(undergo);
 			user.setStartAbility(category);
 			user.setUserField(field);
+			user.setUserPassword(password);
+			user.setUserAddress(school);
+			
+			if(category != null) {
+				if(category.contains("技术")) {
+					user.setCopartnerCategory("技术");
+				} else if(category.contains("推广")) {
+					user.setCopartnerCategory("推广");
+				} else if(category.contains("运营")) {
+					user.setCopartnerCategory("运营");
+				} else if(category.contains("资金")) {
+					user.setCopartnerCategory("资金");
+				} else {
+					user.setCopartnerCategory("其他");
+				}
+			}
 			
 			try {
 				if(us.saveUser(user))  {//将User对象存入数据库中。
