@@ -1,10 +1,18 @@
 package com.chuangyejia.dto;
 
+import java.util.Arrays;
+
 import com.chuangyejia.bean.Startups;
 import com.chuangyejia.tools.StartupsUtil;
 
 public class StartupsCreateDTO {
 
+	@Override
+	public String toString() {
+		return "StartupsCreateDTO [name=" + name + ", type=" + type + ", require=" + Arrays.toString(require)
+				+ ", stage=" + stage + ", address=" + address + ", brief=" + brief + ", detail=" + detail + ", video="
+				+ video + "]";
+	}
 	private String name;
 	private String type;
 	private String[] require;
@@ -69,7 +77,6 @@ public class StartupsCreateDTO {
 	 */
 	public boolean checkData() {
 		// TODO Auto-generated method stub
-		
 		return (notEmpty(name) && notEmpty(type) && notEmpty(stage) && notEmpty(address) && notEmpty(brief) && notEmpty(detail));
 		
 	}

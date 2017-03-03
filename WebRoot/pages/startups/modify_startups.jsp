@@ -239,7 +239,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								    <input type="radio" name="sd.type" class="type" autocomplete="off" value="0">其他
 								  </label>
 								</div>
-							</div>
+<!-- 								<input type="hidden" name="sd.type" value="" />
+ -->							</div>
 
 							<h4>
 								合伙人需求
@@ -263,6 +264,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								    <input type="checkbox" name="sd.require" class="require" autocomplete="off" value="0" />其他
 								  </label>
 								</div>
+								<!-- <input type="hidden" name="sd.require" value="" /> -->
 							</div>
 
 							<h4>
@@ -281,6 +283,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									    <input type="radio" name="sd.stage" class="stage" autocomplete="off" value="3">产品已经上线
 									  </label>
 								</div>
+								<!-- <input type="hidden" name="sd.stage" value="" /> -->
 							</div>
 
 							<div style="border-bottom: dashed #A9A9A9 1px;">
@@ -310,7 +313,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<label for="detail" class="col-sm-2 control-label" style="font-size: 18px;width: 100%;text-align: left;font-weight: normal;">详细内容&nbsp;&nbsp;</label>
 									<div class="col-sm-12">
 										<textarea id="detail" name="sd.detail" style="width:100%;height:200px;text-align: left;">
-											&nbsp;&nbsp;<s:property value="#request.sts.startupsDetail"/> 
+											<s:property value="#request.sts.startupsDetail"/> 
 										</textarea>
 									</div>
 								</div>
@@ -375,12 +378,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script>
 		$(document).ready(function() {
 			
-			$(".typeSpan<s:property value='#request.sts.startupsServiceType' />").attr("class", "btn btn-default active");
+			/* $(".typeSpan<s:property value='#request.sts.startupsServiceType' />").attr("class", "btn btn-default active");
 			var requireSpan = "<s:property value="#request.sts.startupsCopartnerRequire" />".split(",");
 			for(var i = 0; i < requireSpan.length-1; i++) {
 				$(".requireSpan"+requireSpan[i]).attr("class", "btn btn-default active");
 			}
-			$(".stageSpan<s:property value='#request.sts.startupsOperationStage' />").attr("class", "btn btn-default active");
+			$(".stageSpan<s:property value='#request.sts.startupsOperationStage' />").attr("class", "btn btn-default active"); */
 
 			
 			$("td").attr("style", "border-top: solid #333333 1px;");
@@ -396,28 +399,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			});
 			$("#sendStartups").bind('click', function() {
 				var name = $("#name").val().trim();
-				var type = $(".type").val().trim();
-				var require = $(".require").val().trim();
-				var stage = $(".stage").val().trim();
+				
+				var type = $('input:radio[name="sd.type"]:checked').val();
+				var require = $('input:checkbox[name="sd.require"]:checked').val();
+				var stage = $('input:radio[name="sd.stage"]:checked').val();
+				
 				var address = $("#address").val().trim();
 				var brief = $("#brief").val().trim();
 				var detail = $("#detail").val().trim();
 				var img = $(".upload_img");
 				var isOk = true;
 				
-				if(name === "") {
+				if(type == undefined) {
+					$("#errorSpan").text("请选择服务类型！");
+					isOk = false;
+				} else if(require == undefined) {
+					$("#errorSpan").text("请选择合伙人需求！");
+					isOk = false;
+				} else if(stage == undefined) {
+					$("#errorSpan").text("请选择运营阶段！");
+					isOk = false;
+				} else if(name === "") {
 					$("#errorSpan").text("请填写公司名称！");
 					isOk = false;
-				}
-				if(address === "") {
+				} else if(address === "") {
 					$("#errorSpan").text("请填写公司归属地！");
 					isOk = false;
-				}
-				if(brief === "") {
+				} else if(brief === "") {
 					$("#errorSpan").text("请填写公司简介！");
 					isOk = false;
-				}
-				if(detail === "") {
+				} else if(detail === "") {
 					$("#errorSpan").text("请填写公司详细内容！");
 					isOk = false;
 				}

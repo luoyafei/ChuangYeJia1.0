@@ -124,8 +124,6 @@ public class ModifyStartupsAction extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
-
-		
 		if(user != null) {
 			startupsModify = ss.getStartupsInId(startupsId);
 			if(!sd.checkData() || startupsModify == null || !startupsModify.getStartupsLeader().getUserId().equals(user.getUserId())) {

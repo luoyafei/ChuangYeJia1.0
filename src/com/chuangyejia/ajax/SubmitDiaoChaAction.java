@@ -24,6 +24,11 @@ import com.opensymphony.xwork2.ActionSupport;
 @Scope("prototype")
 public class SubmitDiaoChaAction extends ActionSupport {
 
+	/**
+	 * 默认用户密码
+	 */
+	private final String DEFAULT_PWD = "123456";
+	
 	private IUserService us;
 	public IUserService getUs() {
 		return us;
@@ -40,14 +45,7 @@ public class SubmitDiaoChaAction extends ActionSupport {
     private String name;
     private String school;
     private String tel;
-    private String password;
 	
-    public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
     public String getField() {
 		return field;
 	}
@@ -96,7 +94,7 @@ public class SubmitDiaoChaAction extends ActionSupport {
 	
 	
 	private boolean checkData() {
-		if(name != null && name.length() < 16 && name.length() > 2 && tel.length() == 11 && tel.matches("[1]{1}[3-8]{1}\\d{9}") && password != null && password.length() >= 6 && password.length() <= 16) {
+		if(name != null && name.length() < 16 && name.length() > 2 && tel.length() == 11 && tel.matches("[1]{1}[3-8]{1}\\d{9}")) {
 			if(field.matches("\\d")) {
 				try {
 					field = UserUtil.userField[Integer.parseInt(field)];
@@ -121,12 +119,11 @@ public class SubmitDiaoChaAction extends ActionSupport {
 			User user = new User();
 			user.setUserNickName(name);
 			user.setUserTel(tel);
-			user.setUserPassword(UUID.randomUUID().toString().replaceAll("-", "").substring(0, 6));
 			user.setUserIp(ServletActionContext.getRequest().getRemoteAddr());
 			user.setUserIntroduce(undergo);
 			user.setStartAbility(category);
 			user.setUserField(field);
-			user.setUserPassword(password);
+			user.setUserPassword(DEFAULT_PWD);
 			user.setUserAddress(school);
 			
 			if(category != null) {

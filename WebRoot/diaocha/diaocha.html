@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="swiper/swiper.min.css">
 	<script src="js/jquery-1.11.3.js"></script>
 	<script src="js/fontSize.js"></script>
-	<title>2016年创新创业问卷调查</title>
+	<title>2017年创新创业问卷调查</title>
 </head>
 <body>
 	<section class="toup"  id="t1">
@@ -23,7 +23,7 @@
 				<h1>亲爱的同学：您好！</h1>
 				<p>在“大众创业，万众创新”的时代</p>
 				<p>创新创业既能够全方位地提高自己的综合素质与能力，又能够以别样的态度笑傲青春年华。</p>
-				<p>为了解创新创业现状、深入分析创业团队的需求与痛点、从而更好地依托科协与创业+现状特点，提供融资与孵化平台，真正将创新创业的梦想变为实践。</p>
+				<p>为了解创新创业现状、深入分析创业团队的需求与痛点、从而更好地依托科协与现状特点，提供融资与孵化平台，真正将创新创业的梦想变为实践。</p>
 				<p>特组织此次调研活动，希望得到您的支持。</p>
 			</div>
 			<a href="javascript:;" class="jion">参加本调查</a>
@@ -66,7 +66,6 @@
                 <input type="text" name="name" id="name" class="phone" maxlength="16" placeholder="您的名字"/>
                 <input type="text" name="school" id="school" class="phone" maxlength="16" placeholder="您的学校"/>
                 <input type="tel" name="tel" id="tel" class="phone" maxlength="11" placeholder="手机号码"/>
-                <input type="password" name="password" id="pwd" maxlength="16" class="phone" placeholder="密码"/>
                 <textarea rows="5" cols="" name="undergo" id="undergo" class="undergo" maxlength="255" placeholder="您在大学期间参与的创新创业活动？（正在创业的项目、参与过大型比赛、参加过讲座、沙龙、夏令营）"></textarea>
                 <textarea name="category" id="category" class="undergo" maxlength="255" placeholder="您觉得自己身上具备哪方面的创业能力？(某一方面特长、掌握的技术、推广运营资源、用于创业的资金）"></textarea>
                 
@@ -94,17 +93,15 @@
             var name = $("#name").val().trim().trim();
             var school = $("#school").val().trim();
             var tel = $("#tel").val().trim();
-            var pwd = $("#pwd").val().trim();
 
-            if(checkChooseField(field) && checkOtherField(undergo) && pwd != null && pwd.length >= 6 && checkOtherField(category) && checkInput(name) && checkInput(school) && checkTel(tel)) {
+            if(checkChooseField(field) && checkOtherField(undergo) && checkOtherField(category) && checkInput(name) && checkInput(school) && checkTel(tel)) {
                 $.post("submitDiaoCha!justDoIt.action", {
                     field : field,
                     undergo : undergo,
                     category : category,
                     name : name,
                     school : school,
-                    tel : tel,
-                    password : pwd
+                    tel : tel
                 }, function(data, textStatus) {
                 	if(data) {
                 		alert("提交成功！谢谢参与！");

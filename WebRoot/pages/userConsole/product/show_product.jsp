@@ -247,18 +247,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            					</div>
 								</div>
 								<div class="modal-footer">
-									<div class="row">
-									  	<div class="col-xs-12 col-md-4">
+									<div class="row" style="text-align: center;">
+									  	<div class="col-xs-12 col-md-6">
 											<a class="btn btn-default" onclick="addShopCar()" style="border: solid #A9A9A9 2px; border-radius: 10px;">
 												加入购物车 &nbsp;<span class="glyphicon glyphicon-shopping-cart"></span>
 											</a>
 										</div>
-									  	<div class="col-xs-12 col-md-4">
+									  	<!-- <div class="col-xs-12 col-md-4">
 											<a class="btn btn-danger" style="border-radius: 10px;" data-toggle="modal" data-target="">
 												直接购买 &nbsp;<i class="uk-icon-shopping-bag"></i>
 											</a>		
-										</div>
-									  	<div class="col-xs-12 col-md-4">
+										</div> -->
+									  	<div class="col-xs-12 col-md-6">
 											<a class="btn btn-danger" href="/ChuangYeJia/pages/userConsole/shopCar/myShopCar.jsp" style="border-radius: 10px;" data-toggle="modal" data-target="">
 												进入购物车&nbsp;<i class="uk-icon-shopping-bag"></i>
 											</a>
