@@ -31,7 +31,7 @@ public class DownLineChat {
 	private User fromUserId = null;
 	private User toUserId = null;
 	private Timestamp createDate = null;
-	private String dealState = "0";
+	private String dealState = "0";//(0:未处理； 1:已处理；2:延迟处理；3:废弃；)
 	private String comment = "";
 	private String args = "";//增加冗余字段，防止日后需要增加字段，用来设置外键
 	
