@@ -122,8 +122,11 @@ request.setAttribute("flag", "startups");
 					<img class="" src="../../assets/img/project/project_list1.png" alt="">
 					<div class="container" style="padding-right: 0px;padding-left: 0px;">
 						<div class="carousel-caption">
+						
 							<div style="width: 50%;float: right;">
-								<p style="font-size: 30px;padding: 0 auto;margin: 0 auto;">国家<span style="font-size: 62px;">最新</span>科研项目</p>
+								<img data-holder-rendered="true" src="/ChuangYeJia/pages/title/chuangyejia_ad.jpg" style="width: 65%; height: 65%; opacity:0.5" class="img-rounded" />
+							
+								<%-- <p style="font-size: 30px;padding: 0 auto;margin: 0 auto;">国家<span style="font-size: 62px;">最新</span>科研项目</p>
 								<p style="font-size: 27px;padding: 0 auto;margin: 0 auto;">
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -135,7 +138,7 @@ request.setAttribute("flag", "startups");
 								<br />
 								<p style="float: right;"><a role="button" href="javascript:void(0)" class="btn btn-primary btn-lg" style="padding: 4px 12px;border-radius: 30px;border: solid 2px;">更多内容</a></p>
 								<br /><br /><br />
-								<br /><br />
+								<br /><br /> --%>
 							</div>
 						</div>
 					</div>

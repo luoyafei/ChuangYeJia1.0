@@ -253,7 +253,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div role="tabpanel" class="tab-pane" id="profile">
 					<div style="width: 80%;margin: 30px auto;">
 
-						<div class="" style="width: 100%;height: 100px;padding-bottom: 20px;border-bottom: dashed #A9A9A9 1px;">
+						<div class="" style="width: 100%;height: 120px;padding-bottom: 20px;border-bottom: dashed #A9A9A9 1px;">
 							<div style="width: 20%;height: 100%;float: left;">
 								<h4>公司总监</h4>
 							</div>
