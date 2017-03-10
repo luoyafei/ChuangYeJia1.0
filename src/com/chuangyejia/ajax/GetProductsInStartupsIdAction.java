@@ -67,6 +67,16 @@ public class GetProductsInStartupsIdAction extends ActionSupport {
 	}
 
 
+	/**
+	 * 跨域字段
+	 */
+	private String callback;
+	public String getCallback() {
+		return callback;
+	}
+	public void setCallback(String callback) {
+		this.callback = callback;
+	}
 	public void getProductsInStartups() {
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("application/json; charset=utf-8");
@@ -88,13 +98,18 @@ System.out.println("GetProductInStartupsIdAction中获取输出管道出错！")
 			jo.add("ps", gson.toJsonTree(prs));
 			success = true;
 		}
-		
 		jo.addProperty("success", success);
-		out.print(jo.toString());
+		
+		/**
+		 * 增加手机端跨域跳转
+		 */
+		if(callback != null && callback.equals("productsJsonpCallback")) {
+			out.print(callback + "(" + jo.toString() + ")");
+		} else
+			out.print(jo.toString());
 		
 		out.flush();
 		out.close();
-		
 	}
 	
 	public void getProductsInConsoleForUser() {

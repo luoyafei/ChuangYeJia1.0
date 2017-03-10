@@ -186,11 +186,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							    			}
 							    		</script>
 							    	</s:if>
+							    	
+						    		<s:if test="#request.citem.status == 6">
+						    			<label>退款处理中</label>
+						    		</s:if>
+						    		<s:elseif test="#request.citem.status == 7">
+						    			<label>退款失败</label>
+						    		</s:elseif>
+						    		<s:elseif test="#request.citem.status == 8">
+						    			<label>退款操作成功</label>
+						    		</s:elseif>
+						    		<s:elseif test="#request.citem.isSigned == 0 || #request.citem.isSigned == 4">
+						    			<button class="btn btn-danger" onclick="overService()">退款申请</button>
+							    		<script type="text/javascript">
+							    			function overService() {
+							    				if(confirm("是否确认进行退款服务？")) {
+							    					$.post("dealOrder!refundMethod.action", {
+							    						createdOrderId : "<s:property value='#request.citem.orderId'/>"
+							    					}, function(data, textStatus) {
+							    						if(textStatus == "success") {
+							    							if(data.success) {
+							    								alert("恭喜您！操作成功！");
+							    								location.reload();
+							    							} else
+							    								alert("抱歉！操作失败！");
+							    						}
+							    					}, "json");
+							    				}
+							    			}
+							    		</script>
+						    		</s:elseif>
 							    	<s:elseif test="#request.citem.isSigned == 1">
 							    		<label>服务已结束</label>
 							    	</s:elseif>
-							    	<s:elseif test="#request.citem.isSigned == 2">
-							    		<label>卖家已上传结束服务凭证</label>
+							    	<s:elseif test="#request.citem.isSigned == 2 || #request.citem.isSigned == 3">
+							    		<label>卖家已上传结束服务凭证，管理员正在审核中</label>
+							    	</s:elseif>
+							    	<s:elseif test="#request.citem.isSigned == 5">
+							    		<label>管理员已通过卖家上传的审核，服务结束</label>
 							    	</s:elseif>
 							    </h3>
 							  </div>

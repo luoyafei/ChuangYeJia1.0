@@ -230,11 +230,8 @@ if(session.getAttribute("user")==null || ((User)session.getAttribute("user")).ge
 			</div>
 		</div>
 	</div>
-	
-	
 	<jsp:include page="../module/bottom.jsp" flush="true" />
 </body>
-	<%-- <script src="<%=path%>/assets/manualSource/js/chat.js"></script> --%>
 	<script type="text/javascript">
 	$("#send_downLine").click(function() {
 		var toUserId = location.search.split("=")[1];
@@ -258,6 +255,11 @@ if(session.getAttribute("user")==null || ((User)session.getAttribute("user")).ge
 		$(this).tab('show')
 	})
 	$(document).ready(function() {
+		
+		$.post("downLineAction!justDoit.action", {
+			toUserId : "<s:property value='#parameters.toUserId'/>"
+		}, function(data, textStatus) {}, "json");
+	
 		$("#downLine_enter").hide();
 		
 		$("td").attr("style", "border-top: solid #333333 1px;");

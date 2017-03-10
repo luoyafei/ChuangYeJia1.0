@@ -76,10 +76,20 @@ public class ProvideUserListForShowAction extends ActionSupport {
 	}
 	
 	
+	/**
+	 * 跨域字段
+	 */
+	private String callback;
+	public String getCallback() {
+		return callback;
+	}
+	public void setCallback(String callback) {
+		this.callback = callback;
+	}
+
+	
 	public void getUsers() {
 		
-
-
 		/**
 		 * 暂时前台尚未提供该功能，先直接赋值，
 		 */
@@ -159,12 +169,12 @@ public class ProvideUserListForShowAction extends ActionSupport {
 		}
 		
 		try {
-			response.getWriter().print(jo.toString());
+			if(callback != null && callback.equals("userJsonpCallback")) {
+				response.getWriter().print(callback + "(" + jo.toString() + ")");
+			} else
+				response.getWriter().print(jo.toString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 	}
-
-	
 }

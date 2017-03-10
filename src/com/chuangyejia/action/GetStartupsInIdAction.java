@@ -1,6 +1,9 @@
 package com.chuangyejia.action;
 
+import java.io.IOException;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
@@ -8,6 +11,8 @@ import org.springframework.stereotype.Component;
 
 import com.chuangyejia.service.IStartupsService;
 import com.chuangyejia.tools.StartupsTempShow;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
@@ -73,4 +78,49 @@ public class GetStartupsInIdAction extends ActionSupport {
 		}
 	}
 
+	
+	/**
+	 * 跨域字段
+	 */
+	private String callback;
+	public String getCallback() {
+		return callback;
+	}
+	public void setCallback(String callback) {
+		this.callback = callback;
+	}
+	public void getStartupsDetailForPhone() {
+		// TODO Auto-generated method stub
+		HttpServletResponse response = ServletActionContext.getResponse();
+		
+		response.setContentType("application/json; charset=utf-8");
+		
+		Gson gson = new Gson();
+		JsonObject jo = new JsonObject();
+		if(item != null && item.trim().hashCode() != 0) {
+			StartupsTempShow sts = ss.getStartupsTempShowInId(item);
+			if(sts != null) {
+				jo.addProperty("success", true);
+				jo.add("sts", gson.toJsonTree(sts));	
+			} else {
+				jo.addProperty("success", false);
+				jo.addProperty("reason", "无此公司!");
+			}
+		} else {
+			jo.addProperty("success", false);
+			jo.addProperty("reason", "item is null !");
+		}
+		
+		try {
+			if(callback != null && callback.equals("startupsDetailJsonpCallback")) {
+				response.getWriter().print(callback + "(" + jo.toString() + ")");
+			} else
+				response.getWriter().print(jo.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+
+	
 }

@@ -34,9 +34,9 @@ public class Order {
 	private User userid = null;					//买方
 	private Startups startupsId = null;			//卖方
 	private String addr = null;					//地址
-	private String status = "0";				//状态(0:订单未创建；1:订单未支付；2:订单成功；3：订单失败； 4:订单作废；5：订单结束中；订单结束)
+	private String status = "0";				//状态(0:订单未创建；1:订单未支付；2:订单成功；3：订单失败； 4:订单作废；5：订单结束；6:退款处理中；7：退款失败；8：退款操作成功；)
 	private Timestamp orderDate = null;
-	private String isSigned = "0";				//--是否签收(0:未签收，1:已签收，2：已上传凭证;)
+	private String isSigned = "0";				//--是否签收(0:未签收，1:已签收，2：已上传凭证;3:凭证审核中；4：未通过；5:通过)
 	private String signedName = null;			//签单人姓名
 	private Timestamp signedDate = null;		//签收时间
 	private String certificate = null;			//凭证

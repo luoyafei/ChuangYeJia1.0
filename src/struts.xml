@@ -175,7 +175,6 @@
 		<!-- 处理点击公司想要访问该公司信息的页面时，根据公司的id，将公司的信息获取 -->
 		<action name="getStartupsItem" class="getStartupsInIdAction">
 			<result name="success">/pages/startups/show_startups.jsp</result>
-			<result name="successPhone">/pages/startups/show_startups_phone.jsp</result>
 			<result name="none" type="redirect">/index.jsp</result>
 		</action>
 		

@@ -20,7 +20,6 @@ import com.chuangyejia.bean.User;
 import com.chuangyejia.service.IOrderService;
 import com.chuangyejia.tools.SendMessageUtil;
 import com.chuangyejia.tools.UploadFileUtil;
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -86,7 +85,11 @@ public class DealOrder extends ActionSupport {
 		this.receivedOrderId = receivedOrderId;
 	}
 	
-	
+
+	/**
+	 * 设置为正在审核
+	 */
+	private final String Set_Sign = "3";
 	/**
 	 * 更新订单的卖家服务凭证
 	 */
@@ -141,7 +144,8 @@ System.out.println("用户上传认证图片时，获取输出的管道出错");
 				 * 将刚上传的凭证设入订单
 				 */
 				order.setCertificate(Certificate_DB + user.getUserId() + File.separator + pictureFileName);
-				order.setIsSigned("2");
+				
+				order.setIsSigned(Set_Sign);
 				boolean result = ios.updateOrders(new Order[]{order});
 				jo.addProperty("status", result);
 					
@@ -182,7 +186,6 @@ System.out.println("用户上传认证图片时，获取输出的管道出错");
 		HttpServletResponse response = ServletActionContext.getResponse();
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		Gson gson = new Gson();
 		JsonObject jo = new JsonObject();
 		
 		User user = (User) request.getSession().getAttribute("user");
@@ -215,5 +218,45 @@ System.out.println("用户上传认证图片时，获取输出的管道出错");
 		return;
 	}
 	
+	
+	private final String Refund_No = "6";//退款处理中
+	/**
+	 * 进行订单退款的状态更新
+	 * @throws UnsupportedEncodingException 
+	 */
+	public void refundMethod() throws UnsupportedEncodingException {
+		
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpServletResponse response = ServletActionContext.getResponse();
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		JsonObject jo = new JsonObject();
+		
+		User user = (User) request.getSession().getAttribute("user");
+		PrintWriter out = null; 
+		try {
+			out = response.getWriter();
+		} catch(IOException e) {}
+		
+		boolean success = true;
+		
+		if(user != null) {
+			Order o = ios.getOrder(createdOrderId);
+			/**
+			 * 将订单设置为退款处理中
+			 */
+			o.setStatus(Refund_No);
+			if(!ios.updateOrders(new Order[]{o})) {
+				success = false;
+			}
+		} else
+			success = false;
+		jo.addProperty("success", success);
+		out.print(jo.toString());
+		out.flush();
+		out.close();
+		
+		
+	}
 	
 }

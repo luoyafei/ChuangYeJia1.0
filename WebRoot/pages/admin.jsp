@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*, java.util.*" %>
     <%
-    request.setCharacterEncoding("UTF-8");
+    out.print("<label>停止服务！</label>");
+/*     request.setCharacterEncoding("UTF-8");
     response.setCharacterEncoding("UTF-8");
     
     String span = request.getParameter("span");
@@ -37,7 +38,7 @@
         		System.out.println("失败");
         	}
         }
-    }
+    } */
     
     %>
     

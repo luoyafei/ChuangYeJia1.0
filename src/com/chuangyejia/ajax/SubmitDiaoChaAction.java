@@ -94,7 +94,7 @@ public class SubmitDiaoChaAction extends ActionSupport {
 	
 	
 	private boolean checkData() {
-		if(name != null && name.length() < 16 && name.length() > 2 && tel.length() == 11 && tel.matches("[1]{1}[3-8]{1}\\d{9}")) {
+		if(name != null && name.length() < 16 && name.length() >= 2 && tel.length() == 11 && tel.matches("[1]{1}[3-8]{1}\\d{9}")) {
 			if(field.matches("\\d")) {
 				try {
 					field = UserUtil.userField[Integer.parseInt(field)];

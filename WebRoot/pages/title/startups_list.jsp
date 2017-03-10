@@ -119,29 +119,11 @@ request.setAttribute("flag", "startups");
 			</ol>
 			<div class="carousel-inner" role="listbox">
 				<div class="item active">
-					<img class="" src="../../assets/img/project/project_list1.png" alt="">
-					<div class="container" style="padding-right: 0px;padding-left: 0px;">
-						<div class="carousel-caption">
-						
-							<div style="width: 50%;float: right;">
-								<img data-holder-rendered="true" src="/ChuangYeJia/pages/title/chuangyejia_ad.jpg" style="width: 65%; height: 65%; opacity:0.5" class="img-rounded" />
-							
-								<%-- <p style="font-size: 30px;padding: 0 auto;margin: 0 auto;">国家<span style="font-size: 62px;">最新</span>科研项目</p>
-								<p style="font-size: 27px;padding: 0 auto;margin: 0 auto;">
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									人工智能3.0时代
-									</p>
-								<p style="font-size: 27px;padding: 0 auto;margin: 0 auto;">正式<span style="font-size: 38px;">开启</span></p>
-								<p style="font-size: 15px;padding: 0 auto;margin-top: 5px; margin-bottom: 0px;">&nbsp;&nbsp;&nbsp;详情请见公司内页......</p>
-								<br />
-								<p style="float: right;"><a role="button" href="javascript:void(0)" class="btn btn-primary btn-lg" style="padding: 4px 12px;border-radius: 30px;border: solid 2px;">更多内容</a></p>
-								<br /><br /><br />
-								<br /><br /> --%>
-							</div>
-						</div>
-					</div>
+					<img class="" src="/ChuangYeJia/pages/title/chuangjiaAd1.jpg" alt="">
+					
+					<!-- <div class="container" style="padding-right: 0px;padding-left: 0px;">
+						<div class="carousel-caption"></div>
+					</div> -->
 				</div>
 				<div class="item">
 					<img class="second-slide" src="../../assets/img/project/project_list1.png" alt="Second slide">
@@ -149,7 +131,10 @@ request.setAttribute("flag", "startups");
 					<div class="container" style="padding-right: 0px;padding-left: 0px;">
 						<div class="carousel-caption">
 							<div style="width: 50%;float: right;">
-								<p style="font-size: 30px;padding: 0 auto;margin: 0 auto;">国家<span style="font-size: 62px;">最新</span>科研项目</p>
+							<p style="padding: 0 auto;margin: 0 auto;">欢迎大家加入微信公众账号</p>
+								<h1 style="padding: 0 auto;margin: 0 auto;color: white;">大学生创业同盟会公众号</h1>
+							<img data-holder-rendered="true" src="/ChuangYeJia/pages/title/chuangyejia_ewm.jpg" style="width: 65%; height: 65%; opacity:0.5" class="img-rounded" />
+								<%-- <p style="font-size: 30px;padding: 0 auto;margin: 0 auto;">国家<span style="font-size: 62px;">最新</span>科研项目</p>
 								<p style="font-size: 27px;padding: 0 auto;margin: 0 auto;">
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -160,7 +145,7 @@ request.setAttribute("flag", "startups");
 								<br />
 								<p style="float: right;"><a role="button" href="javascript:void(0)" class="btn btn-primary btn-lg" style="padding: 4px 12px;border-radius: 30px;border: solid 2px;">更多内容</a></p>
 								<br /><br /><br />
-								<br /><br />
+								<br /><br /> --%>
 							</div>
 						</div>
 					</div>

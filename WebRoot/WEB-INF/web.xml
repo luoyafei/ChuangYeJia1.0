@@ -15,7 +15,6 @@
     <param-name>userRealPhotoVir</param-name>
     <param-value>/ChuangYeJia/uploadHead/userRealPhoto/</param-value>
   </context-param>
-  
   <!-- 用户上传头像的物理路径以及虚拟路径 -->
   <context-param>
     <param-name>uploadPictureUrlDisk</param-name>
@@ -39,6 +38,14 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath:beans.xml</param-value>
   </context-param>
+  
+  <!--  -->
+  <context-param>
+  	<param-name>WebDomain</param-name>
+  	<!-- <param-value>www.chuangyejia.top</param-value> -->
+  	<param-value>localhost:8080</param-value>
+  </context-param>
+  
   <filter>
     <filter-name>checkUserLogin</filter-name>
     <filter-class>com.chuangyejia.filter.CheckLoginFilter</filter-class>

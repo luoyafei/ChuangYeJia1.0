@@ -165,8 +165,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							  
 							  <div class="panel-heading">
 							    <h3 class="panel-title">服务是否结束：
-							    	<s:if test="#request.ritem.isSigned == 0">
-							    	
+							    	<s:if test="#request.ritem.isSigned == 0 || #request.ritem.isSigned == 4">
+							    		<s:if test="#request.ritem.isSigned == 4">
+							    			审核未通过
+							    		</s:if>
+							    		
 			    						<input type="file" id="picture" style="display:inline;" name="picture" accept="image/*"/>
 										<button id="uploadBtn" type="button" class="uk-button uk-button-danger" onclick="uploadService()">
 											<span id="uploadInfo">上传服务凭证</span>
@@ -214,13 +217,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				                        }	
 							    		</script>
 							    	</s:if>
-							    	<s:elseif test="#request.ritem.isSigned == 2">
-							    		<label>已上传结束服务凭证</label>
+							    	<s:elseif test="#request.citem.isSigned == 2 || #request.citem.isSigned == 3">
+							    		<label>卖家已上传结束服务凭证，管理员正在审核中</label>
 							    	</s:elseif>
-							    	<s:elseif test="#request.ritem.isSigned == 1">
-							    		<label>服务已结束</label>
+							    	<s:elseif test="#request.citem.isSigned == 5">
+							    		<label>管理员已通过卖家上传的审核，服务结束</label>
 							    	</s:elseif>
-							    
+							    	<s:elseif test="#request.citem.isSigned == 1">
+							    		<label>买家结束服务</label>
+							    	</s:elseif>
 							    </h3>
 							  </div>
 							  
