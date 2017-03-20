@@ -75,15 +75,12 @@ public class SupportFourStartupsAction extends ActionSupport {
 	public void setCallback(String callback) {
 		this.callback = callback;
 	}
-
-	
-	
 	public void getStartups() {
 		
 		/**
 		 * 暂时前台尚未提供该功能，先直接赋值，
 		 */
-		
+
 		int startTrue = 0;
 		int lengthTrue = 4;
 		try {

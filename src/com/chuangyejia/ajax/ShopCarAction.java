@@ -3,9 +3,7 @@ package com.chuangyejia.ajax;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
-import java.util.Arrays;
 import java.util.Iterator;
-import java.util.UUID;
 import java.util.Vector;
 
 import javax.annotation.Resource;
@@ -17,7 +15,6 @@ import org.springframework.stereotype.Component;
 
 import com.chuangyejia.bean.Order;
 import com.chuangyejia.bean.Product;
-import com.chuangyejia.bean.Startups;
 import com.chuangyejia.bean.User;
 import com.chuangyejia.service.IProductService;
 import com.chuangyejia.service.IShopCarService;

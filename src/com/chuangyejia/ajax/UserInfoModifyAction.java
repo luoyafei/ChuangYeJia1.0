@@ -138,31 +138,33 @@ System.out.println("用户修改信息，通过ajax,UserInfoModifyAction的modif
 
 		if(error.isSuccess()) {
 			
-			
 			User user = (User)session.getAttribute("user");
-			
-			User userToSave = user;
-			
-			String copartnerCategory = UserUtil.copartnerCategory[Integer.parseInt(uid.getCategory())];
-			String userField = UserUtil.userField[Integer.parseInt(uid.getField())];
-			
-			userToSave.setUserNickName(uid.getNickname().trim());
-			userToSave.setUserAddress(uid.getAddress().trim());
-			userToSave.setUserIntroduce(uid.getProfile().trim());
-			
-			userToSave.setCopartnerCategory(copartnerCategory);
-			userToSave.setUserField(userField);
-			userToSave.setStartAbility(uid.getAbility());
-			userToSave.setIntroduceVideo(uid.getVideo().trim());
-			
-			boolean result = us.updateUser(userToSave);
-			if(!result) {
-				error.setUpdate("更新失败！");
+			if(user != null) {
+				User userToSave = user;
+				
+				String copartnerCategory = UserUtil.copartnerCategory[Integer.parseInt(uid.getCategory())];
+				String userField = UserUtil.userField[Integer.parseInt(uid.getField())];
+				
+				userToSave.setUserNickName(uid.getNickname().trim());
+				userToSave.setUserAddress(uid.getAddress().trim());
+				userToSave.setUserIntroduce(uid.getProfile().trim());
+				
+				userToSave.setCopartnerCategory(copartnerCategory);
+				userToSave.setUserField(userField);
+				userToSave.setStartAbility(uid.getAbility());
+				userToSave.setIntroduceVideo(uid.getVideo().trim());
+				
+				boolean result = us.updateUser(userToSave);
+				if(!result) {
+					error.setUpdate("更新失败！");
+					error.setSuccess(false);
+				} else {
+					error.setSuccess(true);
+					session.setAttribute("user", userToSave);
+				}
+				
+			} else 
 				error.setSuccess(false);
-			} else {
-				error.setSuccess(true);
-				session.setAttribute("user", userToSave);
-			}
 			
 		} else
 			error.setSuccess(false);
@@ -178,4 +180,56 @@ System.out.println("用户修改信息，通过ajax,UserInfoModifyAction的modif
 		
 	}
 
+	/**
+	 * 修改用户的基本信息,手机端
+	 */
+	public void modifyInfoForSingleField() {
+		
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");  
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e) {}
+		boolean result = false;
+		User user = (User)session.getAttribute("user");
+		/**
+		 * 确保用户已经登陆
+		 */
+		if(user != null) {
+			User userToSave = user;
+			if(uid.getNickname() != null && uid.getNickname() != "") {
+				userToSave.setUserNickName(uid.getNickname().trim());
+			}
+			if(uid.getAddress() != null && uid.getAddress() != "") {
+				userToSave.setUserAddress(uid.getAddress().trim());
+			}
+			if(uid.getProfile() != null && uid.getAddress() != "") {
+				userToSave.setUserIntroduce(uid.getProfile().trim());
+			}
+			if(uid.getCategory() != null && uid.getCategory() != "") {
+				String copartnerCategory = UserUtil.copartnerCategory[Integer.parseInt(uid.getCategory())];
+				userToSave.setCopartnerCategory(copartnerCategory);
+			}
+			if(uid.getField() != null && uid.getField() != "") {
+				String userField = UserUtil.userField[Integer.parseInt(uid.getField())];
+				userToSave.setUserField(userField);
+			}
+			if(uid.getAbility() != null && uid.getAbility() != "") {
+				userToSave.setStartAbility(uid.getAbility());
+			}
+			
+			result = us.updateUser(userToSave);
+		}
+		JsonObject jo = new JsonObject();
+		jo.addProperty("success", result);
+		
+		out.print(jo.toString());
+		
+		out.flush();
+		out.close();
+		
+	}
+	
 }

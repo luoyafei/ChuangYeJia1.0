@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+
+    <meta charset="utf-8">
+
+    <title>手机网站</title>
+
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="css/grzx.css"/>
+
+    <style>
+
+        body{font-size:1em;font-family:"Microsoft YaHei",Arial; overflow-x:hidden; overflow-y:auto;padding-bottom:120px;}
+        .viewport{ max-width:640px; min-width:300px; margin:0 auto;}
+        a{color:#fff;text-decoration: none;}
+        ul{list-style: none;padding-left:0px;}
+    </style>
+	<script type="text/javascript" src="js/jquery-1.11.3.js" ></script>
+</head>
+<body>
+    <div class="viewport">
+        <img src="" class="startupsCover" id="gongsi_img"/>
+        <h3 class="gongsi_name">
+        	<span class="startupsName"></span>
+        </h3>
+        <h4 class="gongsi_name">
+        	<span class="startupsServiceType"></span>&nbsp;&nbsp;
+        	<span class="startupsOperationStage"></span>
+        </h4>
+        <h4 class="gongsi_name">合伙人需求:
+        		<span class="startupsCopartnerRequire"></span>
+        </h4>
+
+        <ul class="ul4">
+            <li style="border-bottom: 1px solid #aaa;padding-bottom: 15px;margin-top: 30px;">
+                <h4 class="gongsi_name" style="color:#e4393c;">公司详细介绍</h4>
+            </li>
+            <li style="border-bottom:1px solid #aaa;overflow:hidden;height:40px;line-height:40px;">
+                <h4 class="gongsi_name ll" style="color:#2c2c2c;margin-top:0;">所属高校</h4>
+                <span style="float:right;color:#aaa;">
+                	<span class="startupsAddress"></span>
+                </span>
+            </li>
+            <li style="border-bottom:1px solid #aaa;overflow:hidden;height:auto;padding-bottom:6px;">
+                <h4 class="gongsi_name ll" style="color:#2c2c2c;margin-top: 11px;margin-bottom: 6px;">公司简介</h4>
+                <span class="rr">
+                	<span class="startupsBrief"></span>
+                </span>
+            </li>
+            <li style="border-bottom:1px solid #aaa;overflow:hidden;height:auto;padding-bottom:6px;">
+                <h4 class="gongsi_name ll" style="color:#2c2c2c;margin-top: 11px;margin-bottom: 6px;">公司详情</h4>
+                <span class="rr">
+                	<span class="startupsDetail"></span>
+                </span>
+            </li>
+            <li style="border-bottom:1px solid #aaa;overflow:hidden;height:auto;padding-bottom:6px;">
+                <h4 class="gongsi_name" style="color:#2c2c2c;margin-top:10px;">公司成员</h4></br>
+                <span id="startupsMember">
+	                <a href="" class="chenyuan copartnerDetail copartnerDetailForCloneLabel">
+	                    <img src="" class="copartnerPhoto"/></br>
+	                    <span class="copartnerName"></span>
+	                </a>
+				</span>
+
+            </li>
+            <li style="border-bottom:1px solid #aaa;overflow:hidden;height:auto;padding-bottom:6px;">
+                <h4 class="gongsi_name" style="color:#2c2c2c;margin-top:10px;">创业产品</h4></br>
+                <span id="productSpan">
+	                <a href="" class="chenyuan productDetail productDetailForCloneLabel">
+	                    <img src="" class="productCover" style="border-radius:0;border:0;"/>
+	                    <span class="productName"></span>
+	                </a>
+				</span>
+            </li>
+        </ul>
+
+        <a href="" class="bta1">联系ta</a><a href="" class="bta2">申请加入</a>
+
+    </div>
+    <div id="footer">
+        <style>
+            #footer{
+                width:100%;
+                position:fixed;
+                bottom:0;
+            }
+            #footer>ul{
+                width: 100%;
+                overflow: hidden;
+                margin-bottom: 0;
+                text-align: center;
+                margin-left: -8px;
+            }
+            #footer>ul>li{
+                width:25%;
+                float:left;
+                border-top:1px solid #000;
+                border-left:none;
+                border-bottom:none;
+                background:#fff;
+                padding-bottom: 2.5px;
+            }
+            #footer>ul>li a{color:#000;}
+            #footer>ul>li img{
+                width:34.8%;
+                margin-bottom: -7px;
+            }
+            #footer>ul>li span{
+                display: inline-block;
+                font-size: 0.73em;
+            }
+        </style>
+        <ul>
+            <li>
+                <a href="index.html">
+                    <img src="image/shouye2.png"/><br/>
+                    <span>首页</span>
+
+                </a>
+            </li>
+            <li>
+                <a href="zixun.html">
+                    <img src="image/fabu.png"/><br/>
+                    <span>发布</span>
+                </a>
+            </li>
+            <li>
+                <a href="jingxuangs.html">
+                    <img src="image/xixi.png"/><br/>
+                    <span>精选</span>
+                </a>
+            </li>
+            <li>
+                <a href="demo01.html">
+                    <img src="image/wode.png" alt=""/><br/>
+                    <span>我的</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    
+    <script>
+    	$(document).ready(function() {
+    		
+    		var item = window.location.href.split("item")[1].substr(1, 32);
+    		if(item != null && item != "") {
+    			$.ajax({
+				　　type : "GET",
+				　　url: "/ChuangYeJia/getStartupsItem!getStartupsDetailForPhone.action",
+				　　dataType : "jsonp",
+					data : {
+		             	item : item
+		             },
+				 	jsonpCallback: "startupsDetailJsonpCallback",  
+				　　success : function(sdata) {
+						if(sdata.success) {
+							var sts = sdata.sts;
+							$(".startupsCover").attr("src", sts.startupsCover);
+							$(".startupsName").text(sts.startupsName);
+							$(".startupsServiceType").text(sts.startupsServiceType);
+							$(".startupsOperationStage").text(sts.startupsOperationStage);
+							$(".startupsCopartnerRequire").text(sts.startupsCopartnerRequire);
+							$(".startupsAddress").text(sts.startupsAddress);
+							$(".startupsBrief").text(sts.startupsBrief);
+							$(".startupsDetail").text(sts.startupsDetail);
+							for(var i = 0; i < sts.copartner.length - 1; i++) {
+								$(".copartnerDetailForCloneLabel").clone().attr("class", "chenyuan copartnerDetail copartnerDetailForClone").appenTo($("#startupsMember"));
+							}
+							for(var i = 0; i < sts.copartner.length; i++) {
+								$(".copartnerDetail").eq(i).attr("href", "demo03.html?mark=" + sts.copartner[i].userId);
+								$(".copartnerPhoto").eq(i).attr("src", sts.copartner[i].userPhoto);
+								$(".copartnerName").eq(i).text(sts.copartner[i].userNickName);
+							}
+						} else
+							alert(sdata.reason);
+				　　}
+				});
+				
+				$.ajax({
+				　　type : "GET",
+				　　url: "/ChuangYeJia/getProductsInStartups!getProductsInStartups.action",
+				　　dataType : "jsonp",
+					data : {
+		             	startupsId : item
+		             },
+				 	jsonpCallback: "productsJsonpCallback",  
+				　　success : function(pdata) {
+						if(pdata.success) {
+							var ps = pdata.ps;
+							for(var i = 0; i < ps.length - 1; i++) {
+								$(".productDetailForCloneLabel").clone().attr("class", "chenyuan productDetail productDetailForClone").appenTo($("#productSpan"));
+							}
+							for(var i = 0; i < ps.length; i++) {
+								$(".productDetail").eq(i).attr("href", "demo03.html?item=" + ps[i].productId);
+								$(".productCover").eq(i).attr("src", ps[i].productCover);
+								$(".productName").eq(i).text(ps[i].productName);
+							}
+						} else
+							alert("加载失败！");
+				　　}
+				});
+				
+    		}
+    	})
+    </script>
+    
+</body>
+</html>

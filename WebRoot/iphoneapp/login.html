@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)denglu.html# -->
+<html>
+
+	<head lang="en">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		<title>登录</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			a {
+				text-decoration: none;
+				color: #000;
+			}
+			
+			li {
+				list-style: none;
+			}
+			
+			#top {
+				width: 100%;
+			}
+			
+			#top img {
+				width: 100%;
+				height: 300px;
+			}
+			
+			#main {
+				width: 100%;
+				margin-top: 50px;
+			}
+			
+			#input1 {
+				width: 80%;
+				margin-left: 10%;
+				outline-color: #c3ebfc;
+				border: 1px solid #bbb;
+				height: 110px;
+				font-size: 50px;
+				line-height: 110px;
+			}
+			
+			#input2 {
+				width: 80%;
+				margin-left: 10%;
+				outline-color: #c3ebfc;
+				border: 1px solid #bbb;
+				height: 110px;
+				font-size: 50px;
+				line-height: 110px;
+				margin-top: 50px;
+			}
+			
+			#input3 {
+				width: 80%;
+				margin-left: 10%;
+				outline-color: #c3ebfc;
+				border: 1px solid #bbb;
+				height: 110px;
+				font-size: 50px;
+				line-height: 110px;
+				margin-top: 50px;
+				background: #03a9f4;
+				color: #fff;
+			}
+			
+			hr {
+				width: 80%;
+				margin-left: 10%;
+				margin-top: 50px;
+				border-top: 7px solid #bbb;
+			}
+			
+			#a1 {
+				display: inline-block;
+				width: 80%;
+				margin-left: 10%;
+				border: 5px solid #4bc2f7;
+				height: 110px;
+				font-size: 60px;
+				text-align: center;
+				line-height: 110px;
+				margin-top: 50px;
+				background: #fff;
+				color: #4bc2f7;
+				font-weight: 700;
+			}
+			
+			#a2 {
+				display: inline-block;
+				width: 80%;
+				margin-left: 10%;
+				border: 5px solid #bbb;
+				height: 110px;
+				font-size: 60px;
+				text-align: center;
+				line-height: 110px;
+				margin-top: 50px;
+				background: #fff;
+				color: #bbb;
+				font-weight: 700;
+			}
+			
+			#a3 {
+				display: inline-block;
+				width: 80%;
+				margin-left: 10%;
+				border: 5px solid #bbb;
+				height: 110px;
+				font-size: 60px;
+				text-align: center;
+				line-height: 110px;
+				margin-top: 50px;
+				background: #fff;
+				color: #bbb;
+				font-weight: 700;
+			}
+			
+			#footer {
+				width: 100%;
+				position: fixed;
+				bottom: 0;
+			}
+			
+			#footer>ul {
+				width: 100%;
+				overflow: hidden;
+			}
+			
+			#footer>ul>li {
+				float: left;
+				width: 25%;
+				height: 120px;
+				line-height: 120px;
+				text-align: center;
+				background: #fff;
+			}
+			
+			#footer>ul>li>a {
+				display: inline-block;
+				height: 120px;
+				width: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div>
+			<div id="top">
+				<img src="image/15696465465.jpg" alt="">
+			</div>
+			<div id="main">
+				<input type="tel" id="input1" class="uTel" placeholder="手机号" required="required">
+				<input type="password" id="input2" class="uPwd" placeholder="密码" required="required">
+				<input type="number" id="inputCode" class="uCode" placeholder="请直接输入数字,如2" required="required" style="height:112px;font-size: 3em;width: 80%;margin-top: 5%;margin-left: 10%;border:1px solid #bbb;">
+				<div class="code" onclick="changeImg()" style="width: 80%;margin-top: 5%;margin-left: 10%;height:100px;line-height:100px;font-size: 3em;background:#aaa;color:#fff;text-align: center;">
+					<span class="badge" id="regetIdentify">
+						<img alt="看不清，换一张" id="validateCodeImg" src="/ChuangYeJia/userSignIn!identifyCode.action" style="width:100%;height:100%;">
+					</span>
+					<script type="text/javascript">
+						function changeImg() {
+							document.getElementById("validateCodeImg").src = "/ChuangYeJia/userSignIn!identifyCode.action?i="+Math.random();
+						}
+					</script>
+				</div>
+				<input type="button" value="登录" id="input3" class="submitLogin">
+				<hr>
+				<a href="register.html" id="a1">还没有账号?免费注册</a>
+				<a href="mimazhaohui.html" id="a2">忘记密码？重置</a>
+			</div>
+			<div id="footer">
+				<ul>
+					<li>
+						<a href="index.html">
+							<ul>
+								<li style="height:30px;"><img src="image/shouye2.png" alt=""></li>
+								<li style="font-size:32px;">首页</li>
+							</ul>
+						</a>
+					</li>
+					<li>
+						<a href="zixun.html">
+							<ul>
+								<li style="height:30px;"><img src="image/fabu.png" alt=""></li>
+								<li style="font-size:32px;">发布</li>
+							</ul>
+						</a>
+					</li>
+					<li>
+						<a href="jingxuangs.html">
+							<ul>
+								<li style="height:30px;"><img src="image/xixi.png" alt=""></li>
+								<li style="font-size:32px;">精选</li>
+							</ul>
+						</a>
+					</li>
+					<li>
+						<a href="demo01.html">
+							<ul>
+								<li style="height:30px;"><img src="image/wode.png" alt=""></li>
+								<li style="font-size:32px;">我的</li>
+							</ul>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	  	<script src="js/jquery-1.11.3.js"></script>
+	    <script>
+	    	$(document).ready(function() {
+	    		$(".submitLogin").bind("click", function() {
+	    			var uTel = $(".uTel").val().trim();
+	    			var uPwd = $(".uPwd").val().trim();
+	    			var uCode = $(".uCode").val().trim();
+	    			if(uTel != "" && uPwd != "" && uCode != "") {
+	    				
+		    			$.ajax({
+						　　type : "GET",
+						　　url: '/ChuangYeJia/vaction!loginForPhone.action',
+						　　dataType : "jsonp",
+							data : {
+								tel : uTel,
+								password : uPwd,
+								identifyCode : uCode
+				            },
+						 	jsonpCallback: "validateJsonpCallback",  
+						　　success : function(udata) {
+								if(udata.flag) {
+									alert("登陆成功");
+									window.location.href = "demo01.html";
+								} else {
+									alert(udata.reason);
+								}
+							}
+						});
+	    				
+	    			} else {
+	    				alert("请按要求输入");
+	    			}
+	    		});
+	    	});
+	    </script>
+	</body>
+
+</html>

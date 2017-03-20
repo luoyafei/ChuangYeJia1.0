@@ -1,6 +1,9 @@
 package com.chuangyejia.action;
 
+import java.io.IOException;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
@@ -9,6 +12,8 @@ import org.springframework.stereotype.Component;
 import com.chuangyejia.bean.Product;
 import com.chuangyejia.bean.User;
 import com.chuangyejia.service.IProductService;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
@@ -113,4 +118,49 @@ public class GetProductInIdAction extends ActionSupport {
 			return NONE;
 	}
 	
+	/**
+	 * 跨域字段
+	 */
+	private String callback;
+	public String getCallback() {
+		return callback;
+	}
+	public void setCallback(String callback) {
+		this.callback = callback;
+	}
+	/**
+	 * 手机端获取产品信息
+	 */
+	public void getProductItemForPhone() {
+		// TODO Auto-generated method stub
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("application/json; charset=utf-8");
+		Gson gson = new Gson();
+		JsonObject jo = new JsonObject();
+		boolean success = false;
+		String reason = "";
+		if(item != null && item.trim().hashCode() != 0) {
+			Product product = ps.getProductInId(item);
+			//product.setProductStartups(null);
+			if(product != null) {
+				success = true;
+				jo.add("product", gson.toJsonTree(product));
+			} else {
+				reason = "产品不存在";
+			}
+		} else {
+			reason = "产品出错";
+		}
+		jo.addProperty("success", success);
+		jo.addProperty("reason", reason);
+		
+		try {
+			if(callback != null && callback.equals("productDetailJsonpCallback")) {
+				response.getWriter().print(callback + "(" + jo.toString() + ")");
+			} else
+				response.getWriter().print(jo.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

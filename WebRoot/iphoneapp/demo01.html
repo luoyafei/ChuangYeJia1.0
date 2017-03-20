@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+
+		<meta charset="utf-8">
+		<title>个人中心</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/grzx.css" />
+
+		<script src="js/jquery-1.11.3.js"></script>
+		<script>
+			$(document).ready(function() {
+    			$.ajax({
+				　　type : "GET",
+				　　url: '/ChuangYeJia/vaction!isLogin.action',
+				　　dataType : "jsonp",
+				 	jsonpCallback: "validateIsLoginJsonpCallback",  
+				　　success : function(udata) {
+						if(!udata.flag) {
+							window.location.href = "login.html";
+							return;
+						} else {
+							var user = udata.user;
+							$(".userNickName").text(user.userNickName);
+							$(".userPhoto").attr("src", user.userPhoto);
+							if(user.isVerify != 2) {
+								$(".isVerify").attr("href", "g5.html").text("未验证，点击验证");
+							}
+							$(".userDetailA").attr("href", "demo02.html?mark=" + user.userId);
+						}
+					}
+				});
+				
+				$(".signOut").bind("click", function() {
+					$.ajax({
+					　　type : "GET",
+					　　url: '/ChuangYeJia/vaction!signOut.action',
+					　　dataType : "jsonp",
+					 	jsonpCallback: "validateSignOutJsonpCallback",  
+					　　success : function(udata) {
+							window.location.href = "login.html";
+						}
+					});
+				});
+			});
+		</script>
+
+		<style>
+			body {
+				font-size: 1em;
+				font-family: "Microsoft YaHei", Arial;
+				overflow-x: hidden;
+				overflow-y: auto;
+				padding-bottom: 130px;
+			}
+			
+			.viewport {
+				max-width: 640px;
+				min-width: 300px;
+				margin: 0 auto;
+			}
+			
+			a {
+				color: #000;
+				text-decoration: none;
+			}
+			
+			ul {
+				list-style: none;
+				padding-left: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="viewport">
+			<div id="bg-people">
+				<a class="userDetailA"><img class="img1 userPhoto" src="" /></a><br/>
+				<span>欢迎您，<span class="userNickName"></span></span><img class="img2" src="image/bide.png" />
+				<a class="a1 isVerify" style="color:#fff;"></a>
+			</div>
+			<ul id="ul1">
+				<li class="li1">
+					<a class="dw1" href="kefu.html">
+						<img src="./image/4565912315.png" />
+						<p>客服</p>
+					</a>
+
+				</li>
+				<li class="li1">
+					<a class="dw1" href="#">
+						<img src="./image/sadsa4564564.png" />
+						<p>广告</p>
+					</a>
+				</li>
+				<li class="li1">
+					<a class="dw1" href="demo-gongsi.html">
+						<img src="./image/545646sadsadsa.png" />
+						<p>公司</p>
+					</a>
+				</li>
+				<li class="li1">
+					<a class="dw1" href="demo-chanpin.html">
+						<img src="./image/asdsadsadsad.png" />
+						<p>产品</p>
+					</a>
+				</li>
+				<li class="li1">
+					<a class="dw1" href="demo-bangong.html">
+						<img src="./image/asdsadsa.png" />
+						<p>办公</p>
+					</a>
+				</li>
+				<!-- <li class="li1">
+					<a class="dw1" href="demo-hehuoren.html">
+						<img src="./image/asdsadsd1551515.png" />
+						<p>合伙人</p>
+					</a>
+				</li> -->
+			</ul>
+
+			<a class="dw1" href="login.html"><input type="button" value="退出登录" id="ipt1" class="signOut" /> </a>
+
+		</div>
+		<div id="footer">
+			<style>
+				#footer {
+					width: 100%;
+					position: fixed;
+					bottom: 0;
+				}
+				
+				#footer>ul {
+					width: 100%;
+					overflow: hidden;
+					margin-bottom: 0;
+					text-align: center;
+					margin-left: -8px;
+				}
+				
+				#footer>ul>li {
+					width: 25%;
+					float: left;
+					border-top: 1px solid #000;
+					border-left: none;
+					border-bottom: none;
+					background: #fff;
+					padding-bottom: 2.5px;
+				}
+				
+				#footer>ul>li img {
+					width: 34.8%;
+					margin-bottom: -7px;
+				}
+				
+				#footer>ul>li span {
+					display: inline-block;
+					font-size: 0.73em;
+				}
+			</style>
+			<ul>
+				<li>
+					<a href="index.html">
+						<img src="image/shouye2.png" /><br/>
+						<span>首页</span>
+
+					</a>
+				</li>
+				<li>
+					<a href="zixun.html">
+						<img src="image/fabu.png" /><br/>
+						<span>发布</span>
+					</a>
+				</li>
+				<li>
+					<a href="jingxuangs.html">
+						<img src="image/xixi.png" /><br/>
+						<span>精选</span>
+					</a>
+				</li>
+				<li>
+					<a href="demo01.html">
+						<img src="image/wode.png" alt="" /><br/>
+						<span>我的</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>

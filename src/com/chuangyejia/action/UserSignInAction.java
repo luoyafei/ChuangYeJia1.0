@@ -1,9 +1,12 @@
 package com.chuangyejia.action;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Enumeration;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
@@ -15,6 +18,7 @@ import com.chuangyejia.dto.UserSignDTO;
 import com.chuangyejia.service.IShopCarService;
 import com.chuangyejia.service.IUserService;
 import com.chuangyejia.tools.IdentifyCode;
+import com.google.gson.JsonObject;
 import com.opensymphony.xwork2.ActionSupport;
 
 @Component(value="userSignInAction")
@@ -32,6 +36,8 @@ public class UserSignInAction extends ActionSupport {
 	private static final String RDA_BACK_MARK = "rdactionformark";//当用户是从show_startups.jsp来的时候，进行redirectAction的跳转，跳入getStartupsItem
 	private boolean fromShowStartups = false;//标志，说明是不是来自show_startups.jsp
 	private boolean fromUserProfile = false;//标志，说明是不是来自user_profile.jsp
+	
+	private static final String RegisterJsonp = "registerJsonpCallback";
 	
 	private IUserService us;
 	private IShopCarService iscs;
@@ -100,7 +106,7 @@ public class UserSignInAction extends ActionSupport {
 	 * 用来处理用户注册的action
 	 * @return
 	 */
-public String register() {
+	public String register() {
 		
 		String code = String.valueOf(ServletActionContext.getRequest().getSession().getAttribute("code"));//先将session中的验证码结果取出
 		String telCode = String.valueOf(ServletActionContext.getRequest().getSession().getAttribute("telCode"));//将session中的电话验证码结果取出
@@ -294,5 +300,101 @@ public String register() {
 	}
 	public void setRegisterTelCode(String registerTelCode) {
 		this.registerTelCode = registerTelCode;
+	}
+	
+	/**
+	 * 跨域字段
+	 */
+	private String callback;
+	public String getCallback() {
+		return callback;
+	}
+	public void setCallback(String callback) {
+		this.callback = callback;
+	}
+	private String nickname;//昵称
+	private String tel;//电话
+	private String password;//密码
+	private String identifyCode;//验证码
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getIdentifyCode() {
+		return identifyCode;
+	}
+	public void setIdentifyCode(String identifyCode) {
+		this.identifyCode = identifyCode;
+	}
+	/**
+	 * 手机端跨域注册函数
+	 */
+	public void registeForPhoto() {
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("application/json; charset=utf-8");
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e) {}
+		UserSignDTO ud = new UserSignDTO();
+		ud.setNickname(nickname);
+		ud.setTel(tel);
+		ud.setPassword(password);
+		ud.setIdentifyCode(identifyCode);
+		ud.setValidatePassword(password);
+		
+		boolean flag = false;
+		String reason = "";
+		String code = String.valueOf(ServletActionContext.getRequest().getSession().getAttribute("code"));//先将session中的验证码结果取出
+		String telCode = String.valueOf(ServletActionContext.getRequest().getSession().getAttribute("telCode"));//将session中的电话验证码结果取出
+		if(ud.getIdentifyCode().equals(code) && telCode.equals(registerTelCode)) {//如果判断相等，则继续执行
+			ud.setIsLogin(false);
+			if(ud.checkDataDispatchor()) {
+				//判断数据库中是否存在该 Tel
+				if(!us.checkTel(ud.getTel())) {
+					User user = ud.toUser();
+					/**
+					 * 将ip存入user
+					 */
+					user.setUserIp(ServletActionContext.getRequest().getRemoteAddr());
+					if(us.saveUser(user))  {//将User对象存入数据库中。
+						HttpSession session = ServletActionContext.getRequest().getSession();
+						session.setAttribute("user", user);//将插入成功的User对象放入Session中
+						session.setAttribute("userTemp", null);
+						session.setAttribute("code", null);
+						session.setAttribute("telCode", null);
+						session.setAttribute("shopCar", iscs.getProductsInUserId(user.getUserId()));
+						flag = true;
+						
+					} else
+						reason = "用户注册失败！请稍后重试";
+				} else
+					reason = "该手机号码已被注册！请更换号码或者进行密码找回服务！谢谢合作";
+			} else
+				reason = "请准确核实您的输入数据，确认格式的正确！";
+		} else
+			reason = "验证码错误";
+		JsonObject jo = new JsonObject();
+		jo.addProperty("flag", flag);
+		jo.addProperty("reason", reason);
+		
+		if(callback != null && callback.equals(RegisterJsonp)) {
+			out.print(callback + "(" + jo.toString() + ")");
+		} else
+			out.print(jo.toString());
 	}
 }

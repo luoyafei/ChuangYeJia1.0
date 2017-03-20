@@ -250,5 +250,9 @@
         	<result name="error">/pages/userConsole/home.jsp</result>
         </action>
         
+        <!-- 手机端的创建公司 -->
+        <action name="createStartupsForPhoneAction" class="createStartupsForPhoneAction" />
+        
+        <action name="createProductForPhone" class="createProductActionForPhone" />
     </package>
 </struts>

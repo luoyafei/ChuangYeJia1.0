@@ -53,6 +53,17 @@ public class UploadUserPicture extends ActionSupport {
 	 */
 	private static final String DEFAULT = ServletActionContext.getServletContext().getInitParameter("uploadPictureUrlDef");
 	
+	private static final String UserPhotoJsonpCallback = "userPhotoJsonpCallback";
+	/**
+	 * 跨域字段
+	 */
+	private String callback;
+	public String getCallback() {
+		return callback;
+	}
+	public void setCallback(String callback) {
+		this.callback = callback;
+	}
 	
 	private File picture;
 	private String pictureFileName;
@@ -169,7 +180,12 @@ System.out.println("用户上传认证图片时，获取输出的管道出错");
 		} else
 			jo.addProperty("status", false);
 		
-		out.println(jo.toString());
+		
+		if(callback != null && callback.equals(UserPhotoJsonpCallback)) {
+			out.print(callback + "(" + jo.toString() + ")");
+		} else
+			out.print(jo.toString());
+		
 		out.flush();
 		out.close();
 	}

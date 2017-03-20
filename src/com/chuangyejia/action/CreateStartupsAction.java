@@ -132,12 +132,12 @@ public class CreateStartupsAction extends ActionSupport {
 				this.addFieldError("error", "请按要求填写数据！");
 				return INPUT;
 			} else {
+				
+				Startups startups = sd.toStartups();
 				File cover = img[0];
 				File photo1 = img[1];
 				File photo2 = img[2];
 				File photo3 = img[3];
-				
-				Startups startups = sd.toStartups();
 				
 				if(imgCanUse(cover, photo1, photo2, photo3)) {
 					/**
@@ -242,7 +242,6 @@ public class CreateStartupsAction extends ActionSupport {
 			 */
 			if(cover.length() != 0 && photo1.length() != 0 && photo2.length() != 0 && photo3.length() != 0) {
 				return true;
-				
 			} else {
 				return false;
 			}
@@ -264,5 +263,4 @@ public class CreateStartupsAction extends ActionSupport {
 		if(photo3.exists())
 			photo3.delete();
 	}
-	
 }

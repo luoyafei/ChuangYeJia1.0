@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+
+		<meta charset="utf-8">
+		<title>手机网站</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/grzx.css" />
+
+		<style>
+			body {
+				font-size: 1em;
+				font-family: "Microsoft YaHei", Arial;
+				overflow-x: hidden;
+				overflow-y: auto;
+				padding-bottom: 120px;
+			}
+			
+			.viewport {
+				max-width: 640px;
+				min-width: 300px;
+				margin: 0 auto;
+			}
+			
+			a {
+				color: #fff;
+				text-decoration: none;
+			}
+			
+			ul {
+				list-style: none;
+				padding-left: 0;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<div class="viewport">
+			<ul id="ul2">
+				<li class="li2" style="border-top:15px solid #ddd;">
+					<a href="g1.html" class="userphotoA">
+						<span class="sp3">头像</span>
+                		<img src="" class="img3 userPhoto"/>
+					</a>
+				</li>
+				<li class="li2" style="border-top:0;border-bottom:0;height:50px;line-height:50px;">
+					<a href="g2.html" class="userNickNameA">
+						<span class="sp4">昵称</span>
+                		<span class="sp5 userNickName"></span>
+					</a>
+				</li>
+				<li class="li2" style="border-top:0;height:50px;line-height:50px;">
+					<span class="sp4">联系电话(不可修改)</span>
+               		<span class="sp5 userTel"></span>
+				</li>
+				<li class="li2" style="border-top:0;height:50px;line-height:50px;">
+					<a href="g4.html" class="copartnerCategoryA">
+						<span class="sp4">能力方向</span>
+                		<span class="sp5 copartnerCategory"></span>
+					</a>
+				</li>
+				<li class="li2" style="border-bottom:15px solid #ddd;border-top:0;height:50px;line-height:50px;">
+					<a href="g5.html" class="isVerifyA">
+						<span class="sp4">认证状态</span>
+                <span class="sp5 isVerify"></span>
+					</a>
+				</li>
+				<li class="li2" style="border-top:0;border-bottom:0;height:50px;line-height:50px;">
+					<a href="g7.html" class="userAddressA">
+						<span class="sp4">所属高校</span>
+                		<span class="sp5 userAddress"></span>
+					</a>
+				</li>
+				<li class="li2" style="border-bottom:15px solid #ddd;border-top:0;height:50px;line-height:50px;">
+					<a href="g8.html" class="startAbilityA">
+						<span class="sp4">创业能力</span>
+                		<span class="sp5 startAbility"></span>
+					</a>
+				</li>
+			</ul>
+
+			<a href="demo01.html" id="fh1">返回</a>
+
+		</div>
+		<div id="footer">
+			<style>
+				#footer {
+					width: 100%;
+					position: fixed;
+					bottom: 0;
+				}
+				
+				#footer>ul {
+					width: 100%;
+					overflow: hidden;
+					margin-bottom: 0;
+					text-align: center;
+					margin-left: -8px;
+				}
+				
+				#footer>ul>li {
+					width: 25%;
+					float: left;
+					border-top: 1px solid #000;
+					border-left: none;
+					border-bottom: none;
+					background: #fff;
+					padding-bottom: 2.5px;
+				}
+				
+				#footer>ul>li a {
+					color: #000;
+				}
+				
+				#footer>ul>li img {
+					width: 34.8%;
+					margin-bottom: -7px;
+				}
+				
+				#footer>ul>li span {
+					display: inline-block;
+					font-size: 0.73em;
+				}
+			</style>
+			<ul>
+				<li>
+					<a href="index.html">
+						<img src="image/shouye2.png" /><br/>
+						<span>首页</span>
+
+					</a>
+				</li>
+				<li>
+					<a href="zixun.html">
+						<img src="image/fabu.png" /><br/>
+						<span>发布</span>
+					</a>
+				</li>
+				<li>
+					<a href="jingxuangs.html">
+						<img src="image/xixi.png" /><br/>
+						<span>精选</span>
+					</a>
+				</li>
+				<li>
+					<a href="demo01.html">
+						<img src="image/wode.png" alt="" /><br/>
+						<span>我的</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		
+		<script type="text/javascript" src="js/jquery-1.11.3.js" ></script>
+		<script>
+			$(document).ready(function() {
+    			$.ajax({
+				　　type : "GET",
+				　　url: '/ChuangYeJia/vaction!isLogin.action',
+				　　dataType : "jsonp",
+				 	jsonpCallback: "validateIsLoginJsonpCallback",  
+				　　success : function(udata) {
+						if(!udata.flag) {
+							window.location.href = "login.html";
+							return;
+						} else {
+							var uts = udata.user;
+							$(".userNickName").text(uts.userNickName);
+							$(".userPhoto").attr("src", uts.userPhoto);
+							$(".userTel").text(uts.userTel);
+							$(".copartnerCategory").text(uts.copartnerCategory);
+							if(uts.isVerify == "1") {
+								$(".isVerify").text("学生证认证");
+							} else {
+								$(".isVerify").text("暂无认证,如若已上传，请等待后台管理员进行认证。");
+							}
+							$(".userAddress").text(uts.userAddress);
+							$(".startAbility").text(uts.startAbility);
+						}
+					}
+				});
+			});
+		</script>
+
+	</body>
+
+</html>

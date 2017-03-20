@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        li{list-style: none;}
+        *{
+            margin:0;
+            padding:0;
+        }
+        a{
+          text-decoration: none;
+            color:#000;
+        }
+        #top{
+            width:100%;
+            overflow:hidden;
+            margin-bottom:30px;
+            background:#fff;
+            position:fixed;
+            top:0;
+            padding-top:15px;
+            padding-bottom:15px;
+        }
+        #top input{
+            width:87%;
+            height:80px;
+            font-size:50px;
+            line-height:80px;
+            border:none;
+            outline:none;
+            float:left;
+            margin-left:20px;
+            background:#f6f6f6;
+            border-radius:50px;
+            text-align:center;
+        }
+        #top img{
+            display:inline-block;
+            width:60px;
+            height:60px;
+            float:left;
+            margin-left:20px;
+            margin-top:10px;
+        }
+        #main{
+            width:100%;
+            margin-top:10px;
+        }
+        #main_top{
+            width:100%;
+        }
+        #main_top img{
+            width:100%;
+            height:300px;
+        }
+        #main_center{
+            width:100%;
+            margin-top:50px;
+        }
+        #main_center h2{
+            width:90%;
+            margin-left:5%;
+            /*background:#f9f9f9;*/
+            font-size:50px;
+            text-align:center;
+            height:80px;
+            line-height:80px;
+            font-weight: 100;
+        }
+        #main_center>ul{
+            width:90%;
+            margin-left:5%;
+            text-align:center;
+            margin-top:30px;
+        }
+        #main_center>ul>li{
+            width:100%;
+            overflow:hidden;
+            margin-top:50px;
+        }
+        #main_center>ul>li>img{
+            width:48%;
+            float:left;
+            height:290px;
+        }
+        #main_center>ul>li>div{
+            width:50%;
+            float:left;
+            /*margin-left:10%;*/
+        }
+        #main_center>ul>li>div>a{
+            width: 80%;
+            display: inline-block;
+            height: 70px;
+            font-size: 42px;
+            background: #ff9519;
+            border: none;
+            border-radius: 30px;
+            margin-top: 37px;
+            color: #fff;
+            line-height: 70px;
+        }
+        #main_center>div.all{
+            /*width:100%;
+            background:#f9f9f9;*/
+            margin-top: 55px;
+            height:70px;
+            line-height:70px;
+        }
+        #main_center>div.all>a{
+            width: 50%;
+            display: inline-block;
+            height: 78px;
+            line-height: 78px;
+            font-size: 44px;
+            background: #fff;
+            border: 2px solid #ff9519;
+            border-radius: 30px;
+            color: #ff9519;
+            margin-left: 24%;
+            text-align: center;
+        }
+        #main_center_1{
+            width:100%;
+            margin-top:50px;
+        }
+        #main_center_1 h2{
+            width:90%;
+            margin-left:5%;
+           /* background:#f9f9f9;*/
+            font-size:50px;
+            text-align:center;
+            height:72px;
+            line-height:72px;
+            font-weight: 100;
+        }
+        #main_center_1>ul{
+            width:90%;
+            margin-left:5%;
+            text-align:center;
+            margin-top:30px;
+        }
+        #main_center_1>ul>li{
+            width:100%;
+            overflow:hidden;
+            margin-top:50px;
+        }
+        #main_center_1>ul>li>img{
+            width:49%;
+            float:left;
+        }
+        #main_center_1>ul>li>div{
+            width:50%;
+            float:left;
+            /*margin-left:10%;*/
+        }
+        #main_center_1>ul>li>div>a{
+            width: 80%;
+            display: inline-block;
+            height: 70px;
+            font-size: 42px;
+            background: #ff9519;
+            border: none;
+            border-radius: 30px;
+            margin-top: 19px;
+            color: #fff;
+            line-height: 70px;
+        }
+        #main_center_1>div.all{
+            width:100%;
+           /* background:#f9f9f9;*/
+            height:70px;
+            line-height:70px;
+            margin-top:55px;
+        }
+        #main_center_1>div.all>a{
+            width: 50%;
+            display: inline-block;
+            height: 78px;
+            line-height: 78px;
+            font-size: 44px;
+            background: #fff;
+            border: 2px solid #ff9519;
+            border-radius: 30px;
+            color: #ff9519;
+            margin-left: 24%;
+            text-align: center;
+        }
+        #last{
+            width:100%;
+            background:#f9f9f9;
+            margin-top:30px;
+            text-align:center;
+        }
+        #last>a.qus{
+            display: inline-block;
+        }
+        #last>a.qus>h1{
+            color:#fe9824;
+        }
+        #last>a.qus>h1>span{
+            font-size:75px;
+        }
+        #last>hr{
+            font-size:2px;
+            width:80%;
+            margin-left:10%;
+            color:#ddd;
+            height:2px;
+            margin-top:20px;
+        }
+        #last>ul>li{
+            font-size:60px;
+            width:100%;
+            text-align: center;
+            margin-top:10px;
+        }
+        #last>a.online{
+            display: inline-block;
+            width:60%;
+            height:70px;
+            line-height:70px;
+            border:2px solid #dbdbdb;
+            border-radius: 30px;
+            font-size:55px;
+        }
+
+
+        #footer{
+            width:100%;
+            position:fixed;
+            bottom:0;
+            border-top:2px solid #000;
+            background:#fff;
+        }
+        #footer>ul{
+            width:100%;
+            overflow:hidden;
+        }
+        #footer>ul>li{
+            float:left;
+            width:25%;
+            height:120px;
+            line-height:120px;
+            text-align:center;
+            background:#fff;
+        }
+        #footer>ul>li>a{
+            display:inline-block;
+            height:120px;
+            width:100%;
+        }
+    </style>
+    <script type="text/javascript" src="js/jquery-1.11.3.js" ></script>
+</head>
+<body style="padding-bottom:170px;">
+    <div>
+        <div id="top">
+            <img src="image/159465465.png">
+            <input type="text" placeholder="搜项目"/>
+        </div>
+        <div id="main" style="margin-top:117px;">
+            <div id="main_top">
+                <img src="image/sadsa.jpg" alt=""/>
+            </div>
+            <div id="main_center">
+                <h2>—— 精选创业公司【月榜】 ——</h2>
+                <ul>
+                    <li>
+                        <img src="" alt="" class="startupsCover"/>
+                        <div>
+                            <h1 style="font-size:50px;">—— 1 ——</h1>
+                            <h2 class="startupsName"></h2>
+                            <p style="font-size:40px;" class="startupsAddress"></p>
+                            <a href="" class="startupsDetail">查看详情</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <h1 style="font-size:50px;">—— 2 ——</h1>
+                            <h2 class="startupsName"></h2>
+                            <p style="font-size:40px;" class="startupsAddress"></p>
+                            <a href="" class="startupsDetail">查看详情</a>
+                        </div>
+                        <img src="" alt="" class="startupsCover"/>
+                    </li>
+                    <li>
+                        <img src="" alt="" class="startupsCover"/>
+                        <div>
+                            <h1 style="font-size:50px;">—— 3 ——</h1>
+                            <h2 class="startupsName"></h2>
+                            <p style="font-size:40px;" class="startupsAddress"></p>
+                            <a href="" class="startupsDetail">查看详情</a>
+                        </div>
+                    </li>
+                </ul>
+                <div class="all"><a href="jingxuangs.html">查看全部</a></div>
+            </div>
+
+            <hr style="margin-top: 84px;color: #ddd;">
+
+            <div id="main_center_1" style="margin-top:50px;">
+                <h2>—— 精选合伙人【月榜】 ——</h2>
+                <ul>
+                    <li>
+                        <img src="" alt="" class="userPhoto"/>
+                        <div>
+                            <h1 style="font-size:50px;">—— 1 ——</h1>
+                            <h2 class="userName"></h2>
+                            <p style="font-size:40px;" class="copartnerCategory"></p>
+                            <a href="" class="userDetail">查看详情</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <h1 style="font-size:50px;">—— 2 ——</h1>
+                            <h2 class="userName"></h2>
+                            <p style="font-size:40px;" class="copartnerCategory"></p>
+                            <a href="" class="userDetail">查看详情</a>
+                        </div>
+                         <img src="" alt="" class="userPhoto"/>
+                    </li>
+                    <li>
+                        <img src="" alt="" class="userPhoto"/>
+                        <div>
+                            <h1 style="font-size:50px;">—— 3 ——</h1>
+                            <h2 class="userName"></h2>
+                            <p style="font-size:40px;" class="copartnerCategory"></p>
+                            <a href="" class="userDetail">查看详情</a>
+                        </div>
+                    </li>
+                </ul>
+                <div class="all"><a href="jingxuanhhr.html">查看全部</a></div>
+            </div>
+        </div>
+    </div>
+
+
+<div id="footer">
+    <ul>
+        <li>
+            <a href="index.html">
+                <ul>
+                    <li style="height:30px;"><img src="image/shouye2.png" alt=""/></li>
+                    <li style="font-size:32px;">首页</li>
+                </ul>
+            </a>
+        </li>
+        <li>
+            <a href="zixun.html">
+                <ul>
+                    <li style="height:30px;"><img src="image/fabu.png" alt=""/></li>
+                    <li style="font-size:32px;">发布</li>
+                </ul>
+            </a>
+        </li>
+        <li>
+            <a href="jingxuangs.html">
+                <ul>
+                    <li style="height:30px;"><img src="image/xixi.png" alt=""/></li>
+                    <li style="font-size:32px;">精选</li>
+                </ul>
+            </a>
+        </li>
+        <li>
+            <a href="demo01.html">
+                <ul>
+                    <li style="height:30px;"><img src="image/wode.png" alt=""/></li>
+                    <li style="font-size:32px;">我的</li>
+                </ul>
+            </a>
+        </li>
+    </ul>
+</div>
+	<script>
+		$(document).ready(function() {
+			
+			var startupsCover = $(".startupsCover");
+			var startupsName = $(".startupsName");
+			var startupsAddress = $(".startupsAddress");
+			var startupsDetail = $(".startupsDetail");
+			var userPhoto = $(".userPhoto");
+			var userName = $(".userName");
+			var copartnerCategory = $(".copartnerCategory");
+			var userDetail = $(".userDetail");
+			
+			$.ajax({
+			　　type : "GET",
+			　　url: "/ChuangYeJia/provideUsers!getUsers.action",
+			　　dataType : "jsonp",
+				data : {
+	             	start : "5,0",
+					length : 4
+	             },
+			 	jsonpCallback: "userJsonpCallback",  
+			　　success : function(udata) {
+					for(var i = 0; i < 3; i++) {
+						userPhoto.eq(i).attr("src", udata.all[i].userPhoto);
+						userName.eq(i).text(udata.all[i].userNickName);
+						copartnerCategory.eq(i).text(udata.all[i].copartnerCategory);
+						userDetail.eq(i).attr("href", "demo03.html?mark=" + udata.all[i].userId);
+					}
+			　　}
+			});
+			
+			$.ajax({
+			　　type : "GET",
+			　　url: "/ChuangYeJia/supportStartups!getStartups.action",
+			　　dataType : "jsonp",
+			 	jsonpCallback: "startupsJsonpCallback",  
+			　　success : function(sdata) {
+					for(var i = 0; i < 3; i++) {
+						startupsCover.eq(i).attr("src", sdata.stl[i].startupsCover);
+						startupsName.eq(i).text(sdata.stl[i].startupsName);
+						startupsAddress.eq(i).text(sdata.stl[i].startupsAddress);
+						startupsDetail.eq(i).attr("href", "demo-gongsi-C.html?item=" + sdata.stl[i].startupsId);
+					}
+			　　}
+			});
+		});
+	</script>
+</body>
+</html>

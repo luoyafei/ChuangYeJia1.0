@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+
+		<meta charset="utf-8">
+		<title>手机网站</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/grzx.css" />
+		<style>
+			body {
+				font-size: 1em;
+				font-family: "Microsoft YaHei", Arial;
+				overflow-x: hidden;
+				overflow-y: auto;
+			}
+			
+			.viewport {
+				max-width: 640px;
+				min-width: 300px;
+				margin: 0 auto;
+			}
+			
+			a {
+				color: #fff;
+				text-decoration: none;
+			}
+			
+			ul {
+				list-style: none;
+				padding-left: 0px;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<div class="viewport">
+			<h4>头像：</h4>
+			<input type="file" name="picture" id="picture" class="file" value="浏览" required="required" accept="image/*"/><br/><br/>
+			<button  id="uploadBtn" style="font-size: 1em;border-radius:4px;width:100%;height:35px;background:#fff;color:deepskyblue;border:1px solid deepskyblue ;">
+			确定</button>
+			<a href="demo02.html" id="fh1">取消</a>
+		</div>
+
+		<div id="footer">
+			<style>
+				#footer {
+					width: 100%;
+					position: fixed;
+					bottom: 0;
+				}
+				
+				#footer>ul {
+					width: 100%;
+					overflow: hidden;
+					margin-bottom: 0;
+					text-align: center;
+					margin-left: -8px;
+				}
+				
+				#footer>ul>li {
+					width: 25%;
+					float: left;
+					border-top: 1px solid #000;
+					border-left: none;
+					border-bottom: none;
+					background: #fff;
+					padding-bottom: 2.5px;
+				}
+				
+				#footer>ul>li a {
+					color: #000;
+				}
+				
+				#footer>ul>li img {
+					width: 34.8%;
+					margin-bottom: -7px;
+				}
+				
+				#footer>ul>li span {
+					display: inline-block;
+					font-size: 0.73em;
+				}
+			</style>
+			<ul>
+				<li>
+					<a href="index.html">
+						<img src="image/shouye2.png" /><br/>
+						<span>首页</span>
+
+					</a>
+				</li>
+				<li>
+					<a href="zixun.html">
+						<img src="image/fabu.png" /><br/>
+						<span>发布</span>
+					</a>
+				</li>
+				<li>
+					<a href="jingxuangs.html">
+						<img src="image/xixi.png" /><br/>
+						<span>精选</span>
+					</a>
+				</li>
+				<li>
+					<a href="demo01.html">
+						<img src="image/wode.png" alt="" /><br/>
+						<span>我的</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		
+		<script type="text/javascript" src="js/jquery-1.11.3.js" ></script>
+		<script>
+			$(document).ready(function () {
+				var webdomain = "http://localhost:8080";
+				
+				$("#uploadBtn").bind("click", function() {
+					if($("#picture").val().trim() === "")
+						alert("请选择图片后进行上传");
+					else {
+						$("#uploadBtn").attr("disabled", "true");
+						var fd = new FormData();
+						fd.append("picture", $("#picture").get(0).files[0]);
+						$.ajax({
+							url: "/ChuangYeJia/uploadPicture!uploadPicture.action",
+							type: "POST",
+							dataType: "json",
+							processData: false,
+							contentType: false,
+							data: fd,
+							success: function(data) {
+								$("#uploadBtn").removeAttr("disabled");
+								if(data.status) {
+									alert("上传成功");
+								} else {
+									alert("上传失败");
+								}
+							},
+							 error: function(XMLHttpRequest, textStatus, errorThrown) {
+								 alert("上传失败");
+							}
+						});
+					}
+				});
+			});
+		</script>
+	</body>
+</html>

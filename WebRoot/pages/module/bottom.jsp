@@ -13,6 +13,6 @@
 	      <li>|</li>
 	      <li><a href="/ChuangYeJia/pages/aboutOur/aboutOur_version.jsp" style="color: white; text-decoration: none;" target="_blank">版本声明</a></li>
 	    </ul>
-	    <p>陕ICP备 16017534号  Copyright &copy;2015-2016 西安创加网络科技有限公司 版权所有</p>
+	    <p>陕ICP备 16017534号  Copyright &copy;2015-2016 西安创加网络科技有限公司 版权所有<a href="http://webscan.360.cn/index/checkwebsite/url/www.chuangyejia.top"><img border="0" src="http://img.webscan.360.cn/status/pai/hash/37be47af7161a7b162cb09b439970f6e"/></a></p>
 	</div>	
 </div>

@@ -14,6 +14,16 @@ import java.util.Set;
  */
 public class UserTempShow {
 
+
+	@Override
+	public String toString() {
+		return "UserTempShow [userId=" + userId + ", userNickName=" + userNickName + ", userEmail=" + userEmail
+				+ ", userIntroduce=" + userIntroduce + ", userGender=" + userGender + ", userPhoto=" + userPhoto
+				+ ", userAddress=" + userAddress + ", userWeChat=" + userWeChat + ", userCreateDate=" + userCreateDate
+				+ ", isVerify=" + isVerify + ", userTel=" + userTel + ", copartnerCategory=" + copartnerCategory
+				+ ", startAbility=" + startAbility + ", userField=" + userField + ", introduceVideo=" + introduceVideo
+				+ ", allLeaderStartups=" + allLeaderStartups + ", allJoinStartups=" + allJoinStartups + "]";
+	}
 	private String userId = null;
 	private String userNickName = null;//用户昵称
 	private String userEmail = null;//用户邮箱

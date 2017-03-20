@@ -18,7 +18,10 @@ public class ProductDTO {
 		return price;
 	}
 	public void setPrice(String price) {
-		this.price = price;
+		if(!price.contains("."))
+			this.price = price + ".00";
+		else
+			this.price = price;
 	}
 	public String getName() {
 		return name;

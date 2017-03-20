@@ -47,16 +47,14 @@ public class GetMyLeaderStartupsForInvite extends ActionSupport {
 		Gson gson = new Gson();
 		JsonObject jo = new JsonObject();
 		boolean success = false;
+		try {
+			out = response.getWriter();
+		} catch(IOException e) {
+System.out.println("GetMyLeaderStartupsForInvite.java 中获取输出管道出错");
+			e.printStackTrace();
+		}
 		
 		if(user != null) {
-			try {
-				out = response.getWriter();
-			} catch(IOException e) {
-System.out.println("GetMyLeaderStartupsForInvite.java 中获取输出管道出错");
-				e.printStackTrace();
-			}
-			
-			
 			List<Startups> leaderS = ss.getStartupsInLeaderId(user.getUserId());
 			
 			for(int i = 0; i < leaderS.size(); i++) {

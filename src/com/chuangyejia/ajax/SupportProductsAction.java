@@ -64,6 +64,17 @@ public class SupportProductsAction extends ActionSupport {
 		this.length = length;
 	}
 
+	
+	/**
+	 * 跨域字段
+	 */
+	private String callback;
+	public String getCallback() {
+		return callback;
+	}
+	public void setCallback(String callback) {
+		this.callback = callback;
+	}
 	public void getproducts() {
 		
 		/**
@@ -96,11 +107,17 @@ public class SupportProductsAction extends ActionSupport {
 		jo.add("ps", gson.toJsonTree(ps));
 		jo.addProperty("count", count);
 
+		
+		/**
+		 * 增加手机端跨域跳转
+		 */
 		try {
-			response.getWriter().print(jo.toString());
+			if(callback != null && callback.equals("productJsonpCallback")) {
+				response.getWriter().print(callback + "(" + jo.toString() + ")");
+			} else
+				response.getWriter().print(jo.toString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-
 }

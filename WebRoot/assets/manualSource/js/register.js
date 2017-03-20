@@ -6,7 +6,7 @@
 	});
 	
 	function sendTel() {
-		if($("#tel").val().trim() !== "" && $("#tel").val().trim().match(/^1[34578]\d{9}$/)) {
+		if($("#tel").val().trim() !== "" && $("#tel").val().trim().match(/^1[34578]\d{9}$/) && $("#nickname").val().trim()) {
 			$.post('sendMessage!sendMessage.action', {
 				nickname : $("#nickname").val().trim(),
 				tel : $("#tel").val().trim()
@@ -24,7 +24,7 @@
 								$("#clickSend").text("点击获取手机验证码");
 								i == 300;
 								clearInterval(runTime);
-								$("#clickSend").bind("click", sendEmail);
+								$("#clickSend").bind("click", sendTel);
 							}
 						}, 1000);
 					} else {
@@ -33,7 +33,7 @@
 				}
 			}, 'json'); 
 		} else {
-			alert("请先输入正确的电话号码！");
+			alert("请先输入正确的电话号码和用户名！");
 		}
 	}
 	

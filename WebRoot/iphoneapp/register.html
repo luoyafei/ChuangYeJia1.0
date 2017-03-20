@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)imagezhuce.html -->
+<html>
+
+	<head lang="en">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		<title>注册</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			a {
+				text-decoration: none;
+				color: #000;
+			}
+			
+			li {
+				list-style: none;
+			}
+			
+			#top {
+				width: 100%;
+			}
+			
+			#top img {
+				width: 100%;
+				height: 300px;
+			}
+			
+			#main {
+				width: 100%;
+				margin-top: 50px;
+			}
+			
+			#input1 {
+				width: 55%;
+				margin-left: 10%;
+				outline-color: #c3ebfc;
+				border: 1px solid #bbb;
+				height: 110px;
+				font-size: 50px;
+				line-height: 110px;
+			}
+			
+			#input2 {
+				width: 80%;
+				margin-left: 10%;
+				outline-color: #c3ebfc;
+				border: 1px solid #bbb;
+				height: 110px;
+				font-size: 50px;
+				line-height: 110px;
+				margin-top: 50px;
+			}
+			
+			#button {
+				width: 23%;
+				margin-left: 1%;
+				outline-color: #c3ebfc;
+				border: 1px solid #bbb;
+				height: 110px;
+				font-size: 40px;
+				line-height: 110px;
+				margin-top: 50px;
+			}
+			
+			#input3 {
+				width: 80%;
+				margin-left: 10%;
+				outline-color: #c3ebfc;
+				border: 1px solid #bbb;
+				height: 110px;
+				font-size: 50px;
+				line-height: 110px;
+				margin-top: 50px;
+				background: #03a9f4;
+				color: #fff;
+			}
+			
+			#input4 {
+				width: 80%;
+				margin-left: 10%;
+				outline-color: #c3ebfc;
+				border: 1px solid #bbb;
+				height: 110px;
+				font-size: 50px;
+				line-height: 110px;
+				margin-top: 50px;
+			}
+			
+			#input5 {
+				width: 50%;
+				margin-left: 10%;
+				outline-color: #c3ebfc;
+				border: 1px solid #bbb;
+				height: 110px;
+				font-size: 50px;
+				line-height: 110px;
+				margin-top: 50px;
+			}
+			
+			#input6 {
+				width: 80%;
+				margin-top: 5%;
+				margin-left: 10%;
+				outline-color: #c3ebfc;
+				border: 1px solid #bbb;
+				height: 110px;
+				font-size: 50px;
+				line-height: 110px;
+			}
+			
+			#yanzhengma {
+				width: 25%;
+				height: 110px;
+				background: blue;
+				display: inline-block;
+				margin-bottom: -37px;
+				margin-left: 40px;
+			}
+			
+			hr {
+				width: 80%;
+				margin-left: 10%;
+				margin-top: 50px;
+				border-top: 7px solid #bbb;
+			}
+			
+			#a1 {
+				display: inline-block;
+				width: 80%;
+				margin-left: 10%;
+				border: 5px solid #4bc2f7;
+				height: 110px;
+				font-size: 60px;
+				text-align: center;
+				line-height: 110px;
+				margin-top: 50px;
+				background: #fff;
+				color: #4bc2f7;
+				font-weight: 700;
+			}
+			
+			#p1 {
+				font-size: 42px;
+				color: #bbb;
+				text-align: center;
+				margin-top: 40px;
+			}
+			
+			#p1 span {
+				color: #4bc2f7;
+			}
+			
+			#footer {
+				width: 100%;
+				position: fixed;
+				bottom: 0;
+			}
+			
+			#footer>ul {
+				width: 100%;
+				overflow: hidden;
+			}
+			
+			#footer>ul>li {
+				float: left;
+				width: 20%;
+				height: 120px;
+				line-height: 120px;
+				text-align: center;
+				background: #fff;
+			}
+			
+			#footer>ul>li>a {
+				display: inline-block;
+				height: 120px;
+				width: 100%;
+			}
+		</style>
+	</head>
+
+	<body style="padding-bottom:120px;">
+		<div>
+			<div id="top">
+				<img src="image/15696465465.jpg" alt="">
+			</div>
+			<div id="main">
+				<input type="text" class="nickname" id="input4" placeholder="您的名字" required="required">
+				<input type="tel" class="tel" id="input1" placeholder="手机号" required="required">
+				<input type="button" id="button" class="clickSend" value="获取验证码">
+				<input type="text" class="msgCode" id="input6" placeholder="请输入短信验证码" required="required">
+				<input type="password" class="pwd" id="input2" placeholder="密码（字母、数字，至少六位）" required="required">
+
+				<input type="number" id="inputCode" class="uCode" placeholder="请直接输入数字,如2" required="required" style="height:112px;font-size: 3em;width: 80%;margin-top: 5%;margin-left: 10%;border:1px solid #bbb;">
+				<div class="code" onclick="changeImg()" style="width: 80%;margin-top: 5%;margin-left: 10%;height:100px;line-height:100px;font-size: 3em;background:#aaa;color:#fff;text-align: center;">
+					<span class="badge" id="regetIdentify">
+				<img alt="看不清，换一张" id="validateCodeImg" src="http://localhost:8080/ChuangYeJia/userSignIn!identifyCode.action" style="width:100%;height:100%;">
+				</span>
+					<script type="text/javascript">
+						function changeImg() {
+							var webdomain = "http://localhost:8080";
+							document.getElementById("validateCodeImg").src = webdomain + "/ChuangYeJia/userSignIn!identifyCode.action?i=" + Math.random();
+						}
+					</script>
+				</div>
+
+				<input type="submit" value="注册" id="input3" class="submitRegist">
+
+				<p id="p1">点击注册，即同意我们的 <span>用户隐私条款</span></p>
+				<hr>
+				<a href="login.html" id="a1">已有账号？登录</a>
+			</div>
+			<div id="footer">
+				<ul>
+					<li>
+						<a href="index.html">
+							<ul>
+								<li style="height:30px;"><img src="image/shouye2.png" alt=""></li>
+								<li style="font-size:32px;">首页</li>
+							</ul>
+						</a>
+					</li>
+					<li>
+						<a href="zixun.html">
+							<ul>
+								<li style="height:30px;"><img src="image/fabu.png" alt=""></li>
+								<li style="font-size:32px;">发布</li>
+							</ul>
+						</a>
+					</li>
+					<li>
+						<a href="jingxuangs.html">
+							<ul>
+								<li style="height:30px;"><img src="image/xixi.png" alt=""></li>
+								<li style="font-size:32px;">精选</li>
+							</ul>
+						</a>
+					</li>
+					<li>
+						<a href="kefu.html">
+							<ul>
+								<li style="height:30px;"><img src="image/kefu.png" alt=""></li>
+								<li style="font-size:32px;">客服</li>
+							</ul>
+						</a>
+					</li>
+					<li>
+						<a href="demo01.html">
+							<ul>
+								<li style="height:30px;"><img src="image/WODE.png" alt=""></li>
+								<li style="font-size:32px;">我的</li>
+							</ul>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+	<script type="text/javascript" src="js/jquery-1.11.3.js" ></script>
+	<script>
+		var webdomain = "http://localhost:8080";
+		$(document).ready(function() {
+			$(".clickSend").bind("click", sendTel);
+			
+			$(".submitRegist").bind("click", function() {
+				var nickname = $(".nickname").val().trim();
+    			var tel = $(".tel").val().trim();
+    			var msgCode = $(".msgCode").val().trim();
+    			var pwd = $(".pwd").val().trim();
+    			var uCode = $(".uCode").val().trim();
+    			if(nickname != "" && tel != "" && msgCode != "" && pwd != null && uCode != null) {
+    				$.ajax({
+					　　type : "GET",
+					　　url: webdomain + '/ChuangYeJia/userSignIn!registeForPhoto.action',
+					　　dataType : "jsonp",
+						data : {
+							nickname : nickname,
+							tel : tel,
+							password : pwd,
+							identifyCode : uCode,
+							registerTelCode : msgCode
+			            },
+					 	jsonpCallback: "registerJsonpCallback",  
+					　　success : function(udata) {
+							if(udata.flag) {
+								alert("注册成功");
+								window.location.href = "demo01.html";
+							} else {
+								alert(udata.reason);
+							}
+						}
+					});
+    			} else {
+    				alert("请按要求填写信息");
+    			}
+			});
+			
+		});
+		
+		function sendTel() {
+			if($(".tel").val().trim() !== "" && $(".tel").val().trim().match(/^1[34578]\d{9}$/) && $(".nickname").val().trim() != "") {
+				
+				
+				var webdomain = "http://localhost:8080";
+    			$.ajax({
+				　　type : "GET",
+				　　url: webdomain + '/ChuangYeJia/sendMessage!sendMessage.action',
+				　　dataType : "jsonp",
+				 	jsonpCallback: "sendTelCodeJsonpCallback",  
+				 	data : {
+				 		nickname : $(".nickname").val().trim(),
+						tel : $(".tel").val().trim()
+				 	},
+				　　success : function(mdata) {
+						if(mdata.success) {
+							alert("发送成功！请您注意查收您的短信！");
+							$(".clickSend").unbind("click");
+							$(".clickSend").attr("disabled", "disabled");
+							var i = 300;
+							var runTime = setInterval(function() {
+								$(".clickSend").text(i-- + "秒后重新点击获取手机验证码");
+								if(i == -2) {
+									$(".clickSend").removeAttr("disabled");
+									$(".clickSend").text("点击获取手机验证码");
+									i == 300;
+									clearInterval(runTime);
+									$(".clickSend").bind("click", sendTel);
+								}
+							}, 1000);
+						} else {
+							alert(mdata.reason);
+						}
+					}
+				});
+				
+			} else {
+				alert("请先输入正确的电话号码和用户名！");
+			}
+		}
+	
+	</script>
+
+	</body>
+</html>

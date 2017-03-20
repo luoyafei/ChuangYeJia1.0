@@ -12,6 +12,8 @@ import org.springframework.stereotype.Component;
 
 import com.chuangyejia.bean.User;
 import com.chuangyejia.service.IUserService;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.opensymphony.xwork2.ActionSupport;
 
 @Component(value="validateAction")
@@ -22,6 +24,9 @@ public class ValidateAction extends ActionSupport {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private static final String IsLogin = "validateIsLoginJsonpCallback";//用于手机端的底栏我的，进行验证是否登陆
+	private static final String LoginValidate = "validateJsonpCallback";//进行手机端的用户登陆的验证
 	private IUserService us;
 	public IUserService getUs() {
 		return us;
@@ -150,4 +155,101 @@ public class ValidateAction extends ActionSupport {
 		out.close();
 	}
 	
+	/**
+	 * 跨域字段
+	 */
+	private String callback;
+	public String getCallback() {
+		return callback;
+	}
+	public void setCallback(String callback) {
+		this.callback = callback;
+	}
+	/**
+	 * 手机端的登陆
+	 */
+	public void loginForPhone() {
+		
+		boolean flag = false;
+		String reason = null;
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("application/json; charset=utf-8");
+		PrintWriter out = null;
+		
+		try {
+			out = response.getWriter();
+		} catch (IOException e) {}
+		
+		/**
+		 * 使用正则表达式来匹配，收到的identifyCode必须是数字！
+		 */
+		flag = identifyCode.matches("[-]?[0-9]*");
+		if(flag) {
+			flag = identifyCode.equals(ServletActionContext.getRequest().getSession().getAttribute("code").toString());
+			if(flag) {
+				User user = new User();
+				user.setUserTel(tel);
+				user.setUserPassword(password);
+				user = us.checkTelAndPassword(user);
+				if(user == null) {
+					flag = false;
+					reason = "密码错误";
+				} else
+					ServletActionContext.getRequest().getSession().setAttribute("user", user);
+			} else
+				reason = "验证码错误";
+		} else
+			reason = "验证码错误";
+		JsonObject jo = new JsonObject();
+		jo.addProperty("flag", flag);
+		jo.addProperty("reason", reason);
+		/**
+		 * 增加手机端跨域跳转
+		 */
+		try {
+			if(callback != null && callback.equals(LoginValidate)) {
+				response.getWriter().print(callback + "(" + jo.toString() + ")");
+			} else
+				response.getWriter().print(jo.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		out.flush();
+		out.close();
+	}
+	
+	
+	/**
+	 * 手机端验证是否登陆 的action
+	 */
+	public void isLogin() {
+		
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("application/json; charset=utf-8");
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e) {}
+
+		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		Gson gson = new Gson();
+		JsonObject jo = new JsonObject();
+		if(user != null)
+			jo.add("user", gson.toJsonTree(user.toUserTempShowOnlyUser()));
+		jo.addProperty("flag", user != null);
+		if(callback != null && callback.equals(IsLogin)) {
+			out.print(callback + "(" + jo.toString() + ")");
+		} else
+			out.print(jo.toString());
+		
+		out.flush();
+		out.close();
+	}
+	/**
+	 * 手机端的登出
+	 */
+	public void signOut() {
+		ServletActionContext.getRequest().getSession().setAttribute("user", null);		
+	}
 }

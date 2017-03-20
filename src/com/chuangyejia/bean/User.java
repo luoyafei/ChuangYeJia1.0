@@ -46,7 +46,7 @@ public class User {
 	private String userTel = null;//电话
 	
 	
-	private String copartnerCategory = null;//合伙人类型（资金，技术，推广，运营，其他）
+	private String copartnerCategory = null;//能力方向，合伙人类型（资金，技术，推广，运营，其他）
 	private String startAbility = null;//创业能力 (资金信息，技术信息，推广信息，运营信息，创业能力)
 	private String userField = null;//关注领域 (移动互联网，电子商务，文化艺术，教育体育，汽车，旅游户外，房产，营销广告，硬件，工具软件，企业服务，搜索安全，医疗健康，媒体资讯，生活消费，其他)
 	private String introduceVideo = null;//介绍视频
@@ -323,8 +323,8 @@ public class User {
 		uts.setUserGender(userGender);
 		uts.setUserAddress(userAddress);
 		uts.setUserPhoto(userPhoto);
-//		uts.setUserWeChat(userWeChat);
-//		uts.setUserTel(userTel);
+		uts.setUserWeChat(userWeChat);
+		uts.setUserTel(userTel);
 //		uts.setUserCreateDate(userCreateDate);
 		uts.setIsVerify(isVerify);
 		
@@ -392,15 +392,14 @@ public class User {
 		utsou.setUserAddress(userAddress);
 		utsou.setUserPhoto(userPhoto);
 //		utsou.setUserWeChat(userWeChat);
-//		utsou.setUserTel(userTel);
+		utsou.setUserTel(userTel);
 //		utsou.setUserCreateDate(userCreateDate);
 		utsou.setIsVerify(isVerify);
-		
 		utsou.setCopartnerCategory(copartnerCategory);
 		utsou.setStartAbility(startAbility);
+		
 		utsou.setUserField(userField);
 		utsou.setIntroduceVideo(introduceVideo);
-		
 		
 		return utsou;
 		

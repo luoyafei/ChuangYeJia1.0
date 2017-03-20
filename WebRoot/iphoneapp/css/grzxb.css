@@ -1,0 +1,33 @@
+#ula{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+}
+#ula .lia{
+    border:1px solid  rgba(170, 170, 170, 0.24);
+    width:32.67%;
+    height:35px;
+    line-height:35px;
+    text-align: center;
+    float:left;
+}
+
+.ipttype{
+    width:73.7%;
+    height:35px;
+    border-radius:5px;
+    border:1px solid deepskyblue;
+}
+.ipt-tj{
+    width:100%;
+    height:35px;
+    border:1px solid deepskyblue;
+    color:deepskyblue;
+    background:#fff;
+    font-size:1em;
+    border-radius: 5px;
+}
+.ipt-tj:hover{
+    background:deepskyblue;
+    color:#fff;
+}

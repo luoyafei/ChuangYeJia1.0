@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>创建</title>
+    <style>
+        li{list-style: none;}
+        *{
+            margin:0;
+            padding:0;
+        }
+        a{
+            text-decoration: none;
+            color:#000;
+        }
+        #top{
+            width:100%;
+            overflow:hidden;
+            margin-bottom:30px;
+            background:#fff;
+            position:fixed;
+            top:0;
+            padding-top:15px;
+            padding-bottom:15px;
+        }
+        #top input{
+            width:87%;
+            height:80px;
+            font-size:50px;
+            line-height:80px;
+            border:none;
+            outline:none;
+            float:left;
+            margin-left:20px;
+            background:#f6f6f6;
+            border-radius:50px;
+            text-align:center;
+        }
+        #top img{
+            display:inline-block;
+            width:60px;
+            height:60px;
+            float:left;
+            margin-left:20px;
+            margin-top:10px;
+        }
+        #main_top{
+            width:100%;
+        }
+        #main_top img{
+            width:100%;
+            height:300px;
+        }
+        #navbar{
+            width:100%;
+            overflow:hidden;
+            margin-top:30px;
+        }
+        #navbar li{
+            float:left;
+            height:100px;
+            border:1px solid #000;
+            line-height:100px;
+        }
+        #navbar li a{
+            font-size: 50px;
+            display: inline-block;
+            height: 135px;
+            text-align: center;
+            line-height: 135px;
+            width: 100%;
+        }
+        #navbar li.li1{
+            width:49.7%;
+            height: 135px;
+        }
+        #navbar li.li2{
+            width:100%;
+            height: 135px;
+        }
+        div.gsname{
+            width:80%;
+            margin-left:10%;
+            margin-top:55px;
+        }
+        div.gsname>span{
+            font-size:50px;
+            width:30%;
+        }
+        div.gsname>input{
+            width:68%;
+            border:none;
+            outline: none;
+            border-bottom:2px solid #000;
+            height:60px;
+            line-height:60px;
+            font-size:50px;
+        }
+        div.touxiang{
+            width:80%;
+            margin-left:10%;
+            margin-top:55px;
+        }
+        div.touxiang>span{
+            font-size:50px;
+            width:30%;
+        }
+        div.touxiang>input{
+            width:65%;
+            border:none;
+            outline: none;
+            height:80px;
+            line-height:80px;
+            font-size:40px;
+            padding-top:20px;
+        }
+        div.yunying{
+            width:80%;
+            margin-left:10%;
+            margin-top:55px;
+        }
+        div.yunying>span{
+            font-size:50px;
+            width:100%;
+        }
+        div.yunying>ul{
+            width:100%;
+            overflow:hidden;
+            margin-top:30px;
+        }
+        div.yunying>ul>li{
+            float:left;
+            margin-left:2%;
+            width:31%;
+            border:1px solid #000;
+            font-size:40px;
+            height:90px;
+            line-height:90px;
+            text-align:center;
+            border-radius: 15px;
+        }
+        div.jianjie{
+            width:80%;
+            margin-left:10%;
+            margin-top:55px;
+        }
+        div.jianjie>span{
+            font-size:50px;
+            width:30%;
+        }
+        div.jianjie>input{
+            width:100%;
+            border:none;
+            outline: none;
+            border-bottom:2px solid #000;
+            height:60px;
+            line-height:60px;
+            font-size:50px;
+            margin-top:20px;
+        }
+        div.xiangqing{
+            width:80%;
+            margin-left:10%;
+            margin-top:55px;
+        }
+        div.xiangqing>span{
+            font-size:50px;
+            width:30%;
+        }
+        div.xiangqing>textarea{
+            width:98%;
+            font-size:40px;
+            margin-top:20px;
+            height:300px;
+            overflow-y:visible;
+            margin-left:1%;
+            text-indent:2em;
+            line-height:60px;
+        }
+        div.tijiao{
+            width:80%;
+            margin-left:10%;
+            margin-top:55px;
+        }
+        div.tijiao>input{
+            width:60%;
+            margin-left:20%;
+            height:80px;
+            line-height:80px;
+            text-align: center;
+            font-size:50px;
+            background: #fff;
+            border-radius: 25px;
+            border: 1px solid #000;
+        }
+
+
+
+
+        #footer{
+            width:100%;
+            position:fixed;
+            bottom:0;
+        }
+        #footer>ul{
+            width:100%;
+            overflow:hidden;
+        }
+        #footer>ul>li{
+            float:left;
+            width:25%;
+            height:120px;
+            line-height:120px;
+            text-align:center;
+            background:#fff;
+        }
+        #footer>ul>li>a{
+            display:inline-block;
+            height:120px;
+            width:100%;
+        }
+    </style>
+</head>
+<body style="padding-bottom:130px;">
+    <div>
+        <div id="top">
+            <img src="image/159465465.png">
+            <input type="text" placeholder="搜项目"/>
+        </div>
+        <div id="main_top">
+            <img src="image/15696465465.jpg" alt=""/>
+        </div>
+        <ul id="navbar">
+            <li class="li1"><a href="chuangjian.html"><img style="position:relative;top:15px;left:-15px;" src="image/13P0VD310.png" alt=""/>创建公司</a></li>
+            <li class="li1"><a href="fabu.html"><img style="position:relative;top:15px;left:-15px;" src="image/chanpin.png" alt=""/>发布产品</a></li>
+            <li class="li2"><a href="demo01.html"><img style="position:relative;top:15px;left:-15px;" src="image/646546546.png" alt=""/>完善个人资料，寻找合伙人</a></li>
+        </ul>
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="gsname">
+                <span>公司名称：</span><input type="text" id="input1" class="startupsName" name="title" required="required"/>
+            </div>
+            <div class="touxiang">
+                <span>公司Logo：</span><input accept="image/*" type="file" class="startupsCover" id="input2" name="touxiang" required="required"/>
+            </div>
+            <div class="yunying">
+                <span>运营阶段：</span>
+                <ul>
+                    <li onclick="getService(1)">概念阶段</li>
+                    <li onclick="getService(2)">产品研发中</li>
+                    <li onclick="getService(3)">产品已经上线</li>
+                </ul>
+            </div>
+            <div class="jianjie">
+                <span>公司简介：</span><input type="text" id="input3" class="startupsBrief" required="required"/>
+            </div>
+            <div class="xiangqing">
+                <span>详细内容：</span><textarea name="" id="" class="startupsDetail" required="required"></textarea>
+            </div>
+            <div class="tijiao">
+                <input type="button" class="submitOk" value="创建"/>
+            </div>
+        </form>
+        <div id="footer" style="border-top:2px solid #000;">
+            <ul>
+                <li>
+                    <a href="index.html">
+                        <ul>
+                            <li style="height:30px;"><img src="image/shouye2.png" alt=""/></li>
+                            <li style="font-size:32px;">首页</li>
+                        </ul>
+                    </a>
+                </li>
+                <li>
+                    <a href="zixun.html">
+                        <ul>
+                            <li style="height:30px;"><img src="image/fabu.png" alt=""/></li>
+                            <li style="font-size:32px;">发布</li>
+                        </ul>
+                    </a>
+                </li>
+                <li>
+                    <a href="jingxuangs.html">
+                        <ul>
+                            <li style="height:30px;"><img src="image/xixi.png" alt=""/></li>
+                            <li style="font-size:32px;">精选</li>
+                        </ul>
+                    </a>
+                </li>
+                <li>
+                    <a href="demo01.html">
+                        <ul>
+                            <li style="height:30px;"><img src="image/wode.png" alt=""/></li>
+                            <li style="font-size:32px;">我的</li>
+                        </ul>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <script src="js/jquery-1.11.3.js"></script>
+    <script>
+        var lis=$("div.yunying>ul>li");
+        lis.each(function(){
+            $(this).on('click',function(){
+                var i=$(this).index();
+                $(lis[i]).css('background','#aaa');
+                $(lis[i]).siblings('div.yunying>ul>li').css('background','#fff');
+            })
+        })
+        var service = -1;
+        $(document).ready(function() {
+    			$.ajax({
+				　　type : "GET",
+				　　url: '/ChuangYeJia/vaction!isLogin.action',
+				　　dataType : "jsonp",
+				 	jsonpCallback: "validateIsLoginJsonpCallback",  
+				　　success : function(udata) {
+						if(!udata.flag) {
+							window.location.href = "login.html";
+							return;
+						}
+					}
+				});
+    		
+    			$(".submitOk").bind("click", function() {
+    				var startupsName = $(".startupsName").val().trim();
+    				var startupsBrief = $(".startupsBrief").val().trim();
+    				var startupsDetail = $(".startupsDetail").val().trim();
+    				
+    				if(startupsName != null && startupsName != "" && startupsBrief != null && startupsBrief != "" && startupsDetail != null &&
+    						startupsDetail != "" && service != -1 && service != null && service != "") {
+    					var fd = new FormData();
+    					fd.append("imgForPhone", $(".startupsCover").get(0).files[0]);
+    					fd.append("name", startupsName);
+    					fd.append("brief", startupsBrief);
+    					fd.append("detail", startupsDetail);
+    					fd.append("stage", service);
+    					
+    					$.ajax({
+    						url: "/ChuangYeJia/createStartupsForPhoneAction!createStartupsForPhone.action",
+    						type: "POST",
+    						dataType: "json",
+    						processData: false,
+    						contentType: false,
+    						data: fd,
+    						success: function(data) {
+    							if(data.success) {
+    								alert("上传成功");
+    							} else {
+    								alert(data.error);
+    							}
+    						},
+    						 error: function(XMLHttpRequest, textStatus, errorThrown) {
+    							 alert("上传失败");
+    						}
+    					});
+    				}
+    				
+    				
+    			});
+		});
+        function getService(n) {
+			service = n;
+		}
+    </script>
+</body>
+</html>
