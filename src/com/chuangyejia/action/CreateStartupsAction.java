@@ -134,10 +134,6 @@ public class CreateStartupsAction extends ActionSupport {
 			} else {
 				
 				Startups startups = sd.toStartups();
-				/*File cover = img[0];
-				File photo1 = img[1];
-				File photo2 = img[2];
-				File photo3 = img[3];*/
 				
 				if(imgCanUse(img)) {
 					/**

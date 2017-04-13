@@ -433,12 +433,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					isOk = false;
 				}
 				
-				for(var i = 0; i < 4; i++) {
+				if(img.eq(0).val().trim() === "") {
+					$("#errorSpan").text("请选择要上传的公司封面！");
+					isOk = false;
+				}
+				
+				/* for(var i = 0; i < 4; i++) {
 					if(img.eq(i).val().trim() === "") {
 						$("#errorSpan").text("请选择图片！");
 						isOk = false;
 					}
-				}
+				} */
 				if(isOk) {
 					$("#submitForm").submit();
 				}

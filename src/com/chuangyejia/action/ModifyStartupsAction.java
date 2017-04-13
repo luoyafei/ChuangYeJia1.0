@@ -130,72 +130,73 @@ public class ModifyStartupsAction extends ActionSupport {
 				this.addFieldError("error", "请按要求填写数据！");
 				return INPUT;
 			} else {
-				File cover = img[0];
-				File photo1 = img[1];
-				File photo2 = img[2];
-				File photo3 = img[3];
+				
 				
 				Startups startups = sd.toStartups();
 				
-				if(imgCanUse(cover, photo1, photo2, photo3)) {
+				if(imgCanUse(img)) {
 					/**
 					 * 自定义上传的图像名
 					 */
 					String imgCover = UUID.randomUUID().toString().replace("-", "") + ".jpg";
-					String imgPhoto1 = UUID.randomUUID().toString().replace("-", "") + ".jpg";
-					String imgPhoto2 = UUID.randomUUID().toString().replace("-", "") + ".jpg";
-					String imgPhoto3 = UUID.randomUUID().toString().replace("-", "") + ".jpg";
-					
 					/**
 					 * 获取存入硬盘的具体地址
 					 */
 					String coverUrl = DISK_COVER + imgCover;
-					String photo1Url = DISK_PHOTO + imgPhoto1;
-					String photo2Url = DISK_PHOTO + imgPhoto2;
-					String photo3Url = DISK_PHOTO + imgPhoto3;
-					
 					/**
 					 * 根据全路径，将文件创建出来。
 					 */
 					File fileCover = new File(coverUrl);
-					File filePhoto1 = new File(photo1Url);
-					File filePhoto2 = new File(photo2Url);
-					File filePhoto3 = new File(photo3Url);
-					
 					/**
 					 * 标识，创建文件是否成功
 					 * 使用上传文件工具类
 					 */
-					boolean create_cover = UploadFileUtil.justDoIt(cover, fileCover);
-					boolean create_photo1 = UploadFileUtil.justDoIt(photo1, filePhoto1);
-					boolean create_photo2 = UploadFileUtil.justDoIt(photo2, filePhoto2);
-					boolean create_photo3 = UploadFileUtil.justDoIt(photo3, filePhoto3);
+					boolean create_cover = UploadFileUtil.justDoIt(img[0], fileCover);
 					
+					//同上
+					String[] imgPhotos = null;
+					String[] photosUrl = null;
+					File[] photoFiles = null;
+					if(img.length > 1) {
+						imgPhotos = new String[img.length - 1];
+						photosUrl = new String[img.length - 1];
+						photoFiles = new File[img.length - 1];
+						for(int i = 0; i < imgPhotos.length; i++) {
+							imgPhotos[i] = UUID.randomUUID().toString().replace("-", "") + ".jpg";
+							photosUrl[i] = DISK_PHOTO + imgPhotos[i];
+							photoFiles[i] = new File(photosUrl[i]);
+							UploadFileUtil.justDoIt(img[i+1], photoFiles[i]);
+						}
+					}
 					
 					/**
 					 * 如果创建成功，则进行往数据库用户表中更新
 					 */
-					if(create_cover && create_photo1 && create_photo2 && create_photo3) {
+					if(create_cover) {
 						/**
 						 * 获取存入数据库的地址
 						 */
 						String db_cover = DB_COVER + imgCover;
-						String db_photo1 = DB_PHOTO + imgPhoto1;
-						String db_photo2 = DB_PHOTO + imgPhoto2;
-						String db_photo3 = DB_PHOTO + imgPhoto3;
+						startups.setStartupsCover(db_cover);
 						
 						/**
 						 * 进行公司的存储
 						 */
 						startupsModify = ss.getStartupsInId(startupsId);
-					/*	String modifycover = startupsModify.getStartupsCover();
-						String modifyphoto1 = startupsModify.getStartupsPhoto1();
-						String modifyphoto2 = startupsModify.getStartupsPhoto2();
-						String modifyphoto3 = startupsModify.getStartupsPhoto3();*/
+						
+						if(img.length == 2) {
+							startupsModify.setStartupsPhoto1(DB_PHOTO + imgPhotos[0]);
+						} else if(img.length == 3) {
+							startupsModify.setStartupsPhoto1(DB_PHOTO + imgPhotos[0]);
+							startupsModify.setStartupsPhoto2(DB_PHOTO + imgPhotos[1]);
+						} else if(img.length == 4) {
+							startupsModify.setStartupsPhoto1(DB_PHOTO + imgPhotos[0]);
+							startupsModify.setStartupsPhoto2(DB_PHOTO + imgPhotos[1]);
+							startupsModify.setStartupsPhoto3(DB_PHOTO + imgPhotos[3]);
+						}
+						
+						
 						startupsModify.setStartupsCover(db_cover);
-						startupsModify.setStartupsPhoto1(db_photo1);
-						startupsModify.setStartupsPhoto2(db_photo2);
-						startupsModify.setStartupsPhoto3(db_photo3);
 						startupsModify.setStartupsName(startups.getStartupsName());
 						startupsModify.setStartupsServiceType(startups.getStartupsServiceType());
 						startupsModify.setStartupsCopartnerRequire(startups.getStartupsCopartnerRequire());
@@ -215,7 +216,7 @@ public class ModifyStartupsAction extends ActionSupport {
 							return SUCCESS;
 						} else {
 							this.addFieldError("error", "创建失败！请刷新重试");
-							removeImg(fileCover, filePhoto1, filePhoto2, filePhoto3);
+							removeImg(fileCover, photoFiles);
 							return INPUT;
 						}
 						
@@ -224,7 +225,7 @@ public class ModifyStartupsAction extends ActionSupport {
 						/**
 						 * 将已经上传到硬盘上的图片删除
 						 */
-						removeImg(fileCover, filePhoto1, filePhoto2, filePhoto3);
+						removeImg(fileCover, photoFiles);
 						return INPUT;
 					}
 					
@@ -241,39 +242,32 @@ public class ModifyStartupsAction extends ActionSupport {
 			
 	}
 	
-	private boolean imgCanUse(File cover, File photo1, File photo2, File photo3) {
+	private boolean imgCanUse(File[] img) {
 		
-		/**
-		 * 保证传过来的是图片
-		 */
-		if(imgContentType[0].split("/")[0].equals("image") && imgContentType[1].split("/")[0].equals("image") && imgContentType[2].split("/")[0].equals("image") && imgContentType[3].split("/")[0].equals("image")) {
-		
-			/**
-			 * 保证图片传过来是完整的图片
-			 */
-			if(cover.length() != 0 && photo1.length() != 0 && photo2.length() != 0 && photo3.length() != 0) {
-				return true;
-				
-			} else {
-				return false;
-			}
-		} else {
+		if(img == null)
 			return false;
+		for(int j = 0; j < img.length; j++) {
+			if(imgContentType[j].split("/")[0].equals("image")) {
+				if(img[j].length() == 0 )
+					return false;
+			} else 
+				return false;
 		}
+		return true;
 	}
 	
 	/**
 	 * 当出现图片上传失败时，将已经上传上去的图片删除！
 	 */
-	public void removeImg(File cover, File photo1, File photo2, File photo3) {
+	public void removeImg(File cover, File[] photos) {
 		if(cover.exists())
 			cover.delete();
-		if(photo1.exists())
-			photo1.delete();
-		if(photo2.exists())
-			photo2.delete();
-		if(photo3.exists())
-			photo3.delete();
+		if(photos != null) {
+			for(File f : photos) {
+				if(f.exists())
+					f.delete();
+			}
+		}
 	}
 	
 }
