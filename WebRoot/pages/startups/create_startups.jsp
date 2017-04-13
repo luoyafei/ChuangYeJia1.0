@@ -400,6 +400,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					isOk = false;
 				}
 				
+				if(img.eq(0).val().trim() === "") {
+					$("#errorSpan").text("请选择要上传的公司封面！");
+					isOk = false;
+				}
+				
+				/*
 				for(var i = 0; i < 4; i++) {
 					if(img.eq(i).val().trim() === "") {
 						$("#errorSpan").text("请选择图片！");
@@ -407,7 +413,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					}
 					//alert(img.eq(i).size);
 				}
-				
+				*/
 				if(isOk) {
 					$("#submitForm").submit();
 				}

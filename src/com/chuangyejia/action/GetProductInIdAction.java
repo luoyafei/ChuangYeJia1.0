@@ -141,9 +141,9 @@ public class GetProductInIdAction extends ActionSupport {
 		String reason = "";
 		if(item != null && item.trim().hashCode() != 0) {
 			Product product = ps.getProductInId(item);
-			//product.setProductStartups(null);
 			if(product != null) {
 				success = true;
+				product.setProductStartups(null);
 				jo.add("product", gson.toJsonTree(product));
 			} else {
 				reason = "产品不存在";
