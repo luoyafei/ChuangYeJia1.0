@@ -250,9 +250,13 @@
 						var allPage = parseInt(count/4) + (count%4==0?0:1);
 						
 						for(var i = 0; i < 4; i++) {
-							$(".companyA").eq(i).attr("href", "demo-gongsi-C.html?item="+stdata.stl[i].startupsId);
-							$(".companyImg").eq(i).attr("src", stdata.stl[i].startupsCover);
-							$(".companyName").eq(i).text(stdata.stl[i].startupsName);
+							try {
+								$(".companyA").eq(i).attr("href", "demo-gongsi-C.html?item="+stdata.stl[i].startupsId);
+								$(".companyImg").eq(i).attr("src", stdata.stl[i].startupsCover);
+								$(".companyName").eq(i).text(stdata.stl[i].startupsName);
+							} catch(e) {
+								break;
+							}
 						}
 						
 						

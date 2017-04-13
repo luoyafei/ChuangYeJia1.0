@@ -1,115 +1,172 @@
 <!DOCTYPE html>
-<!-- saved from url=(0057)http://www.51chuangyejia.com/iphoneapp/shenqingjiaru.html -->
-<html><head lang="en"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html>
+<head lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    
 
-    <title>手机网站</title>
 
-    <meta name="keywords" content="">
+<title>手机网站</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" href="./shenqingjiaru_files/grzx.css">
 
-    <meta name="description" content="">
+<style>
+body {
+	font-size: 1em;
+	font-family: "Microsoft YaHei", Arial;
+	overflow-x: hidden;
+	overflow-y: auto;
+	padding-bottom: 120px;
+}
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+.viewport {
+	max-width: 640px;
+	min-width: 300px;
+	margin: 0 auto;
+}
 
-    <meta name="format-detection" content="telephone=no">
+a {
+	color: #fff;
+	text-decoration: none;
+}
 
-    <meta name="apple-mobile-web-app-capable" content="yes">
+ul {
+	list-style: none;
+	padding-left: 0px;
+}
+#footer {
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+}
 
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+#footer>ul {
+	width: 100%;
+	overflow: hidden;
+	margin-bottom: 0;
+	text-align: center;
+	margin-left: -8px;
+}
 
-    <meta name="author" content="duanliang, duanliang920.com">
+#footer>ul>li {
+	width: 25%;
+	float: left;
+	border-top: 1px solid #000;
+	border-left: none;
+	border-bottom: none;
+	background: #fff;
+	padding-bottom: 2.5px;
+}
 
-    <link rel="stylesheet" href="./shenqingjiaru_files/grzx.css">
+#footer>ul>li a {
+	color: #000;
+}
 
-    <style>
+#footer>ul>li img {
+	width: 34.8%;
+	margin-bottom: -7px;
+}
 
-        body{font-size:1em;font-family:"Microsoft YaHei",Arial; overflow-x:hidden; overflow-y:auto;padding-bottom:120px;}
-        .viewport{ max-width:640px; min-width:300px; margin:0 auto;}
-        a{color:#fff;text-decoration: none;}
-        ul{list-style: none;padding-left:0px;}
+#footer>ul>li span {
+	display: inline-block;
+	font-size: 0.73em;
+}
+</style>
+<script src="js/jquery-1.11.3.js"></script>
+		<script>
+			$(document).ready(function() {
+    			$.ajax({
+				　　type : "GET",
+				　　url: '/ChuangYeJia/vaction!isLogin.action',
+				　　dataType : "jsonp",
+				 	jsonpCallback: "validateIsLoginJsonpCallback",  
+				　　success : function(udata) {
+						if(!udata.flag) {
+							window.location.href = "login.html";
+							return;
+						} else {
+							var user = udata.user;
+							$(".userNickName").text(user.userNickName);
+							$(".userPhoto").attr("src", user.userPhoto);
+							if(user.isVerify != 2) {
+								$(".isVerify").attr("href", "g5.html").text("未验证，点击验证");
+							}
+							$(".userDetailA").attr("href", "demo02.html?mark=" + user.userId);
+						}
+					}
+				});
+    			
+    			  $("#sendApply").bind('click', function() {
+    	            	var name = $("#name").val().trim();
+    	                var content = $("#content").val().trim();
+    	        		var item = window.location.href.split("item")[1].substr(1, 32);
 
-    </style>
+    	                if (name === "") {
+    	                	alert("请输入申请名称");
+    	                } else if(content === "") {
+    	                	alert("请输入申请内容");
+    	                } else if(item === "") {
+    	                	alert("选择公司出错！");
+    	                }
+    	                if(name !== "" && content !== "" && item !== "") {
+    	                	$.post('/ChuangYeJia/applyJoin!applyJoin.action', {
+    	                		name : name,
+    	                		content : content,
+    	                		startups : item
+    	                	}, function(data, textStatus) {
+    	                		if(textStatus == "success") {
+    	                			if(data.success) {
+    	                				alert("恭喜！您已经成功提交申请到该公司负责人手中！请敬候佳音！");
+    	                			} else {
+    	                				alert(data.reason);
+    	                			}
+    	                		}
+    	                	}, 'json');
+    	                }
+    	                
+    	            });
+
+			});
+		</script>
 
 </head>
 <body>
-    <div class="viewport">
-        <img src="./shenqingjiaru_files/1546646123.jpg" id="gongsi_img">
+	<div class="viewport">
+		<img src="image/1546646123.jpg" id="gongsi_img">
 		<hr>
-		<span style="color:#3899eb">恭喜!你已经成功提交申请到该公司负责人!请静候佳音!</span>
-		<form action="http://www.51chuangyejia.com/iphoneapp/shenqingjiaru.html" method="post"> 
-			申请名称:<input style="width:100%;border:1px solid #bbb;" type="text" name="sqname">
-			申请内容:<textarea name="sqcontent" style="width:100%;height:300px;border:1px solid #bbb;"></textarea><br>
-		<br><input type="submit" value="提交" style="width:100%;height:35px;line-height:35px;color:#3899eb;border:1px solid #3899eb;border-radius:5px;background:none;font-size:1em;">
-		</form>
-		<br><a href="http://www.51chuangyejia.com/iphoneapp/demo-gongsi-c.html" style="display:inline-block;width:100%;height:35px;font-size:1em;text-align:center;line-height:35px;color:#fff;background:#e4393c;border-radius:5px;">返回</a>
-    </div>
-    <div id="footer">
-        <style>
-            #footer{
-                width:100%;
-                position:fixed;
-                bottom:0;
-            }
-            #footer>ul{
-                width: 100%;
-                overflow: hidden;
-                margin-bottom: 0;
-                text-align: center;
-                margin-left: -8px;
-            }
-            #footer>ul>li{
-                width:20%;
-                float:left;
-                border-top:1px solid #000;
-                border-left:none;
-                border-bottom:none;
-                background:#fff;
-                padding-bottom: 2.5px;
-            }
-            #footer>ul>li a{color:#000;}
-            #footer>ul>li img{
-                width:34.8%;
-                margin-bottom: -7px;
-            }
-            #footer>ul>li span{
-                display: inline-block;
-                font-size: 0.73em;
-            }
-        </style>
-        <ul>
-            <li>
-                <a href="http://www.51chuangyejia.com/iphoneapp/index.html">
-                    <img src="./shenqingjiaru_files/shouye2.png"><br>
-                    <span>首页</span>
+		<!-- <span style="color: #3899eb">恭喜!你已经成功提交申请到该公司负责人!请静候佳音!</span> -->
+			申请名称:<input style="width: 100%; border: 1px solid #bbb;" type="text" id="name" name="sqname"> 申请内容:
+			<textarea name="sqcontent" id="content" style="width: 100%; height: 300px; border: 1px solid #bbb;"></textarea>
+			<br><br>
+			<input type="button" value="提交" id="sendApply"
+				style="width: 100%; height: 35px; line-height: 35px; color: #3899eb; border: 1px solid #3899eb; border-radius: 5px; background: none; font-size: 1em;">
+		<br>
+		<a onclick="history.go(-1)"
+			style="display: inline-block; width: 100%; height: 35px; font-size: 1em; text-align: center; line-height: 35px; color: #fff; background: #e4393c; border-radius: 5px;">返回</a>
+	</div>
+	<div id="footer">
+		<ul>
+			<li><a href="index.html">
+					<img src="image/shouye2.png"><br> <span>首页</span>
 
-                </a>
-            </li>
-            <li>
-                <a href="http://www.51chuangyejia.com/iphoneapp/zixun.html">
-                    <img src="./shenqingjiaru_files/fabu.png"><br>
-                    <span>发布</span>
-                </a>
-            </li>
-            <li>
-                <a href="http://www.51chuangyejia.com/iphoneapp/jingxuangs.html">
-                    <img src="./shenqingjiaru_files/xixi.png"><br>
-                    <span>精选</span>
-                </a>
-            </li>
-            <li>
-                <a href="http://www.51chuangyejia.com/iphoneapp/kefu.html">
-                    <img src="./shenqingjiaru_files/kefu.png" alt=""><br>
-                    <span>客服</span>
-                </a>
-            </li>
-            <li>
-                <a href="http://www.51chuangyejia.com/iphoneapp/demo01.html">
-                    <img src="./shenqingjiaru_files/WODE.png" alt=""><br>
-                    <span>我的</span>
-                </a>
-            </li>
-        </ul>
-    </div>
+			</a></li>
+			<li><a href="zixun.html">
+					<img src="image/fabu.png"><br> <span>发布</span>
+			</a></li>
+			<li><a
+				href="jingxuangs.html"> <img
+					src="image/xixi.png"><br> <span>精选</span>
+			</a></li>
+			<li><a href="demo01.html">
+					<img src="image/wode.png" alt=""><br> <span>我的</span>
+			</a></li>
+		</ul>
+	</div>
 
-</body></html>
+</body>
+</html>

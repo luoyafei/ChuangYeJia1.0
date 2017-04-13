@@ -251,9 +251,13 @@
 						var allPage = parseInt(count/4) + (count%4==0?0:1);
 						
 						for(var i = 0; i < 4; i++) {
-							$(".companyA").eq(i).attr("href", "demo03.html?mark="+udata.all[i].userId);
-							$(".companyImg").eq(i).attr("src", udata.all[i].userPhoto);
-							$(".companyName").eq(i).text(udata.all[i].userNickName);
+							try {
+								$(".companyA").eq(i).attr("href", "demo03.html?mark="+udata.all[i].userId);
+								$(".companyImg").eq(i).attr("src", udata.all[i].userPhoto);
+								$(".companyName").eq(i).text(udata.all[i].userNickName);
+							} catch(e) {
+								break;
+							}
 						}
 						
 						

@@ -80,7 +80,7 @@
             </li>
         </ul>
 
-        <a href="" class="bta1">联系ta</a><a href="" class="bta2">申请加入</a>
+        <a onclick="alert('请进入官网pc端进行联系该公司！')" class="bta1">联系ta</a><a id="applyJoin" class="bta2">申请加入</a>
 
     </div>
     <div id="footer">
@@ -177,6 +177,8 @@
 								$(".copartnerPhoto").eq(i).attr("src", sts.copartner[i].userPhoto);
 								$(".copartnerName").eq(i).text(sts.copartner[i].userNickName);
 							}
+							
+							$("#applyJoin").attr("href", "shenqingjiaru.html?item=" + item);
 						} else
 							alert(sdata.reason);
 				　　}

@@ -250,9 +250,13 @@
 						var allPage = parseInt(count/4) + (count%4==0?0:1);
 						
 						for(var i = 0; i < 4; i++) {
-							$(".companyA").eq(i).attr("href", "chanpinxiangqing.html?item="+psdata.ps[i].productId);
-							$(".companyImg").eq(i).attr("src", psdata.ps[i].productCover);
-							$(".companyName").eq(i).text(psdata.ps[i].productName);
+							try {
+								$(".companyA").eq(i).attr("href", "chanpinxiangqing.html?item="+psdata.ps[i].productId);
+								$(".companyImg").eq(i).attr("src", psdata.ps[i].productCover);
+								$(".companyName").eq(i).text(psdata.ps[i].productName);
+							} catch(e) {
+								break;
+							}
 						}
 						
 						
