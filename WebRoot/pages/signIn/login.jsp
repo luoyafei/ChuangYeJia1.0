@@ -142,7 +142,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 					<div style="text-align: center; color:red;"><s:property value="errors.error[0]" /></div>
 					
-						<form action="userSignIn!execute.action" method="post" onsubmit="return checkdata()">
+						<form action="/ChuangYeJia/userSignIn!execute.action" method="post" onsubmit="return checkdata()">
                             <%-- <div class="form-group">
 							    <label for="email" style="text-align: right;margin-top: 6px;" class="col-sm-2 control-label">邮&nbsp;&nbsp;&nbsp;箱</label>
 							    <div class="col-sm-10">

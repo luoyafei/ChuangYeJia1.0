@@ -151,7 +151,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<div class="main-login">
 							
 								<div style="text-align: center; color:red;"><s:property value="errors.error[0]" /></div>
-								<form action="userSignIn!register.action" method="post" name="form" onsubmit="return checkdata()" >
+								<form action="/ChuangYeJia/userSignIn!register.action" method="post" name="form" onsubmit="return checkdata()" >
 								
 									<div class="form-group" style="margin-top: 30px;">
 										<input type="text" class="form-control" name="ud.nickname" id="nickname" placeholder="昵称" maxlength="30" onblur="checknickname()">

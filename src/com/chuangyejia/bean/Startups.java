@@ -47,9 +47,9 @@ public class Startups {
 	private String startupsOperationStage = null;//运营阶段
 	private String startupsCover = null;//公司封面
 	private String startupsVideo = null;//公司视频
-	private String startupsPhoto1 = null;//公司照片1
-	private String startupsPhoto2 = null;//公司照片2
-	private String startupsPhoto3 = null;//公司照片3
+	private String startupsPhoto1 = STARTUPS_DEFAULT_PICTURE;//公司照片1
+	private String startupsPhoto2 = STARTUPS_DEFAULT_PICTURE;//公司照片2
+	private String startupsPhoto3 = STARTUPS_DEFAULT_PICTURE;//公司照片3
 
 	private User startupsLeader = null;//公司leader对象
 	

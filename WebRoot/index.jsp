@@ -301,7 +301,7 @@ request.setAttribute("flag", "index");
 		$(document).ready(function() {
 			$("td").attr("style", "border-top: solid #333333 1px;");
 			
-			$.post('provideUsers!getUsers.action', {
+			$.post('/ChuangYeJia/provideUsers!getUsers.action', {
 				start : "5,0",
 				length : 4
 			}, function(data, textStatus) {
