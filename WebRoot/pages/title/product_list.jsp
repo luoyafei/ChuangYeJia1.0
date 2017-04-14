@@ -241,24 +241,64 @@ request.setAttribute("flag", "product");
 			      </div>
 			</div>
 			
-			<nav id="paginationAll" class="text-center">
-		      <ul class="pagination" id="pagId">
-		        <li class="pagination_All active"><span>1</span></li>
-		        <li class="pagination_All"><span>2</span></li>
-                <li class="pagination_All"><span>3</span></li>
-                <li class="pagination_All"><span>4</span></li>
-                <li class="pagination_All"><span>5</span></li>
-	            <li class="pagination_All"><span>...</span></li>
-           		<li class="pagination_All"><span>7</span></li>
-		     </ul>
-		   </nav>
+			<div class="fenye" style="width:100%;">
+		        <style>
+		            .tcdPageCode{padding: 15px 20px;text-align: left;color: #ccc;}
+		            .tcdPageCode a{width: 60px;text-align: center;font-size: 2em;display: inline-block;color: #428bca;display: inline-block;height: 60px;	line-height: 60px;	padding: 0 10px;border: 1px solid #ddd;	margin: 0 2px;border-radius: 9px;vertical-align: middle;}
+		            .tcdPageCode a:hover{text-decoration: none;border: 1px solid #428bca;}
+		            .tcdPageCode span.current{width: 120px;text-align: center;font-size: 2em;display: inline-block;height: 60px;line-height: 60px;padding: 0 10px;margin: 0 2px;color: #fff;background-color: #428bca;	border: 1px solid #428bca;border-radius: 4px;vertical-align: middle;}
+		            .tcdPageCode span.disabled{	width: 120px;text-align: center;font-size: 2em;display: inline-block;height: 60px;line-height: 60px;padding: 0 10px;margin: 0 2px;	color: #bfbfbf;background: #f2f2f2;border: 1px solid #bfbfbf;border-radius: 4px;vertical-align: middle;}
+		        </style>
+		        <div class="tcdPageCode" style="text-align: center;"></div>
+		        <script src="jquery.page.js"></script>
+		        <script>
+		        	
+		        	$(document).ready(function() {
+		        		var start = window.location.search;
+		        		if(start.trim() == "") {
+		        			start = 1;
+		        		} else {
+		        			try {
+		        				start = parseInt(start.substr(7, start.length - 7));
+		        			} catch (e) {
+		        				start = 1;
+		        			}
+		        		}
+		        			
+		        		$.post("/ChuangYeJia/supportProducts!getproducts.action", {
+		        			length : 12,
+		        			start : start-1
+		        		}, function(data, textStatus) {
+		        			var count = data.count;
+							var allPage = parseInt(count/12) + (count%12==0?0:1);
+							
+						for(var i = 0; i < data.ps.length-1; i++) {
+							$("#gridAll").append($(".flagToCloneAll").clone().attr("class", "col-lg-3 col-md-4 col-sm-6 col-xs-12 cloneItemAll"));
+						}
+						for(var i = 0;i < data.ps.length; i++) {
+							
+							$(".productName").eq(i).text(data.ps[i].productName);
+							$(".productPrice").eq(i).text("售价：" + (data.ps[i].productPrice==undefined?"暂不出售":(data.ps[i].productPrice+"￥")));
+							$(".linkProduct").eq(i).attr("href", "getProductItem?item="+data.ps[i].productId);
+							$(".productCover").eq(i).attr("src", data.ps[i].productCover);
+						}
+							
+						$(".tcdPageCode").createPage({
+			                pageCount:allPage,
+			                current:start,
+			                backFn:function(p){
+			                	window.location.href = "/ChuangYeJia/pages/title/product_list.jsp?start=" + p;
+			                	return;
+			                }
+			            });
+		        		}, "json");
+		        	});
+		            
+		        </script>
+		
+		    </div>
 			
 		</div>
-
-
-
-
-
 
 	<jsp:include page="../module/bottom.jsp" flush="true" />
 
@@ -267,153 +307,7 @@ request.setAttribute("flag", "product");
 
 		$(document).ready(function() {
 			$("td").attr("style", "border-top: solid #333333 1px;");
-			
-			var len = 12;
-			
-			getAllStartups(1, len);
-			
-			$(".pagination_All").bind("click", function(a) {
-				if($(this).text() != "...") {
-					$(".pagination_All").each(function(index) {
-						$(".pagination_All").eq(index).attr("class", "pagination_All");
-					})
-					getAllStartups($(this).text(), len);
-				}
-			});
 		});
-		
-		
-		function getAllStartups(start, length) {
-			
-			$.post('supportProducts!getproducts.action', {
-				start : start-1,
-				length : length
-			}, function(data, textStatus) {
-				if(textStatus == 'success') {
-					$(".cloneItemAll").remove();
-					
-					var count = data.count;
-					var allPage = parseInt(count/length) + (count%length==0?0:1);
-
-					var pa1 = $(".pagination_All").eq(0);
-					var pa2 = $(".pagination_All").eq(1);
-					var pa3 = $(".pagination_All").eq(2);
-					var pa4 = $(".pagination_All").eq(3);
-					var pa5 = $(".pagination_All").eq(4);
-					var paSpan = $(".pagination_All").eq(5);
-					var pa999 = $(".pagination_All").eq(6);
-
-					if(allPage >= 3 && start <= (allPage*1-5)) {
-						if(start==1) {
-							pa1.html("<span>" + (start*1) + "</span>");
-							pa2.html("<span>" + (start*1+1) + "</span>");
-							pa3.html("<span>" + (start*1+2) + "</span>");
-							pa4.html("<span>" + (start*1+3) + "</span>");
-							pa5.html("<span>" + (start*1+4) + "</span>");
-							paSpan.html("<span>...</span>");
-							pa999.html("<span>" + allPage*1 + "</span>");
-						} else if(start == 2) {
-							pa1.html("<span>" + (start*1-1) + "</span>");
-							pa2.html("<span>" + (start*1) + "</span>");
-							pa3.html("<span>" + (start*1+1) + "</span>");
-							pa4.html("<span>" + (start*1+2) + "</span>");
-							pa5.html("<span>" + (start*1+3) + "</span>");
-							paSpan.html("<span>...</span>");
-							pa999.html("<span>" + allPage*1 + "</span>");
-						} else {
-							pa1.html("<span>" + (start*1-2) + "</span>");
-							pa2.html("<span>" + (start*1-1) + "</span>");
-							pa3.html("<span>" + (start*1) + "</span>");
-							pa4.html("<span>" + (start*1+1) + "</span>");
-							pa5.html("<span>" + (start*1+2) + "</span>");
-							paSpan.html("<span>...</span>");
-							pa999.html("<span>" + allPage*1 + "</span>");
-						}
-						
-						
-					} else if(allPage >= 7 && start > (allPage*1-5)) {
-						
-						pa1.html("<span>" + (allPage*1-6) + "</span>");
-						pa2.html("<span>" + (allPage*1-5) + "</span>");
-						pa3.html("<span>" + (allPage*1-4) + "</span>");
-						pa4.html("<span>" + (allPage*1-3) + "</span>");
-						pa5.html("<span>" + (allPage*1-2) + "</span>");
-						paSpan.html("<span>"+ (allPage*1-1) +"</span>");
-						pa999.html("<span>" + (allPage*1) + "</span>");
-					} else if(allPage == 7) {
-						pa1.html("<span>" + 1 + "</span>");
-						pa2.html("<span>" + 2 + "</span>");
-						pa3.html("<span>" + 3 + "</span>");
-						pa4.html("<span>" + 4 + "</span>");
-						pa5.html("<span>" + 5 + "</span>");
-						paSpan.html("<span>"+ 6 +"</span>");
-						pa999.html("<span>" + 7 + "</span>");
-					}  else if(allPage < 7) {
-						pa1.html("<span>" + 1 + "</span>");
-						pa2.html("<span>" + 2 + "</span>");
-						pa3.html("<span>" + 3 + "</span>");
-						pa4.html("<span>" + 4 + "</span>");
-						pa5.html("<span>" + 5 + "</span>");
-						paSpan.html("<span>"+ 6 +"</span>");
-						pa999.html("<span>" + 7 + "</span>");
-						
-						if(allPage == 6)
-							pa999.hide();
-						else if(allPage == 5) {
-							pa999.hide();
-							paSpan.hide();
-						} else if(allPage == 4) {
-							pa999.hide();
-							paSpan.hide();
-							pa5.hide();
-						} else if(allPage == 3) {
-							pa999.hide();
-							paSpan.hide();
-							pa5.hide();
-							pa4.hide();
-						} else if(allPage == 2) {
-							pa999.hide();
-							paSpan.hide();
-							pa5.hide();
-							pa4.hide();
-							pa3.hide();
-						} else if(allPage == 1) {
-							pa999.hide();
-							paSpan.hide();
-							pa5.hide();
-							pa4.hide();
-							pa3.hide();
-							pa2.hide();
-						}
-					}
-					
-					$(".pagination_All").each(function(index) {
-						if($(".pagination_All").eq(index).text() == start) {
-							$(this).attr("class", "pagination_All active");
-						} else {
-							$(this).attr("class", "pagination_All");
-						}
-						
-					});
-					
-					
-					
-					for(var i = 0; i < data.ps.length-1; i++) {
-						$("#gridAll").append($(".flagToCloneAll").clone().attr("class", "col-lg-3 col-md-4 col-sm-6 col-xs-12 cloneItemAll"));
-					}
-					for(var i = 0;i < data.ps.length; i++) {
-						
-						$(".productName").eq(i).text(data.ps[i].productName);
-						$(".productPrice").eq(i).text("售价：" + (data.ps[i].productPrice==undefined?"暂不出售":(data.ps[i].productPrice+"￥")));
-						$(".linkProduct").eq(i).attr("href", "getProductItem?item="+data.ps[i].productId);
-						$(".productCover").eq(i).attr("src", data.ps[i].productCover);
-					}
-				} else {
-					alert("网络出错！请刷新重试！");
-				}
-			}, 'json');
-			
-		}
 		
 	</script>
 

@@ -227,22 +227,22 @@ request.setAttribute("flag", "partner");
 
 			<div class="categoryTab">
 			    <ul id="copartnerCategory" class="nav nav-tabs" role="tablist">
-			      <li role="presentation" class="active" onclick="changeCategory(5)">
+			      <li role="presentation" class="tabRole" onclick="changeCategory(5)">
 			      		<a href="#time" role="tab" data-toggle="tab" id="time-tab" style="color: #398BE5;" aria-controls="home" aria-expanded="true">综合</a>
 			      </li>
-			      <li class="" role="presentation" onclick="changeCategory(1)">
+			      <li class="tabRole" role="presentation" onclick="changeCategory(1)">
 			      		<a href="#fund" role="tab" data-toggle="tab" id="fund-tab" style="color: #398BE5;" aria-controls="fund" aria-expanded="true">资金</a>
 			      </li>
-			      <li class="" role="presentation" onclick="changeCategory(2)">
+			      <li class="tabRole" role="presentation" onclick="changeCategory(2)">
 			      		<a href="#technology" role="tab" data-toggle="tab" id="technology-tab" style="color: #398BE5;" aria-controls="technology" aria-expanded="true">技术</a>
 			      </li>
-			      <li class="" role="presentation" onclick="changeCategory(3)">
+			      <li class="tabRole" role="presentation" onclick="changeCategory(3)">
 			      		<a href="#popularize" role="tab" data-toggle="tab" id="popularize-tab" style="color: #398BE5;" aria-controls=popularize aria-expanded="true">推广</a>
 			      </li>
-			      <li class="" role="presentation" onclick="changeCategory(4)">
+			      <li class="tabRole" role="presentation" onclick="changeCategory(4)">
 			      		<a href="#operation" role="tab" data-toggle="tab" id="operation-tab" style="color: #398BE5;" aria-controls="operation" aria-expanded="true">运营</a>
 			      </li>
-			      <li class="" role="presentation" onclick="changeCategory(0)">
+			      <li class="tabRole" role="presentation" onclick="changeCategory(0)">
 			      		<a href="#other" role="tab" data-toggle="tab" id="other-tab" style="color: #398BE5;" aria-controls="other" aria-expanded="true">其他</a>
 			      </li>
 			    </ul>
@@ -277,232 +277,189 @@ request.setAttribute("flag", "partner");
 								</div>
 							</div>
 						</div>  
-						<nav id="paginationAll" class="text-center">
-					      <ul class="pagination" id="pagId">
-					        <li class="pagination_All active"><span>1</span></li>
-					        <li class="pagination_All"><span>2</span></li>
-                            <li class="pagination_All"><span>3</span></li>
-                            <li class="pagination_All"><span>4</span></li>
-                            <li class="pagination_All"><span>5</span></li>
-				            <li class="pagination_All"><span>...</span></li>
-		            		<li class="pagination_All"><span>7</span></li>
-					     </ul>
-					   </nav>
-					</div>
-			    </div>
-			  </div>
+						
+				<div class="fenye" style="width:100%;">
+			        <style>
+			            .tcdPageCode{padding: 15px 20px;text-align: left;color: #ccc;}
+			            .tcdPageCode a{width: 60px;text-align: center;font-size: 2em;display: inline-block;color: #428bca;display: inline-block;height: 60px;	line-height: 60px;	padding: 0 10px;border: 1px solid #ddd;	margin: 0 2px;border-radius: 9px;vertical-align: middle;}
+			            .tcdPageCode a:hover{text-decoration: none;border: 1px solid #428bca;}
+			            .tcdPageCode span.current{width: 120px;text-align: center;font-size: 2em;display: inline-block;height: 60px;line-height: 60px;padding: 0 10px;margin: 0 2px;color: #fff;background-color: #428bca;	border: 1px solid #428bca;border-radius: 4px;vertical-align: middle;}
+			            .tcdPageCode span.disabled{	width: 120px;text-align: center;font-size: 2em;display: inline-block;height: 60px;line-height: 60px;padding: 0 10px;margin: 0 2px;	color: #bfbfbf;background: #f2f2f2;border: 1px solid #bfbfbf;border-radius: 4px;vertical-align: middle;}
+			        </style>
+			        <div class="tcdPageCode" style="text-align: center;"></div>
+			        <script src="jquery.page.js"></script>
+			        <script>
+			        	
+			        	var category = 5;
+	        			var len = 12;
+				        function changeCategory(type) {
+				    		category = type;
+				    		window.location.href = "/ChuangYeJia/pages/title/copartner_list.jsp?start=1&type="+type;
+				    	}
+				        
+				        function getAllItem(type, start, length) {
+				        	
+				        	if(type == 5) {
+				        		for(var i = 0; i < $(".tabRole").length; i++) {
+				        			if(i == 0) {
+				        				$(".tabRole").eq(i).attr("class", "tabRole active");
+				        			} else
+				        				$(".tabRole").eq(i).attr("class", "tabRole");
+				        		}
+							} else if(type == 1) {
+								for(var i = 0; i < $(".tabRole").length; i++) {
+				        			if(i == 1) {
+				        				$(".tabRole").eq(i).attr("class", "tabRole active");
+				        			} else
+				        				$(".tabRole").eq(i).attr("class", "tabRole");
+				        		}
+							} else if(type == 2) {
+								for(var i = 0; i < $(".tabRole").length; i++) {
+				        			if(i == 2) {
+				        				$(".tabRole").eq(i).attr("class", "tabRole active");
+				        			} else
+				        				$(".tabRole").eq(i).attr("class", "tabRole");
+				        		}
+							} else if(type == 3) {
+								for(var i = 0; i < $(".tabRole").length; i++) {
+				        			if(i == 3) {
+				        				$(".tabRole").eq(i).attr("class", "tabRole active");
+				        			} else
+				        				$(".tabRole").eq(i).attr("class", "tabRole");
+				        		}
+							} else if(type == 4) {
+								for(var i = 4; i < $(".tabRole").length; i++) {
+				        			if(i == 4) {
+				        				$(".tabRole").eq(i).attr("class", "tabRole active");
+				        			} else
+				        				$(".tabRole").eq(i).attr("class", "tabRole");
+				        		}
+							} else if(type == 0) {
+								for(var i = 0; i < $(".tabRole").length; i++) {
+				        			if(i == 5) {
+				        				$(".tabRole").eq(i).attr("class", "tabRole active");
+				        			} else
+				        				$(".tabRole").eq(i).attr("class", "tabRole");
+				        		}
+							}
+				        	
+				        	
+				        	
+				        	$.post("/ChuangYeJia/provideUsers!getUsers.action", {
+			        			start : type+","+start,
+				             	length : length
+			        		}, function(data, textStatus) {
+			        			
+			        			$(".cloneItemAll").remove();
+			        			
+								var categoryType = type;
+								var startCount = start;
+						
+								var all;
+								var allCount;
+								var cc;//合伙人类型
+								if(categoryType == 5) {
+									all = data.all;
+									allCount = data.allCount;
+								} else if(categoryType == 1) {
+									all = data.fund;
+									allCount = data.fundCount;
+									cc = "资金";
+								} else if(categoryType == 2) {
+									all = data.technology;
+									allCount = data.technologyCount;
+									cc = "技术";
+								} else if(categoryType == 3) {
+									all = data.popularize;
+									allCount = data.popularizeCount;
+									cc = "推广";
+								} else if(categoryType == 4) {
+									all = data.operation;
+									allCount = data.operationCount;
+									cc = "运营";
+								} else if(categoryType == 0) {
+									all = data.other;
+									allCount = data.otherCount;
+									cc = "其他";
+								}
+			        			for(var i = 0; i < all.length-1; i++) {
+									$("#gridAll").append($(".flagToCloneAll").clone().attr("class", "col-lg-3 col-md-4 col-sm-6 col-xs-12 cloneItemAll"));
+								}
+								$(".userCoverAll").each(function(index){
+									$(this).attr("src", all[index].userPhoto);
+								});
+								$(".userIntroduceAll").each(function(index){
+									var introduce = "暂无";
+									if(all[index].userIntroduce!=undefined)
+										introduce = all[index].userIntroduce;
+									$(this).text("用户经历： " + introduce);
+								});
+								$(".nicknameAll").each(function(index){
+									$(this).text(all[index].userNickName);
+								});
+								$(".nicknameAll").each(function(index){
+									$(this).attr("href", "/ChuangYeJia/getUserMark.action?mark="+all[index].userId);
+								});
+								$(".categoryAll").each(function(index){
+									//var cc = data.all[index].copartnerCategory;
+									if(type != 5) {
+										$(this).text(cc);	
+									} else
+										$(this).text(data.all[index].copartnerCategory);
+									
+								});
+			        			
+								var allPage = parseInt(allCount/12) + (allCount%12==0?0:1);
+								
+								$(".tcdPageCode").createPage({
+					                pageCount:allPage,
+					                current:startCount,
+					                backFn:function(p){
+					                	window.location.href = "/ChuangYeJia/pages/title/copartner_list.jsp?start="+p+"&type="+type;
+					                	return;
+					                }
+					            });
+			        		}, "json");
+							
+						}
+			        </script>
+		    	</div>
 			</div>
-		
+	    </div>
+	  </div>
+	</div>
+
 		
 	<jsp:include page="../module/bottom.jsp" flush="true" />
 	</body>
 	<script>
-	$('#copartnerCotegory a').click(function(e) {
-		e.preventDefault();
-		$(this).tab('show');
-	});
+		$('#copartnerCotegory a').click(function(e) {
+			e.preventDefault();
+			$(this).tab('show');
+		});
 	
-	var category = 5;
-	var len = 12;
-	function changeCategory(type) {
-		category = type;
-		$(".pagination_All").each(function(index) {
-			if(index == 0)
-				$(".pagination_All").eq(index).attr("class", "pagination_All active");
-			else
-				$(".pagination_All").eq(index).attr("class", "pagination_All");
-		})
-		getAllItem(type + ",1", len);
-	}
 		$(document).ready(function() {
 			$("td").attr("style", "border-top: solid #333333 1px;");
 			
-			getAllItem("5,1", len);
-			
-			
-			$(".pagination_All").bind("click", function(a) {
-				if($(this).text() != "...") {
-					$(".pagination_All").each(function(index) {
-						$(".pagination_All").eq(index).attr("class", "pagination_All");
-					})
-
-					getAllItem(category + "," + $(this).text(), len);
-				}
-			});
-			 
+			var params = window.location.search;
+			var start;
+			var type;
+    		if(params.trim() == "") {
+    			start = 1;
+    			type = 5;
+    		} else {
+    			try {
+    				var arrayParam = params.split("&");
+    				start = parseInt(arrayParam[0].substr(7, arrayParam[0].length));
+    				type = parseInt(arrayParam[1].substr(5, arrayParam[1].length));
+    				
+    			} catch (e) {
+    				start = 1;
+    				type = 5;
+    			}
+    		}
+			getAllItem(type, start, len);
 		});
-	
-	
-		function getAllItem(start, length) {
-			
-			$.post('provideUsers!getUsers.action', {
-				start : start,
-				length : length
-			}, function(data, textStatus) {
-				if(textStatus == "success") {
-					
-					$(".cloneItemAll").remove();
-					
-					var startArray = start.split(",");
-					var categoryType = startArray[0];
-					
-					var startCount = startArray[1];
-			
-					var all;
-					var allCount;
-					
-					if(categoryType == 5) {
-						all = data.all;
-						allCount = data.allCount;
-					} else if(categoryType == 1) {
-						all = data.fund;
-						allCount = data.fundCount;
-					} else if(categoryType == 2) {
-						all = data.technology;
-						allCount = data.technologyCount;
-					} else if(categoryType == 3) {
-						all = data.popularize;
-						allCount = data.popularizeCount;
-					} else if(categoryType == 4) {
-						all = data.operation;
-						allCount = data.operationCount;
-					} else if(categoryType == 0) {
-						all = data.other;
-						allCount = data.otherCount;
-					}
-					
-					
-					allPage = parseInt(allCount/length) + (allCount%(length*1)==0?0:1);
-
-					var pa1 = $(".pagination_All").eq(0);
-					var pa2 = $(".pagination_All").eq(1);
-					var pa3 = $(".pagination_All").eq(2);
-					var pa4 = $(".pagination_All").eq(3);
-					var pa5 = $(".pagination_All").eq(4);
-					var paSpan = $(".pagination_All").eq(5);
-					var pa999 = $(".pagination_All").eq(6);
-
-					if(allPage >= 3 && startCount <= (allPage*1-5)) {
-						if(startCount==1) {
-							pa1.html("<span>" + (startCount*1) + "</span>");
-							pa2.html("<span>" + (startCount*1+1) + "</span>");
-							pa3.html("<span>" + (startCount*1+2) + "</span>");
-							pa4.html("<span>" + (startCount*1+3) + "</span>");
-							pa5.html("<span>" + (startCount*1+4) + "</span>");
-							paSpan.html("<span>...</span>");
-							pa999.html("<span>" + allPage*1 + "</span>");
-						} else if(startCount == 2) {
-							pa1.html("<span>" + (startCount*1-1) + "</span>");
-							pa2.html("<span>" + (startCount*1) + "</span>");
-							pa3.html("<span>" + (startCount*1+1) + "</span>");
-							pa4.html("<span>" + (startCount*1+2) + "</span>");
-							pa5.html("<span>" + (startCount*1+3) + "</span>");
-							paSpan.html("<span>...</span>");
-							pa999.html("<span>" + allPage*1 + "</span>");
-						} else {
-							pa1.html("<span>" + (startCount*1-2) + "</span>");
-							pa2.html("<span>" + (startCount*1-1) + "</span>");
-							pa3.html("<span>" + (startCount*1) + "</span>");
-							pa4.html("<span>" + (startCount*1+1) + "</span>");
-							pa5.html("<span>" + (startCount*1+2) + "</span>");
-							paSpan.html("<span>...</span>");
-							pa999.html("<span>" + allPage*1 + "</span>");
-						}
-						
-						
-					} else if(allPage >= 7 && startCount > (allPage*1-5)) {
-						
-						pa1.html("<span>" + (allPage*1-6) + "</span>");
-						pa2.html("<span>" + (allPage*1-5) + "</span>");
-						pa3.html("<span>" + (allPage*1-4) + "</span>");
-						pa4.html("<span>" + (allPage*1-3) + "</span>");
-						pa5.html("<span>" + (allPage*1-2) + "</span>");
-						paSpan.html("<span>"+ (allPage*1-1) +"</span>");
-						pa999.html("<span>" + (allPage*1) + "</span>");
-					} else if(allPage == 7) {
-						pa1.html("<span>" + 1 + "</span>");
-						pa2.html("<span>" + 2 + "</span>");
-						pa3.html("<span>" + 3 + "</span>");
-						pa4.html("<span>" + 4 + "</span>");
-						pa5.html("<span>" + 5 + "</span>");
-						paSpan.html("<span>"+ 6 +"</span>");
-						pa999.html("<span>" + 7 + "</span>");
-					} else if(allPage < 7){
-						pa1.html("<span>" + 1 + "</span>");
-						pa2.html("<span>" + 2 + "</span>");
-						pa3.html("<span>" + 3 + "</span>");
-						pa4.html("<span>" + 4 + "</span>");
-						pa5.html("<span>" + 5 + "</span>");
-						paSpan.html("<span>"+ 6 +"</span>");
-						pa999.html("<span>" + 7 + "</span>");
-						
-						if(allPage == 6)
-							pa999.hide();
-						else if(allPage == 5) {
-							pa999.hide();
-							paSpan.hide();
-						} else if(allPage == 4) {
-							pa999.hide();
-							paSpan.hide();
-							pa5.hide();
-						} else if(allPage == 3) {
-							pa999.hide();
-							paSpan.hide();
-							pa5.hide();
-							pa4.hide();
-						} else if(allPage == 2) {
-							pa999.hide();
-							paSpan.hide();
-							pa5.hide();
-							pa4.hide();
-							pa3.hide();
-						} else if(allPage == 1) {
-							pa999.hide();
-							paSpan.hide();
-							pa5.hide();
-							pa4.hide();
-							pa3.hide();
-							pa2.hide();
-						}
-					}
-					
-					$(".pagination_All").each(function(index) {
-						if($(".pagination_All").eq(index).text() == startCount) {
-							$(this).attr("class", "pagination_All active");
-						}
-					});
-					
-				
-					
-					for(var i = 0; i < all.length-1; i++) {
-						$("#gridAll").append($(".flagToCloneAll").clone().attr("class", "col-lg-3 col-md-4 col-sm-6 col-xs-12 cloneItemAll"));
-					}
-					$(".userCoverAll").each(function(index){
-						$(this).attr("src", all[index].userPhoto);
-					});
-					$(".userIntroduceAll").each(function(index){
-						var introduce = "暂无";
-						if(all[index].userIntroduce!=undefined)
-							introduce = all[index].userIntroduce;
-						$(this).text("用户经历： " + introduce);
-					});
-					$(".nicknameAll").each(function(index){
-						$(this).text(all[index].userNickName);
-					});
-					$(".nicknameAll").each(function(index){
-						$(this).attr("href", "/ChuangYeJia/getUserMark.action?mark="+all[index].userId);
-					});
-					$(".categoryAll").each(function(index){
-						var cc = data.all[index].copartnerCategory;
-						$(this).text(cc == "" || cc == null ? "未定" : cc);
-					});
-					
-				} else {
-					alert("网络出错！请刷新重试！");
-				}
-			}, 'json');
-			
-		}
 		
 	</script>
 	
