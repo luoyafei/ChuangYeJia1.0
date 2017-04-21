@@ -255,5 +255,9 @@
         <action name="createStartupsForPhoneAction" class="createStartupsForPhoneAction" />
         
         <action name="createProductForPhone" class="createProductActionForPhone" />
+        
+        <!-- 提交微课题 -->
+        <action name="submitData" class="submitData" />
+        
     </package>
 </struts>

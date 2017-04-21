@@ -4,6 +4,17 @@
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
+  
+  <!-- 用户上传资料的地址-->
+  <context-param>
+    <param-name>uploadData</param-name>
+    <param-value>D:\Java_Project\ChuangYeJiaSource\Data\</param-value>
+  </context-param>
+  <context-param>
+    <param-name>uploadDataVir</param-name>
+    <param-value>/ChuangYeJia/Data/</param-value>
+  </context-param>
+  
   <!-- 用户上传认证图片的物理路径以及虚拟路径 -->
   <context-param>
     <param-name>userRealPhotoDisk</param-name>

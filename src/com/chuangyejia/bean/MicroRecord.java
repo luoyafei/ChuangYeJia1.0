@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name="microRecord")
+@Table(name="microrecord")
 public class MicroRecord {
 
 	private String id;

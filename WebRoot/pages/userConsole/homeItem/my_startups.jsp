@@ -83,7 +83,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</div>
 	
+	<!-- Modal -->
+			<div class="modal fade" id="myModalProtocol" tabindex="-1" role="dialog" aria-labelledby="myModalProtocolLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			        <h4 class="modal-title" id="myModalLabel">上传您的资料</h4>
+			      </div>
+			      <div class="modal-body">
+					<strong>上传资料</strong><br />
+		        		<div class="form-group" style="margin-top: 30px;">
+							上传资料(大小限制在2M内,请勿重复上传)<input type="file" id="picture" style="display:inline;" name="picture"/>
+						</div>
+			      	</div>
+			      <div class="modal-footer">
+			      	<button type="button" class="btn btn-primary" id="uploadOk">上传</button>
+			        <button type="button" class="btn btn-default" id="uploadClose" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+	
+	
 	<script type="text/javascript">
+		var upData = null;
 		$(document).ready(function(){
 			
 			$.post('getStartupsConsole!getStartupsList.action', {}, function(data, textStatus) {
@@ -106,7 +130,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								$(".myCreateDate").eq(i).text(data.leaderS[i].startupsCreateDate);
 								$(".myOperate").eq(i).html("<a href='/ChuangYeJia/getStartupsItem?item=" + data.leaderS[i].startupsId + "' class='btn btn-default btn-xs myOperateDetail'>查看</a>"
 									+ "<a href='/ChuangYeJia/updateStartupsItem?item=" + data.leaderS[i].startupsId + "' class='btn btn-default btn-xs myOperateModify'>修改</a>"
-									/* + "<button class='btn btn-danger btn-xs myOperateDelete' onclick=''>申请删除</button>" */
+									+ "<a class='btn-danger btn-xs' data-toggle='modal' data-target='#myModalProtocol' onclick='uploadData(\"" + data.leaderS[i].startupsId + "\")'>上传材料</a>"
+											/* + "<button class='btn btn-danger btn-xs myOperateDelete' onclick=''>申请删除</button>" */
 								);
 							}
 							
@@ -131,7 +156,49 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					}
 				}
 			}, 'json');
+			
+			$("#uploadOk").bind("click", function() {
+				if(upData != null) {
+					if($("#picture").val().trim() != "") {
+						var fd = new FormData();
+						fd.append("picture", $("#picture").get(0).files[0]);
+						fd.append("startupsId", upData);
+						
+						$.ajax({
+							url: "submitData!submit",
+							type: "POST",
+							dataType: "json",
+							processData: false,
+							contentType: false,
+							data: fd,
+							success: function(data) {
+								if(data.success) {
+									alert("上传成功");
+									upData = null;
+									$("#uploadClose").click();
+								} else
+									alert(data.reason);
+							},
+							 error: function(XMLHttpRequest, textStatus, errorThrown) {
+								alert("上传失败");
+							}
+						});
+						
+					} else
+						alert("请选择您要上传的资料");
+					
+				} else
+					alert("请选择一个公司");
+			});
 		});
+		
+		
+		function uploadData(data) {
+			if(data != "" && data != null) {
+				upData = data;
+			} else
+				alert("请选择一个公司");
+		}
 	</script>
 	
 </div>
