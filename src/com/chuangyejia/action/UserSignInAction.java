@@ -1,9 +1,11 @@
 package com.chuangyejia.action;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +20,7 @@ import com.chuangyejia.dto.UserSignDTO;
 import com.chuangyejia.service.IShopCarService;
 import com.chuangyejia.service.IUserService;
 import com.chuangyejia.tools.IdentifyCode;
+import com.chuangyejia.tools.UploadFileUtil;
 import com.google.gson.JsonObject;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -137,6 +140,140 @@ public class UserSignInAction extends ActionSupport {
 							return BACK;
 					} else
 						this.addFieldError("error", "用户注册失败！请稍后重试");
+				} else
+					this.addFieldError("error", "该手机号码已被注册！请更换号码或者进行密码找回服务！谢谢合作");
+			} else
+				this.addFieldError("error", "请准确核实您的输入数据，确认格式的正确！");
+		} else
+			this.addFieldError("error", "验证码错误！");
+		
+		return REGISTER;
+	}
+	
+	private String address;
+	private String profile;
+	private File picture;
+	private String pictureFileName;
+	private String pictureContentType;
+	/**
+	 * 图片存入数据库中的地址
+	 */
+	private static final String DB = ServletActionContext.getServletContext().getInitParameter("uploadPictureUrlVir");
+	/**
+	 * 图片实际存入硬盘的地址
+	 */
+	private static final String DISK = ServletActionContext.getServletContext().getInitParameter("uploadPictureUrlDisk");
+	/**
+	 * 图片的默认地址
+	 */
+	private static final String DEFAULT = ServletActionContext.getServletContext().getInitParameter("uploadPictureUrlDef");
+	public File getPicture() {
+		return picture;
+	}
+	public void setPicture(File picture) {
+		this.picture = picture;
+	}
+	public String getPictureFileName() {
+		return pictureFileName;
+	}
+	public void setPictureFileName(String pictureFileName) {
+		this.pictureFileName = pictureFileName;
+	}
+	public String getPictureContentType() {
+		return pictureContentType;
+	}
+	public void setPictureContentType(String pictureContentType) {
+		this.pictureContentType = pictureContentType;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getAddress() {
+		return this.address;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+	public String getProfile() {
+		return this.profile;
+	}
+	
+	private String uploadPic() {
+		/**
+		 * 保证传输过来的是图片
+		 */
+		if(pictureContentType.split("/")[0].equals("image")) {
+			/**
+			 * 自定义上传的图像名
+			 */
+			pictureFileName = UUID.randomUUID().toString().replace("-", "") + ".jpg";
+			
+			/**
+			 * 获取存入硬盘的具体地址
+			 */
+			String url = DISK + pictureFileName;
+			/**
+			 * 根据全路径，将文件创建出来。
+			 */
+			File file = new File(url);
+			
+			/**
+			 * 标识，创建文件是否成功
+			 * 使用上传文件工具类
+			 */
+			boolean create = UploadFileUtil.justDoIt(picture, file);
+
+			/**
+			 * 如果创建成功
+			 */
+			if(create) {
+				return DB + pictureFileName;
+			} else
+				return null;
+		} else
+			return null;
+	}
+	/**
+	 * 面向微课题的注册
+	 */
+	public String register_micro() {
+		String code = String.valueOf(ServletActionContext.getRequest().getSession().getAttribute("code"));//先将session中的验证码结果取出
+		String telCode = String.valueOf(ServletActionContext.getRequest().getSession().getAttribute("telCode"));//将session中的电话验证码结果取出
+		
+		if(ud.getIdentifyCode().equals(code) && telCode.equals(registerTelCode)) {//如果判断相等，则继续执行
+			ud.setIsLogin(false);
+			if(ud.checkDataDispatchor() && address != null && profile != null) {
+				//判断数据库中是否存在该 Tel
+				if(!us.checkTel(ud.getTel())) {
+					
+					if(uploadPic() != null) {
+						User user = ud.toUser();
+						user.setUserAddress(address);
+						user.setUserIntroduce(profile);
+						user.setUserIp(ServletActionContext.getRequest().getRemoteAddr());
+						user.setUserPhoto(uploadPic());
+						
+						if(us.saveUser(user))  {//将User对象存入数据库中。
+							HttpSession session = ServletActionContext.getRequest().getSession();
+							session.setAttribute("user", user);//将插入成功的User对象放入Session中
+							session.setAttribute("userTemp", null);
+							session.setAttribute("code", null);
+							session.setAttribute("telCode", null);
+							session.setAttribute("shopCar", iscs.getProductsInUserId(user.getUserId()));
+							
+							if(fromShowStartups)
+								return RDA_BACK_ITEM;
+							else if(fromUserProfile)
+								return RDA_BACK_MARK;
+							else
+								return BACK;
+							
+						} else
+							this.addFieldError("error", "用户注册失败！请稍后重试");
+						
+					}
+					
+					
 				} else
 					this.addFieldError("error", "该手机号码已被注册！请更换号码或者进行密码找回服务！谢谢合作");
 			} else

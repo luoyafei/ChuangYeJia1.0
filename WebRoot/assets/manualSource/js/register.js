@@ -171,6 +171,13 @@ function checkIdentifyCode() {
 		}, 'json');
 	}
 }
+
+function checkMicro() {
+	if($("#profile").val().trim() != "" && $("#address").val().trim() != "" && $("#picture").val().trim() != "") {
+		return true;
+	} else
+		return false;
+}
 function checkdata() {
 	var telCode = $("#telCode").val().trim();
 	if(checknickname() && checkpassword() && checkrepassword() && $("#tel").val().trim()!=="" && $("#identifyCode").val().trim()!=="" && telCode !== "" && telCode.length === 6)
